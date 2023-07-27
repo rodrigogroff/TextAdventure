@@ -1,0 +1,54 @@
+﻿
+----------------------------
+ Hellfire game plan
+----------------------------
+
+O player começa com "desvantagens" conforme a alma que entra rnd[1|8]
+Objetivo final seria remover estes traits (a pessoa evolve)
+
+
+----------------------------
+ todo
+----------------------------
+
+-ao atravessar a ponte, teste de destreza e dano
+
+
+----------------------------
+ Hellfire item plan
+----------------------------
+
+- outlands gate ----- 20
+	Bone
+
+- outlands tree ----- 30
+	DeathFruit [x]
+	Twig
+	Bone
+
+- outlands bridge --- 40
+	Wood_piece
+	Nails
+	Rope
+
+- waterfall cave - start -- 60_1
+	Wood_Club
+
+- waterfall cave - skeleton -- 60_2
+	Dagger
+
+- waterfall cave - fire remains -- 60_3
+	Gold 20
+	(look) 
+	Light_Boots
+
+- waterfall cave - troll lair -- 60_4
+	
+	dentro da caverna, um troll com um dente quebrado
+		teste de força - ST 3 - salvar variavel 'amigo'
+		lhe dá um capacete magico +20 Mana max (ele comeu um mago por ultimo) 
+
+	give deathfruit / mostra goblin temple no mapa (lá tem mais coisas...)
+
+- waterfall cave - troll lair -- 60_4_1 
+	novo mapa

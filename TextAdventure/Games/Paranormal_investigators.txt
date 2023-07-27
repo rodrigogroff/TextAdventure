@@ -1,0 +1,17 @@
+﻿
+----------------------------
+ game plan
+----------------------------
+
+-atributos de
+
+	Dexterity			10 (padrão)
+	Intel				10 (padrão)
+	Strength			10 (padrão)
+
+	Fear				0 a 3 // diminui 'destreza' e 'força' - e as vezes o personagem se recusa a se mover
+	Insanity			0 a 3 // diminui 'inteligencia', atos randomicos de loucura (joga itens no chão)
+	Stress				0 a 3 // diminui 'força' e vontade de comer, atos randomicos de histeria (auto-flagelo, come comida)
+	Life				80	
+
+	Morte: life < 0 && qqer um destes atingir 3
