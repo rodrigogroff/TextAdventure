@@ -1,6 +1,6 @@
 ﻿public partial class TextAdventureGame
 {
-    void Tips()
+    void DisplayTips()
     {
         Console.WriteLine();
         Write(" ** TIP - ", ConsoleColor.DarkGray);

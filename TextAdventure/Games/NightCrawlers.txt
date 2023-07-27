@@ -1,0 +1,26 @@
+﻿
+----------------------------
+ história básica
+----------------------------
+
+Você é um Hikimori japonês dentro de um grande condominio.
+Um apocalise zumbi acontece, e você tem de se preparar para a noite.
+Seu pai, militar, consegue combinar que no dia (3 dias depois) ele vai te buscar no heliporto do shopping.
+ 
+----------------------------
+ game plan
+----------------------------
+
+-atributos de:
+
+	Fome
+	Sede
+	Vida
+	Stress
+
+-reforçar portas
+-obter armas
+-conseguir comida
+-lutar com zumbis
+-lutar com humanos
+	

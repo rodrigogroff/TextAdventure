@@ -7,7 +7,7 @@ public partial class TextAdventureGame
         {
             case "/help":
                 DisplayHelpBox();
-                Tips();
+                DisplayTips();
                 Console.CursorVisible = true;
                 break;
 

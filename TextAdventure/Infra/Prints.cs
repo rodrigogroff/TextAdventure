@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
-using System.Diagnostics;
-
+﻿
 public partial class TextAdventureGame
 {
     void PrintGameBig()
@@ -16,29 +13,11 @@ public partial class TextAdventureGame
         }
         Print(("v" + game.gameVersion).PadLeft(max_len, ' '), ConsoleColor.White);
     }
+
     void Write(string text, ConsoleColor color)
     {
         Console.ForegroundColor = color;
         Console.Write(text);
-    }
-
-    void PrintTitle(string text, ConsoleColor color = ConsoleColor.DarkRed, ConsoleColor colorShadow = ConsoleColor.DarkRed, int timeout = 50)
-    {
-        foreach (var item in text)
-        {
-            if (item != '▒' && item != '░' && item != '▓')
-            {
-                Console.ForegroundColor = color;
-                Console.Write(item);
-            }
-            else
-            {
-                Console.ForegroundColor = colorShadow;
-                Console.Write(item);
-            }
-        }
-        Console.Write('\n');
-        Thread.Sleep(timeout);
     }
 
     public void Print(List<string> lines, List<ConsoleColor> colors, int ms = 50)
@@ -48,11 +27,7 @@ public partial class TextAdventureGame
             var text = lines[i];
             var color = colors[i];
             Console.ForegroundColor = color;
-            foreach (var c in text)
-            {
-                
-                Console.Write(c);
-            }
+            Console.Write(text);
             Thread.Sleep(ms);
         }
     }
@@ -168,36 +143,3 @@ public partial class TextAdventureGame
         return text;
     }
 }
-
-/*
- * 
- 
-{
-        int ST = 1;
-        int DX = 2;
-        string formula = "ST + 10 * DX / 2";
-
-        // Replace placeholders with actual values in the formula string
-        string formulaWithValue = formula.Replace("ST", ST.ToString()).Replace("DX", DX.ToString());
-
-        // Create a temporary DataTable to evaluate the expression
-        DataTable dt = new DataTable();
-
-        try
-        {
-            // Evaluate the expression
-            var result = dt.Compute(formulaWithValue, "");
-
-            // The result will be of type object, so you may need to cast it to the appropriate type
-            double finalResult = Convert.ToDouble(result);
-
-            Console.WriteLine("Result: " + finalResult);
-        }
-        catch (Exception ex)
-        {
-            // Handle any evaluation errors
-            Console.WriteLine("Error: " + ex.Message);
-        }
-    }
- 
- * */

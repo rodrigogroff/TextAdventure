@@ -1,5 +1,14 @@
 ﻿
 ----------------------------
+ história básica
+----------------------------
+
+ Você tem um histórico de ver fantasmas.
+ Você colocou um anuncio e pessoas responderam.
+ 3 jogos: easy, normal e hard
+
+
+----------------------------
  game plan
 ----------------------------
 
