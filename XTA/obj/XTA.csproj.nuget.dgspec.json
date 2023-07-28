@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rodrigo.groff\\Desktop\\TA\\XTA\\XTA.csproj": {}
+    "C:\\Teste\\TA\\XTA\\XTA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rodrigo.groff\\Desktop\\TA\\XTA\\XTA.csproj": {
+    "C:\\Teste\\TA\\XTA\\XTA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodrigo.groff\\Desktop\\TA\\XTA\\XTA.csproj",
+        "projectUniqueName": "C:\\Teste\\TA\\XTA\\XTA.csproj",
         "projectName": "XTA",
-        "projectPath": "C:\\Users\\rodrigo.groff\\Desktop\\TA\\XTA\\XTA.csproj",
+        "projectPath": "C:\\Teste\\TA\\XTA\\XTA.csproj",
         "packagesPath": "C:\\Users\\rodrigo.groff\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodrigo.groff\\Desktop\\TA\\XTA\\obj\\",
+        "outputPath": "C:\\Teste\\TA\\XTA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

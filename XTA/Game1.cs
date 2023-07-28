@@ -22,6 +22,8 @@ namespace XTA
         double cursorBlinkTime = 0.5; 
         double cursorElapsed = 0;
 
+        Texture2D pngTexture;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -96,6 +98,8 @@ namespace XTA
             lucidaConsoleFont = Content.Load<SpriteFont>("File");
             calibriConsoleFont = Content.Load<SpriteFont>("File2");
 
+            pngTexture = Content.Load<Texture2D>("logo_footer");
+
             base.Initialize();
         }
 
@@ -111,38 +115,33 @@ namespace XTA
 
             KeyboardState keyboardState = Keyboard.GetState();
 
-            // Handle text input
             foreach (Keys key in keyboardState.GetPressedKeys())
             {
                 if (prevKeyboardState.IsKeyUp(key))
                 {
                     if (key == Keys.Back && inputText.Length > 0)
                     {
-                        // Remove the last character if the Backspace key is pressed
                         inputText = inputText.Substring(0, inputText.Length - 1);
                     }
                     else if (key == Keys.Space)
                     {
-                        // Add a space character if the Space key is pressed
                         inputText += " ";
                     }
                     else
                     {
-                        // Get the character from the key and check if it's a letter or digit
                         char inputChar = GetCharacterFromKey(key);
                         if (Char.IsLetterOrDigit(inputChar))
                         {
-                            // Add the character to the inputText if it's a letter or digit
                             inputText += inputChar;
                         }
                     }
                 }
             }
 
-            prevKeyboardState = keyboardState; // Update the previous frame's keyboard state
+            prevKeyboardState = keyboardState;
 
-            // Update cursor blinking
             cursorElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+
             if (cursorElapsed >= cursorBlinkTime)
             {
                 cursorVisible = !cursorVisible;
@@ -183,6 +182,12 @@ namespace XTA
                     Color cursorColor = Color.White; // Use a different color for the cursor
                     spriteBatch.DrawString(lucidaConsoleFont, "|", cursorPosition, cursorColor);
                 }
+            }
+
+            {
+                Color textColor = Color.White * currentAlpha; // Multiply the color with the alpha value
+                Vector2 position = new Vector2(500, 100);
+                spriteBatch.Draw(pngTexture, position, textColor);
             }
 
             spriteBatch.End();

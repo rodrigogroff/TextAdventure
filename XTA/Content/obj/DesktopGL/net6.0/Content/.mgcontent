@@ -4,10 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/rodrigo.groff/Desktop/TA/XTA/Content/File.spritefont</File>
-    <File>C:/Users/rodrigo.groff/Desktop/TA/XTA/Content/File2.spritefont</File>
+    <File>C:/Teste/TA/XTA/Content/File.spritefont</File>
+    <File>C:/Teste/TA/XTA/Content/File2.spritefont</File>
+    <File>C:/Teste/TA/XTA/Content/logo_footer.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

@@ -1,3 +1,3 @@
 ﻿
-using var game = new XTA.Game1();
+using var game = new XTA.GameXTA();
 game.Run();

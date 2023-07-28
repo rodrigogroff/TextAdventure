@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rodrigo.groff\\Desktop\\TA\\TextAdventure\\TextAdventure.csproj": {}
+    "C:\\Teste\\TA\\TextAdventure\\TextAdventure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rodrigo.groff\\Desktop\\TA\\TextAdventure\\TextAdventure.csproj": {
+    "C:\\Teste\\TA\\TextAdventure\\TextAdventure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodrigo.groff\\Desktop\\TA\\TextAdventure\\TextAdventure.csproj",
+        "projectUniqueName": "C:\\Teste\\TA\\TextAdventure\\TextAdventure.csproj",
         "projectName": "TextAdventure",
-        "projectPath": "C:\\Users\\rodrigo.groff\\Desktop\\TA\\TextAdventure\\TextAdventure.csproj",
+        "projectPath": "C:\\Teste\\TA\\TextAdventure\\TextAdventure.csproj",
         "packagesPath": "C:\\Users\\rodrigo.groff\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodrigo.groff\\Desktop\\TA\\TextAdventure\\obj\\",
+        "outputPath": "C:\\Teste\\TA\\TextAdventure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
