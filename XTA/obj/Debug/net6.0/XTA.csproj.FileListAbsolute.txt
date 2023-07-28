@@ -23,3 +23,5 @@ C:\Users\rodrigo.groff\Desktop\TA\XTA\obj\Debug\net6.0\refint\XTA.dll
 C:\Users\rodrigo.groff\Desktop\TA\XTA\obj\Debug\net6.0\XTA.pdb
 C:\Users\rodrigo.groff\Desktop\TA\XTA\obj\Debug\net6.0\XTA.genruntimeconfig.cache
 C:\Users\rodrigo.groff\Desktop\TA\XTA\obj\Debug\net6.0\ref\XTA.dll
+C:\Users\rodrigo.groff\Desktop\TA\XTA\bin\Debug\net6.0\Content\File.xnb
+C:\Users\rodrigo.groff\Desktop\TA\XTA\bin\Debug\net6.0\Content\File2.xnb
