@@ -1,0 +1,49 @@
+﻿
+----------------------------
+ história básica
+----------------------------
+
+Quando pequeno você ficou perdido na mata por 12 horas.
+Você voltou de madrugada, sujo e ferido.
+
+Você sempre foi magro por toda a sua juventude.
+
+HOJE
+
+Você tem 35 anos e mora sozinho em uma casa no suburbio.
+Você foi saiu e foi jantar ali perto e então um caminhão
+de lixo lhe atropela, gerando um acidente com outros 
+carros... 
+
+você perdeu uma perna... e no meio da poça de sangue, sua
+perna vai se transformando em um pequeno monstro, que vai
+lambendo e sugando todo seu sangue de volta.
+
+"Alimente... Korg..." a criatura demanda. Você se re-integra
+ileso (ele é um simbionte), mas um dos homens do caminhão de 
+lixo, sangrando, chama a atenção de Korg.
+
+
+---------------------------
+Quests
+---------------------------
+
+:: absorver pessoas (qto piores menos valor)
+:: absorver maldições
+:: absorver demonios
+
+
+----------------------------
+ game plan
+----------------------------
+
+O jogo será levar Korg a sua forma plena, vencer 
+seus irmãos (?) e retornar ao inferno na floresta.
+
+Atributes
+
+	-DemonFluid
+	-Strength
+	-Dexterity
+	-Vitality	
+	-Hunger

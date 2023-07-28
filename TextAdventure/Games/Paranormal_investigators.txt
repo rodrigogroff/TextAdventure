@@ -5,8 +5,8 @@
 
  Você tem um histórico de ver fantasmas.
  Você colocou um anuncio e pessoas responderam.
- 3 jogos: easy, normal e hard
-
+ 
+ você escolhe um email para iniciar um jogo.
 
 ----------------------------
  game plan

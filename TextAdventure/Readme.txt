@@ -33,7 +33,7 @@ with even 8 bit era graphics, because:
 -sentence logic "use sword on troll" completely non-intuitive;
 -complicated puzzles for the sake of complexity (cruelty);
 -required physical notes of locations for players to not get lost;
--in the end, they tryed to add graphics instead of better designs;
+-in the end, they tryed to add graphics instead of better interactivy; 
 
 
 -----------------------------------------------
@@ -50,11 +50,13 @@ checkpoints in mind:
 	also expressed objetively as choice (1 - "do this", 2 - "do that") or 
 	just what the "/help" provide as all the commands provided by the engine.
 
+	Think of the input blinking cursor as "homage".
+
 2) please forget about 'advanced' parsing, and let it stay DEAD:
 
-	A "no boundaries" interface (3+ words) drives people CRAZY (and away to the 
-	game) really f* fast ("turn off lamp?") -- also complicates matters for everyone: 
-	coder and the player. 
+	A "no boundaries" interface (even 3+ words) drives people CRAZY (and away to the 
+	game) really f* fast ("turn off lamp", "rub oil lamp") -- also complicates 
+	matters for everyone: coder and the player. 
 
 3) hints:
 
@@ -73,11 +75,16 @@ checkpoints in mind:
 6) on-game map:         
 
 	No more Left, Right, West, East commands... lets provide the player with the 
-	aid of some visualization of space represented in a simple map. 
+	aid of some visualization of space represented in a simple ascii map.
 	
 	The focus is on interactivity and decision making, not memorization.
 
-7) modern RPG:
+7) on-game map (fog of war):         
+
+	Maps unfold themselves, not a big one map. You start in a "cave" and 
+	you should see prpbably 3 or 4 maps as you go. Some maps have secrets.
+
+7) modern RPG elements:
 
 	we will use "gear", as a particular space of clothing and weapons.
 	
