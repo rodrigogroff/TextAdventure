@@ -5,7 +5,12 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextAdventure", "TextAdventure\TextAdventure.csproj", "{5DD7CA55-A63F-4040-8C62-AED0D4C35127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XTA", "XTA\XTA.csproj", "{140B0B10-1218-4BD1-89F7-DA943A5B8917}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTA", "XTA\XTA.csproj", "{140B0B10-1218-4BD1-89F7-DA943A5B8917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{5C136857-D248-45DE-B096-CB1A2C0AB648}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

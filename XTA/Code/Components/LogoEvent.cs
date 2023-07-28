@@ -18,7 +18,7 @@ namespace XTA.Code.Components
         public int framesDuration = 60 * 3;
 
         float currentAlpha = 0.0f;
-        float fadeSpeed = 0.10f;
+        
         Texture2D pngTexture;
         public int indexer = 0;
         public float[] curve;

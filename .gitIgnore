@@ -43,6 +43,7 @@ MonoGame.Framework.Content.Pipeline/obj/
 .idea/
 
 # Build results
+[n]et6.0/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

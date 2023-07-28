@@ -18,10 +18,16 @@ namespace XTA
 
         int gameState = GAME_STATE_SHOW_LOGO;
 
+        int virtualScreenWidth = 1920;
+        int virtualScreenHeight = 1080;
+
         #region - main variables -
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+
+        // for the scan-lines
+        Texture2D pixelTexture; 
 
         string ErrorFile = "error.txt";
 
@@ -71,6 +77,9 @@ namespace XTA
         {
             try
             {
+                pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
+                pixelTexture.SetData(new[] { Color.White });
+
                 spriteBatch = new SpriteBatch(GraphicsDevice);
 
                 var lgo = new LogoEvent();
@@ -121,12 +130,32 @@ namespace XTA
             }
         }
 
+        void DrawScanLines()
+        {
+            spriteBatch.Begin();
+
+            int scanLineSpacing = 5, scanLineSize = 2;
+            int screenHeight = GraphicsDevice.Viewport.Height;
+            int screenWidth = GraphicsDevice.Viewport.Width;
+
+            float vlr_grey = 0.07f;
+
+            Color scanLineColor = new Color(vlr_grey, vlr_grey, vlr_grey, vlr_grey / 2); 
+
+            for (int y = 0; y < screenHeight; y += scanLineSpacing)
+            {
+                spriteBatch.Draw(pixelTexture, 
+                    new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
+            }
+
+            spriteBatch.End();
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             try
             {
-                int virtualScreenWidth = 1920;
-                int virtualScreenHeight = 1080;
+                
 
                 float scaleX = (float)GraphicsDevice.Viewport.Width / virtualScreenWidth;
                 float scaleY = (float)GraphicsDevice.Viewport.Height / virtualScreenHeight;
@@ -156,6 +185,8 @@ namespace XTA
                 GraphicsDevice.Viewport = new Viewport(0, 0,
                     GraphicsDevice.PresentationParameters.BackBufferWidth,
                     GraphicsDevice.PresentationParameters.BackBufferHeight);
+
+                DrawScanLines();                
 
                 base.Draw(gameTime);
             }
