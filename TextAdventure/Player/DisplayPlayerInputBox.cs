@@ -76,10 +76,12 @@ public partial class TextAdventureGame
             Write(" [Type ", ConsoleColor.DarkGray);
             Write("/help", ConsoleColor.White);
             Write(" to see a list of commands]\n", ConsoleColor.DarkGray);
+            Write(" [Enter to continue]", ConsoleColor.DarkGray);
             Write(" [> ", ConsoleColor.Green);
         }
         else
         {
+            Write(" [Enter to continue]", ConsoleColor.DarkGray);
             Write(" [> ", ConsoleColor.Green);
         }        
     }

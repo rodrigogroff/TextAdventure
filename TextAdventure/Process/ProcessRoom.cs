@@ -59,6 +59,12 @@ public partial class TextAdventureGame
         {
             game.currentRoom = current_game_Room.id;
 
+            if (bQuickSave)
+            {
+                SaveGame();
+                EnterToContinue();
+            }
+
             bool first = true;
             while (true)
             {

@@ -7,6 +7,7 @@ public partial class TextAdventureGame
     Random random = new Random();
     string currentFile = "";
     bool bFastMode = false;
+    bool bQuickSave = false;
     bool bUnlimitedHints = false;
     bool bHintsDisabled = false;
     bool bHardcore = false;
@@ -18,6 +19,7 @@ public partial class TextAdventureGame
 
     void EnterToContinue()
     {
+        Write(" [Enter to continue]", ConsoleColor.DarkGray);
         Write(" [> ", ConsoleColor.DarkGray);
         Console.ForegroundColor = ConsoleColor.White;
         Console.CursorVisible = true;

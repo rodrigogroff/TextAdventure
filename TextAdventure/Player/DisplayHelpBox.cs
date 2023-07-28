@@ -34,7 +34,7 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.Green);
         lines.Add(" /speed".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" slow or instant text ");
+        lines.Add(" toggle slow or instant text ");
         colors.Add(ConsoleColor.Green);
         if (bFastMode)
             lines.Add("[FAST]\n");
@@ -95,7 +95,17 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.Green);
         lines.Add(" /award".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" game goals currently achieved\n");
+        lines.Add(" game goals currently achieved".PadRight(w2, ' '));
+
+        colors.Add(ConsoleColor.Green);
+        lines.Add(" /quicksave".PadRight(w1, ' '));
+        colors.Add(ConsoleColor.DarkGray);
+        lines.Add(" toggle automatic save on entering stage ");
+        colors.Add(ConsoleColor.Green);
+        if (bQuickSave)
+            lines.Add("[ON]\n");
+        else
+            lines.Add("[OFF]\n");
         colors.Add(ConsoleColor.Green);
         lines.Add(" /quest".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
