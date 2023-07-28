@@ -66,7 +66,7 @@ namespace XTA.Code.Components
                 case FADEOUT_PRESENT:
 
                     if (currentAlpha > 0)
-                        currentAlpha -= curve[--indexer];
+                        currentAlpha -= curve[indexer--];
 
                     if (currentAlpha <= 0)
                     {
