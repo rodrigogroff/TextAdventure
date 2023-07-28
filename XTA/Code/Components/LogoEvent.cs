@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using XTA.Code.Infra;
 
-namespace XTA.Code.Infra
+namespace XTA.Code.Components
 {
     public class LogoEvent : GameEvent
     {
@@ -14,10 +15,10 @@ namespace XTA.Code.Infra
         public int myState = DELAY_TO_PRESENT;
 
         public int framesStart = 60 * 3;
-        public int framesDuration = 60 * 3;        
+        public int framesDuration = 60 * 3;
 
         float currentAlpha = 0.0f;
-        float fadeSpeed = 0.10f;        
+        float fadeSpeed = 0.10f;
         Texture2D pngTexture;
         public int indexer = 0;
         public float[] curve;
@@ -26,7 +27,7 @@ namespace XTA.Code.Infra
         {
             pngTexture = Content.Load<Texture2D>("logo_footer");
             curve = new GameFunctions().GenerateLogarithmicArray(600);
-            position = new Vector2(1920 / 2 - pngTexture.Width / 2, 1080 / 2 - pngTexture.Height/2);
+            position = new Vector2(1920 / 2 - pngTexture.Width / 2, 1080 / 2 - pngTexture.Height / 2);
         }
 
         public override void Dispose()
@@ -52,11 +53,11 @@ namespace XTA.Code.Infra
                     {
                         myState++;
                     }
-                    
+
                     break;
 
                 case PRESENT:
-                    
+
                     if (--framesDuration == 0)
                         myState++;
 
@@ -80,7 +81,7 @@ namespace XTA.Code.Infra
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            switch(myState)
+            switch (myState)
             {
                 case FADEIN_PRESENT:
                 case PRESENT:
