@@ -31,7 +31,7 @@ namespace XTA.Code.Components
             pngWallpaper = Content.Load<Texture2D>("bg19");
 
             curve = new GameFunctions().GenerateLogarithmicArray(300);
-            position = new Vector2(1920 / 2 - pngGameLogo.Width / 2, 200);
+            position = new Vector2(1920 / 2 - pngGameLogo.Width / 2, 100);
         }
 
         public override void Update()

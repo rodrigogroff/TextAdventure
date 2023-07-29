@@ -1,3 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Teste/TA/XTA/Content/MainDialog.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/MainDialog.xnb","TextureProcessor","Texture2DContent",768068,3956157,0,2175882
-"C:/Teste/TA/XTA/Content/MainStats.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/MainStats.xnb","TextureProcessor","Texture2DContent",626829,2970733,0,0705499
+"C:/Teste/TA/XTA/Content/../Images/Hellfire.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/Hellfire.xnb","TextureProcessor","Texture2DContent",448238,3471253,0,258783

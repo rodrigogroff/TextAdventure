@@ -26,12 +26,12 @@ namespace XTA
             virtualScreenHeight = 1080,
             BackBufferWidth = 0,
             BackBufferHeight = 0,
-            scanLineSpacing = 4, 
+            scanLineSpacing = 2, 
             scanLineSize = 1,
             screenHeight = 0,
             screenWidth = 0;
 
-        Color scanLineColor = new Color(0.1f, 0.1f, 0.1f, 0.01f);
+        Color scanLineColor = new Color(0.1f, 0.1f, 0.1f, 0.005f);
 
         float scaleX, scaleY;
 
@@ -161,13 +161,13 @@ namespace XTA
                 // =-------------
                 // scan lines
                 // =-------------
-
+                
                 spriteBatch.Begin();
                 for (int y = 0; y < screenHeight; y += scanLineSpacing)
                     spriteBatch.Draw(pixelTexture_ScanLines,
                         new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
                 spriteBatch.End();
-
+                
                 // end
                 
                 base.Draw(gameTime);
