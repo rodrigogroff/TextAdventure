@@ -57,3 +57,4 @@ C:\Teste\TA\XTA\obj\Debug\net6.0\ref\XTA.dll
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\Hellfire.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\Roboto.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\Merriweather.xnb
+C:\Teste\TA\XTA\bin\Debug\net6.0\Content\bg19.xnb

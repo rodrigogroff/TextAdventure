@@ -26,6 +26,7 @@ namespace XTA.Code.State
 
         List<GameEvent> pipeline_game_title = new List<GameEvent>();
         SpriteFont menuFont;
+        SpriteFont menuVersionFont;
         KeyboardState prevKeyboardState;
 
         string inputText = "";
@@ -35,12 +36,14 @@ namespace XTA.Code.State
         double cursorBlinkTime = 0.5,
                 cursorElapsed = 0;
 
+        int xStartText = 900; 
         public override void LoadContent(ContentManager Content) 
         {
             var myTitle = new MainTitleEvent();
             myTitle.LoadContent(Content);
             pipeline_game_title.Add(myTitle);
             menuFont = Content.Load<SpriteFont>("Merriweather");
+            menuVersionFont = Content.Load<SpriteFont>("File2");
         }
 
         public override void Update(GameTime gameTime) 
@@ -162,22 +165,25 @@ namespace XTA.Code.State
         {
             foreach (GameEvent e in pipeline_game_title.Where(y => y.IsActive == true))
                 e.Draw(spriteBatch);
-
             var title = pipeline_game_title[0] as MainTitleEvent;
+            
+            spriteBatch.DrawString(menuVersionFont, "v0.1.0", new Vector2(0,0), Color.DarkBlue * title.currentAlpha);
 
             switch (internalState)
             {
                 case START_GAME:
 
-                    StartText(new Vector2(800, 500));
+                    xStartText = 900;
+
+                    StartText(new Vector2(xStartText, 500));
                     AddText(spriteBatch, "1 - ", Color.Gray * title.currentAlpha);
                     AddText(spriteBatch, "Start Game", Color.LightGray * title.currentAlpha);
 
-                    StartText(new Vector2(800, 530));
+                    StartText(new Vector2(xStartText, 530));
                     AddText(spriteBatch, "2 - ", Color.Gray * title.currentAlpha);
                     AddText(spriteBatch, "Continue", Color.LightGray * title.currentAlpha);
 
-                    StartText(new Vector2(800, 560));
+                    StartText(new Vector2(xStartText, 560));
                     AddText(spriteBatch, "3 - ", Color.Gray * title.currentAlpha);
                     AddText(spriteBatch, "Quit", Color.LightGray * title.currentAlpha);
 
@@ -185,34 +191,36 @@ namespace XTA.Code.State
 
                 case DIFFICULTY:
 
-                    StartText(new Vector2(800, 450));
+                    xStartText = 780;
+
+                    StartText(new Vector2(xStartText, 450));
                     AddText(spriteBatch, selectedOption, Color.White);
 
-                    StartText(new Vector2(800, 500));
+                    StartText(new Vector2(xStartText, 500));
                     AddText(spriteBatch, "1 - ", Color.Gray);
                     AddText(spriteBatch, "Easy ", Color.Yellow * 0.8f);
-                    StartText(new Vector2(970, 500));
+                    StartText(new Vector2(xStartText + 200, 500));
                     AddText(spriteBatch, "-- unlimited hints ", Color.DarkGray * 0.5f);
 
-                    StartText(new Vector2(800, 530));
+                    StartText(new Vector2(xStartText, 530));
                     AddText(spriteBatch, "2 - ", Color.Gray);
                     AddText(spriteBatch, "Normal ", Color.Yellow * 0.8f);
-                    StartText(new Vector2(970, 530));
+                    StartText(new Vector2(xStartText + 200, 530));
                     AddText(spriteBatch, "-- counted hints ", Color.DarkGray * 0.5f);
 
-                    StartText(new Vector2(800, 560));
+                    StartText(new Vector2(xStartText, 560));
                     AddText(spriteBatch, "3 - ", Color.Gray);
                     AddText(spriteBatch, "Old School ", Color.Yellow * 0.8f);
-                    StartText(new Vector2(970, 560));
+                    StartText(new Vector2(xStartText + 200, 560));
                     AddText(spriteBatch, "-- alone in the dark ", Color.DarkGray * 0.5f);
 
                     break;
             }
 
-            StartText(new Vector2(770, 620));
+            StartText(new Vector2(xStartText, 620));
             AddText(spriteBatch, "[>", Color.Green * title.currentAlpha);
 
-            DrawCurrentInputText(spriteBatch, new Vector2(800, 620));
+            DrawCurrentInputText(spriteBatch, new Vector2(xStartText + 40, 620));
         }
     }
 }

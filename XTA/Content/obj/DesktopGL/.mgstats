@@ -1,7 +1,1 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Teste/TA/XTA/Content/../Images/Hellfire.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/Hellfire.xnb","TextureProcessor","Texture2DContent",9700,597085,0,1264445
-"C:/Teste/TA/XTA/Content/File.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/File.xnb","FontDescriptionProcessor","SpriteFontContent",2077,21535,0,0823199
-"C:/Teste/TA/XTA/Content/File2.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/File2.xnb","FontDescriptionProcessor","SpriteFontContent",2070,21535,0,0244568
-"C:/Teste/TA/XTA/Content/logo_footer.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/logo_footer.xnb","TextureProcessor","Texture2DContent",156707,1048661,0,0254102
-"C:/Teste/TA/XTA/Content/Merriweather.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/Merriweather.xnb","FontDescriptionProcessor","SpriteFontContent",2075,37919,0,017628
-"C:/Teste/TA/XTA/Content/Roboto.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/Roboto.xnb","FontDescriptionProcessor","SpriteFontContent",2069,70687,0,0183707

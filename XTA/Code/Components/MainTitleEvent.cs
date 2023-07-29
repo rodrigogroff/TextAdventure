@@ -16,16 +16,22 @@ namespace XTA.Code.Components
         public int framesStart = 1;
 
         public float currentAlpha = 0.0f;
-        
-        Texture2D pngTexture;
+
+        Texture2D pngWallpaper;
+        Texture2D pngGameLogo;
+
         public int indexer = 0;
         public float[] curve;
 
+        Vector2 wallpaperPosition = new Vector2(0, 0);
+
         public override void LoadContent(ContentManager Content)
         {
-            pngTexture = Content.Load<Texture2D>("Hellfire");
+            pngGameLogo = Content.Load<Texture2D>("Hellfire");
+            pngWallpaper = Content.Load<Texture2D>("bg19");
+
             curve = new GameFunctions().GenerateLogarithmicArray(300);
-            position = new Vector2(1920 / 2 - pngTexture.Width / 2, 200);
+            position = new Vector2(1920 / 2 - pngGameLogo.Width / 2, 200);
         }
 
         public override void Update()
@@ -60,7 +66,8 @@ namespace XTA.Code.Components
             {
                 case FADEIN_PRESENT:
                 case PRESENT:
-                    spriteBatch.Draw(pngTexture, position, Color.White * currentAlpha);
+                    spriteBatch.Draw(pngWallpaper, wallpaperPosition, Color.White * currentAlpha);
+                    spriteBatch.Draw(pngGameLogo, position, Color.White * currentAlpha);
                     break;
             }
         }
