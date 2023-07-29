@@ -13,7 +13,7 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Write(" DOS/4GW Professional Protected Mode Run-Time Versiom 2.1c\n", ConsoleColor.White);
             Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
-            Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.2\n", ConsoleColor.Red);
+            Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.3\n", ConsoleColor.Red);
             Console.WriteLine();
             Write(" -- Use ALT+ENTER for fullscreen\n", ConsoleColor.DarkGray);
             Console.WriteLine();

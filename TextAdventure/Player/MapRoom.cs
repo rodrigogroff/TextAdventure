@@ -32,39 +32,84 @@ public partial class TextAdventureGame
                     }
                 }
 
-                Console.WriteLine();
-                foreach (var item in current_map.graphics)
-                {
-                    Write(" ", ConsoleColor.DarkGray);
-                    foreach (var c in item)
-                    {
-                        if (c.ToString() == cur_letter)
-                            Write(c.ToString(), ConsoleColor.Blue);
-                        else
-                            Write(c.ToString(), ConsoleColor.DarkGray);
-                    }
-                    Write("\n", ConsoleColor.DarkGray);
-                }
-
-                Console.WriteLine();
                 var hashLetterId = new Hashtable();
+
                 foreach (var item in current_map.places)
                 {
                     var letter = item.Split('|')[0];
                     var letter_id = item.Split('|')[1];
                     var letter_name = item.Split('|')[3];
                     hashLetterId[letter.ToLower()] = letter_id;
+                }
+
+                Console.WriteLine();
+
+                int idx_line = 0;
+                foreach (var item in current_map.graphics)
+                {
+
+                    Write(" ", ConsoleColor.DarkGray);
+                    foreach (var c in item)
+                    {
+                        if (c.ToString() == cur_letter)
+                            Write(c.ToString(), ConsoleColor.Blue);
+                        else
+                        {
+                            if (Char.IsLetter(c) && idx_line > 0)
+                            {
+                                var letterStageId = hashLetterId[c.ToString().ToLower()] as string;
+                                
+                                var c_map_item = game.stages.FirstOrDefault(y => y.id == letterStageId);
+
+                                if (c_map_item != null)
+                                {
+                                    if (c_map_item.npc == true)
+                                        Write(c.ToString(), ConsoleColor.Red);
+                                    else
+                                        Write(c.ToString(), ConsoleColor.Yellow);
+                                }
+                                else
+                                    Write(c.ToString(), ConsoleColor.DarkGray);
+                            }
+                            else
+                                Write(c.ToString(), ConsoleColor.DarkGray);
+                        }
+                    }
+                    Write("\n", ConsoleColor.DarkGray);
+                    idx_line++;
+                }
+
+                Console.WriteLine();
+                
+                foreach (var item in current_map.places)
+                {
+                    var letter = item.Split('|')[0];
+                    var letter_id = item.Split('|')[1];
+                    var letter_name = item.Split('|')[3];
+                    hashLetterId[letter.ToLower()] = letter_id;
+
+                    var c_map_item = game.stages.FirstOrDefault(y => y.id == letter_id);
+
                     List<string> lines = new List<string>();
                     List<ConsoleColor> colors = new List<ConsoleColor>();
-                    colors.Add(ConsoleColor.Yellow);
+                    colors.Add(ConsoleColor.DarkGray);
                     lines.Add(" " + letter.PadRight(5, ' '));
                     colors.Add(ConsoleColor.DarkGray);
-                    lines.Add(letter_name.PadRight(25, ' '));
+                    lines.Add(letter_name.PadRight(35, ' '));
+
+                    if (c_map_item != null)
+                        if (c_map_item.npc == true)
+                        {
+                            colors.Add(ConsoleColor.Red);
+                            lines.Add("[NPC]");
+                        }
+
                     if (letter_id == current_game_Room.id)
                     {
                         colors.Add(ConsoleColor.Blue);
                         lines.Add("[Player]");
                     }
+
                     colors.Add(ConsoleColor.DarkGray);
                     lines.Add("\n");
                     Print(lines, colors);
@@ -74,7 +119,8 @@ public partial class TextAdventureGame
                 Write(" [Select destination:]\n", ConsoleColor.DarkGray);
                 Write(" [> ", ConsoleColor.Green);
                 while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                string option = Console.ReadLine().ToLower().Trim();
+                string option = 
+                    Console.ReadLine().ToLower().Trim();
                 if (option == "")
                     break;
                 foreach (var item in current_map.places)
