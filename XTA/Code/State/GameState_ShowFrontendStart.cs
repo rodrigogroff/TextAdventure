@@ -134,11 +134,12 @@ namespace XTA.Code.State
             }
         }
 
-        string internalText = "";
+        
         string selectedOption = "";
 
         Vector2 internalTextPosition;
 
+        string internalText = "";
         public void StartText(Vector2 startPosition)
         {
             internalText = "";
