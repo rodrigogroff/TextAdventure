@@ -45,6 +45,7 @@ public partial class TextAdventureGame
             Write(" [Select item to take:]\n", ConsoleColor.DarkGray);
             Write(" [> ", ConsoleColor.Green);
             Console.ForegroundColor = ConsoleColor.Green;
+            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
             string option = Console.ReadLine().Trim();
             if (option == "")
                 break;

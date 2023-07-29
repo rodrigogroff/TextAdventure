@@ -13,7 +13,7 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Write(" DOS/4GW Professional Protected Mode Run-Time Versiom 2.1c\n", ConsoleColor.White);
             Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
-            Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.1\n", ConsoleColor.Red);
+            Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.2\n", ConsoleColor.Red);
             Console.WriteLine();
             Write(" -- Use ALT+ENTER for fullscreen\n", ConsoleColor.DarkGray);
             Console.WriteLine();
@@ -41,11 +41,14 @@ public partial class TextAdventureGame
                     Write(" [> ", ConsoleColor.Green);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.CursorVisible = true;
+                    while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                     email = Console.ReadLine().Trim();
                     Console.WriteLine();
                 }
                 File.WriteAllText("email.txt", email);
             }
+
+            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
 
             Write(" [Password:] ", ConsoleColor.Green);
             Console.ForegroundColor = ConsoleColor.Green;
@@ -93,6 +96,7 @@ public partial class TextAdventureGame
                         Write("[> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;
+                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);                        
                         string optionMaster = Console.ReadLine().Trim();
 
                         if (optionMaster == "3")
@@ -131,6 +135,7 @@ public partial class TextAdventureGame
                         Write("[> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;
+                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                         string option = Console.ReadLine().Trim();
 
                         if (option.ToLower() == "/q")
@@ -218,7 +223,7 @@ public partial class TextAdventureGame
                         Write(" [> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;
-
+                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                         var diff = Console.ReadLine().Trim();
 
                         if (diff == "1")
@@ -269,6 +274,7 @@ public partial class TextAdventureGame
                             Write(" [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.CursorVisible = true;
+                            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                             option_load = Console.ReadLine().Trim();
                             if (option_load == "1")
                             {
@@ -304,6 +310,7 @@ public partial class TextAdventureGame
         catch (System.Exception ex)
         {
             Console.WriteLine(ex.Message);
+            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
             Console.ReadLine();
         }
     }

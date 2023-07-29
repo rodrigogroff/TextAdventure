@@ -23,12 +23,16 @@ lambendo e sugando todo seu sangue de volta.
 ileso (ele é um simbionte), mas um dos homens do caminhão de 
 lixo, sangrando, chama a atenção de Korg.
 
+PLayer começa decidindo o que fazer... se ele não comer, 
+o "Hunger" aumenta.. se ele comer, "demonfluid" aumenta 
+um pouco.
+
 
 ---------------------------
 Quests
 ---------------------------
 
-:: absorver pessoas (qto piores menos valor)
+:: absorver pessoas (qto piores menos valor) (demonio vê a alma)
 :: absorver maldições
 :: absorver demonios
 
@@ -38,7 +42,7 @@ Quests
 ----------------------------
 
 O jogo será levar Korg a sua forma plena, vencer 
-seus irmãos (?) e retornar ao inferno na floresta.
+seus irmãos (?) e retornar ao inferno pela floresta.
 
 Atributes
 

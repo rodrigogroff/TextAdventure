@@ -23,6 +23,7 @@ public partial class TextAdventureGame
         Write(" [> ", ConsoleColor.DarkGray);
         Console.ForegroundColor = ConsoleColor.White;
         Console.CursorVisible = true;
+        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
         Console.ReadLine();
     }
 }

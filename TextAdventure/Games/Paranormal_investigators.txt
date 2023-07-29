@@ -3,14 +3,20 @@
  história básica
 ----------------------------
 
- Você tem um histórico de ver fantasmas.
- Você colocou um anuncio e pessoas responderam.
- 
- você escolhe um email para iniciar um jogo.
+ Você tem um histórico de ver fantasmas (seu avô ficou com você 3 anos).
+ Você colocou um anuncio e pessoas responderam. 
+ Você escolhe um email para iniciar um jogo.
+
+ Cada lugar é um puzzle diferente e um fantasma para ajudar
+	- (1) casa com terreno. alçapão embaixo da geladeira (marcas de raspas) leva a uma dungeon (ala zork)
+	- (2) pequeno apto leva para dentro da dimensão do espírito
+	- (3) ?
 
 ----------------------------
  game plan
 ----------------------------
+
+-vencer todos os emails
 
 -atributos de
 
@@ -18,9 +24,9 @@
 	Intel				10 (padrão)
 	Strength			10 (padrão)
 
+	Life				80
 	Fear				0 a 3 // diminui 'destreza' e 'força' - e as vezes o personagem se recusa a se mover
 	Insanity			0 a 3 // diminui 'inteligencia', atos randomicos de loucura (joga itens no chão)
 	Stress				0 a 3 // diminui 'força' e vontade de comer, atos randomicos de histeria (auto-flagelo, come comida)
-	Life				80	
-
-	Morte: life < 0 && qqer um destes atingir 3
+	
+	Morte: life < 0 && qqer um destes atingir 4

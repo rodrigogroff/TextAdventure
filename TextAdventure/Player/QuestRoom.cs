@@ -27,6 +27,7 @@ public partial class TextAdventureGame
         Write(" [Select quest to view:]", ConsoleColor.DarkGray);
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write(" >> ");
+        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
         string option = Console.ReadLine().Trim();
         if (option == "")
             return;

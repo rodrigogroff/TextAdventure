@@ -99,6 +99,7 @@ public partial class TextAdventureGame
                     first = false;
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.CursorVisible = true;
+                    while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                     ParseInput(Console.ReadLine().Trim());
                     Console.WriteLine();
                 }

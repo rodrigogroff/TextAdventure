@@ -36,6 +36,9 @@ public partial class TextAdventureGame
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(" >> ");
+
+            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+
             string option = Console.ReadLine().Trim();
             if (option == "")
                 break;
@@ -55,6 +58,8 @@ public partial class TextAdventureGame
                     Write("[Type quantity:]", ConsoleColor.White);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(" >> ");
+                    while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+
                     string option_qqy = Console.ReadLine().Trim();
                     if (option_qqy == "")
                         break;

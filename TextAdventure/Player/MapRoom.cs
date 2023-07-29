@@ -73,6 +73,7 @@ public partial class TextAdventureGame
                 Console.WriteLine();
                 Write(" [Select destination:]\n", ConsoleColor.DarkGray);
                 Write(" [> ", ConsoleColor.Green);
+                while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                 string option = Console.ReadLine().ToLower().Trim();
                 if (option == "")
                     break;
