@@ -4,11 +4,17 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Teste/TA/XTA/Content/../Images/Hellfire.png</File>
     <File>C:/Teste/TA/XTA/Content/File.spritefont</File>
     <File>C:/Teste/TA/XTA/Content/File2.spritefont</File>
     <File>C:/Teste/TA/XTA/Content/logo_footer.png</File>
+    <File>C:/Teste/TA/XTA/Content/Merriweather.spritefont</File>
+    <File>C:/Teste/TA/XTA/Content/Roboto.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File>Hellfire.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -15,7 +15,5 @@ namespace XTA.Code.Infra
         public virtual void Draw(SpriteBatch spriteBatch) { }
 
         public virtual void LoadContent(ContentManager Content) { }
-
-        public virtual void Dispose() { }
     }
 }

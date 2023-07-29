@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace XTA.Code.State
             pipeline_logo.Add(myLogo);
         }
 
-        public override void Update() 
+        public override void Update(GameTime gameTime) 
         {
             foreach (GameEvent e in pipeline_logo.Where(y => y.IsActive == true))
                 e.Update();

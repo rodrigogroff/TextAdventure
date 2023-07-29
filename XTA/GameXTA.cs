@@ -37,11 +37,6 @@ namespace XTA
 
         string ErrorFile = "error.txt";
 
-        bool cursorVisible = true;
-        
-        double  cursorBlinkTime = 0.5,
-                cursorElapsed = 0;
-
         #endregion
 
         public GameXTA()
@@ -66,6 +61,7 @@ namespace XTA
                 graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
                 graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
                 graphics.IsFullScreen = true;
+                graphics.PreferMultiSampling = true;
                 graphics.ApplyChanges();
 
                 screenHeight = GraphicsDevice.Viewport.Height;
@@ -97,7 +93,7 @@ namespace XTA
                 lstGameStates = new List<GameState>
                 {
                     new GameState_ShowLogo(),
-                    new GameState()
+                    new GameState_ShowFrontendStart()
                 };
 
                 foreach (var item in lstGameStates)
@@ -115,18 +111,10 @@ namespace XTA
         {
             try
             {
-                cursorElapsed += gameTime.ElapsedGameTime.TotalSeconds;
-
-                if (cursorElapsed >= cursorBlinkTime)
-                {
-                    cursorVisible = !cursorVisible;
-                    cursorElapsed -= cursorBlinkTime;
-                }
-
                 // ---------------------------------------------------------
                 
                 var curState = lstGameStates[gameState];
-                curState.Update();
+                curState.Update(gameTime);
                 if (curState.done)
                     gameState = curState.nextState;
 
@@ -148,7 +136,7 @@ namespace XTA
                 GraphicsDevice.Viewport = new Viewport(0, 0, virtualScreenWidth, virtualScreenHeight);
                 spriteBatch.Begin(
                     transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
-                    samplerState: SamplerState.LinearClamp);
+                    samplerState: SamplerState.AnisotropicClamp);
 
                 // ---------------------------------------------------------
 
