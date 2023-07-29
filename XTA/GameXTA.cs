@@ -14,6 +14,7 @@ namespace XTA
 
         public const int GAME_STATE_SHOW_LOGO = 0;
         public const int GAME_STATE_SHOW_FRONTEND_START = 1;
+        public const int GAME_STATE_SHOW_MAIN_GAME = 2;
 
         List<GameState> lstGameStates;
         SpriteFont menuVersionFont;
@@ -94,7 +95,8 @@ namespace XTA
                 lstGameStates = new List<GameState>
                 {
                     new GameState_ShowLogo(),
-                    new GameState_ShowFrontendStart()
+                    new GameState_ShowFrontendStart(),
+                    new GameState_ShowMainGame()
                 };
 
                 foreach (var item in lstGameStates)
@@ -147,17 +149,26 @@ namespace XTA
 
                 // ---------------------------------------------------------
 
-                spriteBatch.DrawString(menuVersionFont, "v0.1.0", new Vector2(0, 0), Color.DarkBlue);
+                // =-------------
+                // game version
+                // =-------------
+
+                spriteBatch.DrawString(menuVersionFont, "v0.1.1", new Vector2(0, 0), Color.Yellow);
 
                 spriteBatch.End();
                 GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
 
-                
+                // =-------------
+                // scan lines
+                // =-------------
+
                 spriteBatch.Begin();
                 for (int y = 0; y < screenHeight; y += scanLineSpacing)
                     spriteBatch.Draw(pixelTexture_ScanLines,
                         new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
                 spriteBatch.End();
+
+                // end
                 
                 base.Draw(gameTime);
             }

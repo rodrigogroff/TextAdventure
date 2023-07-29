@@ -16,7 +16,7 @@ namespace XTA.Code.State
         { 
             id = GameXTA.GAME_STATE_SHOW_FRONTEND_START;
             done = false;
-            nextState = GameXTA.GAME_STATE_SHOW_FRONTEND_START;
+            nextState = GameXTA.GAME_STATE_SHOW_MAIN_GAME;
         }
 
         public const int START_GAME = 0;
@@ -100,23 +100,36 @@ namespace XTA.Code.State
 
         public void ProcessInput()
         {
-            if (inputText == "1")
+            switch (internalState)
             {
-                inputText = "";
-                selectedOption = "New Game!";
+                case START_GAME:
 
-                // novo jogo
-                internalState++;
-            }
-            else if (inputText == "2")
-            {
-                selectedOption = "Continue!";
-                inputText = "";
-            }
-            else if (inputText == "3")
-            {
-                // sair
-                Environment.Exit(0);
+                    if (inputText == "1")
+                    {
+                        inputText = "";
+                        selectedOption = "New Game!";
+
+                        // novo jogo
+                        internalState++;
+                    }
+                    else if (inputText == "2")
+                    {
+                        selectedOption = "Continue!";
+                        inputText = "";
+                    }
+                    else if (inputText == "3")
+                    {
+                        // sair
+                        Environment.Exit(0);
+                    }
+
+                    break;
+
+                case DIFFICULTY:
+
+                    this.done = true;
+
+                    break;
             }
         }
 
