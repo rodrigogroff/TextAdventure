@@ -26,7 +26,7 @@ namespace XTA.Code.State
 
         List<GameEvent> pipeline_game_title = new List<GameEvent>();
         SpriteFont menuFont;
-        SpriteFont menuVersionFont;
+        
         KeyboardState prevKeyboardState;
 
         string inputText = "";
@@ -42,8 +42,7 @@ namespace XTA.Code.State
             var myTitle = new MainTitleEvent();
             myTitle.LoadContent(Content);
             pipeline_game_title.Add(myTitle);
-            menuFont = Content.Load<SpriteFont>("Merriweather");
-            menuVersionFont = Content.Load<SpriteFont>("File2");
+            menuFont = Content.Load<SpriteFont>("Merriweather");            
         }
 
         public override void Update(GameTime gameTime) 
@@ -165,10 +164,9 @@ namespace XTA.Code.State
         {
             foreach (GameEvent e in pipeline_game_title.Where(y => y.IsActive == true))
                 e.Draw(spriteBatch);
+            
             var title = pipeline_game_title[0] as MainTitleEvent;
             
-            spriteBatch.DrawString(menuVersionFont, "v0.1.0", new Vector2(0,0), Color.DarkBlue * title.currentAlpha);
-
             switch (internalState)
             {
                 case START_GAME:

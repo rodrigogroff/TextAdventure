@@ -16,6 +16,7 @@ namespace XTA
         public const int GAME_STATE_SHOW_FRONTEND_START = 1;
 
         List<GameState> lstGameStates;
+        SpriteFont menuVersionFont;
 
         #region - variables - 
 
@@ -24,12 +25,12 @@ namespace XTA
             virtualScreenHeight = 1080,
             BackBufferWidth = 0,
             BackBufferHeight = 0,
-            scanLineSpacing = 5, 
-            scanLineSize = 2,
+            scanLineSpacing = 4, 
+            scanLineSize = 1,
             screenHeight = 0,
             screenWidth = 0;
 
-        Color scanLineColor = new Color(0.07f, 0.07f, 0.07f, 0.07f / 2);
+        Color scanLineColor = new Color(0.1f, 0.1f, 0.1f, 0.01f);
 
         float scaleX, scaleY;
 
@@ -100,6 +101,8 @@ namespace XTA
                     item.LoadContent(Content);
 
                 // ---------------------------------------------------------
+
+                menuVersionFont = Content.Load<SpriteFont>("File2");
             }
             catch (Exception ex)
             {
@@ -144,13 +147,18 @@ namespace XTA
 
                 // ---------------------------------------------------------
 
+                spriteBatch.DrawString(menuVersionFont, "v0.1.0", new Vector2(0, 0), Color.DarkBlue);
+
                 spriteBatch.End();
                 GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
+
+                
                 spriteBatch.Begin();
                 for (int y = 0; y < screenHeight; y += scanLineSpacing)
                     spriteBatch.Draw(pixelTexture_ScanLines,
                         new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
                 spriteBatch.End();
+                
                 base.Draw(gameTime);
             }
             catch (Exception ex)
