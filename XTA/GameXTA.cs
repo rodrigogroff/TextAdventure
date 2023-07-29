@@ -3,41 +3,44 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using XTA.Code.Components;
-using XTA.Code.Infra;
+using XTA.Code.State;
 
 namespace XTA
 {
     public class GameXTA : Game
     {
-        public const int GAME_STATE_SHOW_LOGO = 0;
-        public const int GAME_STATE_SHOW_FRONTEND_START = 1;
-
-        List<GameEvent> pipeline_logo = new List<GameEvent>();
-
-        int gameState = GAME_STATE_SHOW_LOGO;
-
-        int virtualScreenWidth = 1920;
-        int virtualScreenHeight = 1080;
-
-        #region - main variables -
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        // for the scan-lines
-        Texture2D pixelTexture; 
+        public const int GAME_STATE_SHOW_LOGO = 0;
+        public const int GAME_STATE_SHOW_FRONTEND_START = 1;
+
+        List<GameState> lstGameStates;
+
+        #region - variables - 
+
+        int gameState = 0,
+            virtualScreenWidth = 1920,
+            virtualScreenHeight = 1080,
+            BackBufferWidth = 0,
+            BackBufferHeight = 0,
+            scanLineSpacing = 5, 
+            scanLineSize = 2,
+            screenHeight = 0,
+            screenWidth = 0;
+
+        Color scanLineColor = new Color(0.07f, 0.07f, 0.07f, 0.07f / 2);
+
+        float scaleX, scaleY;
+
+        Texture2D pixelTexture_ScanLines; 
 
         string ErrorFile = "error.txt";
 
-        #region - cursor management -
-
         bool cursorVisible = true;
-        double cursorBlinkTime = 0.5;
-        double cursorElapsed = 0;
-
-        #endregion
+        
+        double  cursorBlinkTime = 0.5,
+                cursorElapsed = 0;
 
         #endregion
 
@@ -65,6 +68,13 @@ namespace XTA
                 graphics.IsFullScreen = true;
                 graphics.ApplyChanges();
 
+                screenHeight = GraphicsDevice.Viewport.Height;
+                screenWidth = GraphicsDevice.Viewport.Width;
+                scaleX = (float)GraphicsDevice.Viewport.Width / virtualScreenWidth;
+                scaleY = (float)GraphicsDevice.Viewport.Height / virtualScreenHeight;
+                BackBufferWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+                BackBufferHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
                 base.Initialize();
             }
             catch (Exception ex)
@@ -77,15 +87,23 @@ namespace XTA
         {
             try
             {
-                pixelTexture = new Texture2D(GraphicsDevice, 1, 1);
-                pixelTexture.SetData(new[] { Color.White });
+                pixelTexture_ScanLines = new Texture2D(GraphicsDevice, 1, 1);
+                pixelTexture_ScanLines.SetData(new[] { Color.White });
 
                 spriteBatch = new SpriteBatch(GraphicsDevice);
 
-                var lgo = new LogoEvent();
-                lgo.LoadContent(Content);
+                // ---------------------------------------------------------
 
-                pipeline_logo.Add(lgo);
+                lstGameStates = new List<GameState>
+                {
+                    new GameState_ShowLogo(),
+                    new GameState()
+                };
+
+                foreach (var item in lstGameStates)
+                    item.LoadContent(Content);
+
+                // ---------------------------------------------------------
             }
             catch (Exception ex)
             {
@@ -105,22 +123,14 @@ namespace XTA
                     cursorElapsed -= cursorBlinkTime;
                 }
 
-                switch (gameState)
-                {
-                    case GAME_STATE_SHOW_LOGO:
+                // ---------------------------------------------------------
+                
+                var curState = lstGameStates[gameState];
+                curState.Update();
+                if (curState.done)
+                    gameState = curState.nextState;
 
-                        foreach (GameEvent e in pipeline_logo.Where(y => y.IsActive == true))
-                        {
-                            e.Update();
-                        }
-
-                        if (!pipeline_logo.Any(y => y.IsActive == true))
-                        {
-                            gameState++;
-                        }
-
-                        break;
-                }
+                // ---------------------------------------------------------
 
                 base.Update(gameTime);
             }
@@ -130,64 +140,29 @@ namespace XTA
             }
         }
 
-        void DrawScanLines()
-        {
-            spriteBatch.Begin();
-
-            int scanLineSpacing = 5, scanLineSize = 2;
-            int screenHeight = GraphicsDevice.Viewport.Height;
-            int screenWidth = GraphicsDevice.Viewport.Width;
-
-            float vlr_grey = 0.07f;
-
-            Color scanLineColor = new Color(vlr_grey, vlr_grey, vlr_grey, vlr_grey / 2); 
-
-            for (int y = 0; y < screenHeight; y += scanLineSpacing)
-            {
-                spriteBatch.Draw(pixelTexture, 
-                    new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
-            }
-
-            spriteBatch.End();
-        }
-
         protected override void Draw(GameTime gameTime)
         {
             try
             {
-                
-
-                float scaleX = (float)GraphicsDevice.Viewport.Width / virtualScreenWidth;
-                float scaleY = (float)GraphicsDevice.Viewport.Height / virtualScreenHeight;
-
                 GraphicsDevice.Clear(Color.Black);
-
                 GraphicsDevice.Viewport = new Viewport(0, 0, virtualScreenWidth, virtualScreenHeight);
-
                 spriteBatch.Begin(
                     transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
                     samplerState: SamplerState.LinearClamp);
 
-                switch (gameState)
-                {
-                    case GAME_STATE_SHOW_LOGO:
+                // ---------------------------------------------------------
 
-                        foreach (GameEvent e in pipeline_logo.Where(y => y.IsActive == true))
-                        {
-                            e.Draw(spriteBatch);
-                        }
+                lstGameStates[gameState].Draw(spriteBatch);
 
-                        break;
-                }
+                // ---------------------------------------------------------
 
                 spriteBatch.End();
-
-                GraphicsDevice.Viewport = new Viewport(0, 0,
-                    GraphicsDevice.PresentationParameters.BackBufferWidth,
-                    GraphicsDevice.PresentationParameters.BackBufferHeight);
-
-                DrawScanLines();                
-
+                GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
+                spriteBatch.Begin();
+                for (int y = 0; y < screenHeight; y += scanLineSpacing)
+                    spriteBatch.Draw(pixelTexture_ScanLines,
+                        new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
+                spriteBatch.End();
                 base.Draw(gameTime);
             }
             catch (Exception ex)
