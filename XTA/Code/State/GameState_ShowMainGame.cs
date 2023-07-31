@@ -19,10 +19,7 @@ namespace XTA.Code.State
         const int MAIN_START_FADEOUT_WALLPAPER = 0;
         const int MAIN_START_FADEOUT_COMPLETE = 1;
         const int MAIN_START_FADEIN_MAINDIALOG = 2;
-        const int MAIN_START_FADEIN_MAINDIALOG_TITLE = 3;
-        const int MAIN_START_FADEIN_MAINDIALOG_INTERNAL_TEXT = 4;
-        const int MAIN_START_FADEIN_MAINDIALOG_CURSOR = 5;
-        const int MAIN_COMPLETE = 6;
+        const int MAIN_COMPLETE = 3;
 
         const int FADE_FRAMES = 60;
 
@@ -44,7 +41,8 @@ namespace XTA.Code.State
 
         string MainTitle = "Soul Selection";
 
-        List<string> text = new List<string>();
+        string textToDisplay = "";
+        string textIncoming = "";
 
         List<string> original_text = new List<string>
         {
@@ -52,7 +50,7 @@ namespace XTA.Code.State
             "big pockets full of lollipops. She was still wearing her blue jacket with the name ^Dr. Sarah^",
             "^Allis Smith^ embroided in blue letters.",
             "",
-            "Paul got out of the couch and fast he went to the kitchen.",
+            "Paul got out of the couch and fast he went to the ~kitchen~.",
             "",
             "\"We are out of.. pizza; and all the usual things...\" answered Paul, looking sad at the almost",
             "empty fridge at a friday night. \"Let me see if we are missing more..\" said the man in his forties,",
@@ -85,7 +83,6 @@ namespace XTA.Code.State
 
         double cursorBlinkTime = 0.3,
                cursorElapsed = 0;
-
         public override void LoadContent(ContentManager Content) 
         {            
             textFont = Content.Load<SpriteFont>("File");
@@ -142,18 +139,6 @@ namespace XTA.Code.State
 
                     break;
 
-                case MAIN_START_FADEIN_MAINDIALOG_TITLE:
-                    internalState++;
-                    break;
-
-                case MAIN_START_FADEIN_MAINDIALOG_INTERNAL_TEXT:
-                    internalState++;
-                    break;
-
-                case MAIN_START_FADEIN_MAINDIALOG_CURSOR:
-                    internalState++;
-                    break;
-
                 case MAIN_COMPLETE:
 
                     if (internalState == MAIN_COMPLETE)
@@ -169,10 +154,6 @@ namespace XTA.Code.State
                                 if (key == Keys.Back && inputText.Length > 0)
                                 {
                                     inputText = inputText.Substring(0, inputText.Length - 1);
-                                }
-                                else if (key == Keys.Space)
-                                {
-                                    inputText += " ";
                                 }
                                 else if (key == Keys.Enter)
                                 {
@@ -206,45 +187,128 @@ namespace XTA.Code.State
                         #endregion
                     }
 
-                    if (text.Count < original_text.Count)
+                    if (textIncoming == "")
                     {
-                        if (--textDelay == 0)
+                        foreach (var item in original_text)
                         {
-                            textDelay = textDelayTime;
-                            text.Add(original_text[currentOrigIndex++]);
-                        }                        
+                            textIncoming += item + "\n";
+                        }
+                    }
+                    else if (textToDisplay != textIncoming)
+                    {
+                        KeyboardState keyboardState = Keyboard.GetState();
+
+                        bFast = false;
+
+                        foreach (Keys key in keyboardState.GetPressedKeys())
+                        {
+                            if (prevKeyboardState.IsKeyDown(key))
+                            {
+                                if (key == Keys.Space)
+                                    bFast = true;
+                            }
+                        }
+
+                        if (!bFast)
+                        {
+                            if (--textDelay == 0)
+                            {
+                                if (curIndex < textIncoming.Length)
+                                    textToDisplay = textIncoming.Substring(0, curIndex++);
+
+                                var curC = textToDisplay[textToDisplay.Length - 1];
+
+                                if (curC == '\n')
+                                    textDelay += 40;
+                                else if (curC == ' ')
+                                    textDelay += 5;
+                                else if (";,-.!?—'\"".Contains(curC))
+                                    textDelay += 18;
+                                else
+                                    textDelay += textDelayTime;                                
+                            }
+                        }    
+                        else
+                        {
+                            if (curIndex < textIncoming.Length)
+                                textToDisplay = textIncoming.Substring(0, curIndex);
+                            else
+                                textToDisplay = textIncoming;
+                            curIndex += 5;
+                        }
                     }
 
                     break;
             }
         }
 
-        int textDelayTime = 10;
-        int textDelay = 1;
-        int currentOrigIndex = 0;
+        bool bFast = false;
 
+        int textDelayTime = 1;
+        int textDelay = 1;
+        int curIndex = 1;
         public void StartText(Vector2 startPosition)
         {
             internalText = "";
             internalTextPosition = startPosition;
         }
-
-        public void AddText(SpriteBatch spriteBatch, string text, Color color)
+        public void ProcessRoomText(SpriteBatch spriteBatch, string text)
         {
-            if (internalText == "")
+            float w_letter_pad = 0f,
+                    h_letter_pad = 0f;
+
+            bool IsBlue = false,
+                    IsRed = false,
+                    IsYellow = false;
+
+            var current_color = Color.White;
+
+            foreach (var letter in text)
             {
-                internalText += text;
-                spriteBatch.DrawString(textFont, text, internalTextPosition, color);
-            }
-            else
-            {
-                var w = textFont.MeasureString(internalText).X;
-                Vector2 nextPosition = internalTextPosition + new Vector2(w, 0);
-                spriteBatch.DrawString(textFont, text, nextPosition, color);
-                internalText += text;
+                Vector2 nextPosition = internalTextPosition + new Vector2(w_letter_pad, h_letter_pad);
+
+                if (letter == '\"')
+                {
+                    IsYellow = !IsYellow;
+                }
+                else if (letter == '^')
+                {
+                    IsBlue = !IsBlue;
+                }
+                else if (letter == '~')
+                {
+                    IsRed = !IsRed;
+                }
+
+                if (IsYellow)
+                {
+                    current_color = Color.Yellow;
+                }
+                else if (IsBlue)
+                {
+                    current_color = Color.Cyan;
+                }
+                else if (IsRed)
+                {
+                    current_color = Color.Red;
+                }
+                else 
+                    current_color = Color.White;
+
+                if (letter != '^' && letter != '~')
+                {
+                    spriteBatch.DrawString(textFont, letter.ToString(), nextPosition, current_color);
+
+                    if (letter == '\n')
+                    {
+                        w_letter_pad = 0;
+                        h_letter_pad += 20;
+                    }
+                    else
+                        w_letter_pad += 7;
+                }
             }
         }
-
         public void DrawCurrentInputText(SpriteBatch spriteBatch, Vector2 textPosition)
         {
             spriteBatch.DrawString(titleFont, inputText, textPosition, Color.Green * currentAlphaMainDialog);
@@ -272,9 +336,6 @@ namespace XTA.Code.State
                     spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
                     break;
 
-                case MAIN_START_FADEIN_MAINDIALOG_TITLE:
-                case MAIN_START_FADEIN_MAINDIALOG_INTERNAL_TEXT:
-                case MAIN_START_FADEIN_MAINDIALOG_CURSOR:
                 case MAIN_COMPLETE:
 
                     spriteBatch.Draw(pngTexture_wallpaper, zero, Color.White * currentAlphaWallpaper);
@@ -286,18 +347,25 @@ namespace XTA.Code.State
                     spriteBatch.DrawString(titleFont, MainTitle, new Vector2(509 - titleWidth/2, 143), Color.Red * currentAlphaMainDialog);
 
                     int sx = 210, sy = 292;
-
-                    foreach (var item in text)
-                    {
-                        StartText(new Vector2(sx, sy));
-                        AddText(spriteBatch, item, Color.White * currentAlphaMainDialog);
-                        sy += 21;
-                    }
-
-                    sx = 252; sy = 917;
-
+                                        
                     StartText(new Vector2(sx, sy));
-                    DrawCurrentInputText(spriteBatch, new Vector2(sx + 22, sy));
+                    ProcessRoomText(spriteBatch, textToDisplay);
+
+                    if (textToDisplay == textIncoming && textToDisplay.Length > 2)
+                    {
+                        sx = 270; sy = 912;
+
+                        spriteBatch.DrawString(textFont, "Type 'Help' for available commands", new Vector2(sx, sy), Color.DarkGray * 0.35f);
+
+                        StartText(new Vector2(sx, sy));
+                        DrawCurrentInputText(spriteBatch, new Vector2(sx, sy + 13));
+                    }
+                    else
+                    {
+                        sx = 270; sy = 912;
+
+                        spriteBatch.DrawString(textFont, "Press 'Space' key to skip text", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+                    }
 
                     break;
             }

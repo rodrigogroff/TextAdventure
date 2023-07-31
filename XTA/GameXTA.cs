@@ -153,7 +153,7 @@ namespace XTA
                 // game version
                 // =-------------
 
-                spriteBatch.DrawString(menuVersionFont, "v0.1.1", new Vector2(0, 0), Color.Yellow);
+                spriteBatch.DrawString(menuVersionFont, "v0.1.2", new Vector2(0, 0), Color.Yellow);
 
                 spriteBatch.End();
                 GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);

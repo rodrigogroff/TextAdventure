@@ -200,9 +200,12 @@ namespace XTA.Code.State
                     AddText(spriteBatch, "3 - ", Color.Gray * title.currentAlpha);
                     AddText(spriteBatch, "Quit", Color.LightGray * title.currentAlpha);
 
-                    StartText(new Vector2(xStartText, yStartText + 110));
-                    AddText(spriteBatch, "[>", Color.Green * title.currentAlpha);
-                    DrawCurrentInputText(spriteBatch, new Vector2(xStartText + 40, yStartText + 110));
+                    if (title.currentAlpha >= 1)
+                    {
+                        StartText(new Vector2(xStartText, yStartText + 110));
+                        AddText(spriteBatch, "[>", Color.Green * title.currentAlpha);
+                        DrawCurrentInputText(spriteBatch, new Vector2(xStartText + 40, yStartText + 110));
+                    }
 
                     break;
 
