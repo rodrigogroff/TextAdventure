@@ -36,7 +36,7 @@ namespace XTA.Code.State
         double cursorBlinkTime = 0.5,
                 cursorElapsed = 0;
 
-        int xStartText = 900, yStartText = 600;
+        int xStartText = 900, yStartText = 525;
 
         public override void LoadContent(ContentManager Content) 
         {
@@ -208,32 +208,32 @@ namespace XTA.Code.State
 
                 case DIFFICULTY:
 
-                    xStartText = 780;
+                    xStartText = 760;
 
-                    StartText(new Vector2(xStartText, yStartText ));
+                    StartText(new Vector2(xStartText + 145, yStartText - 10));
                     AddText(spriteBatch, selectedOption, Color.White);
 
-                    StartText(new Vector2(xStartText, yStartText + 50 ));
+                    StartText(new Vector2(xStartText, yStartText + 30 ));
                     AddText(spriteBatch, "1 - ", Color.Gray);
                     AddText(spriteBatch, "Easy ", Color.Yellow * 0.8f);
-                    StartText(new Vector2(xStartText + 200, yStartText + 50));
+                    StartText(new Vector2(xStartText + 200, yStartText + 30));
                     AddText(spriteBatch, "-- unlimited hints ", Color.DarkGray * 0.5f);
 
-                    StartText(new Vector2(xStartText, yStartText + 80));
+                    StartText(new Vector2(xStartText, yStartText + 60));
                     AddText(spriteBatch, "2 - ", Color.Gray);
                     AddText(spriteBatch, "Normal ", Color.Yellow * 0.8f);
-                    StartText(new Vector2(xStartText + 200, yStartText + 80));
+                    StartText(new Vector2(xStartText + 200, yStartText + 60));
                     AddText(spriteBatch, "-- counted hints ", Color.DarkGray * 0.5f);
 
-                    StartText(new Vector2(xStartText, yStartText + 110));
+                    StartText(new Vector2(xStartText, yStartText + 90));
                     AddText(spriteBatch, "3 - ", Color.Gray);
                     AddText(spriteBatch, "Old School ", Color.Yellow * 0.8f);
-                    StartText(new Vector2(xStartText + 200, yStartText + 110));
+                    StartText(new Vector2(xStartText + 200, yStartText + 90));
                     AddText(spriteBatch, "-- alone in the dark ", Color.DarkGray * 0.5f);
 
-                    StartText(new Vector2(xStartText, yStartText + 160));
+                    StartText(new Vector2(xStartText, yStartText + 140));
                     AddText(spriteBatch, "[>", Color.Green * title.currentAlpha);
-                    DrawCurrentInputText(spriteBatch, new Vector2(xStartText + 40, yStartText + 160));
+                    DrawCurrentInputText(spriteBatch, new Vector2(xStartText + 40, yStartText + 140));
 
                     break;
             }            

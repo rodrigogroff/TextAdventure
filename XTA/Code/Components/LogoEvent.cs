@@ -21,12 +21,11 @@ namespace XTA.Code.Components
         
         Texture2D pngTexture;
         public int indexer = 0;
-        public float[] curve;
+        public float[] curve = new GameFunctions().GenerateLogarithmicArray(600);
 
         public override void LoadContent(ContentManager Content)
         {
             pngTexture = Content.Load<Texture2D>("logo_footer");
-            curve = new GameFunctions().GenerateLogarithmicArray(600);
             position = new Vector2(1920 / 2 - pngTexture.Width / 2, 1080 / 2 - pngTexture.Height / 2);
         }
 

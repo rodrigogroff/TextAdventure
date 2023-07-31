@@ -60,3 +60,5 @@ C:\Teste\TA\XTA\bin\Debug\net6.0\Content\Merriweather.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\bg19.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\MainDialog.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\MainStats.xnb
+C:\Teste\TA\XTA\bin\Debug\net6.0\Content\bg18.xnb
+C:\Teste\TA\XTA\bin\Debug\net6.0\Content\MerriSmall.xnb
