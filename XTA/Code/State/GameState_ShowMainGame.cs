@@ -4,21 +4,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
 using XTA.Code.Infra;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace XTA.Code.State
 {
     public class GameState_ShowMainGame : GameState
     {
-        public GameState_ShowMainGame() 
-        {
-            id = GameXTA.GAME_STATE_SHOW_MAIN_GAME;         
-            done = false;
-        }
-
         const int MAIN_START_FADEOUT_WALLPAPER = 0;
         const int MAIN_START_FADEOUT_COMPLETE = 1;
         const int MAIN_START_FADEIN_MAINDIALOG = 2;
@@ -26,31 +17,53 @@ namespace XTA.Code.State
 
         const int FADE_FRAMES = 60;
 
-        public float[] curve = new GameFunctions().GenerateLogarithmicArray(FADE_FRAMES);
+        public GameState_ShowMainGame() 
+        {
+            id = GameXTA.GAME_STATE_SHOW_MAIN_GAME;         
+            done = false;
+        }
 
-        int internalState = 0;
-        int indexAlphaMain = 60;
-        int indexAlphaCurveStats = 60;
-        int delay = 60;
+        float[] curve = new GameFunctions().GenerateLogarithmicArray(FADE_FRAMES);
 
-        float currentAlphaWallpaper = 1;
-        float currentAlphaMainDialog = 0;
-        float currentAlphaMainStats = 0;
+        bool bShowStats = false,
+            bTextDisplayed = false,
+            cursorVisible = true;
 
-        SpriteFont titleFont;
-        SpriteFont textFont;
+        int internalState = 0,
+            textDelayTimeStd = 1,
+            textDelay = 1,
+            text_curIndex = 1,
+            indexAlphaMainDialog = 60,
+            indexAlphaCurveStats = 60,
+            delayStatsMax = 500,
+            delayStats = 0,
+            delayStartFadout = 90;
 
-        Texture2D pngTexture_wallpaper;
-        Texture2D pngTexture_dialog;
-        Texture2D pngTexture_stats;
+        float currentAlphaWallpaper = 1,
+                currentAlphaMainDialog = 0,
+                currentAlphaMainStats = 0;
 
-        Vector2 mainDialogPos = new Vector2(70, 0);
-        Vector2 statsPos = new Vector2(1050, 60);
+        KeyboardState prevKeyboardState;
 
-        string MainTitle = "Soul Selection";
+        SpriteFont titleFont,
+                    textFont;
 
-        string textToDisplay = "";
-        string textIncoming = "";
+        Texture2D pngTexture_wallpaper,
+                    pngTexture_dialog,
+                    pngTexture_stats;
+
+        Vector2 mainDialogPos = new Vector2(70, 0),
+                mainStatsPos = new Vector2(1050, 60),
+                zero = new Vector2(0, 0),
+                internalTextPosition;
+
+        string MainTitle = "Soul Selection",
+                inputText = "",
+                textToDisplay = "",
+                textIncoming = "";
+
+        double cursorBlinkTime = 0.3,
+               cursorElapsed = 0;
 
         List<string> original_text = new List<string>
         {
@@ -78,17 +91,6 @@ namespace XTA.Code.State
             "and do nothing, while her husband rolled him to the side and stuck two fingers in the child's mouth."
         };
 
-        KeyboardState prevKeyboardState;
-        Vector2 zero = new Vector2 (0, 0);
-        
-        Vector2 internalTextPosition;        
-        string internalText = "";
-        string inputText = "";
-        
-        bool cursorVisible = true;
-
-        double cursorBlinkTime = 0.3,
-               cursorElapsed = 0;
         public override void LoadContent(ContentManager Content) 
         {            
             textFont = Content.Load<SpriteFont>("File");
@@ -105,17 +107,13 @@ namespace XTA.Code.State
             {
                 case MAIN_START_FADEOUT_WALLPAPER:
 
-                    if (--delay > 0)
+                    if (--delayStartFadout > 0) { } else
                     {
-
-                    }
-                    else
-                    {
-                        if (indexAlphaMain-- > 0)
+                        if (indexAlphaMainDialog-- > 0)
                             currentAlphaWallpaper -= 0.01f;
                         else
                         {
-                            indexAlphaMain = 60;
+                            indexAlphaMainDialog = 60;
                             internalState++;
                         }
                     }
@@ -123,25 +121,17 @@ namespace XTA.Code.State
 
                 case MAIN_START_FADEOUT_COMPLETE:
 
-                    if (indexAlphaMain-- > 0)
-                    {
-                        // wait
-                    }
-                    else
+                    if (indexAlphaMainDialog-- > 0) { } else
                         internalState++;
 
                     break;
 
                 case MAIN_START_FADEIN_MAINDIALOG:
 
-                    if (++indexAlphaMain >= FADE_FRAMES)
-                    {
+                    if (++indexAlphaMainDialog >= FADE_FRAMES)
                         internalState++;
-                    }
                     else
-                    {
-                        currentAlphaMainDialog = curve[indexAlphaMain];
-                    }
+                        currentAlphaMainDialog = curve[indexAlphaMainDialog];
 
                     break;
 
@@ -194,20 +184,23 @@ namespace XTA.Code.State
                     {
                         if (++indexAlphaCurveStats < FADE_FRAMES)
                             currentAlphaMainStats = curve[indexAlphaCurveStats];
+                        if (--delayStats == 0)
+                            indexAlphaCurveStats = FADE_FRAMES - 1;
                     }
 
                     if (textIncoming == "")
                     {
                         foreach (var item in original_text)
-                        {
                             textIncoming += item + "\n";
-                        }
                     }
                     else if (textToDisplay != textIncoming)
                     {
+                        #region - text timer - 
+
                         KeyboardState keyboardStateW = Keyboard.GetState();
 
-                        bFast = false;
+                        bool bFast = false,
+                            escPressed = false;
 
                         foreach (Keys key in keyboardStateW.GetPressedKeys())
                         {
@@ -215,15 +208,23 @@ namespace XTA.Code.State
                             {
                                 if (key == Keys.Space)
                                     bFast = true;
+
+                                if (key == Keys.Escape)
+                                    escPressed = true;
                             }
                         }
 
-                        if (!bFast)
+                        if (escPressed)
+                        {
+                            textToDisplay = textIncoming;
+                            bTextDisplayed = true; 
+                        }
+                        else if (!bFast)
                         {
                             if (--textDelay == 0)
                             {
-                                if (curIndex < textIncoming.Length)
-                                    textToDisplay = textIncoming.Substring(0, curIndex++);
+                                if (text_curIndex < textIncoming.Length)
+                                    textToDisplay = textIncoming.Substring(0, text_curIndex++);
                                 else
                                     bTextDisplayed = true;
 
@@ -236,21 +237,23 @@ namespace XTA.Code.State
                                 else if (";,-.!?—'\"".Contains(curC))
                                     textDelay += 18;
                                 else
-                                    textDelay += textDelayTime;                                
+                                    textDelay += textDelayTimeStd;                                
                             }
                         }    
                         else
                         {
-                            if (curIndex < textIncoming.Length)
-                                textToDisplay = textIncoming.Substring(0, curIndex);
+                            if (text_curIndex < textIncoming.Length)
+                                textToDisplay = textIncoming.Substring(0, text_curIndex);
                             else
                             {
                                 textToDisplay = textIncoming;
                                 bTextDisplayed = true;
                             }
 
-                            curIndex += 20;
+                            text_curIndex += 20;
                         }
+
+                        #endregion
                     }
 
                     break;
@@ -267,14 +270,15 @@ namespace XTA.Code.State
                 textIncoming = "";
                 textToDisplay = "";
                 textDelay = 1;
-                curIndex = 1;
+                text_curIndex = 1;
                 bTextDisplayed = false;
                 original_text = new List<string> 
                 {
                     "¨-- Help -- game commands --¨",
                     "",
                     "^help^ = this screen",
-                    "^stat^ = toggle game stats and attibutes",
+                    "^stat^ = game stats and attibutes",
+                    "^quit^ = end current game",
                 };
             }
             else if (cmd == "stat")
@@ -289,25 +293,18 @@ namespace XTA.Code.State
 
                 inputText = "";
                 textIncoming = "";
+                delayStats = delayStatsMax;
             }
-        }
-
-        bool bShowStats = false;
-        bool bFast = false;        
-        bool bTextDisplayed = false;
-
-        int textDelayTime = 1;
-        int textDelay = 1;
-        int curIndex = 1;
-        
+        }        
         public void StartText(Vector2 startPosition)
         {
-            internalText = "";
             internalTextPosition = startPosition;
         }
 
         public void DisplayText(SpriteBatch spriteBatch, Vector2 startPosition, float currentAlpha, List<string> lstText)
         {
+            #region - code - 
+
             float w_letter_pad = 0f,
                     h_letter_pad = 0f;
 
@@ -370,10 +367,14 @@ namespace XTA.Code.State
                         w_letter_pad += 7;
                 }
             }
+
+            #endregion
         }
 
         public void ProcessRoomText(SpriteBatch spriteBatch, string text)
         {
+            #region - code - 
+
             float w_letter_pad = 0f,
                     h_letter_pad = 0f;
 
@@ -429,9 +430,13 @@ namespace XTA.Code.State
                         w_letter_pad += 7;
                 }
             }
+
+            #endregion
         }
-        public void DrawCurrentInputText(SpriteBatch spriteBatch, Vector2 textPosition)
+        public void DrawCurrentCursorText(SpriteBatch spriteBatch, Vector2 textPosition)
         {
+            #region - code - 
+
             spriteBatch.DrawString(titleFont, inputText, textPosition, Color.Green * currentAlphaMainDialog);
 
             if (cursorVisible)
@@ -441,6 +446,8 @@ namespace XTA.Code.State
                 Color cursorColor = Color.Green;
                 spriteBatch.DrawString(titleFont, "|", cursorPosition, cursorColor * currentAlphaMainDialog);
             }
+
+            #endregion
         }
 
         public override void Draw(SpriteBatch spriteBatch) 
@@ -464,13 +471,20 @@ namespace XTA.Code.State
 
                     if (bShowStats)
                     {
-                        spriteBatch.Draw(pngTexture_stats, statsPos, Color.White * currentAlphaMainStats);
-                        DisplayText(spriteBatch, new Vector2(statsPos.X + 220, statsPos.Y + 220), currentAlphaMainStats, new List<string>
+                        int idx = curve.Length - indexAlphaCurveStats;
+
+                        if (idx >= 0 && idx < curve.Length)
+                            mainStatsPos.X = 1050 + 400 * curve[idx];
+                        else
+                            mainStatsPos.X = 1050;                        
+
+                        spriteBatch.Draw(pngTexture_stats, mainStatsPos, Color.White * currentAlphaMainStats);
+                        DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 220, mainStatsPos.Y + 220), currentAlphaMainStats, new List<string>
                         {
                             "¨-- Character Stats --¨",
                             "",                            
-                            "^Name:^ Marco polo",
-                            "^Type:^ ????",
+                            "^Name^ Marco polo",
+                            "^Type^ ????",
                             "",
                             "-- attributes --",
                             "",
@@ -496,7 +510,7 @@ namespace XTA.Code.State
                         spriteBatch.DrawString(textFont, "Type 'Help' for available commands", new Vector2(sx, sy), Color.DarkGray * 0.35f);
 
                         StartText(new Vector2(sx, sy));
-                        DrawCurrentInputText(spriteBatch, new Vector2(sx, sy + 13));
+                        DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
                     }
                     else
                     {
