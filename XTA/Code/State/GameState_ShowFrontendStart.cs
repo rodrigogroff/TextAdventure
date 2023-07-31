@@ -203,8 +203,7 @@ namespace XTA.Code.State
                     if (title.currentAlpha >= 1)
                     {
                         StartText(new Vector2(xStartText, yStartText + 110));
-                        AddText(spriteBatch, "[>", Color.Green * title.currentAlpha);
-                        DrawCurrentInputText(spriteBatch, new Vector2(xStartText + 40, yStartText + 110));
+                        DrawCurrentInputText(spriteBatch, new Vector2(xStartText, yStartText + 110));
                     }
 
                     break;
@@ -235,8 +234,7 @@ namespace XTA.Code.State
                     AddText(spriteBatch, "-- alone in the dark ", Color.DarkGray * 0.5f);
 
                     StartText(new Vector2(xStartText, yStartText + 140));
-                    AddText(spriteBatch, "[>", Color.Green * title.currentAlpha);
-                    DrawCurrentInputText(spriteBatch, new Vector2(xStartText + 40, yStartText + 140));
+                    DrawCurrentInputText(spriteBatch, new Vector2(xStartText, yStartText + 140));
 
                     break;
             }            

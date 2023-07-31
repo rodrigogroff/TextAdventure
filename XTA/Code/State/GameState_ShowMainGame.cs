@@ -4,7 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.Linq;
 using XTA.Code.Infra;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace XTA.Code.State
 {
@@ -26,11 +29,13 @@ namespace XTA.Code.State
         public float[] curve = new GameFunctions().GenerateLogarithmicArray(FADE_FRAMES);
 
         int internalState = 0;
-        int timeout = 60;
+        int indexAlphaMain = 60;
+        int indexAlphaCurveStats = 60;
         int delay = 60;
 
         float currentAlphaWallpaper = 1;
         float currentAlphaMainDialog = 0;
+        float currentAlphaMainStats = 0;
 
         SpriteFont titleFont;
         SpriteFont textFont;
@@ -38,6 +43,9 @@ namespace XTA.Code.State
         Texture2D pngTexture_wallpaper;
         Texture2D pngTexture_dialog;
         Texture2D pngTexture_stats;
+
+        Vector2 mainDialogPos = new Vector2(70, 0);
+        Vector2 statsPos = new Vector2(1050, 60);
 
         string MainTitle = "Soul Selection";
 
@@ -72,9 +80,7 @@ namespace XTA.Code.State
 
         KeyboardState prevKeyboardState;
         Vector2 zero = new Vector2 (0, 0);
-
-        Vector2 mainDialogPos = new Vector2(70, 0);
-
+        
         Vector2 internalTextPosition;        
         string internalText = "";
         string inputText = "";
@@ -105,11 +111,11 @@ namespace XTA.Code.State
                     }
                     else
                     {
-                        if (timeout-- > 0)
+                        if (indexAlphaMain-- > 0)
                             currentAlphaWallpaper -= 0.01f;
                         else
                         {
-                            timeout = 60;
+                            indexAlphaMain = 60;
                             internalState++;
                         }
                     }
@@ -117,7 +123,7 @@ namespace XTA.Code.State
 
                 case MAIN_START_FADEOUT_COMPLETE:
 
-                    if (timeout-- > 0)
+                    if (indexAlphaMain-- > 0)
                     {
                         // wait
                     }
@@ -128,63 +134,66 @@ namespace XTA.Code.State
 
                 case MAIN_START_FADEIN_MAINDIALOG:
 
-                    if (++timeout >= FADE_FRAMES)
+                    if (++indexAlphaMain >= FADE_FRAMES)
                     {
                         internalState++;
                     }
                     else
                     {
-                        currentAlphaMainDialog = curve[timeout];
+                        currentAlphaMainDialog = curve[indexAlphaMain];
                     }
 
                     break;
 
                 case MAIN_COMPLETE:
 
-                    if (internalState == MAIN_COMPLETE)
+                    #region - process keyboard - 
+
+                    KeyboardState keyboardState = Keyboard.GetState();
+
+                    foreach (Keys key in keyboardState.GetPressedKeys())
                     {
-                        #region - process keyboard - 
-
-                        KeyboardState keyboardState = Keyboard.GetState();
-
-                        foreach (Keys key in keyboardState.GetPressedKeys())
+                        if (prevKeyboardState.IsKeyUp(key))
                         {
-                            if (prevKeyboardState.IsKeyUp(key))
+                            if (key == Keys.Back && inputText.Length > 0)
                             {
-                                if (key == Keys.Back && inputText.Length > 0)
+                                inputText = inputText.Substring(0, inputText.Length - 1);
+                            }
+                            else if (key == Keys.Enter)
+                            {
+                                ProcessUserInput(inputText);
+                            }
+                            else
+                            {
+                                char inputChar = GetCharacterFromKey(key);
+                                if (Char.IsLetterOrDigit(inputChar))
                                 {
-                                    inputText = inputText.Substring(0, inputText.Length - 1);
-                                }
-                                else if (key == Keys.Enter)
-                                {
-
-                                }
-                                else
-                                {
-                                    char inputChar = GetCharacterFromKey(key);
-                                    if (Char.IsLetterOrDigit(inputChar))
-                                    {
-                                        inputText += inputChar;
-                                    }
+                                    inputText += inputChar;
                                 }
                             }
                         }
+                    }
 
-                        prevKeyboardState = keyboardState;
+                    prevKeyboardState = keyboardState;
 
-                        #endregion
+                    #endregion
 
-                        #region - process cursor -
+                    #region - process cursor -
 
-                        cursorElapsed += gameTime.ElapsedGameTime.TotalSeconds;
+                    cursorElapsed += gameTime.ElapsedGameTime.TotalSeconds;
 
-                        if (cursorElapsed >= cursorBlinkTime)
-                        {
-                            cursorVisible = !cursorVisible;
-                            cursorElapsed -= cursorBlinkTime;
-                        }
+                    if (cursorElapsed >= cursorBlinkTime)
+                    {
+                        cursorVisible = !cursorVisible;
+                        cursorElapsed -= cursorBlinkTime;
+                    }
 
-                        #endregion
+                    #endregion                    
+
+                    if (bShowStats)
+                    {
+                        if (++indexAlphaCurveStats < FADE_FRAMES)
+                            currentAlphaMainStats = curve[indexAlphaCurveStats];
                     }
 
                     if (textIncoming == "")
@@ -196,11 +205,11 @@ namespace XTA.Code.State
                     }
                     else if (textToDisplay != textIncoming)
                     {
-                        KeyboardState keyboardState = Keyboard.GetState();
+                        KeyboardState keyboardStateW = Keyboard.GetState();
 
                         bFast = false;
 
-                        foreach (Keys key in keyboardState.GetPressedKeys())
+                        foreach (Keys key in keyboardStateW.GetPressedKeys())
                         {
                             if (prevKeyboardState.IsKeyDown(key))
                             {
@@ -215,6 +224,8 @@ namespace XTA.Code.State
                             {
                                 if (curIndex < textIncoming.Length)
                                     textToDisplay = textIncoming.Substring(0, curIndex++);
+                                else
+                                    bTextDisplayed = true;
 
                                 var curC = textToDisplay[textToDisplay.Length - 1];
 
@@ -233,8 +244,12 @@ namespace XTA.Code.State
                             if (curIndex < textIncoming.Length)
                                 textToDisplay = textIncoming.Substring(0, curIndex);
                             else
+                            {
                                 textToDisplay = textIncoming;
-                            curIndex += 5;
+                                bTextDisplayed = true;
+                            }
+
+                            curIndex += 20;
                         }
                     }
 
@@ -242,16 +257,121 @@ namespace XTA.Code.State
             }
         }
 
-        bool bFast = false;
+        public void ProcessUserInput(string cmd)
+        {
+            cmd = cmd.ToLower();
+
+            if (cmd == "help")
+            {
+                inputText = "";
+                textIncoming = "";
+                textToDisplay = "";
+                textDelay = 1;
+                curIndex = 1;
+                bTextDisplayed = false;
+                original_text = new List<string> 
+                {
+                    "¨-- Help -- game commands --¨",
+                    "",
+                    "^help^ = this screen",
+                    "^stat^ = toggle game stats and attibutes",
+                };
+            }
+            else if (cmd == "stat")
+            {
+                bShowStats = !bShowStats;
+
+                if (bShowStats)
+                {
+                    currentAlphaMainStats = 0;
+                    indexAlphaCurveStats = 0;
+                }
+
+                inputText = "";
+                textIncoming = "";
+            }
+        }
+
+        bool bShowStats = false;
+        bool bFast = false;        
+        bool bTextDisplayed = false;
 
         int textDelayTime = 1;
         int textDelay = 1;
         int curIndex = 1;
+        
         public void StartText(Vector2 startPosition)
         {
             internalText = "";
             internalTextPosition = startPosition;
         }
+
+        public void DisplayText(SpriteBatch spriteBatch, Vector2 startPosition, float currentAlpha, List<string> lstText)
+        {
+            float w_letter_pad = 0f,
+                    h_letter_pad = 0f;
+
+            bool IsBlue = false,
+                    IsRed = false,
+                    IsYellow = false;
+
+            var current_color = Color.White;
+
+            var text = "";
+
+            foreach (var item in lstText)
+            {
+                text += item + "\n";
+            }
+
+            foreach (var letter in text)
+            {
+                Vector2 nextPosition = startPosition + new Vector2(w_letter_pad, h_letter_pad);
+
+                if (letter == '\"' || letter == '¨')
+                {
+                    IsYellow = !IsYellow;
+                }
+                else if (letter == '^')
+                {
+                    IsBlue = !IsBlue;
+                }
+                else if (letter == '~')
+                {
+                    IsRed = !IsRed;
+                }
+
+                if (IsYellow)
+                {
+                    current_color = Color.Yellow;
+                }
+                else if (IsBlue)
+                {
+                    current_color = Color.Cyan;
+                }
+                else if (IsRed)
+                {
+                    current_color = Color.Red;
+                }
+                else
+                    current_color = Color.White;
+
+                if (letter != '^' && letter != '~' && letter != '¨')
+                {
+                    spriteBatch.DrawString(textFont, letter.ToString(), new Vector2(nextPosition.X + 2, nextPosition.Y + 2), Color.Black);
+                    spriteBatch.DrawString(textFont, letter.ToString(), nextPosition, current_color * currentAlpha);
+
+                    if (letter == '\n')
+                    {
+                        w_letter_pad = 0;
+                        h_letter_pad += 20;
+                    }
+                    else
+                        w_letter_pad += 7;
+                }
+            }
+        }
+
         public void ProcessRoomText(SpriteBatch spriteBatch, string text)
         {
             float w_letter_pad = 0f,
@@ -295,8 +415,9 @@ namespace XTA.Code.State
                 else 
                     current_color = Color.White;
 
-                if (letter != '^' && letter != '~')
+                if (letter != '^' && letter != '~' && letter != '¨')
                 {
+                    spriteBatch.DrawString(textFont, letter.ToString(), new Vector2(nextPosition.X +2, nextPosition.Y + 2), Color.Black);
                     spriteBatch.DrawString(textFont, letter.ToString(), nextPosition, current_color);
 
                     if (letter == '\n')
@@ -341,6 +462,23 @@ namespace XTA.Code.State
                     spriteBatch.Draw(pngTexture_wallpaper, zero, Color.White * currentAlphaWallpaper);
                     spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
 
+                    if (bShowStats)
+                    {
+                        spriteBatch.Draw(pngTexture_stats, statsPos, Color.White * currentAlphaMainStats);
+                        DisplayText(spriteBatch, new Vector2(statsPos.X + 220, statsPos.Y + 220), currentAlphaMainStats, new List<string>
+                        {
+                            "¨-- Character Stats --¨",
+                            "",                            
+                            "^Name:^ Marco polo",
+                            "^Type:^ ????",
+                            "",
+                            "-- attributes --",
+                            "",
+                            "-- traits --",
+                            "",
+                        });
+                    }
+
                     MainTitle = "This is very big text so deal with it";
 
                     float titleWidth = textFont.MeasureString(MainTitle).X;
@@ -351,7 +489,7 @@ namespace XTA.Code.State
                     StartText(new Vector2(sx, sy));
                     ProcessRoomText(spriteBatch, textToDisplay);
 
-                    if (textToDisplay == textIncoming && textToDisplay.Length > 2)
+                    if (bTextDisplayed)
                     {
                         sx = 270; sy = 912;
 
