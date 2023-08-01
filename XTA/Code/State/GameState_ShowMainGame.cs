@@ -26,6 +26,7 @@ namespace XTA.Code.State
         float[] curve = new GameFunctions().GenerateLogarithmicArray(FADE_FRAMES);
 
         bool bShowStats = false,
+            bShowBag = false,
             bDeath = false,
             bTextDisplayed = false,
             cursorVisible = true;
@@ -36,6 +37,7 @@ namespace XTA.Code.State
             text_curIndex = 1,
             indexAlphaMainDialog = 60,
             indexAlphaCurveStats = 60,
+            indexAlphaCurveBag = 60,
             indexAlphaCurveDeath = 0,
             delayStatsMax = 500,
             delayStats = 0,
@@ -44,20 +46,25 @@ namespace XTA.Code.State
         float currentAlphaWallpaper = 1,
                 currentAlphaMainDialog = 0,
                 currentAlphaDeath = 0,
-                currentAlphaMainStats = 0;
+                currentAlphaMainStats = 0,
+                currentAlphaMainBag = 0;
 
         KeyboardState prevKeyboardState;
 
         SpriteFont titleFont,
+                    lucidaBigFont,
                     textFont;
 
         Texture2D pngTexture_wallpaper,
                     pngTexture_dialog,
+                    pngTexture_bag,
                     pngTexture_deathPage,
+                    pixelTexture_ScanLines,
                     pngTexture_stats;
 
         Vector2 mainDialogPos = new Vector2(70, 0),
                 mainStatsPos = new Vector2(1050, 60),
+                mainBagPos = new Vector2(1000, 60),
                 zero = new Vector2(0, 0),
                 deathPos = new Vector2(0, 0),
                 internalTextPosition;
@@ -96,14 +103,20 @@ namespace XTA.Code.State
             "and do nothing, while her husband rolled him to the side and stuck two fingers in the child's mouth."
         };
 
-        public override void LoadContent(ContentManager Content) 
+        public override void LoadContent(ContentManager Content, GraphicsDevice Device) 
         {            
             textFont = Content.Load<SpriteFont>("File");
             titleFont = Content.Load<SpriteFont>("Merriweather");
+            lucidaBigFont = Content.Load<SpriteFont>("LucidaBig");
+
             pngTexture_wallpaper = Content.Load<Texture2D>("bg18");
             pngTexture_dialog = Content.Load<Texture2D>("MainDialog");
             pngTexture_stats = Content.Load<Texture2D>("MainStats");
             pngTexture_deathPage = Content.Load<Texture2D>("DeathPage");
+            pngTexture_bag = Content.Load<Texture2D>("Bag");
+
+            pixelTexture_ScanLines = new Texture2D(Device, 1, 1);
+            pixelTexture_ScanLines.SetData(new[] { Color.White });
         }
 
         public override void Update(GameTime gameTime) 
@@ -198,6 +211,12 @@ namespace XTA.Code.State
                                 currentAlphaMainStats = curve[indexAlphaCurveStats];
                         }
 
+                        if (bShowBag)
+                        {
+                            if (++indexAlphaCurveBag < FADE_FRAMES)
+                                currentAlphaMainBag = curve[indexAlphaCurveBag];
+                        }
+
                         if (textIncoming == "")
                         {
                             foreach (var item in original_text)
@@ -280,6 +299,14 @@ namespace XTA.Code.State
                 return;
             }
 
+            if (bShowBag)
+            {
+                if (cmd == "")
+                {
+                    cmd = "bag";
+                }
+            }
+
             cmd = cmd.ToLower();
 
             if (cmd == "quit")
@@ -297,17 +324,18 @@ namespace XTA.Code.State
                 textDelay = 1;
                 text_curIndex = 1;
                 bTextDisplayed = false;
-                original_text = new List<string> 
+                original_text = new List<string>
                 {
                     "¨-- Help -- game commands --¨",
                     "",
-                    "^help^ = this screen",
                     "^stat^ = game stats and attibutes",
+                    "^bag^ = current inventory",
                     "^quit^ = end current game",
                 };
             }
             else if (cmd == "stat")
             {
+                bShowBag = false;
                 bShowStats = !bShowStats;
 
                 if (bShowStats)
@@ -320,7 +348,22 @@ namespace XTA.Code.State
                 textIncoming = "";
                 delayStats = delayStatsMax;
             }
-        }        
+            else if (cmd == "bag")
+            {
+                bShowStats = false;
+                bShowBag = !bShowBag;
+
+                if (bShowBag)
+                {
+                    currentAlphaMainBag= 0;
+                    indexAlphaCurveBag = 0;
+                }
+
+                inputText = "";
+                textIncoming = "";
+            }
+        }
+
         public void StartText(Vector2 startPosition)
         {
             internalTextPosition = startPosition;
@@ -413,7 +456,7 @@ namespace XTA.Code.State
             {
                 Vector2 nextPosition = internalTextPosition + new Vector2(w_letter_pad, h_letter_pad);
 
-                if (letter == '\"')
+                if (letter == '\"' || letter == '¨')
                 {
                     IsYellow = !IsYellow;
                 }
@@ -458,6 +501,7 @@ namespace XTA.Code.State
 
             #endregion
         }
+
         public void DrawCurrentCursorText(SpriteBatch spriteBatch, Vector2 textPosition)
         {
             #region - code - 
@@ -507,7 +551,11 @@ namespace XTA.Code.State
                     {
                         spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
 
-                        if (bShowStats)
+                        if (bShowBag)
+                        {
+
+                        }
+                        else if (bShowStats)
                         {
                             int idx = curve.Length - indexAlphaCurveStats;
 
@@ -519,14 +567,18 @@ namespace XTA.Code.State
                             spriteBatch.Draw(pngTexture_stats, mainStatsPos, Color.White * currentAlphaMainStats);
                             DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 220, mainStatsPos.Y + 220), currentAlphaMainStats, new List<string>
                             {
-                                "¨-- Character Stats --¨",
+                                "                 ¨-- Character Stats --¨",
                                 "",
                                 "^Name^ Marco polo",
                                 "^Type^ ????",
                                 "",
-                                "-- attributes --",
                                 "",
-                                "-- traits --",
+                                "                   ¨-- Attributes --¨",
+                                "                          None",
+                                "",
+                                "",
+                                "                     ¨-- Traits --¨",
+                                "                          None",
                                 "",
                             });
                         }
@@ -541,18 +593,55 @@ namespace XTA.Code.State
                         StartText(new Vector2(sx, sy));
                         ProcessRoomText(spriteBatch, textToDisplay);
 
+                        sx = 270; sy = 912;
+
                         if (bTextDisplayed)
                         {
-                            sx = 270; sy = 912;
+                            if (bShowBag)
+                            {
+                                spriteBatch.DrawString(textFont, "Type 'Help' for available commands; 'Enter' to continue", new Vector2(sx, sy), Color.DarkGray * 0.35f);
 
-                            spriteBatch.DrawString(textFont, "Type 'Help' for available commands", new Vector2(sx, sy), Color.DarkGray * 0.35f);
-                            
-                            DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
+                                for (int y = 0; y < 1080; y += 1)
+                                {
+                                    spriteBatch.Draw(pixelTexture_ScanLines,
+                                        new Rectangle(0, y, 1920, 10), Color.Black * 0.08f);
+                                }
+
+                                spriteBatch.Draw(pngTexture_bag, mainBagPos, Color.White * currentAlphaMainBag);
+
+                                sx = 1453; sy = 143;
+
+                                spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx + 2, sy + 2), Color.Black);
+                                spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx, sy), Color.White * currentAlphaMainBag);
+
+                                DisplayText(spriteBatch, new Vector2(sx - 180, sy + 80), currentAlphaMainBag, new List<string>
+                                {
+                                    "                 ¨-- Player Inventory --¨",
+                                });
+
+                                sx = 1200; sy = 320;
+
+                                for (int i = 0; i < 10; i++)
+                                {
+                                    var msg = "[" + (i+1) + "] Bone";
+
+                                    spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx + 2, sy + 2 + i*32), Color.Black);
+                                    spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx, sy + i * 32), Color.White * currentAlphaMainBag);
+                                }
+                                
+                                sx = 1303; sy = 856;
+
+                                spriteBatch.DrawString(textFont, "Select item to drop, 'Enter' to continue:", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+                                DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
+                            }
+                            else
+                            {
+                                spriteBatch.DrawString(textFont, "Type 'Help' for available commands; 'Enter' to continue", new Vector2(sx, sy), Color.DarkGray * 0.35f);
+                                DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
+                            }
                         }
                         else
                         {
-                            sx = 270; sy = 912;
-
                             spriteBatch.DrawString(textFont, "Press 'Space' key to skip text, 'Esc' to finish", new Vector2(sx, sy), Color.DarkGray * 0.65f);
                         }
                     }

@@ -19,7 +19,7 @@ namespace XTA.Code.State
 
         List<GameEvent> pipeline_logo = new List<GameEvent>();
 
-        public override void LoadContent(ContentManager Content) 
+        public override void LoadContent(ContentManager Content, GraphicsDevice Device)
         {
             var myLogo = new LogoEvent();
 

@@ -38,7 +38,7 @@ namespace XTA.Code.State
 
         int xStartText = 900, yStartText = 525;
 
-        public override void LoadContent(ContentManager Content) 
+        public override void LoadContent(ContentManager Content, GraphicsDevice Device)
         {
             var myTitle = new MainTitleEvent();
             myTitle.LoadContent(Content);

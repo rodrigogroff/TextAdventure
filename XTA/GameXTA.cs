@@ -101,7 +101,7 @@ namespace XTA
                 };
 
                 foreach (var item in lstGameStates)
-                    item.LoadContent(Content);
+                    item.LoadContent(Content, GraphicsDevice);
 
                 // ---------------------------------------------------------
 
@@ -134,7 +134,7 @@ namespace XTA
                     };
 
                     foreach (var item in lstGameStates)
-                        item.LoadContent(Content);
+                        item.LoadContent(Content, GraphicsDevice);
 
                     gameState = GAME_STATE_SHOW_FRONTEND_START;
                 }
@@ -169,7 +169,7 @@ namespace XTA
                 // game version
                 // =-------------
 
-                spriteBatch.DrawString(menuVersionFont, "v0.1.21", new Vector2(0, 0), Color.Yellow);
+                spriteBatch.DrawString(menuVersionFont, "v0.1.22", new Vector2(0, 0), Color.Yellow);
 
                 spriteBatch.End();
                 GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);

@@ -11,7 +11,7 @@ namespace XTA.Code.State
         public int nextState { get; set; }
         public bool done { get; set; }
 
-        public virtual void LoadContent(ContentManager Content) { }
+        public virtual void LoadContent(ContentManager Content, GraphicsDevice Device) { }
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(SpriteBatch spriteBatch) { }
 
