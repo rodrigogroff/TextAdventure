@@ -91,8 +91,6 @@ namespace XTA
 
                 spriteBatch = new SpriteBatch(GraphicsDevice);
 
-                // ---------------------------------------------------------
-
                 lstGameStates = new List<GameState>
                 {
                     new GameState_ShowLogo(),
@@ -102,8 +100,6 @@ namespace XTA
 
                 foreach (var item in lstGameStates)
                     item.LoadContent(Content, GraphicsDevice);
-
-                // ---------------------------------------------------------
 
                 menuVersionFont = Content.Load<SpriteFont>("File2");
             }
@@ -117,8 +113,6 @@ namespace XTA
         {
             try
             {
-                // ---------------------------------------------------------
-                
                 var curState = lstGameStates[gameState];
                 curState.Update(gameTime);
                 if (curState.done)
@@ -139,8 +133,6 @@ namespace XTA
                     gameState = GAME_STATE_SHOW_FRONTEND_START;
                 }
 
-                // ---------------------------------------------------------
-
                 base.Update(gameTime);
             }
             catch (Exception ex)
@@ -154,38 +146,31 @@ namespace XTA
             try
             {
                 GraphicsDevice.Clear(Color.Black);
-                GraphicsDevice.Viewport = new Viewport(0, 0, virtualScreenWidth, virtualScreenHeight);
-                spriteBatch.Begin(
-                    transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
-                    samplerState: SamplerState.AnisotropicClamp);
-
-                // ---------------------------------------------------------
+                float virtualAspectRatio = (float)virtualScreenWidth / (float)virtualScreenHeight;
+                float actualAspectRatio = (float)GraphicsDevice.Viewport.Width / (float)GraphicsDevice.Viewport.Height;
+                float scale = actualAspectRatio < virtualAspectRatio
+                    ? (float)GraphicsDevice.Viewport.Width / (float)virtualScreenWidth
+                    : (float)GraphicsDevice.Viewport.Height / (float)virtualScreenHeight;
+                int letterboxedWidth = (int)(virtualScreenWidth * scale);
+                int letterboxedHeight = (int)(virtualScreenHeight * scale);
+                int offsetX = (GraphicsDevice.Viewport.Width - letterboxedWidth) / 2;
+                int offsetY = (GraphicsDevice.Viewport.Height - letterboxedHeight) / 2;
+                GraphicsDevice.Viewport = new Viewport(offsetX, offsetY, letterboxedWidth, letterboxedHeight);
+                spriteBatch.Begin();
 
                 lstGameStates[gameState].Draw(spriteBatch);
-
-                // ---------------------------------------------------------
-
-                // =-------------
-                // game version
-                // =-------------
-
                 spriteBatch.DrawString(menuVersionFont, "v0.1.22", new Vector2(0, 0), Color.Yellow);
 
                 spriteBatch.End();
-                GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
-
-                // =-------------
-                // scan lines
-                // =-------------
-                
+                GraphicsDevice.Viewport = 
+                    new Viewport(0, 0, 
+                        GraphicsDevice.PresentationParameters.BackBufferWidth, 
+                        GraphicsDevice.PresentationParameters.BackBufferHeight);
                 spriteBatch.Begin();
                 for (int y = 0; y < screenHeight; y += scanLineSpacing)
                     spriteBatch.Draw(pixelTexture_ScanLines,
                         new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
                 spriteBatch.End();
-                
-                // end
-                
                 base.Draw(gameTime);
             }
             catch (Exception ex)
