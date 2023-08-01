@@ -52,6 +52,7 @@ namespace XTA.Code.State
         KeyboardState prevKeyboardState;
 
         SpriteFont titleFont,
+                    arialFont,
                     lucidaBigFont,
                     textFont;
 
@@ -104,7 +105,8 @@ namespace XTA.Code.State
         };
 
         public override void LoadContent(ContentManager Content, GraphicsDevice Device) 
-        {            
+        {
+            arialFont = Content.Load<SpriteFont>("ArialN");
             textFont = Content.Load<SpriteFont>("File");
             titleFont = Content.Load<SpriteFont>("Merriweather");
             lucidaBigFont = Content.Load<SpriteFont>("LucidaBig");
@@ -486,8 +488,8 @@ namespace XTA.Code.State
 
                 if (letter != '^' && letter != '~' && letter != '¨')
                 {
-                    spriteBatch.DrawString(textFont, letter.ToString(), new Vector2(nextPosition.X +2, nextPosition.Y + 2), Color.Black);
-                    spriteBatch.DrawString(textFont, letter.ToString(), nextPosition, current_color);
+                    spriteBatch.DrawString(arialFont, letter.ToString(), new Vector2(nextPosition.X +2, nextPosition.Y + 2), Color.Black);
+                    spriteBatch.DrawString(arialFont, letter.ToString(), nextPosition, current_color * 0.8f);
 
                     if (letter == '\n')
                     {
@@ -495,7 +497,7 @@ namespace XTA.Code.State
                         h_letter_pad += 20;
                     }
                     else
-                        w_letter_pad += 7;
+                        w_letter_pad += arialFont.MeasureString(letter.ToString()).X + 1;
                 }
             }
 
@@ -565,7 +567,7 @@ namespace XTA.Code.State
                                 mainStatsPos.X = 1050;
 
                             spriteBatch.Draw(pngTexture_stats, mainStatsPos, Color.White * currentAlphaMainStats);
-                            DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 220, mainStatsPos.Y + 220), currentAlphaMainStats, new List<string>
+                            DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 220, mainStatsPos.Y + 220), currentAlphaMainStats*0.8f, new List<string>
                             {
                                 "                 ¨-- Character Stats --¨",
                                 "",
@@ -586,9 +588,9 @@ namespace XTA.Code.State
                         MainTitle = "This is very big text so deal with it";
 
                         float titleWidth = textFont.MeasureString(MainTitle).X;
-                        spriteBatch.DrawString(titleFont, MainTitle, new Vector2(509 - titleWidth / 2, 143), Color.Red * currentAlphaMainDialog);
+                        spriteBatch.DrawString(titleFont, MainTitle, new Vector2(509 - titleWidth / 2, 143), Color.Red * currentAlphaMainDialog * 0.8f);
 
-                        int sx = 210, sy = 292;
+                        int sx = 190, sy = 290;
 
                         StartText(new Vector2(sx, sy));
                         ProcessRoomText(spriteBatch, textToDisplay);
@@ -612,9 +614,9 @@ namespace XTA.Code.State
                                 sx = 1453; sy = 143;
 
                                 spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx + 2, sy + 2), Color.Black);
-                                spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx, sy), Color.White * currentAlphaMainBag);
+                                spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx, sy), Color.White * currentAlphaMainBag * 0.8f);
 
-                                DisplayText(spriteBatch, new Vector2(sx - 180, sy + 80), currentAlphaMainBag, new List<string>
+                                DisplayText(spriteBatch, new Vector2(sx - 180, sy + 80), currentAlphaMainBag * 0.8f, new List<string>
                                 {
                                     "                 ¨-- Player Inventory --¨",
                                 });
@@ -626,7 +628,7 @@ namespace XTA.Code.State
                                     var msg = "[" + (i+1) + "] Bone";
 
                                     spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx + 2, sy + 2 + i*32), Color.Black);
-                                    spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx, sy + i * 32), Color.White * currentAlphaMainBag);
+                                    spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx, sy + i * 32), Color.White * currentAlphaMainBag * 0.8f);
                                 }
                                 
                                 sx = 1303; sy = 856;

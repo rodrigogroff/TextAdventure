@@ -25,6 +25,13 @@
 /processorParam:TextureFormat=Color
 /build:../Images/Hellfire.png;Hellfire.png
 
+#begin ArialN.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:ArialN.spritefont
+
 #begin Bag.png
 /importer:TextureImporter
 /processor:TextureProcessor

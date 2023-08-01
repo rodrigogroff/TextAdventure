@@ -16,6 +16,7 @@ namespace XTA
         public const int GAME_STATE_SHOW_FRONTEND_START = 1;
         public const int GAME_STATE_SHOW_MAIN_GAME = 2;
         public const int GAME_STATE_RESET = 3;
+        public const int GAME_STATE_OPTION = 4;
 
         List<GameState> lstGameStates;
         SpriteFont menuVersionFont;
@@ -25,6 +26,10 @@ namespace XTA
         int gameState = 0,
             virtualScreenWidth = 1920,
             virtualScreenHeight = 1080,
+
+            virtualScreenUltraWidth = 2560,
+            virtualScreenUltraHeight = 1080,
+
             BackBufferWidth = 0,
             BackBufferHeight = 0,
             scanLineSpacing = 2, 
@@ -32,9 +37,20 @@ namespace XTA
             screenHeight = 0,
             screenWidth = 0;
 
+        bool bUltraWideMode = false;
+
+        int letterboxedWidth = 0,
+            letterboxedHeight = 0,
+            offsetX = 0,
+            offsetY = 0;
+
         Color scanLineColor = new Color(0.1f, 0.1f, 0.1f, 0.005f);
 
-        float scaleX, scaleY;
+        float scaleX, 
+            scaleY,
+            actualAspectRatio,
+            virtualAspectRatio, 
+            scale;
 
         Texture2D pixelTexture_ScanLines; 
 
@@ -73,6 +89,16 @@ namespace XTA
                 scaleY = (float)GraphicsDevice.Viewport.Height / virtualScreenHeight;
                 BackBufferWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
                 BackBufferHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+
+                actualAspectRatio = (float)GraphicsDevice.Viewport.Width / (float)GraphicsDevice.Viewport.Height;
+                virtualAspectRatio = (float)virtualScreenWidth / (float)virtualScreenHeight;                
+                scale = actualAspectRatio < virtualAspectRatio
+                    ? (float)GraphicsDevice.Viewport.Width / (float)virtualScreenWidth
+                    : (float)GraphicsDevice.Viewport.Height / (float)virtualScreenHeight;
+                letterboxedWidth = (int)(virtualScreenWidth * scale);
+                letterboxedHeight = (int)(virtualScreenHeight * scale);
+                offsetX = (GraphicsDevice.Viewport.Width - letterboxedWidth) / 2;
+                offsetY = (GraphicsDevice.Viewport.Height - letterboxedHeight) / 2;
 
                 base.Initialize();
             }
@@ -140,43 +166,125 @@ namespace XTA
                 ShutdownWithError(ex);
             }
         }
-
+                
         protected override void Draw(GameTime gameTime)
         {
             try
             {
+                if (actualAspectRatio > 1.5f)
+                {                    
+                    DrawScaled(gameTime);
+                }
+                else
+                {
+                    if (bUltraWideMode)
+                        DrawUltraWide(gameTime);
+                    else
+                        DrawBoxedUltraWide(gameTime);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShutdownWithError(ex);
+            }
+        }
+
+        public void DrawScaled(GameTime gameTime)
+        {
+            try
+            {
                 GraphicsDevice.Clear(Color.Black);
-                float virtualAspectRatio = (float)virtualScreenWidth / (float)virtualScreenHeight;
-                float actualAspectRatio = (float)GraphicsDevice.Viewport.Width / (float)GraphicsDevice.Viewport.Height;
-                float scale = actualAspectRatio < virtualAspectRatio
-                    ? (float)GraphicsDevice.Viewport.Width / (float)virtualScreenWidth
-                    : (float)GraphicsDevice.Viewport.Height / (float)virtualScreenHeight;
-                int letterboxedWidth = (int)(virtualScreenWidth * scale);
-                int letterboxedHeight = (int)(virtualScreenHeight * scale);
-                int offsetX = (GraphicsDevice.Viewport.Width - letterboxedWidth) / 2;
-                int offsetY = (GraphicsDevice.Viewport.Height - letterboxedHeight) / 2;
-                GraphicsDevice.Viewport = new Viewport(offsetX, offsetY, letterboxedWidth, letterboxedHeight);
-                spriteBatch.Begin();
+                GraphicsDevice.Viewport = new Viewport(0, 0, virtualScreenWidth, virtualScreenHeight);
 
-                lstGameStates[gameState].Draw(spriteBatch);
-                spriteBatch.DrawString(menuVersionFont, "v0.1.22", new Vector2(0, 0), Color.Yellow);
+                spriteBatch.Begin(
+                    transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
+                    samplerState: SamplerState.AnisotropicClamp);
+
+                DrawGameCode();
 
                 spriteBatch.End();
-                GraphicsDevice.Viewport = 
-                    new Viewport(0, 0, 
-                        GraphicsDevice.PresentationParameters.BackBufferWidth, 
-                        GraphicsDevice.PresentationParameters.BackBufferHeight);
-                spriteBatch.Begin();
-                for (int y = 0; y < screenHeight; y += scanLineSpacing)
-                    spriteBatch.Draw(pixelTexture_ScanLines,
-                        new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
-                spriteBatch.End();
+
+                GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
+
+                DrawScanLines();
+
                 base.Draw(gameTime);
             }
             catch (Exception ex)
             {
                 ShutdownWithError(ex);
             }
+        }
+
+        public void DrawUltraWide(GameTime gameTime)
+        {
+            try
+            {
+                GraphicsDevice.Clear(Color.Black);
+                GraphicsDevice.Viewport = new Viewport(0, 0, virtualScreenUltraWidth, virtualScreenUltraHeight);
+
+                spriteBatch.Begin(
+                    transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
+                    samplerState: SamplerState.AnisotropicClamp);
+
+                DrawGameCode();
+
+                spriteBatch.End();
+
+                GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
+
+                DrawScanLines();
+
+                base.Draw(gameTime);
+            }
+            catch (Exception ex)
+            {
+                ShutdownWithError(ex);
+            }
+        }
+
+        public void DrawBoxedUltraWide(GameTime gameTime)
+        {
+            try
+            {
+                GraphicsDevice.Clear(Color.Black);
+                
+                GraphicsDevice.Viewport = new Viewport(offsetX, offsetY, letterboxedWidth, letterboxedHeight);
+                spriteBatch.Begin();
+
+                DrawGameCode();
+                
+                spriteBatch.End();
+                GraphicsDevice.Viewport = 
+                    new Viewport(0, 0, 
+                        GraphicsDevice.PresentationParameters.BackBufferWidth, 
+                        GraphicsDevice.PresentationParameters.BackBufferHeight);
+
+                DrawScanLines();
+
+                base.Draw(gameTime);                
+            }
+            catch (Exception ex)
+            {
+                ShutdownWithError(ex);
+            }
+        }
+
+        public void DrawGameCode()
+        {
+            lstGameStates[gameState].Draw(spriteBatch);
+            spriteBatch.DrawString(menuVersionFont, "v0.1.22", new Vector2(0, 0), Color.Yellow);
+        }
+
+        public void DrawScanLines()
+        {
+            spriteBatch.Begin();
+
+            for (int y = 0; y < screenHeight; y += scanLineSpacing)
+                spriteBatch.Draw(pixelTexture_ScanLines,
+                    new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
+
+            spriteBatch.End();
         }
     }
 }

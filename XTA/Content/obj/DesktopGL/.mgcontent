@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>C:/Teste/TA/XTA/Content/../Images/Hellfire.png</File>
+    <File>C:/Teste/TA/XTA/Content/ArialN.spritefont</File>
     <File>C:/Teste/TA/XTA/Content/Bag.png</File>
     <File>C:/Teste/TA/XTA/Content/bg18.jpg</File>
     <File>C:/Teste/TA/XTA/Content/bg19.jpg</File>
@@ -21,6 +22,7 @@
   </SourceFiles>
   <DestFiles>
     <File>Hellfire.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

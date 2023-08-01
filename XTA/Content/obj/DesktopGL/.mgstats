@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Teste/TA/XTA/Content/Bag.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/Bag.xnb","TextureProcessor","Texture2DContent",816972,3700085,0,2028055
+"C:/Teste/TA/XTA/Content/ArialN.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/ArialN.xnb","FontDescriptionProcessor","SpriteFontContent",2079,21535,0,1847122
