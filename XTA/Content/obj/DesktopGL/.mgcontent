@@ -7,6 +7,7 @@
     <File>C:/Teste/TA/XTA/Content/../Images/Hellfire.png</File>
     <File>C:/Teste/TA/XTA/Content/bg18.jpg</File>
     <File>C:/Teste/TA/XTA/Content/bg19.jpg</File>
+    <File>C:/Teste/TA/XTA/Content/DeathPage.png</File>
     <File>C:/Teste/TA/XTA/Content/File.spritefont</File>
     <File>C:/Teste/TA/XTA/Content/File2.spritefont</File>
     <File>C:/Teste/TA/XTA/Content/logo_footer.png</File>
@@ -18,6 +19,7 @@
   </SourceFiles>
   <DestFiles>
     <File>Hellfire.png</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -15,6 +15,7 @@ namespace XTA
         public const int GAME_STATE_SHOW_LOGO = 0;
         public const int GAME_STATE_SHOW_FRONTEND_START = 1;
         public const int GAME_STATE_SHOW_MAIN_GAME = 2;
+        public const int GAME_STATE_RESET = 3;
 
         List<GameState> lstGameStates;
         SpriteFont menuVersionFont;
@@ -122,6 +123,21 @@ namespace XTA
                 curState.Update(gameTime);
                 if (curState.done)
                     gameState = curState.nextState;
+
+                if (gameState == GAME_STATE_RESET)
+                {
+                    lstGameStates = new List<GameState>
+                    {
+                        new GameState_ShowLogo(),
+                        new GameState_ShowFrontendStart(),
+                        new GameState_ShowMainGame()
+                    };
+
+                    foreach (var item in lstGameStates)
+                        item.LoadContent(Content);
+
+                    gameState = GAME_STATE_SHOW_FRONTEND_START;
+                }
 
                 // ---------------------------------------------------------
 

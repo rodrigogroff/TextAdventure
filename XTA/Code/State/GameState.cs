@@ -8,9 +8,7 @@ namespace XTA.Code.State
     public class GameState
     {
         public int id { get; set; }
-
         public int nextState { get; set; }
-
         public bool done { get; set; }
 
         public virtual void LoadContent(ContentManager Content) { }

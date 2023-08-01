@@ -26,6 +26,7 @@ namespace XTA.Code.State
         float[] curve = new GameFunctions().GenerateLogarithmicArray(FADE_FRAMES);
 
         bool bShowStats = false,
+            bDeath = false,
             bTextDisplayed = false,
             cursorVisible = true;
 
@@ -35,12 +36,14 @@ namespace XTA.Code.State
             text_curIndex = 1,
             indexAlphaMainDialog = 60,
             indexAlphaCurveStats = 60,
+            indexAlphaCurveDeath = 0,
             delayStatsMax = 500,
             delayStats = 0,
             delayStartFadout = 90;
 
         float currentAlphaWallpaper = 1,
                 currentAlphaMainDialog = 0,
+                currentAlphaDeath = 0,
                 currentAlphaMainStats = 0;
 
         KeyboardState prevKeyboardState;
@@ -50,11 +53,13 @@ namespace XTA.Code.State
 
         Texture2D pngTexture_wallpaper,
                     pngTexture_dialog,
+                    pngTexture_deathPage,
                     pngTexture_stats;
 
         Vector2 mainDialogPos = new Vector2(70, 0),
                 mainStatsPos = new Vector2(1050, 60),
                 zero = new Vector2(0, 0),
+                deathPos = new Vector2(0, 0),
                 internalTextPosition;
 
         string MainTitle = "Soul Selection",
@@ -95,10 +100,10 @@ namespace XTA.Code.State
         {            
             textFont = Content.Load<SpriteFont>("File");
             titleFont = Content.Load<SpriteFont>("Merriweather");
-
             pngTexture_wallpaper = Content.Load<Texture2D>("bg18");
             pngTexture_dialog = Content.Load<Texture2D>("MainDialog");
             pngTexture_stats = Content.Load<Texture2D>("MainStats");
+            pngTexture_deathPage = Content.Load<Texture2D>("DeathPage");
         }
 
         public override void Update(GameTime gameTime) 
@@ -145,7 +150,7 @@ namespace XTA.Code.State
                     {
                         if (prevKeyboardState.IsKeyUp(key))
                         {
-                            if (key == Keys.Back && inputText.Length > 0)
+                            if (key == Keys.Back && inputText.Length > 0 && !bDeath)
                             {
                                 inputText = inputText.Substring(0, inputText.Length - 1);
                             }
@@ -153,7 +158,7 @@ namespace XTA.Code.State
                             {
                                 ProcessUserInput(inputText);
                             }
-                            else
+                            else if (!bDeath)
                             {
                                 char inputChar = GetCharacterFromKey(key);
                                 if (Char.IsLetterOrDigit(inputChar))
@@ -178,82 +183,88 @@ namespace XTA.Code.State
                         cursorElapsed -= cursorBlinkTime;
                     }
 
-                    #endregion                    
+                    #endregion
 
-                    if (bShowStats)
+                    if (bDeath)
                     {
-                        if (++indexAlphaCurveStats < FADE_FRAMES)
-                            currentAlphaMainStats = curve[indexAlphaCurveStats];
-                        if (--delayStats == 0)
-                            indexAlphaCurveStats = FADE_FRAMES - 1;
+                        if (++indexAlphaCurveDeath < FADE_FRAMES)
+                            currentAlphaDeath = curve[indexAlphaCurveDeath];
                     }
-
-                    if (textIncoming == "")
+                    else
                     {
-                        foreach (var item in original_text)
-                            textIncoming += item + "\n";
-                    }
-                    else if (textToDisplay != textIncoming)
-                    {
-                        #region - text timer - 
-
-                        KeyboardState keyboardStateW = Keyboard.GetState();
-
-                        bool bFast = false,
-                            escPressed = false;
-
-                        foreach (Keys key in keyboardStateW.GetPressedKeys())
+                        if (bShowStats)
                         {
-                            if (prevKeyboardState.IsKeyDown(key))
-                            {
-                                if (key == Keys.Space)
-                                    bFast = true;
-
-                                if (key == Keys.Escape)
-                                    escPressed = true;
-                            }
+                            if (++indexAlphaCurveStats < FADE_FRAMES)
+                                currentAlphaMainStats = curve[indexAlphaCurveStats];
                         }
 
-                        if (escPressed)
+                        if (textIncoming == "")
                         {
-                            textToDisplay = textIncoming;
-                            bTextDisplayed = true; 
+                            foreach (var item in original_text)
+                                textIncoming += item + "\n";
                         }
-                        else if (!bFast)
+                        else if (textToDisplay != textIncoming)
                         {
-                            if (--textDelay == 0)
+                            #region - text timer - 
+
+                            KeyboardState keyboardStateW = Keyboard.GetState();
+
+                            bool bFast = false,
+                                escPressed = false;
+
+                            foreach (Keys key in keyboardStateW.GetPressedKeys())
                             {
-                                if (text_curIndex < textIncoming.Length)
-                                    textToDisplay = textIncoming.Substring(0, text_curIndex++);
-                                else
-                                    bTextDisplayed = true;
+                                if (prevKeyboardState.IsKeyDown(key))
+                                {
+                                    if (key == Keys.Space)
+                                        bFast = true;
 
-                                var curC = textToDisplay[textToDisplay.Length - 1];
-
-                                if (curC == '\n')
-                                    textDelay += 40;
-                                else if (curC == ' ')
-                                    textDelay += 5;
-                                else if (";,-.!?—'\"".Contains(curC))
-                                    textDelay += 18;
-                                else
-                                    textDelay += textDelayTimeStd;                                
+                                    if (key == Keys.Escape)
+                                        escPressed = true;
+                                }
                             }
-                        }    
-                        else
-                        {
-                            if (text_curIndex < textIncoming.Length)
-                                textToDisplay = textIncoming.Substring(0, text_curIndex);
-                            else
+
+                            if (escPressed)
                             {
                                 textToDisplay = textIncoming;
                                 bTextDisplayed = true;
                             }
+                            else if (!bFast)
+                            {
+                                if (--textDelay == 0)
+                                {
+                                    if (text_curIndex < textIncoming.Length)
+                                        textToDisplay = textIncoming.Substring(0, text_curIndex++);
+                                    else
+                                        bTextDisplayed = true;
 
-                            text_curIndex += 20;
+                                    var curC = textToDisplay[textToDisplay.Length - 1];
+
+                                    if (curC == '\n')
+                                        textDelay += 40;
+                                    else if (curC == ' ')
+                                        textDelay += 5;
+                                    else if (";,-.!?—'\"".Contains(curC))
+                                        textDelay += 18;
+                                    else
+                                        textDelay += textDelayTimeStd;
+                                }
+                            }
+                            else
+                            {
+                                if (text_curIndex < textIncoming.Length)
+                                    textToDisplay = textIncoming.Substring(0, text_curIndex);
+                                else
+                                {
+                                    textToDisplay = textIncoming;
+                                    bTextDisplayed = true;
+                                }
+
+                                text_curIndex += 20;
+                            }
+
+                            #endregion
                         }
-
-                        #endregion
                     }
 
                     break;
@@ -262,9 +273,23 @@ namespace XTA.Code.State
 
         public void ProcessUserInput(string cmd)
         {
+            if (bDeath)
+            {
+                this.done = true;
+                this.nextState = GameXTA.GAME_STATE_RESET;
+                return;
+            }
+
             cmd = cmd.ToLower();
 
-            if (cmd == "help")
+            if (cmd == "quit")
+            {
+                bDeath = true;
+                inputText = "";
+                textIncoming = "";
+                textToDisplay = "";
+            }
+            else if (cmd == "help")
             {
                 inputText = "";
                 textIncoming = "";
@@ -467,56 +492,69 @@ namespace XTA.Code.State
                 case MAIN_COMPLETE:
 
                     spriteBatch.Draw(pngTexture_wallpaper, zero, Color.White * currentAlphaWallpaper);
-                    spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
 
-                    if (bShowStats)
+                    if (bDeath)
                     {
-                        int idx = curve.Length - indexAlphaCurveStats;
+                        spriteBatch.Draw(pngTexture_deathPage, deathPos, Color.White * currentAlphaDeath);
 
-                        if (idx >= 0 && idx < curve.Length)
-                            mainStatsPos.X = 1050 + 400 * curve[idx];
-                        else
-                            mainStatsPos.X = 1050;                        
+                        int sx = 850, sy = 650;
 
-                        spriteBatch.Draw(pngTexture_stats, mainStatsPos, Color.White * currentAlphaMainStats);
-                        DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 220, mainStatsPos.Y + 220), currentAlphaMainStats, new List<string>
-                        {
-                            "¨-- Character Stats --¨",
-                            "",                            
-                            "^Name^ Marco polo",
-                            "^Type^ ????",
-                            "",
-                            "-- attributes --",
-                            "",
-                            "-- traits --",
-                            "",
-                        });
-                    }
+                        spriteBatch.DrawString(textFont, "Press 'Enter' for the main screen", new Vector2(sx, sy), Color.White);
 
-                    MainTitle = "This is very big text so deal with it";
-
-                    float titleWidth = textFont.MeasureString(MainTitle).X;
-                    spriteBatch.DrawString(titleFont, MainTitle, new Vector2(509 - titleWidth/2, 143), Color.Red * currentAlphaMainDialog);
-
-                    int sx = 210, sy = 292;
-                                        
-                    StartText(new Vector2(sx, sy));
-                    ProcessRoomText(spriteBatch, textToDisplay);
-
-                    if (bTextDisplayed)
-                    {
-                        sx = 270; sy = 912;
-
-                        spriteBatch.DrawString(textFont, "Type 'Help' for available commands", new Vector2(sx, sy), Color.DarkGray * 0.35f);
-
-                        StartText(new Vector2(sx, sy));
-                        DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
+                        DrawCurrentCursorText(spriteBatch, new Vector2(sx + 110, sy + 30));
                     }
                     else
                     {
-                        sx = 270; sy = 912;
+                        spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
 
-                        spriteBatch.DrawString(textFont, "Press 'Space' key to skip text", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+                        if (bShowStats)
+                        {
+                            int idx = curve.Length - indexAlphaCurveStats;
+
+                            if (idx >= 0 && idx < curve.Length)
+                                mainStatsPos.X = 1050 + 400 * curve[idx];
+                            else
+                                mainStatsPos.X = 1050;
+
+                            spriteBatch.Draw(pngTexture_stats, mainStatsPos, Color.White * currentAlphaMainStats);
+                            DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 220, mainStatsPos.Y + 220), currentAlphaMainStats, new List<string>
+                            {
+                                "¨-- Character Stats --¨",
+                                "",
+                                "^Name^ Marco polo",
+                                "^Type^ ????",
+                                "",
+                                "-- attributes --",
+                                "",
+                                "-- traits --",
+                                "",
+                            });
+                        }
+
+                        MainTitle = "This is very big text so deal with it";
+
+                        float titleWidth = textFont.MeasureString(MainTitle).X;
+                        spriteBatch.DrawString(titleFont, MainTitle, new Vector2(509 - titleWidth / 2, 143), Color.Red * currentAlphaMainDialog);
+
+                        int sx = 210, sy = 292;
+
+                        StartText(new Vector2(sx, sy));
+                        ProcessRoomText(spriteBatch, textToDisplay);
+
+                        if (bTextDisplayed)
+                        {
+                            sx = 270; sy = 912;
+
+                            spriteBatch.DrawString(textFont, "Type 'Help' for available commands", new Vector2(sx, sy), Color.DarkGray * 0.35f);
+                            
+                            DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
+                        }
+                        else
+                        {
+                            sx = 270; sy = 912;
+
+                            spriteBatch.DrawString(textFont, "Press 'Space' key to skip text, 'Esc' to finish", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+                        }
                     }
 
                     break;
