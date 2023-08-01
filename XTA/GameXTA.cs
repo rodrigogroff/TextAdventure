@@ -11,38 +11,41 @@ namespace XTA
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        public const int GAME_STATE_SHOW_LOGO = 0;
-        public const int GAME_STATE_SHOW_FRONTEND_START = 1;
-        public const int GAME_STATE_SHOW_MAIN_GAME = 2;
-        public const int GAME_STATE_RESET = 3;
-        public const int GAME_STATE_OPTION = 4;
+        
+        public const int 
+            GAME_STATE_SHOW_LOGO = 0,
+            GAME_STATE_SHOW_FRONTEND_START = 1,
+            GAME_STATE_SHOW_MAIN_GAME = 2,
+            GAME_STATE_RESET = 3,
+            GAME_STATE_OPTION = 4;
 
         List<GameState> lstGameStates;
-        SpriteFont menuVersionFont;
 
         #region - variables - 
 
+        SpriteFont versionFont;
+        Texture2D pixelTexture_ScanLines;
+        TimeSpan elapsedTime = TimeSpan.Zero;
+
         int gameState = 0,
+            frameRate,
+            frameCounter,
             virtualScreenWidth = 1920,
             virtualScreenHeight = 1080,
-
             virtualScreenUltraWidth = 2560,
             virtualScreenUltraHeight = 1080,
-
             BackBufferWidth = 0,
             BackBufferHeight = 0,
             scanLineSpacing = 2, 
             scanLineSize = 1,
             screenHeight = 0,
-            screenWidth = 0;
-
-        bool bUltraWideMode = false;
-
-        int letterboxedWidth = 0,
+            screenWidth = 0,
+            letterboxedWidth = 0,
             letterboxedHeight = 0,
             offsetX = 0,
             offsetY = 0;
+
+        bool bUltraWideMode = false;
 
         Color scanLineColor = new Color(0.1f, 0.1f, 0.1f, 0.005f);
 
@@ -51,8 +54,6 @@ namespace XTA
             actualAspectRatio,
             virtualAspectRatio, 
             scale;
-
-        Texture2D pixelTexture_ScanLines; 
 
         string ErrorFile = "error.txt";
 
@@ -85,16 +86,16 @@ namespace XTA
 
                 screenHeight = GraphicsDevice.Viewport.Height;
                 screenWidth = GraphicsDevice.Viewport.Width;
-                scaleX = (float)GraphicsDevice.Viewport.Width / virtualScreenWidth;
-                scaleY = (float)GraphicsDevice.Viewport.Height / virtualScreenHeight;
+                scaleX = GraphicsDevice.Viewport.Width / virtualScreenWidth;
+                scaleY = GraphicsDevice.Viewport.Height / virtualScreenHeight;
                 BackBufferWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
                 BackBufferHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
 
-                actualAspectRatio = (float)GraphicsDevice.Viewport.Width / (float)GraphicsDevice.Viewport.Height;
-                virtualAspectRatio = (float)virtualScreenWidth / (float)virtualScreenHeight;                
+                actualAspectRatio = GraphicsDevice.Viewport.Width / GraphicsDevice.Viewport.Height;
+                virtualAspectRatio = virtualScreenWidth / virtualScreenHeight;                
                 scale = actualAspectRatio < virtualAspectRatio
-                    ? (float)GraphicsDevice.Viewport.Width / (float)virtualScreenWidth
-                    : (float)GraphicsDevice.Viewport.Height / (float)virtualScreenHeight;
+                    ? GraphicsDevice.Viewport.Width / virtualScreenWidth
+                    : GraphicsDevice.Viewport.Height / virtualScreenHeight;
                 letterboxedWidth = (int)(virtualScreenWidth * scale);
                 letterboxedHeight = (int)(virtualScreenHeight * scale);
                 offsetX = (GraphicsDevice.Viewport.Width - letterboxedWidth) / 2;
@@ -127,7 +128,7 @@ namespace XTA
                 foreach (var item in lstGameStates)
                     item.LoadContent(Content, GraphicsDevice);
 
-                menuVersionFont = Content.Load<SpriteFont>("File2");
+                versionFont = Content.Load<SpriteFont>("File2");
             }
             catch (Exception ex)
             {
@@ -136,7 +137,7 @@ namespace XTA
         }
 
         protected override void Update(GameTime gameTime)
-        {
+        {            
             try
             {
                 var curState = lstGameStates[gameState];
@@ -165,8 +166,17 @@ namespace XTA
             {
                 ShutdownWithError(ex);
             }
+
+            elapsedTime += gameTime.ElapsedGameTime;
+
+            if (elapsedTime > TimeSpan.FromSeconds(1))
+            {
+                elapsedTime -= TimeSpan.FromSeconds(1);
+                frameRate = frameCounter;
+                frameCounter = 0;
+            }
         }
-                
+
         protected override void Draw(GameTime gameTime)
         {
             try
@@ -182,6 +192,8 @@ namespace XTA
                     else
                         DrawBoxedUltraWide(gameTime);
                 }
+
+                frameCounter++;
             }
             catch (Exception ex)
             {
@@ -273,7 +285,7 @@ namespace XTA
         public void DrawGameCode()
         {
             lstGameStates[gameState].Draw(spriteBatch);
-            spriteBatch.DrawString(menuVersionFont, "v0.1.23", new Vector2(0, 0), Color.Yellow);
+            spriteBatch.DrawString(versionFont, "v0.1.25 / Fps: " + frameRate, new Vector2(0, 0), Color.Yellow);
         }
 
         public void DrawScanLines()
