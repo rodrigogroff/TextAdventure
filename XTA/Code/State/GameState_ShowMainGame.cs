@@ -173,6 +173,10 @@ namespace XTA.Code.State
                             {
                                 ProcessUserInput(inputText);
                             }
+                            else if (key == Keys.Escape)
+                            {
+                                ProcessUserInput("[ESC]");
+                            }
                             else if (!bDeath)
                             {
                                 char inputChar = GetCharacterFromKey(key);
@@ -303,7 +307,7 @@ namespace XTA.Code.State
 
             if (bShowBag)
             {
-                if (cmd == "")
+                if (cmd == "" || cmd == "[ESC]")
                 {
                     cmd = "bag";
                 }
@@ -337,7 +341,6 @@ namespace XTA.Code.State
             }
             else if (cmd == "stat")
             {
-                bShowBag = false;
                 bShowStats = !bShowStats;
 
                 if (bShowStats)
@@ -352,7 +355,6 @@ namespace XTA.Code.State
             }
             else if (cmd == "bag")
             {
-                bShowStats = false;
                 bShowBag = !bShowBag;
 
                 if (bShowBag)
@@ -633,7 +635,7 @@ namespace XTA.Code.State
                                 
                                 sx = 1303; sy = 856;
 
-                                spriteBatch.DrawString(textFont, "Select item to drop, 'Enter' to continue:", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+                                spriteBatch.DrawString(textFont, "Select item to drop, 'Esc' to close window", new Vector2(sx, sy), Color.DarkGray * 0.65f);
                                 DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
                             }
                             else

@@ -273,7 +273,7 @@ namespace XTA
         public void DrawGameCode()
         {
             lstGameStates[gameState].Draw(spriteBatch);
-            spriteBatch.DrawString(menuVersionFont, "v0.1.22", new Vector2(0, 0), Color.Yellow);
+            spriteBatch.DrawString(menuVersionFont, "v0.1.23", new Vector2(0, 0), Color.Yellow);
         }
 
         public void DrawScanLines()
