@@ -11,8 +11,8 @@ namespace XTA
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
-        public const int 
+
+        public const int
             GAME_STATE_SHOW_LOGO = 0,
             GAME_STATE_SHOW_FRONTEND_START = 1,
             GAME_STATE_SHOW_MAIN_GAME = 2,
@@ -26,7 +26,7 @@ namespace XTA
         Texture2D pixelTexture_ScanLines;
         TimeSpan elapsedTime = TimeSpan.Zero;
 
-        public int 
+        public int
             gameState = 0,
             frameRate,
             frameCounter,
@@ -34,22 +34,18 @@ namespace XTA
             virtualScreenHeight = 1080,
             virtualScreenUltraWidth = 2560,
             virtualScreenUltraHeight = 1080,
-            BackBufferWidth = 0,
-            BackBufferHeight = 0,
-            scanLineSpacing = 2, 
-            scanLineSize = 1,
-            screenHeight = 0,
-            screenWidth = 0;
+            scanLineSpacing = 2,
+            scanLineSize = 1;
 
-        public bool 
-            bUltraWideMode = false, 
+        public bool
+            bUltraWideMode = false,
             bShowFps = true;
 
-        Color scanLineColor = new 
+        Color scanLineColor = new
             Color(0.1f, 0.1f, 0.1f, 0.005f);
 
-        float 
-            scaleX, 
+        float
+            scaleX,
             scaleY;
 
         string ErrorFile = "error.txt";
@@ -81,15 +77,18 @@ namespace XTA
                 graphics.PreferMultiSampling = true;
                 graphics.ApplyChanges();
 
-                screenHeight = GraphicsDevice.Viewport.Height;
-                screenWidth = GraphicsDevice.Viewport.Width;
-                scaleX = GraphicsDevice.Viewport.Width / virtualScreenWidth;
-                scaleY = GraphicsDevice.Viewport.Height / virtualScreenHeight;
-                BackBufferWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
-                BackBufferHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
+                int virtX = virtualScreenWidth,
+                    virtY = virtualScreenHeight;
 
-                if (GraphicsDevice.Viewport.Width / GraphicsDevice.Viewport.Height >= 2f)
+                if (graphics.PreferredBackBufferWidth / graphics.PreferredBackBufferHeight >= 2f)
+                {
                     bUltraWideMode = true;
+                    virtX = virtualScreenUltraWidth;
+                    virtY = virtualScreenUltraHeight;
+                }
+
+                scaleX = (float) graphics.PreferredBackBufferWidth / virtX;
+                scaleY = (float) graphics.PreferredBackBufferHeight / virtY;                
 
                 base.Initialize();
             }
@@ -129,7 +128,7 @@ namespace XTA
         }
 
         protected override void Update(GameTime gameTime)
-        {            
+        {
             try
             {
                 var curState = lstGameStates[gameState];
@@ -137,7 +136,7 @@ namespace XTA
                 if (curState.done)
                     gameState = curState.nextState;
 
-                switch(gameState)
+                switch (gameState)
                 {
                     case GAME_STATE_RESET:
                         PrepareStates();
@@ -169,14 +168,20 @@ namespace XTA
         {
             try
             {
-                if (bUltraWideMode)
-                {
-                    DrawUltraWide(gameTime);
-                }
-                else
-                {
-                    DrawScaled(gameTime);
-                }
+                GraphicsDevice.Clear(Color.Black);
+                GraphicsDevice.Viewport = 
+                    new Viewport(0, 0, 
+                    graphics.PreferredBackBufferWidth, 
+                    graphics.PreferredBackBufferHeight);
+
+                spriteBatch.Begin(
+                    transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
+                    samplerState: SamplerState.LinearClamp);
+
+                DrawGameCode();
+                spriteBatch.End();
+                DrawScanLines();
+                base.Draw(gameTime);
 
                 frameCounter++;
             }
@@ -185,55 +190,15 @@ namespace XTA
                 ShutdownWithError(ex);
             }
         }
-
-        public void DrawScaled(GameTime gameTime)
-        {
-            try
-            {
-                GraphicsDevice.Clear(Color.Black);
-                GraphicsDevice.Viewport = new Viewport(0, 0, virtualScreenWidth, virtualScreenHeight);
-                spriteBatch.Begin(
-                    transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
-                    samplerState: SamplerState.AnisotropicClamp);
-                DrawGameCode();
-                spriteBatch.End();
-                GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
-                DrawScanLines();
-                base.Draw(gameTime);
-            }
-            catch (Exception ex)
-            {
-                ShutdownWithError(ex);
-            }
-        }
-
-        public void DrawUltraWide(GameTime gameTime)
-        {
-            try
-            {
-                GraphicsDevice.Clear(Color.Black);
-                GraphicsDevice.Viewport = new Viewport(0, 0, virtualScreenUltraWidth, virtualScreenUltraHeight);
-                spriteBatch.Begin(
-                    transformMatrix: Matrix.CreateScale(scaleX, scaleY, 1f),
-                    samplerState: SamplerState.AnisotropicClamp);
-                DrawGameCode();
-                spriteBatch.End();
-                GraphicsDevice.Viewport = new Viewport(0, 0, BackBufferWidth, BackBufferHeight);
-                DrawScanLines();
-                base.Draw(gameTime);
-            }
-            catch (Exception ex)
-            {
-                ShutdownWithError(ex);
-            }
-        }
-
+        
         public void DrawGameCode()
         {
             lstGameStates[gameState].Draw(spriteBatch);
             if (bShowFps)
             {
-                spriteBatch.DrawString(versionFont, "v0.1.25 / Fps: " + frameRate, new Vector2(0, 0), Color.Yellow);
+                spriteBatch.DrawString(
+                    versionFont, "v0.1.25 / Fps: " + frameRate, 
+                    new Vector2(0, 0), Color.Yellow);
             }
         }
 
@@ -241,9 +206,9 @@ namespace XTA
         {
             spriteBatch.Begin();
 
-            for (int y = 0; y < screenHeight; y += scanLineSpacing)
+            for (int y = 0; y < graphics.PreferredBackBufferHeight; y += scanLineSpacing)
                 spriteBatch.Draw(pixelTexture_ScanLines,
-                    new Rectangle(0, y, screenWidth, scanLineSize), scanLineColor);
+                    new Rectangle(0, y, graphics.PreferredBackBufferWidth, scanLineSize), scanLineColor);
 
             spriteBatch.End();
         }
