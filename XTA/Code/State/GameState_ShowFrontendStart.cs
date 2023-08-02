@@ -44,7 +44,7 @@ namespace XTA.Code.State
             var myTitle = new MainTitleEvent();
             myTitle.LoadContent(Content, main);
             pipeline_game_title.Add(myTitle);
-            menuFont = Content.Load<SpriteFont>("Merriweather");     
+            menuFont = Content.Load<SpriteFont>(GetProperName("Merriweather", main));     
         }
 
         public override void Update(GameTime gameTime) 

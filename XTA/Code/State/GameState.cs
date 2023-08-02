@@ -2,10 +2,11 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using XTA.Code.Infra;
 
 namespace XTA.Code.State
 {
-    public class GameState
+    public class GameState : BaseGame
     {
         public GameXTA main { get; set; }
         public int id { get; set; }

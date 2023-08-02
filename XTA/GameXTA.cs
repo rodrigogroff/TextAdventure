@@ -20,7 +20,12 @@ namespace XTA
 
         List<GameState> lstGameStates;
 
-        #region - variables - 
+        public bool
+            bUltraWideMode = false,
+            b4KMode = false,
+            bShowFps = true;
+
+        #region - internal variables - 
 
         SpriteFont versionFont;
         Texture2D pixelTexture_ScanLines;
@@ -36,11 +41,7 @@ namespace XTA
             virtualScreenUltraHeight = 1080,
             scanLineSpacing = 2,
             scanLineSize = 1;
-
-        public bool
-            bUltraWideMode = false,
-            bShowFps = true;
-
+        
         Color scanLineColor = new
             Color(0.1f, 0.1f, 0.1f, 0.005f);
 
@@ -85,6 +86,11 @@ namespace XTA
                     bUltraWideMode = true;
                     virtX = virtualScreenUltraWidth;
                     virtY = virtualScreenUltraHeight;
+                }
+                
+                if (graphics.PreferredBackBufferWidth >= 3840)
+                {
+                    b4KMode = true;
                 }
 
                 scaleX = (float) graphics.PreferredBackBufferWidth / virtX;
@@ -194,6 +200,7 @@ namespace XTA
         public void DrawGameCode()
         {
             lstGameStates[gameState].Draw(spriteBatch);
+
             if (bShowFps)
             {
                 spriteBatch.DrawString(

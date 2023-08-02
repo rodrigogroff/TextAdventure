@@ -28,7 +28,7 @@ namespace XTA.Code.Components
 
         public override void LoadContent(ContentManager Content, GameXTA main)
         {
-            pngTexture = Content.Load<Texture2D>("logo_footer");
+            pngTexture = Content.Load<Texture2D>(GetProperName("logo_footer", main));
 
             if (main.bUltraWideMode)
             {
