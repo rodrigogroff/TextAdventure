@@ -18,9 +18,9 @@ namespace XTA.Code.State
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(SpriteBatch spriteBatch) { }
 
-        public string inputText { get; set; }
+        public string inputText = "";
 
-        public bool cursorVisible { get; set; }
+        public bool cursorVisible = true;
 
         public char GetCharacterFromKey(Keys key)
         {
