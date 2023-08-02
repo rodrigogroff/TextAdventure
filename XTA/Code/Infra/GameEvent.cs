@@ -7,10 +7,7 @@ namespace XTA.Code.Infra
 
     public class BaseGame
     {
-        public string GetProperName(string name, GameXTA main)
-        {
-            return name + (main.b4KMode ? "_4k" : "");
-        }
+        
     }
 
     public class GameEvent : BaseGame

@@ -22,7 +22,6 @@ namespace XTA
 
         public bool
             bUltraWideMode = false,
-            b4KMode = false,
             bShowFps = true;
 
         #region - internal variables - 
@@ -90,7 +89,7 @@ namespace XTA
                 
                 if (graphics.PreferredBackBufferWidth >= 3840)
                 {
-                    b4KMode = true;
+                    //b4KMode = true;
                 }
 
                 scaleX = (float) graphics.PreferredBackBufferWidth / virtX;

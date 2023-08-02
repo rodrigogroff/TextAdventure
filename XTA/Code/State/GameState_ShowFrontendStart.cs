@@ -3,15 +3,16 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using XTA.Code.Components;
-using XTA.Code.Infra;
 
 namespace XTA.Code.State
 {
     public class GameState_ShowFrontendStart : GameState
     {
+        const int
+            START_GAME = 0,
+            DIFFICULTY = 1;
+
         public GameState_ShowFrontendStart(GameXTA _main)
         {
             main = _main;
@@ -19,38 +20,39 @@ namespace XTA.Code.State
             done = false;
             nextState = GameXTA.GAME_STATE_SHOW_MAIN_GAME;
         }
-
-        public const int START_GAME = 0;
-        public const int DIFFICULTY = 1;
-
-        public int internalState = START_GAME;
-
-        List<GameEvent> pipeline_game_title = new List<GameEvent>();
-        SpriteFont menuFont;
         
+        int 
+            internalState = START_GAME,
+            xStartText = 900,
+            yStartText = 525;
+        
+        string 
+            inputText = "",
+            internalText = "",
+            selectedOption = "";
+
+        bool 
+            cursorVisible = true;
+
+        double 
+            cursorBlinkTime = 0.5,
+            cursorElapsed = 0;
+
+        MainTitleEvent myTitle;
+        SpriteFont menuFont;
+        Vector2 internalTextPosition;
         KeyboardState prevKeyboardState;
-
-        string inputText = "";
-
-        bool cursorVisible = true;
-
-        double cursorBlinkTime = 0.5,
-                cursorElapsed = 0;
-
-        int xStartText = 900, yStartText = 525;
 
         public override void LoadContent(ContentManager Content, GraphicsDevice Device)
         {
-            var myTitle = new MainTitleEvent();
-            myTitle.LoadContent(Content, main);
-            pipeline_game_title.Add(myTitle);
-            menuFont = Content.Load<SpriteFont>(GetProperName("Merriweather", main));     
+            myTitle = new MainTitleEvent();
+            myTitle.LoadContent(Content, main);            
+            menuFont = Content.Load<SpriteFont>("Merriweather");     
         }
 
         public override void Update(GameTime gameTime) 
         {
-            foreach (GameEvent e in pipeline_game_title.Where(y => y.IsActive == true))
-                e.Update();
+            myTitle.Update();
 
             #region - process keyoard - 
 
@@ -111,8 +113,7 @@ namespace XTA.Code.State
                         inputText = "";
                         selectedOption = "New Game!";
 
-                        // novo jogo
-                        internalState++;
+                        internalState++; // novo jogo
                     }
                     else if (inputText == "2")
                     {
@@ -121,8 +122,7 @@ namespace XTA.Code.State
                     }
                     else if (inputText == "3")
                     {
-                        // sair
-                        Environment.Exit(0);
+                        Environment.Exit(0); // sair
                     }
 
                     break;
@@ -134,13 +134,7 @@ namespace XTA.Code.State
                     break;
             }
         }
-
         
-        string selectedOption = "";
-
-        Vector2 internalTextPosition;
-
-        string internalText = "";
         public void StartText(Vector2 startPosition)
         {
             internalText = "";
@@ -178,10 +172,7 @@ namespace XTA.Code.State
 
         public override void Draw(SpriteBatch spriteBatch) 
         {
-            foreach (GameEvent e in pipeline_game_title.Where(y => y.IsActive == true))
-                e.Draw(spriteBatch);
-            
-            var title = pipeline_game_title[0] as MainTitleEvent;
+            myTitle.Draw(spriteBatch);
             
             switch (internalState)
             {
@@ -197,18 +188,18 @@ namespace XTA.Code.State
                     }
 
                     StartText(new Vector2(xStartText, yStartText));
-                    AddText(spriteBatch, "1 - ", Color.Gray * title.currentAlpha);
-                    AddText(spriteBatch, "Start Game", Color.LightGray * title.currentAlpha);
+                    AddText(spriteBatch, "1 - ", Color.Gray * myTitle.currentAlpha);
+                    AddText(spriteBatch, "Start Game", Color.LightGray * myTitle.currentAlpha);
 
                     StartText(new Vector2(xStartText, yStartText + 30));
-                    AddText(spriteBatch, "2 - ", Color.Gray * title.currentAlpha);
-                    AddText(spriteBatch, "Continue", Color.LightGray * title.currentAlpha);
+                    AddText(spriteBatch, "2 - ", Color.Gray * myTitle.currentAlpha);
+                    AddText(spriteBatch, "Continue", Color.LightGray * myTitle.currentAlpha);
 
                     StartText(new Vector2(xStartText, yStartText + 60));
-                    AddText(spriteBatch, "3 - ", Color.Gray * title.currentAlpha);
-                    AddText(spriteBatch, "Quit", Color.LightGray * title.currentAlpha);
+                    AddText(spriteBatch, "3 - ", Color.Gray * myTitle.currentAlpha);
+                    AddText(spriteBatch, "Quit", Color.LightGray * myTitle.currentAlpha);
 
-                    if (title.currentAlpha >= 1)
+                    if (myTitle.currentAlpha >= 1)
                     {
                         StartText(new Vector2(xStartText, yStartText + 110));
                         DrawCurrentInputText(spriteBatch, new Vector2(xStartText, yStartText + 110));
@@ -252,7 +243,7 @@ namespace XTA.Code.State
                     DrawCurrentInputText(spriteBatch, new Vector2(xStartText, yStartText + 140));
 
                     break;
-            }            
+            }
         }
     }
 }

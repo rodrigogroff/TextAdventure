@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using XTA.Code.Infra;
 
 namespace XTA.Code.State
@@ -16,6 +17,10 @@ namespace XTA.Code.State
         public virtual void LoadContent(ContentManager Content, GraphicsDevice Device) { }
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(SpriteBatch spriteBatch) { }
+
+        public string inputText { get; set; }
+
+        public bool cursorVisible { get; set; }
 
         public char GetCharacterFromKey(Keys key)
         {
@@ -76,6 +81,81 @@ namespace XTA.Code.State
                 case Keys.D9: return shift ? '9' : '9';
 
                 default: return ' ';
+            }
+
+            #endregion
+        }
+
+        public void DisplayText(SpriteBatch spriteBatch, string text, Vector2 startPosition, SpriteFont textFont, int width = 0, float alpha = -1)
+        {
+            #region - code - 
+
+            var internalTextPosition = startPosition;
+
+            float w_letter_pad = 0f,
+                    h_letter_pad = 0f;
+
+            bool IsBlue = false,
+                    IsRed = false,
+                    IsYellow = false;
+
+            var current_color = Color.White;
+
+            foreach (var letter in text)
+            {
+                Vector2 nextPosition = internalTextPosition + new Vector2(w_letter_pad, h_letter_pad);
+
+                if (letter == '\"' || letter == '¨')
+                    IsYellow = !IsYellow;
+                else if (letter == '^')
+                    IsBlue = !IsBlue;
+                else if (letter == '~')
+                    IsRed = !IsRed;
+
+                if (IsYellow)
+                    current_color = Color.Yellow;
+                else if (IsBlue)
+                    current_color = Color.Cyan;
+                else if (IsRed)
+                    current_color = Color.Red;
+                else
+                    current_color = Color.White;
+
+                if (letter != '^' && letter != '~' && letter != '¨')
+                {
+                    spriteBatch.DrawString(textFont, letter.ToString(), new Vector2(nextPosition.X + 2, nextPosition.Y + 2), Color.Black);
+                    spriteBatch.DrawString(textFont, letter.ToString(), nextPosition, current_color * 0.7f * (alpha > 0 ? alpha:1));
+
+                    if (letter == '\n')
+                    {
+                        w_letter_pad = 0;
+                        h_letter_pad += 20;
+                    }
+                    else
+                    {
+                        if (width == 0)
+                            w_letter_pad += textFont.MeasureString(letter.ToString()).X + 1;
+                        else
+                            w_letter_pad += width;
+                    }
+                }
+            }
+
+            #endregion
+        }
+
+        public void DisplayCursorText(SpriteBatch spriteBatch, Vector2 textPosition, SpriteFont textFont, float Alpha = -1)
+        {
+            #region - code - 
+
+            spriteBatch.DrawString(textFont, inputText, textPosition, Color.Green * (Alpha > 0 ? Alpha : 1));
+
+            if (cursorVisible)
+            {
+                float cursorWidth = textFont.MeasureString(inputText).X;
+                Vector2 cursorPosition = textPosition + new Vector2(cursorWidth, 0);
+                Color cursorColor = Color.Green;
+                spriteBatch.DrawString(textFont, "|", cursorPosition, cursorColor * (Alpha > 0 ? Alpha: 1));
             }
 
             #endregion

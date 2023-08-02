@@ -28,8 +28,8 @@ namespace XTA.Code.Components
 
         public override void LoadContent(ContentManager Content, GameXTA main)
         {
-            pngGameLogo = Content.Load<Texture2D>(GetProperName("Hellfire", main));
-            pngWallpaper = Content.Load<Texture2D>(GetProperName("bg19", main));
+            pngGameLogo = Content.Load<Texture2D>("Hellfire");
+            pngWallpaper = Content.Load<Texture2D>("bg19");
 
             curve = new GameFunctions().GenerateLogarithmicArray(300);
 
