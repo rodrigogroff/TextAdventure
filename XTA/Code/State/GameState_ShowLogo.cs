@@ -10,8 +10,9 @@ namespace XTA.Code.State
 {
     public class GameState_ShowLogo : GameState
     {
-        public GameState_ShowLogo() 
-        { 
+        public GameState_ShowLogo(GameXTA _main) 
+        {
+            main = _main;
             id = GameXTA.GAME_STATE_SHOW_LOGO;
             done = false;
             nextState = GameXTA.GAME_STATE_SHOW_FRONTEND_START;
@@ -23,7 +24,7 @@ namespace XTA.Code.State
         {
             var myLogo = new LogoEvent();
 
-            myLogo.LoadContent(Content);
+            myLogo.LoadContent(Content, main);
 
             pipeline_logo.Add(myLogo);
         }

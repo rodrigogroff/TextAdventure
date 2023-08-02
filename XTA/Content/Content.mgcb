@@ -94,6 +94,13 @@
 /processorParam:TextureFormat=Compressed
 /build:File2.spritefont
 
+#begin File3.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File3.spritefont
+
 #begin logo_footer.png
 /importer:TextureImporter
 /processor:TextureProcessor

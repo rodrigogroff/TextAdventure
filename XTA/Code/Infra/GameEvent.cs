@@ -8,12 +8,10 @@ namespace XTA.Code.Infra
     {
         public bool IsActive = true;
 
-        public Vector2 position;
-
         public virtual void Update() { }
 
         public virtual void Draw(SpriteBatch spriteBatch) { }
 
-        public virtual void LoadContent(ContentManager Content) { }
+        public virtual void LoadContent(ContentManager Content, GameXTA main) { }
     }
 }

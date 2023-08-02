@@ -66,3 +66,4 @@ C:\Teste\TA\XTA\bin\Debug\net6.0\Content\DeathPage.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\Bag.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\LucidaBig.xnb
 C:\Teste\TA\XTA\bin\Debug\net6.0\Content\ArialN.xnb
+C:\Teste\TA\XTA\bin\Debug\net6.0\Content\File3.xnb

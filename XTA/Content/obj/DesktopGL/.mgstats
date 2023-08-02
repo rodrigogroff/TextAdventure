@@ -1,2 +1,16 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Teste/TA/XTA/Content/ArialN.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/ArialN.xnb","FontDescriptionProcessor","SpriteFontContent",2079,21535,0,1847122
+"C:/Teste/TA/XTA/Content/../Images/Hellfire.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/Hellfire.xnb","TextureProcessor","Texture2DContent",160472,937525,0,1408254
+"C:/Teste/TA/XTA/Content/ArialN.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/ArialN.xnb","FontDescriptionProcessor","SpriteFontContent",2079,21535,0,0875151
+"C:/Teste/TA/XTA/Content/Bag.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/Bag.xnb","TextureProcessor","Texture2DContent",816972,3700085,0,116056
+"C:/Teste/TA/XTA/Content/bg18.jpg","C:/Teste/TA/XTA/Content/bin/DesktopGL/bg18.xnb","TextureProcessor","Texture2DContent",753556,8282489,0,19314
+"C:/Teste/TA/XTA/Content/bg19.jpg","C:/Teste/TA/XTA/Content/bin/DesktopGL/bg19.xnb","TextureProcessor","Texture2DContent",471491,8282489,0,2005754
+"C:/Teste/TA/XTA/Content/DeathPage.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/DeathPage.xnb","TextureProcessor","Texture2DContent",283175,8294485,0,189313
+"C:/Teste/TA/XTA/Content/File.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/File.xnb","FontDescriptionProcessor","SpriteFontContent",2076,13343,0,0256338
+"C:/Teste/TA/XTA/Content/File2.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/File2.xnb","FontDescriptionProcessor","SpriteFontContent",2070,13343,0,026926
+"C:/Teste/TA/XTA/Content/logo_footer.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/logo_footer.xnb","TextureProcessor","Texture2DContent",156707,1048661,0,026602
+"C:/Teste/TA/XTA/Content/LucidaBig.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/LucidaBig.xnb","FontDescriptionProcessor","SpriteFontContent",2077,21535,0,014248
+"C:/Teste/TA/XTA/Content/MainDialog.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/MainDialog.xnb","TextureProcessor","Texture2DContent",790552,4281205,0,1049045
+"C:/Teste/TA/XTA/Content/MainStats.png","C:/Teste/TA/XTA/Content/bin/DesktopGL/MainStats.xnb","TextureProcessor","Texture2DContent",626829,2970733,0,0710406
+"C:/Teste/TA/XTA/Content/MerriSmall.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/MerriSmall.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0,0310531
+"C:/Teste/TA/XTA/Content/Merriweather.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/Merriweather.xnb","FontDescriptionProcessor","SpriteFontContent",2075,37919,0,0359349
+"C:/Teste/TA/XTA/Content/Roboto.spritefont","C:/Teste/TA/XTA/Content/bin/DesktopGL/Roboto.xnb","FontDescriptionProcessor","SpriteFontContent",2069,70687,0,0280645

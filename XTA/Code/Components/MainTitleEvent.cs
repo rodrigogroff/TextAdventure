@@ -24,14 +24,25 @@ namespace XTA.Code.Components
         public float[] curve;
 
         Vector2 wallpaperPosition = new Vector2(0, 0);
+        Vector2 position = new Vector2(0, 0);
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content, GameXTA main)
         {
             pngGameLogo = Content.Load<Texture2D>("Hellfire");
             pngWallpaper = Content.Load<Texture2D>("bg19");
 
             curve = new GameFunctions().GenerateLogarithmicArray(300);
-            position = new Vector2(1920 / 2 - pngGameLogo.Width / 2, 100);
+
+            if (main.bUltraWideMode)
+            {
+                position = new Vector2(main.virtualScreenUltraWidth / 2 - pngGameLogo.Width / 2, main.virtualScreenUltraHeight / 2 - pngGameLogo.Height / 2 - 180);
+                wallpaperPosition = new Vector2(main.virtualScreenUltraWidth / 2 - pngWallpaper.Width / 2, main.virtualScreenUltraHeight / 2 - pngWallpaper.Height / 2);
+            }
+            else
+            {
+                position = new Vector2(main.virtualScreenWidth / 2 - pngGameLogo.Width / 2, main.virtualScreenHeight / 2 - pngGameLogo.Height / 2 - 180);
+                wallpaperPosition = new Vector2(main.virtualScreenWidth / 2 - pngWallpaper.Width / 2, main.virtualScreenHeight / 2 - pngWallpaper.Height / 2);
+            }
         }
 
         public override void Update()

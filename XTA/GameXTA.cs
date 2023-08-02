@@ -27,7 +27,8 @@ namespace XTA
         Texture2D pixelTexture_ScanLines;
         TimeSpan elapsedTime = TimeSpan.Zero;
 
-        int gameState = 0,
+        public int 
+            gameState = 0,
             frameRate,
             frameCounter,
             virtualScreenWidth = 1920,
@@ -45,11 +46,14 @@ namespace XTA
             offsetX = 0,
             offsetY = 0;
 
-        bool bUltraWideMode = false;
+        public bool 
+            bUltraWideMode = false, 
+            bShowFps = true;
 
         Color scanLineColor = new Color(0.1f, 0.1f, 0.1f, 0.005f);
 
-        float scaleX, 
+        float 
+            scaleX, 
             scaleY,
             actualAspectRatio,
             virtualAspectRatio, 
@@ -101,12 +105,28 @@ namespace XTA
                 offsetX = (GraphicsDevice.Viewport.Width - letterboxedWidth) / 2;
                 offsetY = (GraphicsDevice.Viewport.Height - letterboxedHeight) / 2;
 
+                if (actualAspectRatio >= 2f)
+                    bUltraWideMode = true;
+
                 base.Initialize();
             }
             catch (Exception ex)
             {
                 ShutdownWithError(ex);
             }
+        }
+
+        public void PrepareStates()
+        {
+            lstGameStates = new List<GameState>
+                {
+                    new GameState_ShowLogo(this),
+                    new GameState_ShowFrontendStart(this),
+                    new GameState_ShowMainGame(this)
+                };
+
+            foreach (var item in lstGameStates)
+                item.LoadContent(Content, GraphicsDevice);
         }
 
         protected override void LoadContent()
@@ -118,15 +138,7 @@ namespace XTA
 
                 spriteBatch = new SpriteBatch(GraphicsDevice);
 
-                lstGameStates = new List<GameState>
-                {
-                    new GameState_ShowLogo(),
-                    new GameState_ShowFrontendStart(),
-                    new GameState_ShowMainGame()
-                };
-
-                foreach (var item in lstGameStates)
-                    item.LoadContent(Content, GraphicsDevice);
+                PrepareStates();
 
                 versionFont = Content.Load<SpriteFont>("File2");
             }
@@ -145,19 +157,12 @@ namespace XTA
                 if (curState.done)
                     gameState = curState.nextState;
 
-                if (gameState == GAME_STATE_RESET)
+                switch(gameState)
                 {
-                    lstGameStates = new List<GameState>
-                    {
-                        new GameState_ShowLogo(),
-                        new GameState_ShowFrontendStart(),
-                        new GameState_ShowMainGame()
-                    };
-
-                    foreach (var item in lstGameStates)
-                        item.LoadContent(Content, GraphicsDevice);
-
-                    gameState = GAME_STATE_SHOW_FRONTEND_START;
+                    case GAME_STATE_RESET:
+                        PrepareStates();
+                        gameState = GAME_STATE_SHOW_FRONTEND_START;
+                        break;
                 }
 
                 base.Update(gameTime);
@@ -181,16 +186,16 @@ namespace XTA
         {
             try
             {
-                if (actualAspectRatio > 1.5f)
-                {                    
-                    DrawScaled(gameTime);
-                }
-                else
+                if (actualAspectRatio >= 2f)
                 {
                     if (bUltraWideMode)
                         DrawUltraWide(gameTime);
                     else
                         DrawBoxedUltraWide(gameTime);
+                }
+                else
+                {
+                    DrawScaled(gameTime);
                 }
 
                 frameCounter++;
@@ -285,7 +290,8 @@ namespace XTA
         public void DrawGameCode()
         {
             lstGameStates[gameState].Draw(spriteBatch);
-            spriteBatch.DrawString(versionFont, "v0.1.25 / Fps: " + frameRate, new Vector2(0, 0), Color.Yellow);
+            if (bShowFps)
+                spriteBatch.DrawString(versionFont, "v0.1.25 / Fps: " + frameRate, new Vector2(0, 0), Color.Yellow);
         }
 
         public void DrawScanLines()

@@ -7,26 +7,37 @@ namespace XTA.Code.Components
 {
     public class LogoEvent : GameEvent
     {
-        public const int DELAY_TO_PRESENT = 0;
-        public const int FADEIN_PRESENT = 1;
-        public const int PRESENT = 2;
-        public const int FADEOUT_PRESENT = 3;
+        public const int 
+            DELAY_TO_PRESENT = 0,
+            FADEIN_PRESENT = 1,
+            PRESENT = 2,
+            FADEOUT_PRESENT = 3;
 
-        public int myState = DELAY_TO_PRESENT;
-
-        public int framesStart = 60 * 3;
-        public int framesDuration = 60 * 3;
+        public int 
+            myState = DELAY_TO_PRESENT,
+            framesStart = 60 * 3,
+            indexer = 0,
+            framesDuration = 60 * 3;
 
         float currentAlpha = 0.0f;
-        
+
+        Vector2 position;
         Texture2D pngTexture;
-        public int indexer = 0;
+
         public float[] curve = new GameFunctions().GenerateLogarithmicArray(600);
 
-        public override void LoadContent(ContentManager Content)
+        public override void LoadContent(ContentManager Content, GameXTA main)
         {
             pngTexture = Content.Load<Texture2D>("logo_footer");
-            position = new Vector2(1920 / 2 - pngTexture.Width / 2, 1080 / 2 - pngTexture.Height / 2);
+
+            if (main.bUltraWideMode)
+            {
+                position = new Vector2(main.virtualScreenUltraWidth / 2 - pngTexture.Width / 2, main.virtualScreenUltraHeight / 2 - pngTexture.Height / 2); 
+            }
+            else
+            {
+                position = new Vector2(main.virtualScreenWidth / 2 - pngTexture.Width / 2, main.virtualScreenHeight / 2 - pngTexture.Height / 2);
+            }
         }
 
         public override void Update()

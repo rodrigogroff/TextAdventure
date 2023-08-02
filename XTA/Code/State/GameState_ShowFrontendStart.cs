@@ -12,8 +12,9 @@ namespace XTA.Code.State
 {
     public class GameState_ShowFrontendStart : GameState
     {
-        public GameState_ShowFrontendStart() 
-        { 
+        public GameState_ShowFrontendStart(GameXTA _main)
+        {
+            main = _main;
             id = GameXTA.GAME_STATE_SHOW_FRONTEND_START;
             done = false;
             nextState = GameXTA.GAME_STATE_SHOW_MAIN_GAME;
@@ -41,9 +42,9 @@ namespace XTA.Code.State
         public override void LoadContent(ContentManager Content, GraphicsDevice Device)
         {
             var myTitle = new MainTitleEvent();
-            myTitle.LoadContent(Content);
+            myTitle.LoadContent(Content, main);
             pipeline_game_title.Add(myTitle);
-            menuFont = Content.Load<SpriteFont>("Merriweather");            
+            menuFont = Content.Load<SpriteFont>("Merriweather");     
         }
 
         public override void Update(GameTime gameTime) 
@@ -186,7 +187,14 @@ namespace XTA.Code.State
             {
                 case START_GAME:
 
-                    xStartText = 900;
+                    if (main.bUltraWideMode)
+                    {
+                        xStartText = (main.virtualScreenUltraWidth / 2) - 80; yStartText = 600;
+                    }
+                    else
+                    {
+                        xStartText = (main.virtualScreenWidth / 2) - 80; yStartText = 600;
+                    }
 
                     StartText(new Vector2(xStartText, yStartText));
                     AddText(spriteBatch, "1 - ", Color.Gray * title.currentAlpha);
@@ -210,7 +218,14 @@ namespace XTA.Code.State
 
                 case DIFFICULTY:
 
-                    xStartText = 760;
+                    if (main.bUltraWideMode)
+                    {
+                        xStartText = (main.virtualScreenUltraWidth / 2) - 200; yStartText = 600;
+                    }
+                    else
+                    {
+                        xStartText = (main.virtualScreenWidth / 2) - 200; yStartText = 600;
+                    }
 
                     StartText(new Vector2(xStartText + 145, yStartText - 10));
                     AddText(spriteBatch, selectedOption, Color.White);

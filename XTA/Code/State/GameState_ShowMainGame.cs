@@ -17,8 +17,9 @@ namespace XTA.Code.State
 
         const int FADE_FRAMES = 60;
 
-        public GameState_ShowMainGame() 
+        public GameState_ShowMainGame(GameXTA _main)
         {
+            main = _main;
             id = GameXTA.GAME_STATE_SHOW_MAIN_GAME;         
             done = false;
         }
@@ -39,9 +40,7 @@ namespace XTA.Code.State
             indexAlphaCurveStats = 60,
             indexAlphaCurveBag = 60,
             indexAlphaCurveDeath = 0,
-            delayStatsMax = 500,
-            delayStats = 0,
-            delayStartFadout = 90;
+            delayStartFadeout = 90;
 
         float currentAlphaWallpaper = 1,
                 currentAlphaMainDialog = 0,
@@ -53,6 +52,7 @@ namespace XTA.Code.State
 
         SpriteFont titleFont,
                     arialFont,
+                    textNormalFont,
                     lucidaBigFont,
                     textFont;
 
@@ -66,7 +66,7 @@ namespace XTA.Code.State
         Vector2 mainDialogPos = new Vector2(70, 0),
                 mainStatsPos = new Vector2(1050, 60),
                 mainBagPos = new Vector2(1000, 60),
-                zero = new Vector2(0, 0),
+                wallpaperPosition = new Vector2(0, 0),
                 deathPos = new Vector2(0, 0),
                 internalTextPosition;
 
@@ -110,6 +110,7 @@ namespace XTA.Code.State
             textFont = Content.Load<SpriteFont>("File");
             titleFont = Content.Load<SpriteFont>("Merriweather");
             lucidaBigFont = Content.Load<SpriteFont>("LucidaBig");
+            textNormalFont = Content.Load<SpriteFont>("File3");
 
             pngTexture_wallpaper = Content.Load<Texture2D>("bg18");
             pngTexture_dialog = Content.Load<Texture2D>("MainDialog");
@@ -119,6 +120,23 @@ namespace XTA.Code.State
 
             pixelTexture_ScanLines = new Texture2D(Device, 1, 1);
             pixelTexture_ScanLines.SetData(new[] { Color.White });
+
+            if (main.bUltraWideMode)
+            {
+                wallpaperPosition = new Vector2(main.virtualScreenUltraWidth / 2 - pngTexture_wallpaper.Width / 2, main.virtualScreenUltraHeight / 2 - pngTexture_wallpaper.Height / 2);
+                mainDialogPos = new Vector2(main.virtualScreenUltraWidth / 2 - pngTexture_dialog.Width / 2, 0);
+                mainStatsPos = new Vector2(1050, 60);
+                mainBagPos = new Vector2(-40, 60);
+                deathPos = new Vector2(main.virtualScreenUltraWidth / 2 - pngTexture_deathPage.Width / 2, 0);
+            }
+            else
+            {
+                wallpaperPosition = new Vector2(main.virtualScreenWidth / 2 - pngTexture_wallpaper.Width / 2, main.virtualScreenHeight / 2 - pngTexture_wallpaper.Height / 2);
+                mainDialogPos = new Vector2(70, 0);
+                mainStatsPos = new Vector2(1050, 60);
+                mainBagPos = new Vector2(1000, 60);                
+                deathPos = new Vector2(main.virtualScreenWidth / 2 - pngTexture_deathPage.Width / 2, 0);
+            }
         }
 
         public override void Update(GameTime gameTime) 
@@ -127,7 +145,7 @@ namespace XTA.Code.State
             {
                 case MAIN_START_FADEOUT_WALLPAPER:
 
-                    if (--delayStartFadout > 0) { } else
+                    if (--delayStartFadeout > 0) { } else
                     {
                         if (indexAlphaMainDialog-- > 0)
                             currentAlphaWallpaper -= 0.01f;
@@ -351,7 +369,6 @@ namespace XTA.Code.State
 
                 inputText = "";
                 textIncoming = "";
-                delayStats = delayStatsMax;
             }
             else if (cmd == "bag")
             {
@@ -373,7 +390,7 @@ namespace XTA.Code.State
             internalTextPosition = startPosition;
         }
 
-        public void DisplayText(SpriteBatch spriteBatch, Vector2 startPosition, float currentAlpha, List<string> lstText)
+        public void DisplayText(SpriteBatch spriteBatch, Vector2 startPosition, float currentAlpha, List<string> lstText, bool fontNormal = false)
         {
             #region - code - 
 
@@ -427,16 +444,32 @@ namespace XTA.Code.State
 
                 if (letter != '^' && letter != '~' && letter != '¨')
                 {
-                    spriteBatch.DrawString(textFont, letter.ToString(), new Vector2(nextPosition.X + 2, nextPosition.Y + 2), Color.Black);
-                    spriteBatch.DrawString(textFont, letter.ToString(), nextPosition, current_color * currentAlpha);
-
-                    if (letter == '\n')
+                    if (!fontNormal)
                     {
-                        w_letter_pad = 0;
-                        h_letter_pad += 20;
+                        spriteBatch.DrawString(textFont, letter.ToString(), new Vector2(nextPosition.X + 2, nextPosition.Y + 2), Color.Black);
+                        spriteBatch.DrawString(textFont, letter.ToString(), nextPosition, current_color * currentAlpha);
+
+                        if (letter == '\n')
+                        {
+                            w_letter_pad = 0;
+                            h_letter_pad += 20;
+                        }
+                        else
+                            w_letter_pad += 7;
                     }
                     else
-                        w_letter_pad += 7;
+                    {
+                        spriteBatch.DrawString(textNormalFont, letter.ToString(), new Vector2(nextPosition.X + 2, nextPosition.Y + 2), Color.Black);
+                        spriteBatch.DrawString(textNormalFont, letter.ToString(), nextPosition, current_color * currentAlpha);
+
+                        if (letter == '\n')
+                        {
+                            w_letter_pad = 0;
+                            h_letter_pad += 20;
+                        }
+                        else
+                            w_letter_pad += 12;
+                    }
                 }
             }
 
@@ -491,7 +524,7 @@ namespace XTA.Code.State
                 if (letter != '^' && letter != '~' && letter != '¨')
                 {
                     spriteBatch.DrawString(arialFont, letter.ToString(), new Vector2(nextPosition.X +2, nextPosition.Y + 2), Color.Black);
-                    spriteBatch.DrawString(arialFont, letter.ToString(), nextPosition, current_color * 0.8f);
+                    spriteBatch.DrawString(arialFont, letter.ToString(), nextPosition, current_color * 0.7f);
 
                     if (letter == '\n')
                     {
@@ -523,132 +556,226 @@ namespace XTA.Code.State
             #endregion
         }
 
+        public void ShowMainDialog(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
+
+            int sx = 0, sy = 0;
+            
+            if (main.bUltraWideMode)
+            {
+                sx = main.virtualScreenUltraWidth / 2 - 55;
+            }
+            else
+            {
+                sx = 509;
+            }
+
+            MainTitle = "This is very big text so deal with it";
+
+            float titleWidth = textFont.MeasureString(MainTitle).X;
+            spriteBatch.DrawString(titleFont, MainTitle, new Vector2(sx - titleWidth / 2, 143), Color.Red * currentAlphaMainDialog * 0.8f);
+
+            sy = 290;
+
+            if (main.bUltraWideMode)
+            {
+                sx = main.virtualScreenUltraWidth / 2 - 376;
+            }
+            else
+            {
+                sx = 190;
+            }
+
+            StartText(new Vector2(sx, sy));
+            ProcessRoomText(spriteBatch, textToDisplay);
+
+            sy = 914;
+
+            if (main.bUltraWideMode)
+            {
+                sx = main.virtualScreenUltraWidth / 2 - 294;
+            }
+            else
+            {
+                sx = 270;
+            }
+
+            if (bTextDisplayed)
+            {
+                if (!bShowBag)
+                {
+                    spriteBatch.DrawString(textFont, "Type 'Help' for available commands; 'Enter' to continue", new Vector2(sx, sy), Color.DarkGray * 0.35f);
+                    DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
+                }
+            }
+            else
+            {
+                spriteBatch.DrawString(textFont, "Press 'Space' key to skip text, 'Esc' to finish", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+            }
+        }
+
+        public void ShowInventory(SpriteBatch spriteBatch)
+        {
+            int sx = 0, sy = 0;
+
+            spriteBatch.Draw(pngTexture_bag, mainBagPos, Color.White * currentAlphaMainBag);
+
+            sy = 143;
+
+            if (main.bUltraWideMode)
+            {
+                sx = 410;
+            }
+            else
+            {
+                sx = 1453;
+            }
+
+            spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx + 2, sy + 2), Color.Black);
+            spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx, sy), Color.White * currentAlphaMainBag * 0.8f);
+
+            DisplayText(spriteBatch, new Vector2(sx - 180, sy + 80), currentAlphaMainBag * 0.8f, new List<string>
+                            {
+                                "                 ¨-- Player Inventory --¨",
+                            });
+
+            for (int i = 0; i < 10; i++)
+            {
+                var msg = "[" + (i + 1) + "] Bone";
+
+                spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx - 305 + 2, sy + 165 + 2 + i * 32), Color.Black);
+                spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx - 305, sy + 165 + i * 32), Color.White * currentAlphaMainBag * 0.8f);
+            }
+
+            if (currentAlphaMainBag >= 1)
+            {
+                sy = 856;
+
+                if (main.bUltraWideMode)
+                {
+                    sx = 260;
+                }
+                else
+                {
+                    sx = 1300;
+                }
+
+                spriteBatch.DrawString(textFont, "Select item to drop, 'Esc' to close window", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+                DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
+            }
+        }
+
+        public void ShowStats(SpriteBatch spriteBatch)
+        {
+            int idx = curve.Length - indexAlphaCurveStats;
+
+            if (idx >= 0 && idx < curve.Length)
+            {
+                if (main.bUltraWideMode)
+                {
+                    mainStatsPos.X = (main.virtualScreenUltraWidth - pngTexture_stats.Width - 40) + 400 * curve[idx];
+                }
+                else
+                {
+                    mainStatsPos.X = 1050 + 400 * curve[idx];
+                }
+            }
+            else
+            {
+                if (main.bUltraWideMode)
+                {
+                    mainStatsPos.X = (main.virtualScreenUltraWidth - pngTexture_stats.Width - 40);
+                }
+                else
+                {
+                    mainStatsPos.X = 1050;
+                }
+            }
+
+            spriteBatch.Draw(pngTexture_stats, mainStatsPos, Color.White * currentAlphaMainStats);
+
+            string name = "^Name^ Marco Polo", pType = "^Type^ Elf Warrior form";
+
+            DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 84, mainStatsPos.Y + 220), currentAlphaMainStats * 0.8f, new List<string>
+                        {
+                            "                 ¨-- Character Stats --¨",
+                            "                            ",
+                            "".PadLeft((28 - name.Length/2), ' ') + name,
+                            "".PadLeft((28 - pType.Length/2), ' ') + pType,
+                            "",
+                            "",
+                            "                   ¨-- Attributes --¨",
+                            "                          None",
+                            "",
+                            "",
+                            "                     ¨-- Traits --¨",
+                            "                          None",
+                            "",
+                        }, true);
+        }
+
+        public void ShowDeath(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(pngTexture_deathPage, deathPos, Color.White * currentAlphaDeath);
+
+            int sy = 650, sx = 0;
+
+            if (main.bUltraWideMode)
+            {
+                sx = main.virtualScreenUltraWidth / 2 - 99;
+            }
+            else
+            {
+                sx = main.virtualScreenWidth / 2 - 150;
+            }
+
+            spriteBatch.DrawString(textFont, "Press 'Esc' to continue...", new Vector2(sx, sy), Color.White);
+        }
+
         public override void Draw(SpriteBatch spriteBatch) 
         {
+            spriteBatch.Draw(pngTexture_wallpaper, wallpaperPosition, Color.White * currentAlphaWallpaper);
+
             switch (internalState)
             {
-                case MAIN_START_FADEOUT_WALLPAPER:
-                case MAIN_START_FADEOUT_COMPLETE:
-                    spriteBatch.Draw(pngTexture_wallpaper, zero, Color.White * currentAlphaWallpaper);
-                    break;
-
                 case MAIN_START_FADEIN_MAINDIALOG:
-                    spriteBatch.Draw(pngTexture_wallpaper, zero, Color.White * currentAlphaWallpaper);
                     spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
                     break;
 
                 case MAIN_COMPLETE:
 
-                    spriteBatch.Draw(pngTexture_wallpaper, zero, Color.White * currentAlphaWallpaper);
-
                     if (bDeath)
                     {
-                        spriteBatch.Draw(pngTexture_deathPage, deathPos, Color.White * currentAlphaDeath);
-
-                        int sx = 850, sy = 650;
-
-                        spriteBatch.DrawString(textFont, "Press 'Enter' for the main screen", new Vector2(sx, sy), Color.White);
-
-                        DrawCurrentCursorText(spriteBatch, new Vector2(sx + 110, sy + 30));
+                        ShowDeath(spriteBatch);
+                        return;
                     }
-                    else
+                    
+                    if (main.bUltraWideMode)
                     {
-                        spriteBatch.Draw(pngTexture_dialog, mainDialogPos, Color.White * currentAlphaMainDialog);
+                        if (bShowStats)
+                        {
+                            ShowStats(spriteBatch);
+                        }
 
                         if (bShowBag)
                         {
-
+                            ShowInventory(spriteBatch);
+                        }
+                    }
+                    else
+                    {
+                        if (bShowBag)
+                        {
+                            ShowInventory(spriteBatch);
                         }
                         else if (bShowStats)
                         {
-                            int idx = curve.Length - indexAlphaCurveStats;
-
-                            if (idx >= 0 && idx < curve.Length)
-                                mainStatsPos.X = 1050 + 400 * curve[idx];
-                            else
-                                mainStatsPos.X = 1050;
-
-                            spriteBatch.Draw(pngTexture_stats, mainStatsPos, Color.White * currentAlphaMainStats);
-                            DisplayText(spriteBatch, new Vector2(mainStatsPos.X + 220, mainStatsPos.Y + 220), currentAlphaMainStats*0.8f, new List<string>
-                            {
-                                "                 ¨-- Character Stats --¨",
-                                "",
-                                "^Name^ Marco polo",
-                                "^Type^ ????",
-                                "",
-                                "",
-                                "                   ¨-- Attributes --¨",
-                                "                          None",
-                                "",
-                                "",
-                                "                     ¨-- Traits --¨",
-                                "                          None",
-                                "",
-                            });
-                        }
-
-                        MainTitle = "This is very big text so deal with it";
-
-                        float titleWidth = textFont.MeasureString(MainTitle).X;
-                        spriteBatch.DrawString(titleFont, MainTitle, new Vector2(509 - titleWidth / 2, 143), Color.Red * currentAlphaMainDialog * 0.8f);
-
-                        int sx = 190, sy = 290;
-
-                        StartText(new Vector2(sx, sy));
-                        ProcessRoomText(spriteBatch, textToDisplay);
-
-                        sx = 270; sy = 912;
-
-                        if (bTextDisplayed)
-                        {
-                            if (bShowBag)
-                            {
-                                spriteBatch.DrawString(textFont, "Type 'Help' for available commands; 'Enter' to continue", new Vector2(sx, sy), Color.DarkGray * 0.35f);
-
-                                for (int y = 0; y < 1080; y += 1)
-                                {
-                                    spriteBatch.Draw(pixelTexture_ScanLines,
-                                        new Rectangle(0, y, 1920, 10), Color.Black * 0.08f);
-                                }
-
-                                spriteBatch.Draw(pngTexture_bag, mainBagPos, Color.White * currentAlphaMainBag);
-
-                                sx = 1453; sy = 143;
-
-                                spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx + 2, sy + 2), Color.Black);
-                                spriteBatch.DrawString(titleFont, "Bag", new Vector2(sx, sy), Color.White * currentAlphaMainBag * 0.8f);
-
-                                DisplayText(spriteBatch, new Vector2(sx - 180, sy + 80), currentAlphaMainBag * 0.8f, new List<string>
-                                {
-                                    "                 ¨-- Player Inventory --¨",
-                                });
-
-                                sx = 1200; sy = 320;
-
-                                for (int i = 0; i < 10; i++)
-                                {
-                                    var msg = "[" + (i+1) + "] Bone";
-
-                                    spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx + 2, sy + 2 + i*32), Color.Black);
-                                    spriteBatch.DrawString(lucidaBigFont, msg, new Vector2(sx, sy + i * 32), Color.White * currentAlphaMainBag * 0.8f);
-                                }
-                                
-                                sx = 1303; sy = 856;
-
-                                spriteBatch.DrawString(textFont, "Select item to drop, 'Esc' to close window", new Vector2(sx, sy), Color.DarkGray * 0.65f);
-                                DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
-                            }
-                            else
-                            {
-                                spriteBatch.DrawString(textFont, "Type 'Help' for available commands; 'Enter' to continue", new Vector2(sx, sy), Color.DarkGray * 0.35f);
-                                DrawCurrentCursorText(spriteBatch, new Vector2(sx, sy + 13));
-                            }
-                        }
-                        else
-                        {
-                            spriteBatch.DrawString(textFont, "Press 'Space' key to skip text, 'Esc' to finish", new Vector2(sx, sy), Color.DarkGray * 0.65f);
+                            ShowStats(spriteBatch);
                         }
                     }
+                    
+                    ShowMainDialog(spriteBatch);
 
                     break;
             }

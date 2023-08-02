@@ -7,6 +7,7 @@ namespace XTA.Code.State
 {
     public class GameState
     {
+        public GameXTA main { get; set; }
         public int id { get; set; }
         public int nextState { get; set; }
         public bool done { get; set; }
