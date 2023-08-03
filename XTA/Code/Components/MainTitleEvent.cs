@@ -26,10 +26,10 @@ namespace XTA.Code.Components
         Vector2 wallpaperPosition = new Vector2(0, 0);
         Vector2 position = new Vector2(0, 0);
 
-        public override void LoadContent(ContentManager Content, GameXTA main)
+        public override void LoadContent(ContentManager Content, GameXTA main, GraphicsDevice d)
         {
-            pngGameLogo = Content.Load<Texture2D>("Hellfire");
-            pngWallpaper = Content.Load<Texture2D>("bg19");
+            pngGameLogo = LoadTexture(d, "Hellfire");
+            pngWallpaper = LoadTexture(d, "bg19");
 
             curve = new GameFunctions().GenerateLogarithmicArray(300);
 

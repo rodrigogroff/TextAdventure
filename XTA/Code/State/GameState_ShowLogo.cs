@@ -24,7 +24,7 @@ namespace XTA.Code.State
         {
             var myLogo = new LogoEvent();
 
-            myLogo.LoadContent(Content, main);
+            myLogo.LoadContent(Content, main, Device);
 
             pipeline_logo.Add(myLogo);
         }

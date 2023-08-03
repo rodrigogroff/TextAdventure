@@ -13,11 +13,11 @@ namespace XTA.Code.State
             titleAndCursorFont = Content.Load<SpriteFont>("Merriweather");
             statsFont = Content.Load<SpriteFont>("LucidaBig");
 
-            pngTexture_wallpaper = Content.Load<Texture2D>("bg18");
-            pngTexture_dialog = Content.Load<Texture2D>("MainDialog");
-            pngTexture_stats = Content.Load<Texture2D>("MainStats");
-            pngTexture_deathPage = Content.Load<Texture2D>("DeathPage");
-            pngTexture_bag = Content.Load<Texture2D>("Bag");
+            pngTexture_wallpaper = LoadTexture(Device, "bg18");
+            pngTexture_dialog = LoadTexture(Device, "MainDialog");
+            pngTexture_stats = LoadTexture(Device, "MainStats");
+            pngTexture_deathPage = LoadTexture(Device, "DeathPage");
+            pngTexture_bag = LoadTexture(Device, "Bag");
 
             pixelTexture_ScanLines = new Texture2D(Device, 1, 1);
             pixelTexture_ScanLines.SetData(new[] { Color.White });

@@ -26,9 +26,9 @@ namespace XTA.Code.Components
 
         public float[] curve = new GameFunctions().GenerateLogarithmicArray(600);
 
-        public override void LoadContent(ContentManager Content, GameXTA main)
+        public override void LoadContent(ContentManager Content, GameXTA main, GraphicsDevice d)
         {
-            pngTexture = Content.Load<Texture2D>("logo_footer");
+            pngTexture = LoadTexture(d, "logo_footer");
 
             if (main.bUltraWideMode)
             {
