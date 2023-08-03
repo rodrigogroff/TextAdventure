@@ -90,6 +90,8 @@ namespace XTA.Code.State
                     "   ^bag^ = display player current inventory",
                     "   ^use^ = consume item in inventory",
                     "   ^give^ = give item in inventory to npc",
+                    "   ^map^ = give item in inventory to npc",
+                    "   ^quest^ = give item in inventory to npc",
                     "   ^quit^ = end current game",
                 };
 

@@ -68,6 +68,14 @@ namespace XTA.Code.State
             {
                 ToogleBag("Give Item");
             }
+            else if (cmd == "map")
+            {
+                ToogleBag("Map");
+            }
+            else if (cmd == "quest")
+            {
+                ToogleBag("Quest");
+            }
         }
     }
 }
