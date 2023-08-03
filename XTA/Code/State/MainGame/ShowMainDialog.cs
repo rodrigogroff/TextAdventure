@@ -21,10 +21,10 @@ namespace XTA.Code.State
 
             MainTitle = "This is very big text so deal with it";
 
-            float titleWidth = textFont.MeasureString(MainTitle).X;
+            float titleWidth = cursorHelpFont.MeasureString(MainTitle).X;
 
             spriteBatch.DrawString(
-                titleFont, 
+                titleAndCursorFont, 
                 MainTitle, 
                 new Vector2(sx - titleWidth / 2, 143), 
                 Color.Red * currentAlphaMainDialog * 0.8f);
@@ -36,7 +36,7 @@ namespace XTA.Code.State
             else
                 sx = 190;
 
-            DisplayText(spriteBatch, textToDisplay, new Vector2(sx, sy), arialFont);
+            DisplayText(spriteBatch, textToDisplay, new Vector2(sx, sy), roomTextFont);
 
             sy = 914;
 
@@ -50,18 +50,18 @@ namespace XTA.Code.State
                 if (!bShowBag)
                 {
                     spriteBatch.DrawString(
-                        textFont, 
+                        cursorHelpFont, 
                         "Type 'Help' for available commands; 'Enter' to continue", 
                         new Vector2(sx, sy), 
                         Color.DarkGray * 0.35f);
 
-                    DisplayCursorText (spriteBatch, new Vector2(sx, sy + 13), lucidaBigFont);
+                    DisplayCursorText (spriteBatch, new Vector2(sx, sy + 13), titleAndCursorFont);
                 }
             }
             else
             {
                 spriteBatch.DrawString(
-                    textFont, 
+                    cursorHelpFont, 
                     "Press 'Space' key to skip text, 'Esc' to finish", 
                     new Vector2(sx, sy), 
                     Color.DarkGray * 0.65f);

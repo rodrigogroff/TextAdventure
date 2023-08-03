@@ -22,7 +22,7 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.Green);
         lines.Add(" /stat".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" show current attribute".PadRight(w2, ' '));
+        lines.Add(" show current attributes".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
         lines.Add(" /hint".PadRight(w1, ' '));
         colors.Add(ConsoleColor.Blue);

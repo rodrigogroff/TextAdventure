@@ -8,11 +8,10 @@ namespace XTA.Code.State
     {
         public override void LoadContent(ContentManager Content, GraphicsDevice Device) 
         {
-            arialFont = Content.Load<SpriteFont>("ArialN");
-            textFont = Content.Load<SpriteFont>("File");
-            titleFont = Content.Load<SpriteFont>("Merriweather");
-            lucidaBigFont = Content.Load<SpriteFont>("LucidaBig");
-            textStatsFont = Content.Load<SpriteFont>("File3");
+            roomTextFont = Content.Load<SpriteFont>("ArialN");
+            cursorHelpFont = Content.Load<SpriteFont>("File");
+            titleAndCursorFont = Content.Load<SpriteFont>("Merriweather");
+            statsFont = Content.Load<SpriteFont>("LucidaBig");
 
             pngTexture_wallpaper = Content.Load<Texture2D>("bg18");
             pngTexture_dialog = Content.Load<Texture2D>("MainDialog");

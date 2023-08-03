@@ -17,8 +17,8 @@ namespace XTA.Code.State
         
         public GameState_ShowMainGame(GameXTA _main)
         {
-            main = _main;
-            id = GameXTA.GAME_STATE_SHOW_MAIN_GAME;         
+            id = GameXTA.GAME_STATE_SHOW_MAIN_GAME;
+            main = _main;            
             done = false;
         }
 
@@ -52,11 +52,10 @@ namespace XTA.Code.State
         KeyboardState prevKeyboardState;
 
         SpriteFont 
-            titleFont,
-            arialFont,
-            textStatsFont,
-            lucidaBigFont,
-            textFont;
+            titleAndCursorFont,
+            roomTextFont,
+            statsFont,
+            cursorHelpFont;
 
         Texture2D 
             pngTexture_wallpaper,
@@ -75,12 +74,24 @@ namespace XTA.Code.State
 
         string 
             MainTitle = "Soul Selection",
+            cmdText = "",
             textToDisplay = "",
             textIncoming = "";
 
         double 
             cursorBlinkTime = 0.3,
             cursorElapsed = 0;
+
+        List<string> helpText = new List<string>
+                {
+                    "   Help ¨-- game commands --¨",
+                    "",
+                    "   ^stat^ = show current player attibutes",
+                    "   ^bag^ = display player current inventory",
+                    "   ^use^ = consume item in inventory",
+                    "   ^give^ = give item in inventory to npc",
+                    "   ^quit^ = end current game",
+                };
 
         List<string> original_text = new List<string>
         {

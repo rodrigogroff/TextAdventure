@@ -53,7 +53,7 @@ namespace XTA.Code.State
                     spriteBatch, 
                     str, 
                     new Vector2(mainStatsPos.X + 84, mainStatsPos.Y + 220 + (idx++ * 20)), 
-                    lucidaBigFont, 
+                    statsFont, 
                     12, 
                     currentAlphaMainStats);
             }

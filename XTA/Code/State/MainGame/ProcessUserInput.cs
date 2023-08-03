@@ -4,6 +4,18 @@ namespace XTA.Code.State
 {
     public partial class GameState_ShowMainGame : GameState
     {
+        public void ToogleBag(string subItem)
+        {
+            bShowBag = !bShowBag;
+            cmdText = subItem;
+
+            if (bShowBag)
+            {
+                currentAlphaMainBag = 0;
+                indexAlphaCurveBag = 0;
+            }
+        }
+
         public void ProcessUserInput(string cmd)
         {
             if (bDeath)
@@ -20,8 +32,7 @@ namespace XTA.Code.State
             cmd = cmd.ToLower();
 
             inputText = "";
-            textIncoming = "";
-           
+            textIncoming = "";           
 
             if (cmd == "quit")
             {
@@ -34,19 +45,11 @@ namespace XTA.Code.State
                 textDelay = 1;
                 text_curIndex = 1;
                 bTextDisplayed = false;
-                original_text = new List<string>
-                {
-                    "¨-- Help -- game commands --¨",
-                    "",
-                    "^stat^ = game stats and attibutes",
-                    "^bag^ = current inventory",
-                    "^quit^ = end current game",
-                };
+                original_text = helpText;
             }
             else if (cmd == "stat")
             {
                 bShowStats = !bShowStats;
-
                 if (bShowStats)
                 {
                     currentAlphaMainStats = 0;
@@ -55,13 +58,15 @@ namespace XTA.Code.State
             }
             else if (cmd == "bag")
             {
-                bShowBag = !bShowBag;
-
-                if (bShowBag)
-                {
-                    currentAlphaMainBag = 0;
-                    indexAlphaCurveBag = 0;
-                }
+                ToogleBag("Bag");
+            }
+            else if (cmd == "use")
+            {
+                ToogleBag("Use Item");
+            }
+            else if (cmd == "give")
+            {
+                ToogleBag("Give Item");
             }
         }
     }

@@ -16,7 +16,7 @@ namespace XTA.Code.State
             else
                 sx = main.virtualScreenWidth / 2 - 150;
 
-            spriteBatch.DrawString(textFont, "Press 'Esc' to continue...", new Vector2(sx, sy), Color.White);
+            spriteBatch.DrawString(cursorHelpFont, "Press 'Esc' to continue...", new Vector2(sx, sy), Color.White);
         }
     }
 }
