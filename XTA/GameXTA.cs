@@ -1,16 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using XTA.Code.State;
 
 namespace XTA
 {
     public class GameXTA : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
 
         public const int
             GAME_STATE_SHOW_LOGO = 0,
@@ -18,7 +20,8 @@ namespace XTA
             GAME_STATE_SHOW_MAIN_GAME = 2,
             GAME_STATE_RESET = 3;
 
-        List<GameState> lstGameStates;
+        public GameMaster master;
+        public List<GameState> lstGameStates;
 
         public bool
             bUltraWideMode = false,
@@ -86,11 +89,6 @@ namespace XTA
                     virtX = virtualScreenUltraWidth;
                     virtY = virtualScreenUltraHeight;
                 }
-                
-                if (graphics.PreferredBackBufferWidth >= 3840)
-                {
-                    //b4KMode = true;
-                }
 
                 scaleX = (float) graphics.PreferredBackBufferWidth / virtX;
                 scaleY = (float) graphics.PreferredBackBufferHeight / virtY;                
@@ -105,6 +103,12 @@ namespace XTA
 
         public void PrepareStates()
         {
+            master = JsonConvert.
+                DeserializeObject<GameMaster>(
+                    File.ReadAllText(
+                        Directory.GetCurrentDirectory() + 
+                        "\\Content\\Hellfire_Club.game.json"));
+
             lstGameStates = new List<GameState>
                 {
                     new GameState_ShowLogo(this),

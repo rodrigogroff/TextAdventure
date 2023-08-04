@@ -19,14 +19,12 @@ namespace XTA.Code.State
             else
                 sx = 509;
 
-            MainTitle = "This is very big text so deal with it";
-
-            float titleWidth = cursorHelpFont.MeasureString(MainTitle).X;
+            float titleWidth = cursorHelpFont.MeasureString(text_to_mainTitle).X;
 
             spriteBatch.DrawString(
                 titleAndCursorFont, 
-                MainTitle, 
-                new Vector2(sx - titleWidth / 2, 143), 
+                text_to_mainTitle, 
+                new Vector2(sx - titleWidth/2 + 16, 143), 
                 Color.Red * currentAlphaMainDialog * 0.8f);
 
             sy = 290;

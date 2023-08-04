@@ -14,7 +14,6 @@ namespace XTA.Code.State
                     {
                         inputText = "";
                         selectedOption = "New Game!";
-
                         internalState++; // novo jogo
                     }
                     else if (inputText == "2")
@@ -32,7 +31,6 @@ namespace XTA.Code.State
                 case DIFFICULTY:
 
                     this.done = true;
-
                     break;
             }
         }        

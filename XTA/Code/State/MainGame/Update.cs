@@ -8,6 +8,12 @@ namespace XTA.Code.State
     {
         public override void Update(GameTime gameTime) 
         {
+            if (!bStarted)
+            {
+                StartUp();
+                bStarted = true;
+            }
+
             switch (internalState)
             {
                 case MAIN_START_FADEOUT_WALLPAPER:
@@ -110,7 +116,7 @@ namespace XTA.Code.State
 
                         if (textIncoming == "")
                         {
-                            foreach (var item in original_text)
+                            foreach (var item in text_to_display)
                                 textIncoming += item + "\n";
                         }
                         else if (textToDisplay != textIncoming)

@@ -45,7 +45,7 @@ namespace XTA.Code.State
                 textDelay = 1;
                 text_curIndex = 1;
                 bTextDisplayed = false;
-                original_text = helpText;
+                text_to_display = helpText;
             }
             else if (cmd == "stat")
             {

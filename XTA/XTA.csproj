@@ -28,15 +28,21 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FX\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\Hellfire_Club.game.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
     <Message Text="Restoring dotnet tools" Importance="High" />
     <Exec Command="dotnet tool restore" />
   </Target>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y /S /I /C &quot;Content\*.png&quot; &quot;$(TargetDir)\Content&quot;&#xA;" />
+    <Exec Command="xcopy /Y /S /I /C &quot;Content\*.png&quot; &quot;$(TargetDir)\Content&quot;&#xD;&#xA;xcopy /Y /S /I /C &quot;Content\*.json&quot; &quot;$(TargetDir)\Content&quot;&#xA;" />
   </Target>
 </Project>

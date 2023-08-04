@@ -17,9 +17,7 @@ namespace XTA.Code.Infra
             using (FileStream stream = new FileStream(currentDir + name + ".png", FileMode.Open))
             {
                 var r = Texture2D.FromStream(device, stream);
-
                 stream.Close();
-
                 return r;
             }
         }
