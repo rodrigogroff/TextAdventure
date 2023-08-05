@@ -48,7 +48,9 @@ namespace XTA.Code.State
 
                 case MAIN_COMPLETE:
 
-                    #region - process keyboard - 
+                    // -------------
+                    // user input
+                    // -------------
 
                     KeyboardState keyboardState = Keyboard.GetState();
 
@@ -81,9 +83,9 @@ namespace XTA.Code.State
 
                     prevKeyboardState = keyboardState;
 
-                    #endregion
-
-                    #region - process cursor -
+                    // -------------
+                    // cursor
+                    // -------------
 
                     cursorElapsed += gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -92,9 +94,7 @@ namespace XTA.Code.State
                         cursorVisible = !cursorVisible;
                         cursorElapsed -= cursorBlinkTime;
                     }
-
-                    #endregion
-
+                    
                     if (bDeath)
                     {
                         if (++indexAlphaCurveDeath < FADE_FRAMES)

@@ -7,24 +7,26 @@ namespace XTA.Code.Components
 {
     public class MainTitleEvent : GameEvent
     {
-        public const int DELAY_TO_PRESENT = 0;
-        public const int FADEIN_PRESENT = 1;
-        public const int PRESENT = 2;
+        public const int 
+            DELAY_TO_PRESENT = 0,
+            FADEIN_PRESENT = 1,
+            PRESENT = 2;
         
-        public int myState = DELAY_TO_PRESENT;
+        public int 
+            myState = DELAY_TO_PRESENT,
+            indexer = 0,
+            framesStart = 1;
 
-        public int framesStart = 1;
-
+        public float[] curve;
         public float currentAlpha = 0.0f;
 
-        Texture2D pngWallpaper;
-        Texture2D pngGameLogo;
+        Texture2D 
+            pngWallpaper,
+            pngGameLogo;
 
-        public int indexer = 0;
-        public float[] curve;
-
-        Vector2 wallpaperPosition = new Vector2(0, 0);
-        Vector2 position = new Vector2(0, 0);
+        Vector2 
+            wallpaperPosition = new Vector2(0, 0),
+            position = new Vector2(0, 0);
 
         public override void LoadContent(ContentManager Content, GameXTA main, GraphicsDevice d)
         {

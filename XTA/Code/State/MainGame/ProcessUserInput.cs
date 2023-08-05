@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace XTA.Code.State
 {
     public partial class GameState_ShowMainGame : GameState
@@ -26,13 +25,15 @@ namespace XTA.Code.State
             }
 
             if (bShowBag)
+            {
                 if (cmd == "" || cmd == "[ESC]")
                     cmd = "bag";
+            }
 
             cmd = cmd.ToLower();
 
             inputText = "";
-            textIncoming = "";           
+            textIncoming = "";
 
             if (cmd == "quit")
             {
@@ -75,6 +76,10 @@ namespace XTA.Code.State
             else if (cmd == "quest")
             {
                 ToogleBag("Quest");
+            }
+            else
+            {
+                ProcessRoom(current_game_Room.id + ":" + current_game_Room.version, cmd);
             }
         }
     }
