@@ -8,9 +8,12 @@
  Você escolhe um email para iniciar um jogo.
 
  Cada lugar é um puzzle diferente e um fantasma para ajudar
-	- (1) casa com terreno. alçapão embaixo da geladeira (marcas de raspas) leva a uma dungeon (ala zork)
+	- (1) casa com terreno. alçapão embaixo da geladeira (marcas de raspas) leva a uma dungeon
+		-- elaborar
 	- (2) pequeno apto leva para dentro da dimensão do espírito
+		-- elaborar
 	- (3) ?
+		-- elaborar
 
 ----------------------------
  game plan
@@ -29,4 +32,4 @@
 	Insanity			0 a 3 // diminui 'inteligencia', atos randomicos de loucura (joga itens no chão)
 	Stress				0 a 3 // diminui 'força' e vontade de comer, atos randomicos de histeria (auto-flagelo, come comida)
 	
-	Morte: life < 0 && qqer um destes atingir 4
+	Morte: life < 0 && qqer um destes acima atingir 4

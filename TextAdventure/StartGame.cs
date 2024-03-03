@@ -76,6 +76,13 @@ public partial class TextAdventureGame
                             Console.WriteLine();
                             game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(currentFile));
 
+                            if (game.gameBigTitle.Count == 0)
+                            {
+                                var TitlefromFile = File.ReadAllText(currentFile.Replace(".game.json", ".title.txt"));
+                                foreach (var item in TitlefromFile.Split('\n'))
+                                    game.gameBigTitle.Add(item);
+                            }
+
                             // process all stages inventory
                             foreach (var currentStage in game.stages)
                             {

@@ -17,18 +17,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\net6.0\Games\Paranormal_investigator.game.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="bin\Debug\net6.0\Games\NightCrawlers.game.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="bin\Debug\net6.0\Games\Feed_Korg.game.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="bin\Debug\net6.0\Games\Hellfire_Club.game.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +27,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Games\Feed_Korg.title.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Games\Paranormal_investigator.game.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Games\NightCrawlers.game.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Games\Feed_Korg.game.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Games\Paranormal_investigator.title.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Games\Paranormal_investigators.txt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
