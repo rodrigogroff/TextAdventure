@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Brw5+CRCKwvBC34WLuMlS+eH43HH6iToOhElZ7b9Ny12hydT9UH5xewmBAK6CwV/L7frQtBCM1/O04wMF8BsrQ==",
+  "dgSpecHash": "vi6JBi4vraQhInVAuhqFsTMcF6piqLHuG1SMmG0Au4KmoR6Mbp8EC23Yf4zMH+nCJ0SscIJ6Yucin/N6WIu+ZA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\XTA\\XTA.csproj",
+  "projectFilePath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\XTA\\XTA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rodri\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
     "C:\\Users\\rodri\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512",

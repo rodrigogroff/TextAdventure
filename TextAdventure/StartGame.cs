@@ -14,7 +14,7 @@ public partial class TextAdventureGame
             Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
             Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.3\n", ConsoleColor.Red);
             Console.WriteLine();
-            Write(" -- Use ALT+ENTER for fullscreen\n", ConsoleColor.DarkGray);
+            Write(" -- Use ALT+ENTER for fullscreen\n", ConsoleColor.Yellow);
             Console.WriteLine();
             Console.WriteLine();
             Thread.Sleep(2000);
