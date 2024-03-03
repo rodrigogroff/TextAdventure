@@ -19,106 +19,29 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Console.WriteLine();
             Thread.Sleep(2000);
-            Write(" To play this game, please support the patreon page (for the month password): \n", ConsoleColor.White);
+            Write(" To play this game, please support the patreon page\n", ConsoleColor.White);
             Write(" https://www.patreon.com/bigboysgames \n", ConsoleColor.Blue);
             Console.WriteLine();
             Console.WriteLine();
             Thread.Sleep(2000);
             Console.CursorVisible = true;
 
-            string email = "";
+            int mode = 2;
 
-            if (File.Exists("email.txt"))
-            {
-                email = File.ReadAllText("email.txt");
-                Write(" [Email: " + email + " ]\n", ConsoleColor.Yellow);
-            }
-            else
-            {
-                while (!email.Contains("@"))
-                {
-                    Write(" [Email:                              ]\n", ConsoleColor.White);
-                    Write(" [> ", ConsoleColor.Green);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.CursorVisible = true;
-                    while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                    email = Console.ReadLine().Trim();
-                    Console.WriteLine();
-                }
-                File.WriteAllText("email.txt", email);
-            }
-
-            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-
-            Write(" [Password:] ", ConsoleColor.Green);
-            Console.ForegroundColor = ConsoleColor.Green;
-            string password = "";
-            
-            while (true)
-            {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Enter)
-                    break;
-                if (key.Key == ConsoleKey.Backspace)
-                {
-                    if (password.Length > 0)
-                    {
-                        password = password.Remove(password.Length - 1);
-                        Console.Write("\b \b"); // Remove the asterisk from the console
-                    }
-                }
-                else
-                {
-                    password += key.KeyChar;
-                    Console.Write("*");
-                }
-            }
-
-            int mode = 1;
+            Console.CursorVisible = false;
 
             while (true)
-            {
-                
-                Console.CursorVisible = false;
-
+            {                
                 switch (mode)
                 {
                     case 1:
-                        DisplayStartScreen();
-                        Console.WriteLine();
-                        Write(" 1 - ", ConsoleColor.DarkGray);
-                        Write("Local games\n", ConsoleColor.White);
-                        Write(" 2 - ", ConsoleColor.DarkGray);
-                        Write("Online Server\n", ConsoleColor.White);
-                        Write(" 3 - ", ConsoleColor.DarkGray);
-                        Write("Open README file\n", ConsoleColor.White);
-                        Console.WriteLine();
-                        Write("[> ", ConsoleColor.Green);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.CursorVisible = true;
-                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);                        
-                        string optionMaster = Console.ReadLine().Trim();
-
-                        if (optionMaster == "3")
-                        {
-                            Process.Start("notepad.exe", "Readme.txt");
-                        }
-                        else if (optionMaster == "2")
-                        {
-                            Write(" Server OFFLINE\n", ConsoleColor.White);
-                        }
-                        else if (optionMaster == "1")
-                        {
-                            mode = 2;
-                        }
-
                         break;
 
                     case 2:
                         DisplayStartScreen();
                         Console.WriteLine();
                         string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
-                        Write("[" + files.Count() + "] Files found:\n", ConsoleColor.Blue);
+                        Write(" [" + files.Count() + "] Files found:\n", ConsoleColor.Blue);
                         Console.WriteLine();
                         
                         for (int i = 0; i < files.Length; i++)
@@ -127,22 +50,17 @@ public partial class TextAdventureGame
                             Write(Path.GetFileNameWithoutExtension(files[i]).Replace("_", " ").Replace(".game", "") + "\n", ConsoleColor.White);
                         }
                         Console.WriteLine();
-                        Write("[Select your game:] -- use ", ConsoleColor.DarkGray);
-                        Write("/q ", ConsoleColor.White);
-                        Write("to quit, ", ConsoleColor.DarkGray);
-                        Write("/s", ConsoleColor.White);
-                        Write(" to fast text \n", ConsoleColor.DarkGray);
-                        Write("[> ", ConsoleColor.Green);
+                        Write(" [Select your game:] -- use ", ConsoleColor.DarkGray);
+                        Write(" /q ", ConsoleColor.White);
+                        Write(" to quit, ", ConsoleColor.DarkGray);
+                        Write(" [> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;
                         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                         string option = Console.ReadLine().Trim();
 
-                        if (option.ToLower() == "/q")
-                        {
-                            mode = 1;
-                            break;
-                        }
+                        if (option.EndsWith("/q"))
+                            throw (new Exception("Exit"));
 
                         if (option.EndsWith("/s"))
                             bFastMode = true;

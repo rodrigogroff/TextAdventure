@@ -4,18 +4,14 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Teste/TA/XTA/Content/ArialN.spritefont</File>
-    <File>C:/Teste/TA/XTA/Content/File.spritefont</File>
-    <File>C:/Teste/TA/XTA/Content/File2.spritefont</File>
-    <File>C:/Teste/TA/XTA/Content/File3.spritefont</File>
-    <File>C:/Teste/TA/XTA/Content/LucidaBig.spritefont</File>
-    <File>C:/Teste/TA/XTA/Content/MerriSmall.spritefont</File>
-    <File>C:/Teste/TA/XTA/Content/Merriweather.spritefont</File>
-    <File>C:/Teste/TA/XTA/Content/Roboto.spritefont</File>
+    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/File.spritefont</File>
+    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/File2.spritefont</File>
+    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/File3.spritefont</File>
+    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/LucidaBig.spritefont</File>
+    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/MerriSmall.spritefont</File>
+    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/Roboto.spritefont</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
