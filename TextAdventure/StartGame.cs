@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Diagnostics;
 
 public partial class TextAdventureGame
 {
@@ -23,8 +22,9 @@ public partial class TextAdventureGame
             Write(" https://www.patreon.com/bigboysgames \n", ConsoleColor.Blue);
             Console.WriteLine();
             Console.WriteLine();
-            Thread.Sleep(2000);
             Console.CursorVisible = true;
+            Write(" [> ", ConsoleColor.Green);
+            Console.ReadLine();
 
             int mode = 2;
 
@@ -40,10 +40,10 @@ public partial class TextAdventureGame
                     case 2:
                         DisplayStartScreen();
                         Console.WriteLine();
-                        string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
-                        Write(" [" + files.Count() + "] Files found:\n", ConsoleColor.Blue);
                         Console.WriteLine();
-                        
+
+                        string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
+
                         for (int i = 0; i < files.Length; i++)
                         {
                             Write(" " + (i + 1) + " - ", ConsoleColor.DarkGray);
@@ -52,7 +52,7 @@ public partial class TextAdventureGame
                         Console.WriteLine();
                         Write(" [Select your game:] -- use ", ConsoleColor.DarkGray);
                         Write(" /q ", ConsoleColor.White);
-                        Write(" to quit, ", ConsoleColor.DarkGray);
+                        Write(" to quit, \n", ConsoleColor.DarkGray);
                         Write(" [> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;

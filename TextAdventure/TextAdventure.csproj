@@ -17,6 +17,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="bin\Debug\net6.0\Games\Paranormal_investigator.game.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net6.0\Games\NightCrawlers.game.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="bin\Debug\net6.0\Games\Feed_Korg.game.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="bin\Debug\net6.0\Games\Hellfire_Club.game.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

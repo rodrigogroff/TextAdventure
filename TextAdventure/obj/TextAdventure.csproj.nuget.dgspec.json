@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {}
+    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {
+    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
         "projectName": "TextAdventure",
-        "projectPath": "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
         "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\obj\\",
+        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
