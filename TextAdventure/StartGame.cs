@@ -40,8 +40,8 @@ public partial class TextAdventureGame
                     case 2:
                         DisplayStartScreen();
                         Console.WriteLine();
+                        Write(" [Games available:]\n", ConsoleColor.Yellow);
                         Console.WriteLine();
-
                         string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
 
                         for (int i = 0; i < files.Length; i++)
@@ -134,6 +134,11 @@ public partial class TextAdventureGame
                     case 3:
 
                         DisplayStartScreen();
+                        Console.WriteLine();
+                        Write(" Game selected: ", ConsoleColor.DarkGray);
+                        Write(game.gameName + "\n", ConsoleColor.Yellow);
+                        Console.WriteLine();
+                        Write(" Game difficulty: \n", ConsoleColor.DarkGray);
                         Console.WriteLine();
                         Write(" 1 - ", ConsoleColor.DarkGray);
                         Write("Easy       ", ConsoleColor.Yellow);

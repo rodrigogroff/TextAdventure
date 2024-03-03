@@ -4,7 +4,7 @@ while I hope 'we' (culture all the way from 1980's community work) try
 something new in terms of:
 
 1 - Making players to not give up frustrated in their absolute first move
-2 - Focus on playing experience, a mix of text adventure (TA) and fiction (IF)
+2 - Focus on playing experience, a mix of text adventure (TA) and interactive fiction (IF)
 3 - Stay in old school environment *pure console*, using colors and ascii table fx;
 4 - Use maps, hints, quests and awards to help people keep engaging in the game;
 
@@ -33,7 +33,6 @@ with even 8 bit era graphics, because:
 -sentence logic "use sword on troll" completely non-intuitive;
 -complicated puzzles for the sake of complexity (cruelty);
 -required physical notes of locations for players to not get lost;
--in the end, they tryed to add graphics instead of better interactivy; 
 
 
 -----------------------------------------------
@@ -77,12 +76,13 @@ checkpoints in mind:
 	No more Left, Right, West, East commands... lets provide the player with the 
 	aid of some visualization of space represented in a simple ascii map.
 	
-	The focus is on interactivity and decision making, not memorization.
+	The focus is on interactivity and decision making, not memorization and
+	eventually cruelty for the sake of being hard.
 
 7) on-game map (fog of war):         
 
 	Maps unfold themselves, not a big one map. You start in a "cave" and 
-	you should see prpbably 3 or 4 maps as you go. Some maps have secrets.
+	you should see probably 3 or 4 maps as you go. Some maps have secrets.
 
 7) modern RPG elements:
 
@@ -116,5 +116,8 @@ Lets try to bring people in, not scare them out. ;)
 
 Have fun!!
 
+--------------------------------------------------------
+ ASCII Fonts
+--------------------------------------------------------
 
-
+https://www.asciiart.eu/text-to-ascii-art
