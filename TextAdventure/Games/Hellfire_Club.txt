@@ -3,6 +3,8 @@
  Hellfire game plan
 ----------------------------
 
+https://miro.com/app/board/uXjVNl00mU8=/
+
 O player começa com "desvantagens" conforme a alma que entra rnd[1|8]
 Objetivo final seria remover estes traits (a pessoa evolve)
 
