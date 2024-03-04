@@ -27,6 +27,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Games\NightCrawlers.title.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Games\Feed_Korg.title.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

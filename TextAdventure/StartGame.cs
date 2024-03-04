@@ -28,8 +28,6 @@ public partial class TextAdventureGame
 
             int mode = 2;
 
-            Console.CursorVisible = false;
-
             while (true)
             {                
                 switch (mode)
@@ -129,14 +127,10 @@ public partial class TextAdventureGame
                             mode = 1;
 
                         break;
-                        
 
                     case 3:
-
-                        DisplayStartScreen();
                         Console.WriteLine();
-                        Write(" Game selected: ", ConsoleColor.DarkGray);
-                        Write(game.gameName + "\n", ConsoleColor.Yellow);
+                        Write(" [" + game.gameName + "]\n", ConsoleColor.Yellow);
                         Console.WriteLine();
                         Write(" Game difficulty: \n", ConsoleColor.DarkGray);
                         Console.WriteLine();

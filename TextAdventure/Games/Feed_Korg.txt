@@ -28,12 +28,13 @@ Sua perna volta quase ao normal, re-integrada.
 mas um dos homens do caminhão de lixo, sangrando, chama a 
 atenção de Korg. 
 
-A criatura debate com você, e você vai decidindo o que 
+A criatura debate com você (?), e você vai decidindo o que 
 fazer gastando seus pontos.
+	-- elaborar
 
 Se ele não comer, o "Hunger" aumenta.. se ele comer, "demonfluid" aumenta 
-um pouco -- o monstro aparece como uma alucinação perto, mostrando
-seu corpo demoniaco (tattos desligadas) e os dois conversam.
+-- o monstro aparece como uma alucinação perto, mostrando seu corpo demoniaco 
+(tattos desligadas) e os dois conversam.
 
 ---------------------------
 Gameplay
@@ -47,9 +48,11 @@ Gameplay
  game plan
 ----------------------------
 
-O jogo será levar Korg a sua forma plena(?), vencer 
-seus irmãos (?) e retornar ao inferno pela floresta 
-de onde ele veio.
+O jogo será levar Korg a sua forma plena(?), 
+	-- elaborar
+vencer seus irmãos (?) e 
+	-- elaborar
+retornar ao inferno pela floresta de onde ele veio.
 
 ----------------------------
  atributos

@@ -6,7 +6,7 @@ public partial class TextAdventureGame
     {
         Console.WriteLine();
 
-        if (current_game_Room.option.ToLower() != "death")
+        if (current_game_Room.option?.ToLower() != "death")
         {
             Write(" ▒▓██ ", ConsoleColor.Blue);
             Write(current_game_Room.label, ConsoleColor.White);

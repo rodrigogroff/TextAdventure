@@ -3,17 +3,19 @@
  história básica
 ----------------------------
 
-Invasores do tipo 'critters' ou bolas de pêlos que transformam humanos em bombas, quanto mais tempo ex
-Com naves espaciais e tudo mais.
+Invasores do tipo 'critters' (filme) ou bolas de pêlos que transformam humanos em zumbis, bombas, ou seus aliados, 
+com conexão remota mental.
 
 Você é um Hikimori japonês (eremita moderno) dentro de um grande condominio.
-	-- elaborar
+	-- elaborar o que houve
 
-Um apocalise zumbi acontece, e você tem de se preparar para a noite.
-	-- elaborar
+Uma invasão (de tudo um pouco) acontece, e você tem de se preparar para a noite.
+	-- elaborar como os critters chegaram
+
+Um grupo do condominio se intitula de "nightcrawlers" para enfrentar a ameaça.
 
 Seu pai, militar, consegue combinar que em 3 dias ele vai te buscar no heliporto do shopping.
-	-- elaborar
+	-- elaborar contato
  
 ----------------------------
  game plan
