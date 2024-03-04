@@ -116,55 +116,58 @@ public partial class TextAdventureGame
                 }
 
                 Console.WriteLine();
-                Write(" [Select destination:]\n", ConsoleColor.DarkGray);
-                Write(" [> ", ConsoleColor.Green);
-                while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                string option = 
-                    Console.ReadLine().ToLower().Trim();
-                if (option == "")
-                    break;
-                foreach (var item in current_map.places)
+
+                if (current_map.places.Count > 1)
                 {
-                    var letter = item.Split('|')[0];
-                    var letter_id = item.Split('|')[1];
-                    var letter_dest = item.Split('|')[2];
-                    var letter_name = item.Split('|')[3];
-
-                    if (letter_id == current_game_Room.id)
-                    {
-                        foreach (var it in letter_dest.Split(','))
-                        {
-                            if (option == it.ToLower())
-                            {
-                                nextLocation = hashLetterId[option] as string;
-
-                                if (current_game_Room.program.Any())
-                                {
-                                    foreach (var prg in current_game_Room.program)
-                                    {
-                                        ProcessCommand(prg, "MapRoom");
-                                    }
-                                }
-
-                                CheckConstraints();
-
-                                Console.WriteLine();
-                                Print("You walk towards your destination...", ConsoleColor.DarkYellow);
-                                Console.WriteLine();
-
-                                EnterToContinue();
-                                ProcessRoom(hashLetterId[it.ToLower()] as string);
-                            }
-                        }
+                    Write(" [Select destination:]\n", ConsoleColor.DarkGray);
+                    Write(" [> ", ConsoleColor.Green);
+                    while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+                    string option = Console.ReadLine().ToLower().Trim();
+                    if (option == "")
                         break;
+                    foreach (var item in current_map.places)
+                    {
+                        var letter = item.Split('|')[0];
+                        var letter_id = item.Split('|')[1];
+                        var letter_dest = item.Split('|')[2];
+                        var letter_name = item.Split('|')[3];
+
+                        if (letter_id == current_game_Room.id)
+                        {
+                            foreach (var it in letter_dest.Split(','))
+                            {
+                                if (option == it.ToLower())
+                                {
+                                    nextLocation = hashLetterId[option] as string;
+
+                                    if (current_game_Room.program.Any())
+                                    {
+                                        foreach (var prg in current_game_Room.program)
+                                        {
+                                            ProcessCommand(prg, "MapRoom");
+                                        }
+                                    }
+
+                                    CheckConstraints();
+
+                                    Console.WriteLine();
+                                    Print("You walk towards your destination...", ConsoleColor.DarkYellow);
+                                    Console.WriteLine();
+
+                                    EnterToContinue();
+                                    ProcessRoom(hashLetterId[it.ToLower()] as string);
+                                }
+                            }
+                            break;
+                        }
                     }
+                    Console.WriteLine();
+                    if (hashLetterId[option] as string == current_game_Room.id)
+                        Write(" You are already there!", ConsoleColor.DarkYellow);
+                    else
+                        Write(" Thats too far away...", ConsoleColor.DarkYellow);
+                    Console.WriteLine();
                 }
-                Console.WriteLine();
-                if (hashLetterId[option] as string == current_game_Room.id)
-                    Write(" You are already there!", ConsoleColor.DarkYellow);
-                else
-                    Write(" Thats too far away...", ConsoleColor.DarkYellow);
-                Console.WriteLine();
                 break;
             }
         }
