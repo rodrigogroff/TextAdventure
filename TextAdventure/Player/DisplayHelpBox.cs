@@ -53,9 +53,17 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" interact with npc".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /reset".PadRight(w1, ' '));
+        
+        lines.Add(" /quicksave".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" clears current game and start new\n");
+        lines.Add(" toggle automatic save on entering stage");
+
+        colors.Add(ConsoleColor.Green);
+        if (bQuickSave)
+            lines.Add("[ON]\n");
+        else
+            lines.Add("[OFF]\n");
+
         colors.Add(ConsoleColor.Green);
         lines.Add(" /take".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
@@ -98,15 +106,11 @@ public partial class TextAdventureGame
         lines.Add(" game goals currently achieved".PadRight(w2, ' '));
 
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /quicksave".PadRight(w1, ' '));
+        lines.Add(" ".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" toggle automatic save on entering stage ");
+        lines.Add(" \n");
         colors.Add(ConsoleColor.Green);
-        if (bQuickSave)
-            lines.Add("[ON]\n");
-        else
-            lines.Add("[OFF]\n");
-                
+                        
         Print(lines, colors, 0);
     }
 }

@@ -44,6 +44,7 @@ public partial class TextAdventureGame
 
             case "/cls":
                 Console.Clear();
+                Console.WriteLine();
                 DisplayCurrentRoomText();
                 break;
 

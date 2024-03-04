@@ -23,6 +23,7 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Console.WriteLine();
             Console.CursorVisible = true;
+            Write(" [Press 'Enter' to continue]\n", ConsoleColor.Green);
             Write(" [> ", ConsoleColor.Green);
             Console.ReadLine();
 
