@@ -83,9 +83,9 @@ public partial class TextAdventureGame
         lines.Add(" clear your screen\n");
 
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /gear".PadRight(w1, ' '));
+        lines.Add(" /quest".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" what your character is using".PadRight(w2, ' '));
+        lines.Add(" game quests list".PadRight(w2, ' '));
 
         colors.Add(ConsoleColor.Green);
         lines.Add(" /repeat".PadRight(w1, ' '));
@@ -106,12 +106,7 @@ public partial class TextAdventureGame
             lines.Add("[ON]\n");
         else
             lines.Add("[OFF]\n");
-        colors.Add(ConsoleColor.Green);
-        lines.Add(" /quest".PadRight(w1, ' '));
-        colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" game quests list\n");
-        colors.Add(ConsoleColor.Green);
-        lines.Add(" \n");
+                
         Print(lines, colors, 0);
     }
 }
