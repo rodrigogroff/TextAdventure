@@ -345,7 +345,7 @@
 
     {
       "name": "Frail",
-      "description": "Your strength will be reduced, and courage will be limited",
+      "description": "Your strength will be reduced, and courage will be limited.",
       "trigger": [],
       "formula": []
     },
@@ -359,26 +359,26 @@
 
     {
       "name": "Drunk",
-      "description": "You always seek beer.",
+      "description": "You always seek beer and get high.",
       "trigger": [],
       "formula": []
     },
 
     {
       "name": "Human",
-      "description": "The human race from the continent",
+      "description": "The human race from the continent.",
       "trigger": [],
       "formula": []
     },
     {
       "name": "Dwarf",
-      "description": "The dwarf race from the mountains",
+      "description": "The dwarf race from the mountains.",
       "trigger": [],
       "formula": []
     },
     {
       "name": "Elf",
-      "description": "The elf race from the forests",
+      "description": "The elf race from the forests.",
       "trigger": [],
       "formula": []
     }
