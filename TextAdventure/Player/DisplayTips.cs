@@ -10,6 +10,8 @@
         Write(" or ", ConsoleColor.DarkGray);
         Write("/quest", ConsoleColor.White);
         Write(" or ", ConsoleColor.DarkGray);
+        Write("/help", ConsoleColor.White);
+        Write(" or ", ConsoleColor.DarkGray);
         Write("/log", ConsoleColor.White);
         Write(" when stuck \n", ConsoleColor.DarkGray);
         Write(" ** TIP - ", ConsoleColor.DarkGray);

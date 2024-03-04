@@ -100,3 +100,4 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\P
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.title.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Feed_Korg.title.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.title.txt
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.title.txt
