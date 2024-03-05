@@ -17,16 +17,8 @@ public partial class TextAdventureGame
             Write(" -- Use ALT+ENTER for fullscreen\n", ConsoleColor.Yellow);
             Console.WriteLine();
             Console.WriteLine();
-            Thread.Sleep(2000);
-            Write(" To play this game, please support the patreon page\n", ConsoleColor.White);
-            Write(" https://www.patreon.com/bigboysgames \n", ConsoleColor.Blue);
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.CursorVisible = true;
-            Write(" [Press 'Enter' to continue]\n", ConsoleColor.Green);
-            Write(" [> ", ConsoleColor.Green);
-            Console.ReadLine();
-
+            Thread.Sleep(2000);            
+            
             int mode = 2;
 
             while (true)
@@ -54,7 +46,7 @@ public partial class TextAdventureGame
                         Write(" to quit, \n", ConsoleColor.DarkGray);
                         Write(" [> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.CursorVisible = true;
+                        
                         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                         string option = Console.ReadLine().Trim();
 
@@ -65,8 +57,6 @@ public partial class TextAdventureGame
                             bFastMode = true;
 
                         option = option.Replace("/s", "");
-
-                        Console.CursorVisible = false;
 
                         if (int.TryParse(option, out int selectedIndex) &&
                             selectedIndex > 0 && selectedIndex <= files.Length)
@@ -133,8 +123,6 @@ public partial class TextAdventureGame
                         Console.WriteLine();
                         Write(" [" + game.gameName + "]\n", ConsoleColor.Yellow);
                         Console.WriteLine();
-                        Write(" Game difficulty: \n", ConsoleColor.DarkGray);
-                        Console.WriteLine();
                         Write(" 1 - ", ConsoleColor.DarkGray);
                         Write("Easy       ", ConsoleColor.Yellow);
                         Write("-- Unlimited hints\n", ConsoleColor.DarkGray);
@@ -145,6 +133,7 @@ public partial class TextAdventureGame
                         Write("Old School ", ConsoleColor.Red);
                         Write("-- Alone in the dark\n", ConsoleColor.DarkGray);
                         Console.WriteLine();
+                        Write(" [Select your difficuly:]\n", ConsoleColor.DarkGray);
                         Write(" [> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;

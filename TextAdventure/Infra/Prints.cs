@@ -11,7 +11,10 @@ public partial class TextAdventureGame
                 max_len = item.Length;
             Print(item, ConsoleColor.DarkRed);
         }
-        Print(("v" + game.gameVersion).PadLeft(max_len, ' '), ConsoleColor.White);
+        Write("               [", ConsoleColor.Gray);
+        Write(game.gameName, ConsoleColor.Yellow);
+        Write("] - ", ConsoleColor.Gray);
+        Write(game.gameVersion + "\n", ConsoleColor.DarkGray);
     }
 
     void Write(string text, ConsoleColor color)
