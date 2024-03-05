@@ -25,11 +25,5 @@ public partial class TextAdventureGame
         }
 
         Console.WriteLine();
-
-        if (!bUnlimitedHints)
-        {
-            Print("Remaining hints: " + game.hints + " / " + game.hintsMAX, ConsoleColor.Green);
-            Console.WriteLine();
-        }
     }
 }

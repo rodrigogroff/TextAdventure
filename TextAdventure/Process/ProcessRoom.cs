@@ -45,6 +45,13 @@ public partial class TextAdventureGame
 
     void ProcessRoom(string id)
     {
+        if (id == "1")
+        {
+            Write("\n --- Current game awards ----- \n", ConsoleColor.Yellow);
+            ShowAward();
+            DisplayHelpBox();
+        }
+
         int version = 1;
 
         if (id.Contains(":"))
@@ -59,7 +66,7 @@ public partial class TextAdventureGame
         {
             game.currentRoom = current_game_Room.id;
 
-            if (bQuickSave)
+            if (bQuickSave && id != "0")
             {
                 SaveGame();
                 EnterToContinue();

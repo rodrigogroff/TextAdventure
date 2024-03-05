@@ -227,10 +227,7 @@ public partial class TextAdventureGame
                             game.currentRoom = "1";
 
                         Console.Clear();
-                        Console.WriteLine();
-                        
                         ProcessRoom(game.currentRoom);
-
                         break;
                 }
             }

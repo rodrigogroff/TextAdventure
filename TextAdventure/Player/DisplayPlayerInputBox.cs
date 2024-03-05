@@ -9,16 +9,24 @@ public partial class TextAdventureGame
             Write(" [Player Name: ", ConsoleColor.DarkGray);
             Write(game.player.name, ConsoleColor.Blue);
             Write(", Mode: ", ConsoleColor.DarkGray);
-            if (bHintsDisabled==true)
+
+            if (bHintsDisabled == true)
             {
                 Write("Old School", ConsoleColor.Red);
             }
-            else if (bUnlimitedHints==true)
+            else if (bUnlimitedHints == true)
             {
                 Write("Easy", ConsoleColor.Yellow);
             }
             else if (!bHardcore)
-                Write("Normal", ConsoleColor.DarkYellow);
+            {
+                Write("Normal - Hints ", ConsoleColor.DarkYellow);
+                Write(" (", ConsoleColor.Gray);
+                Write(game.hints.ToString(), ConsoleColor.White);
+                Write(  " / " , ConsoleColor.Gray);
+                Write(game.hintsMAX.ToString(), ConsoleColor.White);
+                Write(") ", ConsoleColor.Gray);
+            }
             else
                 Write("HARDCORE", ConsoleColor.Red);
 
@@ -47,7 +55,14 @@ public partial class TextAdventureGame
                 Write("Easy", ConsoleColor.Yellow);
             }
             else if (!bHardcore)
-                Write("Normal", ConsoleColor.DarkYellow);
+            {
+                Write("Normal - Hints ", ConsoleColor.DarkYellow);
+                Write(" (", ConsoleColor.Gray);
+                Write(game.hints.ToString(), ConsoleColor.White);
+                Write(" / ", ConsoleColor.Gray);
+                Write(game.hintsMAX.ToString(), ConsoleColor.White);
+                Write(") ", ConsoleColor.Gray);
+            }
             else
                 Write("HARDCORE", ConsoleColor.Red);
 
