@@ -117,7 +117,7 @@ public partial class TextAdventureGame
 
                 Console.WriteLine();
 
-             //   if (current_map.places.Count > 1)
+                if (current_map.places.Count > 1)
                 {
                     Write(" [Select destination:]\n", ConsoleColor.DarkGray);
                     Write(" [> ", ConsoleColor.Green);
