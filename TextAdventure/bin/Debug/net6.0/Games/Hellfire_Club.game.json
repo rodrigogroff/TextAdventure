@@ -951,7 +951,7 @@
       "version": 2,
       "option": "choice",
       "map": "map_000",
-      "label": "Build selection",
+      "label": "Build selection [2]",
       "npc": true,
       "startup": "",
       "text": [
@@ -960,19 +960,15 @@
         "The monk shakes his head: \"Look, we are in HELL. Being criminal is almost expected.\"",
         "\"Nope. Not me.\" you reply.",
         "The monk clears the signs: \"Okay. Lets do this one more time.\"",
-        "1 - Human Mage",
-        "2 - Elf Fighter",
-        "3 - Human Thief"
+        "1 - Human Stupid",
+        "2 - Human Lazy",
+        "3 - Human Weak"
       ],
       "nextStep": [ "12", "10:3" ],
       "program": [
-        "/giveA Strength 1;/giveA Inteligence 5;/giveA Vitality 2;/giveA Dexterity 2;/giveA Mana 19;/giveA ManaMAX 19;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Mage;/giveI Gold 100",
-        "/giveA Strength 4;/giveA Inteligence 3;/giveA Vitality 5;/giveA Dexterity 5;/giveA Mana 3;/giveA ManaMAX 3;/giveA Life 120;/giveA LifeMAX 120;/giveT Elf;/title Elf_Fighter;/giveI Gold 100",
-        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Thief;/giveI Gold 100"
-      ],
-      "look": [
-        "The gatekeeper is bored. He is bound to a 100 year contract.",
-        "Like all monks from Hell, he has a lot of university debt, so he took the job."
+        "/giveA Strength 3;/giveA Inteligence 2;/giveA Vitality 2;/giveA Dexterity 2;/giveA Mana 1;/giveA ManaMAX 1;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Stupid;/giveI Gold 10",
+        "/giveA Strength 3;/giveA Inteligence 3;/giveA Vitality 3;/giveA Dexterity 2;/giveA Mana 1;/giveA ManaMAX 1;/giveA Life 30;/giveA LifeMAX 60;/giveT Human;/title Human_Lazy;/giveI Gold 10",
+        "/giveA Strength 2;/giveA Inteligence 3;/giveA Vitality 3;/giveA Dexterity 2;/giveA Mana 1;/giveA ManaMAX 1;/giveA Life 20;/giveA LifeMAX 60;/giveT Human;/title Human_Weak;/giveI Gold 10"
       ],
       "give": [
         "Gold 20|/goto 11"
@@ -988,7 +984,7 @@
       "version": 3,
       "option": "choice",
       "map": "map_000",
-      "label": "Build selection",
+      "label": "Build selection [3]",
       "npc": true,
       "text": [
         "\"Do you have another set?\" you ask very politely.",
@@ -996,21 +992,18 @@
         "The monk scratch his head and say: \"Ok. But dont spread gossip around that",
         "I allow cheating, okay?\"",
         "\"Right! Give me something more.. wild. I want to be... a giant barbarian!\"",
-        "The monk clears the signs: \"Last chance for you, Conan.\"",
+        "The monk clears the signs: \"Last chance for you...\"",
         "1 - Dark Elf Assassin",
         "2 - Human Psion",
         "3 - Dwarf Bard"
       ],
-      "nextStep": [ "12" ],
+      "nextStep": [ "10:3" ],
       "program": [
-        "/giveA Strength 4;/giveA Inteligence 5;/giveA Vitality 5;/giveA Dexterity 5;/giveA Mana 11;/giveA ManaMAX 11;/giveA Life 110;/giveA LifeMAX 110;/giveT Elf;/title Dark_Elf_Assassin;/giveI Gold 100",
-        "/giveA Strength 2;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 15;/giveA ManaMAX 15;/giveA Life 80;/giveA LifeMAX 80;/giveT Human;/giveT Sex_Pervert;/title Human_Psion;/giveI Gold 100",
-        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Dwarf;/giveT Drunk;/title Dwarf_Bard;/giveI Gold 100;/award 7"
+        "/giveA Strength 4;/giveA Inteligence 5;/giveA Vitality 5;/giveA Dexterity 5;/giveA Mana 11;/giveA ManaMAX 11;/giveA Life 110;/giveA LifeMAX 110;/giveT Elf;/title Dark_Elf_Assassin;/giveI Gold 100;/goto 12:1",
+        "/giveA Strength 2;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 15;/giveA ManaMAX 15;/giveA Life 80;/giveA LifeMAX 80;/giveT Human;/giveT Sex_Pervert;/title Human_Psion;/giveI Gold 100;/goto 12:1",
+        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Dwarf;/giveT Drunk;/title Dwarf_Bard;/giveI Gold 100;/award 7;/goto 12:1"
       ],
-      "look": [
-        "The gatekeeper is bored. He is bound to a 100 year contract.",
-        "Like all monks from Hell, he has a lot of university debt, so he took the job."
-      ],
+      "look": [ ],
       "give": [
         "Gold 20|/goto 11"
       ],
@@ -1027,33 +1020,29 @@
       "map": "map_000",
       "label": "Build selection (after a bribe...)",
       "npc": true,
-      "startup": "/worldSet Hacked 1;/worldSet GM1 0",
       "text": [
-        "'So, Mr. {name}, please choose your physical form.'",
+        "\"So, Mr. {name}, thank you for your kindness. Please choose your physical form.\"",
         "1 - Human Mage",
         "2 - Elf Fighter",
         "3 - Human Cleric",
         "The monk checks his books.",
-        "'Hum.. Let me see what I have more... Ha!'",
+        "\"Hum.. Let me see what I have more... Ha!\"",
         "4 - Dwarf Engineer",
         "5 - Human Cleric"
-      ],
-      "textOptional": [
-        "/worldGet GM1 0:/msgO 'I am so hungry.. Can you give me my apple back?' ask the monk, with a grumpy face."
-      ],
-      "nextStep": [ "12" ],
+      ],      
+      "nextStep": [ "11:1" ],
       "program": [
-        "/giveA Strength 1;/giveA Inteligence 5;/giveA Vitality 2;/giveA Dexterity 2;/giveA Mana 19;/giveA ManaMAX 19;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Mage;/give Gold 100",
-        "/giveA Strength 4;/giveA Inteligence 3;/giveA Vitality 5;/giveA Dexterity 5;/giveA Mana 3;/giveA ManaMAX 3;/giveA Life 120;/giveA LifeMAX 120;/giveT Elf;/title Elf_Fighter;/give Gold 100",
-        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Thief;/give Gold 100",
-        "/giveA Strength 3;/giveA Inteligence 2;/giveA Vitality 4;/giveA Dexterity 6;/giveA Mana 7;/giveA ManaMAX 7;/giveA Life 50;/giveA LifeMAX 50;/giveT Dwarf;/giveT Drunk;/title Dwarf_Engineer;/give Gold 100",
-        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 11;/giveA ManaMAX 11;/giveA Life 80;/giveA LifeMAX 80;/giveT Human;/giveT Fortitude;/title Human_Cleric;/give Gold 100"
+        "/giveA Strength 1;/giveA Inteligence 5;/giveA Vitality 2;/giveA Dexterity 2;/giveA Mana 19;/giveA ManaMAX 19;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Mage;/give Gold 100;/goto 12:1",
+        "/giveA Strength 4;/giveA Inteligence 3;/giveA Vitality 5;/giveA Dexterity 5;/giveA Mana 3;/giveA ManaMAX 3;/giveA Life 120;/giveA LifeMAX 120;/giveT Elf;/title Elf_Fighter;/give Gold 100;/goto 12:1",
+        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Thief;/give Gold 100;/goto 12:1",
+        "/giveA Strength 3;/giveA Inteligence 2;/giveA Vitality 4;/giveA Dexterity 6;/giveA Mana 7;/giveA ManaMAX 7;/giveA Life 50;/giveA LifeMAX 50;/giveT Dwarf;/giveT Drunk;/title Dwarf_Engineer;/give Gold 100;/goto 12:1",
+        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 11;/giveA ManaMAX 11;/giveA Life 80;/giveA LifeMAX 80;/giveT Human;/giveT Fortitude;/title Human_Cleric;/give Gold 100;/goto 12:1"
       ],
       "look": [
-        "The gatekeeper is happy counting coins."
+        "The gatekeeper is happy counting coins.",        
       ],
       "give": [
-        "Apple 1|/msgN I love apples! Thanks {name}! Here are some change for you...;/give Gold 20;/worldSet GM1 1"
+        "Apple 1|/msgN I love apples! Thanks {name}! Here are some change for you...;/give Gold 20"
       ]
     },
     {
@@ -1078,36 +1067,11 @@
         "/getT Elf:/msgO \"Hey... Elves never come here... are you crazy?\"",
         "/getPlayerTitle Human_Cleric:/msgO \"Clerics come here more often, I dont know why.\" said the monk with a enigmatic smile."
       ],
-      "nextStep": [ "13" ],
+      "nextStep": [ "12:1" ],
       "program": [],
       "look": [
         "The gatekeeper is reading a book, and then wide his eyes looking at you:",
         "\"Jesus! I almost forgot, here is a letter of comendation to join the ~hellfire club~.\"",
-        "/giveI Letter_Comendation 1",
-        "With the letter, you walk away from the gate while the monk disappears in",
-        "a flash of green smoke.",
-        "/goto 20"
-      ],
-      "hint": [ "Nowhere to go. Better go /look somewhere else..." ],
-      "give": []
-    },
-    {
-      "id": "13",
-      "version": 1,
-      "option": "",
-      "map": "map_000",
-      "npc": true,
-      "label": "Outside - At the gates",
-      "startup": "",
-      "text": [
-        "\"What are you waiting for, Mr. {name} ?\""
-      ],
-      "textOptional": [],
-      "nextStep": [ "13" ],
-      "program": [],
-      "look": [
-        "The gate keeper is eating an apple, and then wide his eyes looking at you:",
-        "\"Hey! Here is a letter of comendation to join the ~hellfire club~.\"",
         "/giveI Letter_Comendation 1",
         "With the letter, you walk away from the gate while the monk disappears in",
         "a flash of green smoke.",
