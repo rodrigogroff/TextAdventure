@@ -120,6 +120,7 @@ public partial class TextAdventureGame
                         break;
 
                     case 3:
+                        DisplayStartScreen();
                         Console.WriteLine();
                         Write(" [" + game.gameName + "]\n", ConsoleColor.Yellow);
                         Console.WriteLine();
@@ -139,6 +140,8 @@ public partial class TextAdventureGame
                         Console.CursorVisible = true;
                         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                         var diff = Console.ReadLine().Trim();
+
+                        bHardcore = false;
 
                         if (diff == "1")
                         {
@@ -209,12 +212,23 @@ public partial class TextAdventureGame
                             DisplayTips();
                         }
 
+                        Console.CursorVisible = true;
+                        Console.WriteLine();
+
+                        Write(" [Press 'Enter' to continue]\n", ConsoleColor.Green);
+                        Write(" [> ", ConsoleColor.Green);
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+
+                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+                        Console.ReadLine();
+
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
 
+                        Console.Clear();
                         Console.WriteLine();
-
-                        Console.CursorVisible = true;
+                        
                         ProcessRoom(game.currentRoom);
 
                         break;
