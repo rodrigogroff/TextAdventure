@@ -10,9 +10,9 @@
  Cada lugar é um puzzle diferente e um fantasma para ajudar
 	- (1) casa com terreno. alçapão embaixo da geladeira (marcas de raspas) leva a uma dungeon
 		-- elaborar
-	- (2) pequeno apto leva para dentro da dimensão do espírito
+	- (2) ?
 		-- elaborar
-	- (3) ?
+	- (3) hospital abandonado
 		-- elaborar
 
 ----------------------------
