@@ -1180,7 +1180,7 @@
         "/nextLocation 42|/getAE Dexterity 1:/giveA Life -20,/msgR Critical damage!"
       ],
       "give": [],
-      "hint": [ "I am sure there will be something laying around here..." ],
+      "hint": [ "If you cross the bridge, you probably get hurt!" ],
       "take": [
         "Wood_piece 1",
         "Wood_piece 1",
