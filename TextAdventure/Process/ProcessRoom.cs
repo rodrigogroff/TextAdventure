@@ -1,5 +1,4 @@
-﻿using System.Collections;
-
+﻿
 public partial class TextAdventureGame
 {
     void DisplayCurrentRoomText()
@@ -66,30 +65,15 @@ public partial class TextAdventureGame
         {
             game.currentRoom = current_game_Room.id;
 
-            if (bQuickSave && id != "0")
-            {
-                SaveGame();
-                EnterToContinue();
-            }
-
             bool first = true;
             while (true)
             {
                 if (current_game_Room.option != "death")
                 {
-                    if (current_game_Room.version == 1 && current_game_Room.id == "1")
-                    {
-
-                    }
-                    else
-                        Console.Clear();
+                    if (current_game_Room.version == 1 && current_game_Room.id == "1"){} else Console.Clear();
                 }
-                else
-                {
-                    var aw = game.awards.FirstOrDefault(y => y.text.ToLower().Contains("death") && y.text.Contains(itemOriginating));
-                    if (aw != null)
-                        ProcessCommand("/award " + aw.id, "procRoom");
-                }
+                else if (!first)
+                    return;
 
                 Console.CursorVisible = false;
                 Console.WriteLine();
@@ -100,14 +84,11 @@ public partial class TextAdventureGame
                         ProcessCommand(current_game_Room.startup, "procRoom");
 
                     if (current_game_Room.startupProgram.Any())
-                    {
                         foreach (var _p in current_game_Room.startupProgram)
-                        {
                             ProcessCommand(_p, "procRoom");
-                        }
-                    }
 
-                    CheckConstraints();
+                    if (current_game_Room.option != "death")
+                        CheckConstraints();
                 }
 
                 DisplayCurrentRoomText();

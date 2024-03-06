@@ -133,7 +133,9 @@ public partial class TextAdventureGame
                             }
                         }
                         else
+                        {
                             ProcessRoom(current_game_Room.nextStep[1]);
+                        }
                         break;
 
                     case "death":

@@ -5,9 +5,10 @@ public partial class TextAdventureGame
     Game game = new Game();
     Context current_game_Room = new Context();
     Random random = new Random();
+    
     string currentFile = "";
+
     bool bFastMode = false;
-    bool bQuickSave = false;
     bool bAbortOp = false;
     bool bUnlimitedHints = false;
     bool bHintsDisabled = false;

@@ -140,7 +140,7 @@ public partial class TextAdventureGame
                         ProcessCommand(cmd_to_do, "formula");
                     }
                 }
-            }
+            }            
             else if (cmd.StartsWith("/award"))
             {
                 var aw = game.awards.FirstOrDefault(y => y.id == cmd.Split(' ')[1]);
@@ -345,6 +345,7 @@ public partial class TextAdventureGame
                     Console.WriteLine();
                     EnterToContinue();
                 }
+
                 ProcessRoom(cmd.Split(" ")[1]);
             }
         }

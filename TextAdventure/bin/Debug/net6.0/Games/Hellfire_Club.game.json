@@ -404,6 +404,28 @@
       "look": []
     },
     {
+      "id": "0",
+      "version": 2,
+      "option": "death",
+      "label": "Game Over!",
+      "startup": "/award 1",
+      "text": [
+        "  ",
+        "   ▓█████▄ ▓████▄ ▄▄▄     ▄███████▓ ██░ █▄  ▐██▌",
+        "   ▒██▀ ██▌▓█   ▀▒████▄   ▓  ██▒ ▓▒▓██░ ██▒ ▐██▌",
+        "   ░██   █▌▒███  ▒██  ▀█▄ ▒ ▓██░ ▒░▒██▀▀██░ ▐██▌",
+        "   ░▓█▄   ▌▒▓█  ▄░██▄▄▄▄██░ ▓██▓ ░ ░▓█ ░██  ▓██▒",
+        "   ░▒████▓ ░▒████▒▓█   ▓██▒ ▒██▒ ░ ░▓█▒░██▓ ▒▄▄ ",
+        "    ▒▒▓  ▒ ░░ ▒░ ░▒▒   ▓▒█░ ▒ ░░    ▒ ░░▒░▒ ░▀▀▒",
+        "    ░ ▒  ▒  ░ ░  ░ ▒   ▒▒ ░   ░     ▒ ░▒░ ░ ░   ",
+        "         ░         ░   ▒            ░  ░        ",
+        "  "
+      ],
+      "textOptional": [],
+      "nextStep": [ "1" ],
+      "look": []
+    },
+    {
       "id": "1",
       "version": 1,
       "option": "choice",
@@ -413,7 +435,7 @@
       "text": [
         "Please select your soul to play, with a origin story (and disadvantage):",
         "",
-        "^1^ - \"Sarah\"   [Neg. Trait: ~Guilt~]",
+        "^1^ - \"Sarah\"   [Neg. Trait: ~Guilt~]"
         //"^2^ - \"Gilbert\" [Neg. Trait: ~BadLuck~]",
         //"^3^ - \"Lionel\"  [Neg. Trait: ~Religious~]",
         //"^4^ - \"Anne\"    [Neg. Trait: ~BadHealth~]",
@@ -616,7 +638,7 @@
         "~in the side~, causing the vehicle to be thrown sideways and rolled over several times."
       ],
       "nextStep": [ "6:5" ],
-      "program": [ ],
+      "program": [],
       "look": [],
       "hint": [ "" ]
     },
@@ -871,8 +893,8 @@
     {
       "id": "S1",
       "version": 7,
-      "map": "map_000",
       "option": "startup",
+      "map": "map_000",
       "label": "Player Name",
       "npc": true,
       "text": [
@@ -884,8 +906,8 @@
         "Your head explode; the bloody clone hit the ground dead.",
         "While the curse is upon you, you will be back again in four hours."
       ],
-      "nextStep": [ "S1:7", "0" ],
-      "program": [ "/award 1" ],
+      "nextStep": [ "0", "0:2" ],
+      "program": [],
       "look": [
         "Yeap. Monks with guns. Deal with it."
       ],
@@ -987,7 +1009,7 @@
         "/giveA Strength 2;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 15;/giveA ManaMAX 15;/giveA Life 80;/giveA LifeMAX 80;/giveT Human;/giveT Sex_Pervert;/title Human_Psion;/giveI Gold 100;/goto 12:1",
         "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Dwarf;/giveT Drunk;/title Dwarf_Bard;/giveI Gold 100;/award 7;/goto 12:1"
       ],
-      "look": [ ],
+      "look": [],
       "give": [
         "Gold 20|/goto 11"
       ],
@@ -1013,7 +1035,7 @@
         "\"Hum.. Let me see what I have more... Ha!\"",
         "4 - Dwarf Engineer",
         "5 - Human Cleric"
-      ],      
+      ],
       "nextStep": [ "11:1" ],
       "program": [
         "/giveA Strength 1;/giveA Inteligence 5;/giveA Vitality 2;/giveA Dexterity 2;/giveA Mana 19;/giveA ManaMAX 19;/giveA Life 60;/giveA LifeMAX 60;/giveT Human;/title Human_Mage;/give Gold 100;/goto 12:1",
@@ -1023,7 +1045,7 @@
         "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 11;/giveA ManaMAX 11;/giveA Life 80;/giveA LifeMAX 80;/giveT Human;/giveT Fortitude;/title Human_Cleric;/give Gold 100;/goto 12:1"
       ],
       "look": [
-        "The gatekeeper is happy counting coins.",        
+        "The gatekeeper is happy counting coins."
       ],
       "give": [
         "Apple 1|/msgN I love apples! Thanks {name}! Here are some change for you...;/give Gold 20"
