@@ -5,8 +5,29 @@ public partial class TextAdventureGame
     {
         foreach (var cmd in cmd_line.Split(';'))
         {
+            //"/nextLocationTitle Human_Mage:80||/msgR Mages don't use ropes, sorry!"
+            if (cmd.StartsWith("/nextLocationTitle"))
+            {
+                var _cmd_ = cmd.Substring("/nextLocationTitle".Length + 1).Split('|');
+
+                var subC_entry = _cmd_[0];
+                var subC_cmd_ok = _cmd_[1];
+                var subC_cmd_false = _cmd_[2];
+
+                var title = _cmd_[0].Split(':')[0];
+                var _location = subC_entry.Split(':')[1];
+
+                if (nextLocation != _location)
+                    continue;
+
+                if (title.Replace("_", " ") == game.player.title)
+                {
+                    ProcessCommand(subC_cmd_false.Replace("?", ";"), from);
+                    this.bAbortOp = true;
+                }
+            }
             // "/nextLocationI Rope,1?Twigg,1?:80|/giveA Life -20?/msgR You use the rope.|/msgR You need a rope and a twigg to continue."
-            if (cmd.StartsWith("/nextLocationI"))
+            else if (cmd.StartsWith("/nextLocationI"))
             {
                 var _cmd_ = cmd.Substring("/nextLocationI".Length + 1).Split('|');
 
@@ -61,8 +82,7 @@ public partial class TextAdventureGame
                             game.player.inventory.Remove(_item);
                     }
 
-                    ProcessCommand(subC_cmd_ok.Replace("?", ";"), from);
-                    ProcessCommand("/goto " + _location, from);
+                    ProcessCommand(subC_cmd_ok.Replace("?", ";"), from);                    
                 }
                 else
                 {

@@ -139,21 +139,25 @@ public partial class TextAdventureGame
                                 if (option == it.ToLower())
                                 {
                                     nextLocation = hashLetterId[option] as string;
-                                    
-                                    this.bAbortOp = false;
 
                                     Console.WriteLine();
+
+                                    this.bAbortOp = false;
 
                                     if (current_game_Room.mapProgram.Any())
                                     {
                                         foreach (var prg in current_game_Room.mapProgram)
                                         {
                                             ProcessCommand(prg, "MapRoom");
+
+                                            if (this.bAbortOp)
+                                                break;
                                         }
                                     }
 
                                     if (!this.bAbortOp)
                                     {
+                                        ProcessCommand("/goto " + nextLocation, "MapRoom");
                                         CheckConstraints();
 
                                         Console.WriteLine();

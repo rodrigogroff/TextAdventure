@@ -49,38 +49,6 @@
       "id": "8",
       "text": "Discover that the gatekeeper has pending university debt"
     },
-    {
-      "id": "400",
-      "text": "Lift the curse from Sarah"
-    },
-    {
-      "id": "401",
-      "text": "Lift the curse from Gilbert"
-    },
-    {
-      "id": "402",
-      "text": "Lift the curse from Lionel"
-    },
-    {
-      "id": "403",
-      "text": "Lift the curse from Anne"
-    },
-    {
-      "id": "404",
-      "text": "Lift the curse from Burt"
-    },
-    {
-      "id": "405",
-      "text": "Lift the curse from Jonesy"
-    },
-    {
-      "id": "406",
-      "text": "Lift the curse from Phil"
-    },
-    {
-      "id": "407",
-      "text": "Lift the curse from Anthony"
-    }
   ],
   "quests": [
     {
@@ -1026,7 +994,7 @@
         "\"So, Mr. {name}, thank you for your kindness. Please choose your physical form.\"",
         "1 - Human Mage",
         "2 - Elf Fighter",
-        "3 - Human Cleric",
+        "3 - Human Thief",
         "The monk checks his books.",
         "\"Hum.. Let me see what I have more... Ha!\"",
         "4 - Dwarf Engineer",
@@ -1258,7 +1226,8 @@
         "near a big corpse. Using a rope and the rocks nearby, you could go there."
       ],
       "mapProgram": [
-        "/nextLocationI Rope,1?Twigg,1?:80|/msgR You use the rope and a twigg to reach your destination.|/msgR You need a rope and a twigg to continue."
+        "/nextLocationTitle Human_Mage:80||/msgR Mages don't use ropes, sorry.",
+        "/nextLocationI Rope,1?Twigg,1?:80|/msgR You use the rope and a twigg to reach your destination.|/msgR You need a rope and a twigg to continue.",
       ],
       "hint": [ "When looking from above, you can see more things.. in the /map" ],
       "give": [],
