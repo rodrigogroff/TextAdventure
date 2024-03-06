@@ -398,16 +398,13 @@
         "         ░         ░   ▒            ░  ░        ",
         "  "
       ],
-      "textOptional": [],
-      "nextStep": [ "1" ],
-      "program": [],
-      "look": []
+      "nextStep": [ "1" ],      
     },
     {
       "id": "0",
       "version": 2,
       "option": "death",
-      "label": "Game Over!",
+      "label": "Game Over!!",
       "startup": "/award 1",
       "text": [
         "  ",
@@ -419,12 +416,15 @@
         "    ▒▒▓  ▒ ░░ ▒░ ░▒▒   ▓▒█░ ▒ ░░    ▒ ░░▒░▒ ░▀▀▒",
         "    ░ ▒  ▒  ░ ░  ░ ▒   ▒▒ ░   ░     ▒ ░▒░ ░ ░   ",
         "         ░         ░   ▒            ░  ░        ",
-        "  "
+        " ",
+        "     Without even playing! Are you serious?!",
+        " "
       ],
-      "textOptional": [],
       "nextStep": [ "1" ],
-      "look": []
     },
+
+    // here goes nothing....
+
     {
       "id": "1",
       "version": 1,
