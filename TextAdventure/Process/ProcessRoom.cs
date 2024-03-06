@@ -95,8 +95,20 @@ public partial class TextAdventureGame
                 Console.WriteLine();
 
                 if (first)
+                {
                     if (!string.IsNullOrEmpty(current_game_Room.startup))
                         ProcessCommand(current_game_Room.startup, "procRoom");
+
+                    if (current_game_Room.startupProgram.Any())
+                    {
+                        foreach (var _p in current_game_Room.startupProgram)
+                        {
+                            ProcessCommand(_p, "procRoom");
+                        }
+                    }
+
+                    CheckConstraints();
+                }
 
                 DisplayCurrentRoomText();
 

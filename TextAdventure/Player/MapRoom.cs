@@ -157,7 +157,6 @@ public partial class TextAdventureGame
 
                                     if (!this.bAbortOp)
                                     {
-                                        ProcessCommand("/goto " + nextLocation, "MapRoom");
                                         CheckConstraints();
 
                                         Console.WriteLine();

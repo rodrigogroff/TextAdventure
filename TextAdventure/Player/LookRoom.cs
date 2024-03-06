@@ -1,5 +1,4 @@
-﻿using System.Collections;
-
+﻿
 public partial class TextAdventureGame
 {
     void LookRoom()

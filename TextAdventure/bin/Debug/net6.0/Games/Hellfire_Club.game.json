@@ -49,6 +49,14 @@
       "id": "8",
       "text": "Discover that the gatekeeper has pending university debt"
     },
+    {
+      "id": "9",
+      "text": "Find a demonic corpse"
+    },
+    {
+      "id": "10",
+      "text": "Find a rusty sword"
+    }
   ],
   "quests": [
     {
@@ -261,6 +269,12 @@
     {
       "name": "Letter_Comendation",
       "description": "Ticket to join Hellfire club",
+      "formula": "",
+      "usable": false
+    },
+    {
+      "name": "Rusty_Sword",
+      "description": "Old and rusty human sword",
       "formula": "",
       "usable": false
     }
@@ -1219,7 +1233,6 @@
         "",
         "You feel that you can enter this hidden cave, if you jump."
       ],
-      "textOptional": [],
       "nextStep": [],
       "look": [
         "Near the waterfall, but on the other side, you can see a glimmer of metal",
@@ -1227,7 +1240,8 @@
       ],
       "mapProgram": [
         "/nextLocationTitle Human_Mage:80||/msgR Mages don't use ropes, sorry.",
-        "/nextLocationI Rope,1?Twigg,1?:80|/msgR You use the rope and a twigg to reach your destination.|/msgR You need a rope and a twigg to continue.",
+        "/nextLocationTitle Human_Lazy:80||/msgR I'm tired man, sorry.",
+        "/nextLocationI Rope,1?Twigg,1?:80|/msgR You use the rope and a twigg to reach your destination.|/msgR You need a rope and a twigg to continue."
       ],
       "hint": [ "When looking from above, you can see more things.. in the /map" ],
       "give": [],
@@ -1332,16 +1346,31 @@
       "option": "",
       "npc": false,
       "label": "Hell - slain demon corpse on the ground",
+      "startupProgram": [
+        "/getAE Dexterity 5:/giveA Life -1,/msgR Minor damage from climbing down the rope",
+        "/getAE Dexterity 4:/giveA Life -3,/msgR Light Damage from climbing down the rope",
+        "/getAE Dexterity 3:/giveA Life -6,/msgR Light damage from climbing down the rope",
+        "/getAE Dexterity 2:/giveA Life -15,/msgR Damage from climbing down the rope",
+        "/getAE Dexterity 1:/giveA Life -30,/msgR Extra Damage from climbing down the rope",
+        "/award 9"
+      ],
       "text": [
-        "Corpse text."
+        "After using the rope, you see a ~demonic~ being rotting away. His head is severed",
+        "from his body and some parts are already filled with worms.",
+        "",
+        "The smell is pungent and you feel light headed."
       ],
       "textOptional": [],
       "nextStep": [],
       "look": [
-        "You see a trapdoor almost hidden in the desert sands."
+        "There is a rusty sword next to the demonic figure.",
+        "/giveI Rusty_Sword 1",
+        "/award 10"
       ],
-      "program": [],
-      "hint": [ "When looking from above, you can see more things.. in the map" ],
+      "program": [
+
+      ],
+      "hint": [ "When looking better, you can find hidden things." ],
       "give": [],
       "take": []
     }

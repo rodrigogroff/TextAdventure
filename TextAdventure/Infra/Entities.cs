@@ -106,6 +106,8 @@ public class Context
     public string label { get; set; }
     public string map { get; set; }
     public string startup { get; set; }
+    public List<string> startupProgram = new List<string>();
+
     public bool? npc { get; set; }
 
     public List<string> text = new List<string>();
