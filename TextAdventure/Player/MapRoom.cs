@@ -139,23 +139,32 @@ public partial class TextAdventureGame
                                 if (option == it.ToLower())
                                 {
                                     nextLocation = hashLetterId[option] as string;
+                                    
+                                    this.bAbortOp = false;
 
-                                    if (current_game_Room.program.Any())
+                                    Console.WriteLine();
+
+                                    if (current_game_Room.mapProgram.Any())
                                     {
-                                        foreach (var prg in current_game_Room.program)
+                                        foreach (var prg in current_game_Room.mapProgram)
                                         {
                                             ProcessCommand(prg, "MapRoom");
                                         }
                                     }
 
-                                    CheckConstraints();
+                                    if (!this.bAbortOp)
+                                    {
+                                        CheckConstraints();
 
-                                    Console.WriteLine();
-                                    Print("You walk towards your destination...", ConsoleColor.DarkYellow);
-                                    Console.WriteLine();
+                                        Console.WriteLine();
+                                        Print("You walk towards your destination...", ConsoleColor.DarkYellow);
+                                        Console.WriteLine();
 
-                                    EnterToContinue();
-                                    ProcessRoom(hashLetterId[it.ToLower()] as string);
+                                        EnterToContinue();
+                                        ProcessRoom(hashLetterId[it.ToLower()] as string);
+                                    }
+                                                                       
+                                    this.bAbortOp = false;
                                 }
                             }
                             break;

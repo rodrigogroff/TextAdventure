@@ -8,6 +8,7 @@ public partial class TextAdventureGame
     string currentFile = "";
     bool bFastMode = false;
     bool bQuickSave = false;
+    bool bAbortOp = false;
     bool bUnlimitedHints = false;
     bool bHintsDisabled = false;
     bool bHardcore = false;

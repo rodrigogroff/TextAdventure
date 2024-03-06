@@ -53,17 +53,12 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" interact with npc".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
+
         
-        lines.Add(" /quicksave".PadRight(w1, ' '));
+        lines.Add(" /repeat".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" toggle automatic save on entering stage");
-
-        colors.Add(ConsoleColor.Green);
-        if (bQuickSave)
-            lines.Add("[ON]\n");
-        else
-            lines.Add("[OFF]\n");
-
+        lines.Add(" show stage/npc text again\n");
+        
         colors.Add(ConsoleColor.Green);
         lines.Add(" /take".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
@@ -77,9 +72,9 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" consume inventory item".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /quit".PadRight(w1, ' '));
+        lines.Add(" /die".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" teleport back to real life\n");
+        lines.Add(" give and suicide (in the game)\n");
         colors.Add(ConsoleColor.Green);
         lines.Add(" /map".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
@@ -96,9 +91,9 @@ public partial class TextAdventureGame
         lines.Add(" game quests list".PadRight(w2, ' '));
 
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /repeat".PadRight(w1, ' '));
+        lines.Add(" ".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" show stage/npc text again\n");
+        lines.Add(" \n");
 
         colors.Add(ConsoleColor.Green);
         lines.Add(" /award".PadRight(w1, ' '));

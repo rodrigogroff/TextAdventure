@@ -138,7 +138,7 @@
         "C|40|B,H|River crossing bridge (left)",
         "H|42|C,E,D|River crossing bridge (right)",
         "D|50|E,C|Abandoned outpost",
-        "E|60|C,D|Waterfall"
+        "E|60|C,D,H|Waterfall"
       ],
       "graphics": [
         "▒▓██ Hell Outlands  █▓▒",
@@ -161,13 +161,15 @@
         "C|40|B,H|River crossing bridge (left)",
         "H|42|C,E,D,F|River crossing bridge (right)",
         "D|50|E,C|Abandoned outpost",
-        "E|60|C,D,G|Waterfall",
+        "E|60|C,D,H,G,I|Waterfall",
         "F|70|C,D|Trapdoor",
-        "G|80|C|Demon corpse"
+        "G|80|C|Demon corpse",
+        "I|60_1|E|Cave inside waterfall"
       ],
       "graphics": [
         "▒▓██ Hell Outlands [2]  █▓▒",
         "",
+        "                 █I█",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█ E █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
         "▒░░░░░░G@░░░░░░░░░.░░░░░░░░█▓▓▓▓█▓▓▓█▒▒",
         "▒░░░░░░░░░░░░░░░.░░░░░░░░░░▓░░░░░░░░▓▒▒",
@@ -261,7 +263,7 @@
       "name": "Rope",
       "description": "Simple rope to climb or descend places.",
       "formula": "",
-      "usable": false
+      "usable": true
     },
     {
       "name": "Wood_piece",
@@ -1174,7 +1176,7 @@
         "You can cross this old bridge, but there is a chance of falling.",
         "The sound of water is frightening."
       ],
-      "program": [
+      "mapProgram": [
         "/nextLocation 42|/getAE Dexterity 3:/giveA Life -5,/msgR Light damage from the wooden pass",
         "/nextLocation 42|/getAE Dexterity 2:/giveA Life -10,/msgR Damage from the wooden pass",
         "/nextLocation 42|/getAE Dexterity 1:/giveA Life -20,/msgR Critical damage!"
@@ -1212,6 +1214,7 @@
         "Rope 1"
       ]
     },
+
     {
       "id": "50",
       "version": 1,
@@ -1228,31 +1231,7 @@
       "program": [
       ],
       "give": [],
-      "hint": [ "Sometimes you can 'take' things from the ground..." ],
-      "take": []
-    },
-
-    {
-      "id": "50",
-      "version": 1,
-      "map": "map_001",
-      "option": "",
-      "npc": false,
-      "label": "Hell - outlands [at the abandoned outpost]",
-      "text": [
-        "Outpost text."
-      ],
-      "textOptional": [],
-      "nextStep": [],
-      "look": [
-        "These fruits look like oranges, but bigger and have some greenish worms",
-        "visible, and they make horrible sounds while they eat. There is a grey",
-        "goo in the ground from their chewing."
-      ],
-      "program": [
-      ],
-      "give": [],
-      "hint": [ "Sometimes you can 'take' things from the ground..." ],
+      "hint": [],
       "take": []
     },
 
@@ -1264,17 +1243,23 @@
       "npc": false,
       "label": "Hell - waterfall [at the entrance]",
       "text": [
-        "Waterfall text."
+        "After climbing all the way up the tall rock structure, you see a ~trapdoor~ almost ",
+        "hidden in the desert sands, near the south side of the outpost.",
+        "",
+        "In front of you, behind the massive waterfall, there is a small passage between some rocks",
+        "and the water.",
+        "",
+        "You feel that you can enter this hidden cave, if you jump."
       ],
       "textOptional": [],
       "nextStep": [],
       "look": [
-        "You see a ~trapdoor~ almost hidden in the desert sands.",
-        "Behind the waters, there is a ~dark cave~.",
-        "You hold your breath and pass the waters, into the dark.",
-        "/goto 60_1"
+        "Near the waterfall, but on the other side, you can see a glimmer of metal",
+        "near a big corpse. Using a rope and the rocks nearby, you could go there."
       ],
-      "program": [],
+      "mapProgram": [
+        "/nextLocationI Rope,1?Twigg,1?:80|/msgR You use the rope and a twigg to reach your destination.|/msgR You need a rope and a twigg to continue."
+      ],
       "hint": [ "When looking from above, you can see more things.. in the /map" ],
       "give": [],
       "take": []
@@ -1287,7 +1272,7 @@
       "npc": false,
       "label": "Hell - waterfall [cave start]",
       "text": [
-        "Cave start text."
+        "After jumping."
       ],
       "textOptional": [],
       "nextStep": [],

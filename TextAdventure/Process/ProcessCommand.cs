@@ -1,12 +1,76 @@
-﻿using System.Collections;
-
+﻿
 public partial class TextAdventureGame
 {
     void ProcessCommand(string cmd_line, string from)
     {
         foreach (var cmd in cmd_line.Split(';'))
         {
-            if (cmd.StartsWith("/nextLocation")) // get attribute equals
+            // "/nextLocationI Rope,1?Twigg,1?:80|/giveA Life -20?/msgR You use the rope.|/msgR You need a rope and a twigg to continue."
+            if (cmd.StartsWith("/nextLocationI"))
+            {
+                var _cmd_ = cmd.Substring("/nextLocationI".Length + 1).Split('|');
+
+                var subC_entry = _cmd_[0];
+                var subC_cmd_ok = _cmd_[1];
+                var subC_cmd_false = _cmd_[2];
+
+                var _okay = true;
+
+                var _location = subC_entry.Split(':')[1];
+
+                if (nextLocation != _location)
+                    continue;
+
+                foreach (var __item_req in subC_entry.Split(':')[0].Split('?'))
+                {
+                    if (__item_req == "")
+                        continue;
+
+                    var _it_name = __item_req.Split(',')[0];
+                    var _it_qtd = Convert.ToInt32(__item_req.Split(',')[1]);
+
+                    var _item = game.player.inventory.FirstOrDefault(y => y.name == _it_name);
+
+                    if (_item == null)
+                    {
+                        _okay = false;
+                        break;
+                    }
+
+                    if (_item.quantity < _it_qtd)
+                    {
+                        _okay = false;
+                        break;
+                    }
+                }
+
+                if (_okay)
+                {
+                    foreach (var __item_req in subC_entry.Split(':')[0].Split('?'))
+                    {
+                        if (__item_req == "")
+                            continue;
+
+                        var _it_name = __item_req.Split(',')[0];
+                        var _it_qtd = Convert.ToInt32(__item_req.Split(',')[1]);
+
+                        var _item = game.player.inventory.FirstOrDefault(y => y.name == _it_name);
+                        _item.quantity -= _it_qtd;
+
+                        if (_item.quantity == 0)
+                            game.player.inventory.Remove(_item);
+                    }
+
+                    ProcessCommand(subC_cmd_ok.Replace("?", ";"), from);
+                    ProcessCommand("/goto " + _location, from);
+                }
+                else
+                {
+                    ProcessCommand(subC_cmd_false.Replace("?", ";"), from);
+                    this.bAbortOp = true;
+                }
+            }
+            else if (cmd.StartsWith("/nextLocation")) // get attribute equals
             {
                 if (nextLocation == cmd.Split(' ')[1].Split('|')[0])
                 {

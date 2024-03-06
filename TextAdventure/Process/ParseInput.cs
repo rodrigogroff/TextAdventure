@@ -52,12 +52,14 @@ public partial class TextAdventureGame
                 SaveGame();
                 break;
 
+                /*
             case "/quicksave":
                 bQuickSave = !bQuickSave;
                 Console.WriteLine();
                 Print("Quicksave: " + (bQuickSave ? "[ON]" : "[OFF]"), ConsoleColor.White, 15);
                 Console.WriteLine();
                 break;
+                */
 
             case "/map":
                 MapRoom();
@@ -87,7 +89,7 @@ public partial class TextAdventureGame
                 ShowLog();
                 break;
 
-            case "/quit":
+            case "/die":
             case "/q":
                 StartGame();
                 break;

@@ -17,7 +17,7 @@ public partial class TextAdventureGame
                 Write(" -- ", ConsoleColor.DarkGray);
                 Write((i++).ToString(), ConsoleColor.White);
                 Write(" ", ConsoleColor.DarkGray);
-                Write(item.name, ConsoleColor.Yellow);
+                Write(item.name.PadRight(30,' '), ConsoleColor.Yellow);
                 Write(" [ ", ConsoleColor.DarkGray);
                 Write(item.quantity.ToString(), ConsoleColor.Blue);
                 Write(" ] ", ConsoleColor.DarkGray);
