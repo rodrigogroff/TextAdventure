@@ -35,11 +35,11 @@
     },
     {
       "id": "5",
-      "text": "Find the hidden places in hell outlands"
+      "text": "Crossing the bridge"
     },
     {
       "id": "6",
-      "text": "Reach the goblin temple"
+      "text": "Crossing the waterfall"
     },
     {
       "id": "7",
@@ -56,6 +56,10 @@
     {
       "id": "10",
       "text": "Find a rusty sword"
+    },
+    {
+      "id": "11",
+      "text": "Being crushed by a troll"
     }
   ],
   "quests": [
@@ -226,7 +230,7 @@
     {
       "name": "DeathFruit",
       "description": "Corrupted fruit. Nasty worms inside.",
-      "formula": "/giveA Life -20;/giveA Mana -10;/msgRnd You feel nausea and vomits.|Aaaargh!|A acid grey goo comes out of your ears|You fall on the ground in pain.",
+      "formula": "/giveA Life -20;/giveA Mana -10;/msgRnd You feel nausea and vomits.%Aaaargh!%A acid grey goo comes out of your ears%You fall on the ground in pain.",
       "usable": true
     },
     {
@@ -248,8 +252,8 @@
       "usable": true
     },
     {
-      "name": "Nails",
-      "description": "Some fairly decent nails.",
+      "name": "Nail",
+      "description": "A fairly decent iron nail.",
       "formula": "",
       "usable": true
     },
@@ -398,7 +402,7 @@
         "         ░         ░   ▒            ░  ░        ",
         "  "
       ],
-      "nextStep": [ "1" ],      
+      "nextStep": [ "1" ]
     },
     {
       "id": "0",
@@ -420,7 +424,29 @@
         "     Without even playing! Are you serious?!",
         " "
       ],
-      "nextStep": [ "1" ],
+      "nextStep": [ "1" ]
+    },
+    {
+      "id": "0",
+      "version": 3,
+      "option": "death",
+      "label": "Game Over!!",
+      "text": [
+        " ",
+        " ▄████▄   ██▀███   █    ██   ██████  ██░ ██ ▓█████ ▓█████▄ ",
+        "▒██▀ ▀█  ▓██ ▒ ██▒ ██  ▓██▒▒██    ▒ ▓██░ ██▒▓█   ▀ ▒██▀ ██▌",
+        "▒▓█    ▄ ▓██ ░▄█ ▒▓██  ▒██░░ ▓██▄   ▒██▀▀██░▒███   ░██   █▌",
+        "▒▓▓▄ ▄██▒▒██▀▀█▄  ▓▓█  ░██░  ▒   ██▒░▓█ ░██ ▒▓█  ▄ ░▓█▄   ▌",
+        "▒ ▓███▀ ░░██▓ ▒██▒▒▒█████▓ ▒██████▒▒░▓█▒░██▓░▒████▒░▒████▓ ",
+        "░ ░▒ ▒  ░░ ▒▓ ░▒▓░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒░░ ▒░ ░ ▒▒▓  ▒ ",
+        "  ░  ▒     ░▒ ░ ▒░░░▒░ ░ ░ ░ ░▒  ░ ░ ▒ ░▒░ ░ ░ ░  ░ ░ ▒  ▒ ",
+        "░          ░░   ░  ░░░ ░ ░ ░  ░  ░   ░  ░░ ░   ░    ░ ░  ░ ",
+        "░ ░         ░        ░           ░   ░  ░  ░   ░  ░   ░    ",
+        "░                                                   ░",
+        "     Visiting a troll without food? Are you for real?!",
+        " "
+      ],
+      "nextStep": [ "1" ]
     },
 
     // here goes nothing....
@@ -724,6 +750,11 @@
       "map": "map_000",
       "npc": true,
       "text": [
+        "  _, _    , ,  _,    _, ___,_   ,_  ___",
+        " / _'|\\  |\\/| /_,   (_,' | '|\\  |_)' |   ",
+        "'\\_|`|-\\ | `|'\\_     _)  |  |-\\'| \\  | ",
+        "  _| '  `'  `   `   '    '  '  `'  ` '",
+        " ",
         "After being engulfed in a pure white light for hours, your soul projects itself",
         "into another location. From within a pulsating ^yellow translucid orb^, your new",
         "body is sexless and bald: a completely generic clone floating safely inside the water",
@@ -1192,7 +1223,7 @@
         "Wood_piece 1",
         "Wood_piece 1",
         "Wood_piece 1",
-        "Nails 1"
+        "Nail 1"
       ]
     },
     {
@@ -1201,11 +1232,14 @@
       "map": "map_001",
       "option": "",
       "npc": false,
+      "startup": "/award 5",
       "label": "Hell - outlands [at the river crossing bridge (Right)]",
       "text": [
         "The wooden pass slowly moves up and down by the wind.",
         "",
-        "You can see the the abandoned outpost nearby."
+        "You can see the the abandoned outpost nearby.",
+        "",
+        "The waterfall is within your reach."
       ],
       "textOptional": [],
       "nextStep": [],
@@ -1215,7 +1249,8 @@
       "give": [],
       "hint": [],
       "take": [
-        "Rope 1"
+        "Rope 1",
+        "Nail 1"
       ]
     },
 
@@ -1257,7 +1292,7 @@
       ],
       "nextStep": [],
       "look": [
-        "Near the waterfall, but on the other side, you can see a glimmer of metal",
+        "Near the waterfall, but on the left side, you can see a glimmer of metal",
         "near a big corpse. Using a rope and the rocks nearby, you could go there."
       ],
       "mapProgram": [
@@ -1269,21 +1304,60 @@
       "give": [],
       "take": []
     },
+
+    {
+      "id": "80",
+      "version": 1,
+      "map": "map_002",
+      "npc": false,
+      "label": "Hell - outlands [slain demon corpse on the ground]",
+      "startupProgram": [
+        "/getAE Dexterity 5:/giveA Life -1,/msgR Minor damage occurred while climbing down the rope.",
+        "/getAE Dexterity 4:/giveA Life -3,/msgR Minor damage occurred while climbing down the rope.",
+        "/getAE Dexterity 3:/giveA Life -6,/msgR Light damage occurred while climbing down the rope.",
+        "/getAE Dexterity 2:/giveA Life -15,/msgR Damage occurred while climbing down the rope.",
+        "/getAE Dexterity 1:/giveA Life -30,/msgR Critical damage occurred while climbing down the rope.",
+        "/award 9"
+      ],
+      "text": [
+        "After using the rope, you notice a demonic being rotting away from a ",
+        "battle that occurred not too long ago.",
+        "",
+        "His head is severed from his body and some parts are already filled with worms.",
+        "",
+        "The smell is pungent and you feel light headed."
+      ],
+      "look": [
+        "There is a rusty sword next to the demonic figure.",
+        "/giveI Rusty_Sword 1",
+        "/award 10"
+      ],
+      "hint": [ "When looking better, you can find hidden things." ]
+    },
+
     {
       "id": "60_1",
       "version": 1,
       "map": "map_watercave_001",
       "option": "",
+      "startup": "/award 6",
       "npc": false,
       "label": "Hell - waterfall [cave start]",
       "text": [
-        "After jumping."
+        "After a little jump, you reach inside this water cave. There is the massive water sound ",
+        "behind you and an almost empty dark space ahead, with a little glimmer of a fire to your right.",
+        "",
+        "You hear a creature snore echoing through the walls, and there is a smell of animals nearby."
       ],
       "textOptional": [],
       "nextStep": [],
-      "look": [],
+      "look": [
+        "Nothing interesting here."
+      ],
       "program": [],
-      "hint": [],
+      "hint": [
+        "You wasted a hint."
+      ],
       "give": [],
       "take": []
     },
@@ -1292,18 +1366,57 @@
       "version": 1,
       "map": "map_watercave_001",
       "option": "",
-      "npc": false,
+      "npc": true,
       "label": "Hell - waterfall [Skeleton]",
       "text": [
-        "Skeleton text."
+        "Leaning against the cave wall, there is a skeleton still using torn clothes.",
+        "",
+        "The background sound of snoring increases a little."
       ],
       "textOptional": [],
       "nextStep": [],
-      "look": [],
+      "look": [
+        "You look closely to the skeleton. There is 5 coins in the ground.",
+        "His eyes spark in the dark from his sockets.",
+        "The skeleton comes to life.",
+        "/goto 60_2:2"
+      ],
       "program": [],
-      "hint": [],
-      "give": [],
-      "take": []
+      "hint": [
+        "Old spirits tend to be mean when people touches their things."
+      ],
+      "give": [
+        "Gold 1|/msgRnd The troll is a nice fella, just don't go there empty handed.%There is a secret passage to the goblin temple.%Last time I was alive, PC games we're only text. Boring!%Go away now.%The first rule of Hellfire Club is... oh, wait.%Where are you Mathilda, my love, my everything!%I killed a demon some years ago. My sword was stuck in his chest! Probably a rust thing now!%Why aren't you working now?"
+      ],
+      "take": [
+        "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1"
+      ]
+    },
+    {
+      "id": "60_2",
+      "version": 2,
+      "map": "map_watercave_001",
+      "option": "",
+      "npc": true,
+      "label": "Hell - waterfall [Alive Skeleton]",
+      "text": [
+        ""
+      ],
+      "textOptional": [],
+      "nextStep": [],
+      "look": [
+        
+      ],
+      "program": [],
+      "hint": [
+        "Old spirits tend to be mean when people touches their things."
+      ],
+      "give": [
+        "Gold 5|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse!\";/giveI Apple 1;"
+      ],
+      "take": [
+        "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1"
+      ]
     },
     {
       "id": "60_3",
@@ -1345,7 +1458,6 @@
       "id": "70",
       "version": 1,
       "map": "map_002",
-      "option": "",
       "npc": false,
       "label": "Hell - trapdoor",
       "text": [
@@ -1360,43 +1472,7 @@
       "hint": [ "When looking from above, you can see more things.. in the map" ],
       "give": [],
       "take": []
-    },
-    {
-      "id": "80",
-      "version": 1,
-      "map": "map_002",
-      "option": "",
-      "npc": false,
-      "label": "Hell - slain demon corpse on the ground",
-      "startupProgram": [
-        "/getAE Dexterity 5:/giveA Life -1,/msgR Minor damage occurred while climbing down the rope.",
-        "/getAE Dexterity 4:/giveA Life -3,/msgR Minor damage occurred while climbing down the rope.",
-        "/getAE Dexterity 3:/giveA Life -6,/msgR Light damage occurred while climbing down the rope.",
-        "/getAE Dexterity 2:/giveA Life -15,/msgR Damage occurred while climbing down the rope.",
-        "/getAE Dexterity 1:/giveA Life -30,/msgR Critical damage occurred while climbing down the rope.",
-        "/award 9"
-      ],
-      "text": [
-        "After using the rope, you notice a demonic being rotting away from a ",
-        "battle that occurred not too long ago.",
-        "",
-        "His head is severed from his body and some parts are already filled with worms.",
-        "",
-        "The smell is pungent and you feel light headed."
-      ],
-      "textOptional": [],
-      "nextStep": [],
-      "look": [
-        "There is a rusty sword next to the demonic figure.",
-        "/giveI Rusty_Sword 1",
-        "/award 10"
-      ],
-      "program": [
-
-      ],
-      "hint": [ "When looking better, you can find hidden things." ],
-      "give": [],
-      "take": []
     }
+
   ],
 }

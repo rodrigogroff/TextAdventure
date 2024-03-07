@@ -29,10 +29,10 @@ public partial class TextAdventureGame
                         break;
 
                     case 2:
-                        DisplayStartScreen();
-
                         while (true)
                         {
+                            Console.Clear();
+                            DisplayStartScreen();
                             Console.WriteLine();
                             Write(" [Games available:]\n", ConsoleColor.Yellow);
                             Console.WriteLine();
@@ -45,18 +45,22 @@ public partial class TextAdventureGame
                             }
                             Console.WriteLine();
                             Write(" [Select your game:] -- use ", ConsoleColor.DarkGray);
-                            Write(" /s ", ConsoleColor.White);
+                            Write("/s ", ConsoleColor.White);
                             Write(" for faster text, \n", ConsoleColor.DarkGray);
                             Write(" [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;
-
                             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+                            
+                            Console.CursorVisible = true;
                             string option = Console.ReadLine().Trim();
 
                             if (option.EndsWith("/s"))
                             {
-                                Write(" [> FASTMODE\n", ConsoleColor.Green);
                                 bFastMode = true;
+                                Write(" [> FASTMODE [", ConsoleColor.DarkGray);
+                                Write("ON", ConsoleColor.Green);
+                                Write("]\n", ConsoleColor.DarkGray);
+                                EnterToContinue();
                                 continue;
                             }
 
@@ -83,19 +87,25 @@ public partial class TextAdventureGame
                                     {
                                         foreach (var takeItem in currentStage.take)
                                         {
-                                            var name = takeItem.Split(' ')[0];
-                                            var qtty = Convert.ToInt32(takeItem.Split(' ')[1].Split(':')[0]);
+                                            var _item = takeItem.Split('|')[0];
+                                            var _item_formula = takeItem.Contains("|") ? takeItem.Split('|')[1] : "";
+
+                                            var name = _item.Split(' ')[0];
+                                            var qtty = Convert.ToInt32(_item.Split(' ')[1].Split(':')[0]);
                                             var g_item = game.itens.FirstOrDefault(y => y.name == name);
 
                                             game.world_itens.Add(new GameSceneItem
                                             {
                                                 guid = Guid.NewGuid(),
                                                 scene_id = currentStage.id,
+                                                scene_version = currentStage.version,
+
                                                 item = new GameItem
                                                 {
                                                     name = name,
                                                     quantity = qtty,
                                                     persistInventory = g_item.persistInventory == true,
+                                                    formula = _item_formula
                                                 }
                                             });
                                         }
@@ -146,11 +156,9 @@ public partial class TextAdventureGame
 
                         bHardcore = false;
 
-                        if (diff == "1")
-                        {
-                            bUnlimitedHints  = true;
-                        }
-                        else if(diff == "2")
+                        gameDifficulty = diff;
+
+                        if (diff == "2")
                         {
                             bUnlimitedHints = false;
                             bHintsDisabled = false;
@@ -168,6 +176,8 @@ public partial class TextAdventureGame
                             Write("\n  --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
                             Thread.Sleep(2000);
                         }
+                        else
+                            bUnlimitedHints = true;
 
                         mode = 4;
                         break;
@@ -215,16 +225,9 @@ public partial class TextAdventureGame
                             DisplayTips();
                         }
 
-                        Console.CursorVisible = true;
                         Console.WriteLine();
 
-                        Write(" [Press 'Enter' to continue]\n", ConsoleColor.Green);
-                        Write(" [> ", ConsoleColor.Green);
-
-                        Console.ForegroundColor = ConsoleColor.Green;
-
-                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                        Console.ReadLine();
+                        EnterToContinue();
 
                         if (game.currentRoom == null)
                             game.currentRoom = "1";

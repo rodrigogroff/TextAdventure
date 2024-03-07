@@ -35,6 +35,7 @@ public partial class TextAdventureGame
                 UseRoom();
                 break;
 
+            case "/s":
             case "/speed":
                 bFastMode = !bFastMode;
                 Console.WriteLine();

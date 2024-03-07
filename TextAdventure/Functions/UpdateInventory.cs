@@ -7,11 +7,11 @@ public partial class TextAdventureGame
     {
         if (!game.player.inventory.Any( y=> y.name == item.name))
         {
-            if (game.player.inventory.Count >= game.maxInventory)
+            if (game.player.inventory.Count > game.maxInventory)
             {
                 Console.WriteLine();
                 Write(" >> Maximum inventory reached!", ConsoleColor.Red);
-                Write(" >> Itens may be dropped on the ground <<\n", ConsoleColor.Red);
+                Write(" >> Item will be dropped on the ground <<\n", ConsoleColor.Red);
                 Console.WriteLine();
 
                 game.world_itens.Add(new GameSceneItem

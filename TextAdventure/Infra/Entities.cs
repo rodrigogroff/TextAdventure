@@ -53,6 +53,7 @@ public class Quest
 public class GameSceneItem
 {
     public string scene_id { get; set; }
+    public int scene_version { get; set; }
     public GameItem item { get; set; }
     public Guid guid { get; set; }
 }
@@ -126,6 +127,7 @@ public class GameItem
     public string name { get; set; }
     public int quantity { get; set; }
     public bool? persistInventory { get; set; }
+    public string formula { get; set; }
 }
 
 public class Item

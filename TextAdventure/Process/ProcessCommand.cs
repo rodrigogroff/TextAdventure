@@ -307,7 +307,7 @@ public partial class TextAdventureGame
             }
             else if (cmd.StartsWith("/msgRnd"))
             {
-                var msg = cmd.Substring(7).Split ('|');
+                var msg = cmd.Substring(7).Split ('%');
                 var rnd_item = msg[GetRandomNumber(1, msg.Count()) - 1];
                 Console.WriteLine();
                 PrintRoomText( rnd_item.Trim(), ConsoleColor.DarkYellow, 15);

@@ -10,7 +10,7 @@ public partial class TextAdventureGame
         {
             Console.WriteLine();
 
-            var world_inventory = game.world_itens.Where(y => y.scene_id == currentRoom.id).ToList();
+            var world_inventory = game.world_itens.Where(y => y.scene_id == currentRoom.id && y.scene_version == currentRoom.version).ToList();
             var stage_inventory = new List<GameItem>();
             var guid_inventory = new List<Guid>();
             foreach (var gameScene in world_inventory)
@@ -78,13 +78,14 @@ public partial class TextAdventureGame
                 name = g_item_take.name,
                 quantity = Convert.ToInt32(g_item_take.quantity)
             });
-            if (!string.IsNullOrEmpty(gg_item.formula))
+
+            if (!string.IsNullOrEmpty(g_item_take.formula))
             {
                 itemOriginating = gg_item.name;
-                ProcessCommand(gg_item.formula, "take");
+                ProcessCommand(g_item_take.formula, "take");
             }
 
-            foreach (var item in game.world_itens.Where(y => y.scene_id == currentRoom.id))
+            foreach (var item in game.world_itens.Where(y => y.scene_id == currentRoom.id && y.scene_version == currentRoom.version))
                 if (item.guid == guid_item_world)
                 {
                     game.world_itens.Remove(item);

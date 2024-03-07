@@ -5,11 +5,17 @@ public partial class TextAdventureGame
     {
         Console.WriteLine();
 
+        var Old_fast = bFastMode;
+
         if (current_game_Room.option?.ToLower() != "death")
         {
             Write(" ▒▓██ ", ConsoleColor.Blue);
             Write(current_game_Room.label, ConsoleColor.White);
             Write(" █████████▓▒\n", ConsoleColor.Blue);
+        }
+        else
+        {
+            bFastMode = true;
         }
 
         Thread.Sleep(500);
@@ -39,6 +45,7 @@ public partial class TextAdventureGame
             }
         }
 
+        bFastMode = Old_fast;
         Console.WriteLine();
     }
 
@@ -48,7 +55,13 @@ public partial class TextAdventureGame
         {
             Write("\n --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();
+            EnterToContinue();
+            Console.Clear();
             DisplayHelpBox();
+            Write("\n", ConsoleColor.Yellow);
+            EnterToContinue();
+            Write("\n", ConsoleColor.Yellow);
+            Console.Clear();
         }
 
         int version = 1;
