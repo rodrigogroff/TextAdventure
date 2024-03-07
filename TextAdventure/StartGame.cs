@@ -30,93 +30,96 @@ public partial class TextAdventureGame
 
                     case 2:
                         DisplayStartScreen();
-                        Console.WriteLine();
-                        Write(" [Games available:]\n", ConsoleColor.Yellow);
-                        Console.WriteLine();
-                        string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
 
-                        for (int i = 0; i < files.Length; i++)
+                        while (true)
                         {
-                            Write(" " + (i + 1) + " - ", ConsoleColor.DarkGray);
-                            Write(Path.GetFileNameWithoutExtension(files[i]).Replace("_", " ").Replace(".game", "") + "\n", ConsoleColor.White);
-                        }
-                        Console.WriteLine();
-                        Write(" [Select your game:] -- use ", ConsoleColor.DarkGray);
-                        Write(" /q ", ConsoleColor.White);
-                        Write(" to quit, \n", ConsoleColor.DarkGray);
-                        Write(" [> ", ConsoleColor.Green);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        
-                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                        string option = Console.ReadLine().Trim();
-
-                        if (option.EndsWith("/q"))
-                            throw (new Exception("Exit"));
-
-                        if (option.EndsWith("/s"))
-                            bFastMode = true;
-
-                        option = option.Replace("/s", "");
-
-                        if (int.TryParse(option, out int selectedIndex) &&
-                            selectedIndex > 0 && selectedIndex <= files.Length)
-                        {
-                            currentFile = files[selectedIndex - 1];
                             Console.WriteLine();
-                            game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(currentFile));
+                            Write(" [Games available:]\n", ConsoleColor.Yellow);
+                            Console.WriteLine();
+                            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
 
-                            if (game.gameBigTitle.Count == 0)
+                            for (int i = 0; i < files.Length; i++)
                             {
-                                var TitlefromFile = File.ReadAllText(currentFile.Replace(".game.json", ".title.txt"));
-                                foreach (var item in TitlefromFile.Split('\n'))
-                                    game.gameBigTitle.Add(item);
+                                Write(" " + (i + 1) + " - ", ConsoleColor.DarkGray);
+                                Write(Path.GetFileNameWithoutExtension(files[i]).Replace("_", " ").Replace(".game", "") + "\n", ConsoleColor.White);
+                            }
+                            Console.WriteLine();
+                            Write(" [Select your game:] -- use ", ConsoleColor.DarkGray);
+                            Write(" /s ", ConsoleColor.White);
+                            Write(" for faster text, \n", ConsoleColor.DarkGray);
+                            Write(" [> ", ConsoleColor.Green);
+                            Console.ForegroundColor = ConsoleColor.Green;
+
+                            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+                            string option = Console.ReadLine().Trim();
+
+                            if (option.EndsWith("/s"))
+                            {
+                                Write(" [> FASTMODE\n", ConsoleColor.Green);
+                                bFastMode = true;
+                                continue;
                             }
 
-                            // process all stages inventory
-                            foreach (var currentStage in game.stages)
+                            option = option.Replace("/s", "");
+
+                            if (int.TryParse(option, out int selectedIndex) &&
+                                selectedIndex > 0 && selectedIndex <= files.Length)
                             {
-                                if (currentStage.take.Count > 0)
+                                currentFile = files[selectedIndex - 1];
+                                Console.WriteLine();
+                                game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(currentFile));
+
+                                if (game.gameBigTitle.Count == 0)
                                 {
-                                    foreach (var takeItem in currentStage.take)
-                                    {
-                                        var name = takeItem.Split(' ')[0];
-                                        var qtty = Convert.ToInt32(takeItem.Split(' ')[1].Split(':')[0]);
-                                        var g_item = game.itens.FirstOrDefault(y => y.name == name);
-
-                                        game.world_itens.Add(new GameSceneItem
-                                        {
-                                            guid = Guid.NewGuid(),
-                                            scene_id = currentStage.id,
-                                            item = new GameItem
-                                            {
-                                                name = name,
-                                                quantity = qtty,
-                                                persistInventory = g_item.persistInventory == true,
-                                            }
-                                        });
-                                    }
-
-                                    currentStage.take.Clear();
+                                    var TitlefromFile = File.ReadAllText(currentFile.Replace(".game.json", ".title.txt"));
+                                    foreach (var item in TitlefromFile.Split('\n'))
+                                        game.gameBigTitle.Add(item);
                                 }
+
+                                // process all stages inventory
+                                foreach (var currentStage in game.stages)
+                                {
+                                    if (currentStage.take.Count > 0)
+                                    {
+                                        foreach (var takeItem in currentStage.take)
+                                        {
+                                            var name = takeItem.Split(' ')[0];
+                                            var qtty = Convert.ToInt32(takeItem.Split(' ')[1].Split(':')[0]);
+                                            var g_item = game.itens.FirstOrDefault(y => y.name == name);
+
+                                            game.world_itens.Add(new GameSceneItem
+                                            {
+                                                guid = Guid.NewGuid(),
+                                                scene_id = currentStage.id,
+                                                item = new GameItem
+                                                {
+                                                    name = name,
+                                                    quantity = qtty,
+                                                    persistInventory = g_item.persistInventory == true,
+                                                }
+                                            });
+                                        }
+
+                                        currentStage.take.Clear();
+                                    }
+                                }
+
+                                game.hintsMAX = game.hints;
+
+                                game.player.gear = new PlayerGear
+                                {
+                                    body = null,
+                                    feet = null,
+                                    hands = null,
+                                    head = null,
+                                    rings = new List<GameItem>(),
+                                    amulets = new List<GameItem>()
+                                };
+
+                                mode = 3;
+                                break;
                             }
-
-                            game.hintsMAX = game.hints;
-
-                            game.player.gear = new PlayerGear
-                            {
-                                body = null,
-                                feet = null,
-                                hands = null,
-                                head = null,
-                                rings = new List<GameItem>(),
-                                amulets = new List<GameItem>()
-                            };
-
-                            mode = 3;
                         }
-                        else
-                            mode = 1;
-
                         break;
 
                     case 3:

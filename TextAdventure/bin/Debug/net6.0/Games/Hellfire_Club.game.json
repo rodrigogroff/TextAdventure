@@ -1369,16 +1369,18 @@
       "npc": false,
       "label": "Hell - slain demon corpse on the ground",
       "startupProgram": [
-        "/getAE Dexterity 5:/giveA Life -1,/msgR Minor damage from climbing down the rope",
-        "/getAE Dexterity 4:/giveA Life -3,/msgR Light Damage from climbing down the rope",
-        "/getAE Dexterity 3:/giveA Life -6,/msgR Light damage from climbing down the rope",
-        "/getAE Dexterity 2:/giveA Life -15,/msgR Damage from climbing down the rope",
-        "/getAE Dexterity 1:/giveA Life -30,/msgR Extra Damage from climbing down the rope",
+        "/getAE Dexterity 5:/giveA Life -1,/msgR Minor damage occurred while climbing down the rope.",
+        "/getAE Dexterity 4:/giveA Life -3,/msgR Minor damage occurred while climbing down the rope.",
+        "/getAE Dexterity 3:/giveA Life -6,/msgR Light damage occurred while climbing down the rope.",
+        "/getAE Dexterity 2:/giveA Life -15,/msgR Damage occurred while climbing down the rope.",
+        "/getAE Dexterity 1:/giveA Life -30,/msgR Critical damage occurred while climbing down the rope.",
         "/award 9"
       ],
       "text": [
-        "After using the rope, you see a ~demonic~ being rotting away. His head is severed",
-        "from his body and some parts are already filled with worms.",
+        "After using the rope, you notice a demonic being rotting away from a ",
+        "battle that occurred not too long ago.",
+        "",
+        "His head is severed from his body and some parts are already filled with worms.",
         "",
         "The smell is pungent and you feel light headed."
       ],
