@@ -1,6 +1,15 @@
 ﻿
 public partial class TextAdventureGame
 {
+    public bool quote = false;
+    public bool red_quote = false;
+    public bool blue_quote = false;
+
+    public ConsoleColor lastColor = ConsoleColor.Yellow;
+
+    public string itemOriginating = "";
+    public string nextLocation = "";
+
     void PrintGameBig()
     {
         var max_len = 0;
@@ -71,15 +80,6 @@ public partial class TextAdventureGame
         Console.WriteLine();
     }
 
-    public bool quote = false;
-    public bool red_quote = false;
-    public bool blue_quote = false;
-
-    public ConsoleColor lastColor = ConsoleColor.Yellow;
-
-    public string itemOriginating = "";
-    public string nextLocation = "";
-
     void PrintRoomText(string text, ConsoleColor color, int ms)
     {        
         Console.Write(' ');
@@ -92,7 +92,7 @@ public partial class TextAdventureGame
 
         foreach (char c in text)
         {
-            var _timer = 50;
+            var _timer = 35;
 
             if (Console.KeyAvailable)
             {
@@ -104,7 +104,7 @@ public partial class TextAdventureGame
             if (!bFastMode)
                 if (c == ' ')
                     if (_timer > 0)
-                        Thread.Sleep(100);
+                        Thread.Sleep(120);
 
             if (c == '\"')
             {
