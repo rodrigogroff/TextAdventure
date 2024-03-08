@@ -51,7 +51,7 @@ public partial class TextAdventureGame
                             Write(" [Select your game:] -- use the ", ConsoleColor.DarkGray);
                             Write("space key ", ConsoleColor.White);
                             Write("to speed up text, or ", ConsoleColor.DarkGray);
-                            Write("/s ", ConsoleColor.White);
+                            Write("escape key ", ConsoleColor.White);
                             Write("for instant text \n", ConsoleColor.DarkGray);
                             Write(" [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;

@@ -160,7 +160,8 @@ public partial class TextAdventureGame
                 {
                     if (bAutomap && !bAlreadyMapped)
                     {
-                        MapRoom();
+                        if (!string.IsNullOrEmpty(current_game_Room.map))
+                            MapRoom();
                         bAlreadyMapped = true;
                         Console.WriteLine();
                     }
