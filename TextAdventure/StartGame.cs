@@ -2,29 +2,13 @@
 
 public partial class TextAdventureGame
 {
-    private static TextAdventureGame textAdventureGame_obj;
+    string engineVersion = "0.1.4.2";
 
     GameMonitoring monitor;
     GameMonitor gameMonitor;
     GameMonitorPlays gamePlay;
 
     public string monitor_file = "monitor.txt";
-
-    static void MonitorApplication()
-    {
-        while (true)
-        {
-            // Check if the console window is still open
-            if (Console.WindowHeight == 0 && Console.WindowWidth == 0)
-            {
-                // If the console window is closed, set the flag to indicate that the application is no longer running
-                textAdventureGame_obj.FlushMonitorFile();
-            }
-
-            // Sleep for a short interval before checking again
-            Thread.Sleep(100);
-        }
-    }
 
     public void FlushMonitorFile()
     {
@@ -55,7 +39,6 @@ public partial class TextAdventureGame
         if (timeSpan.Seconds > 0)
             formattedTime += $"{timeSpan.Seconds} seconds";
 
-        // Remove the trailing comma and space if they exist
         if (!string.IsNullOrEmpty(formattedTime))
             formattedTime = formattedTime.TrimEnd(',', ' ');
 
@@ -64,16 +47,15 @@ public partial class TextAdventureGame
 
     public void StartGame()
     {
-        textAdventureGame_obj = this;
-
-        // Start a separate thread to monitor if the application is still running
-        Thread monitoringThread = new Thread(MonitorApplication);
-        monitoringThread.Start();
-
         if (File.Exists(monitor_file))
             monitor = JsonConvert.DeserializeObject<GameMonitoring>(File.ReadAllText(monitor_file));
         else
-            monitor = new GameMonitoring();
+        {
+            monitor = new GameMonitoring
+            {
+                games = new List<GameMonitor>()
+            };
+        }
 
         try
         {
@@ -83,7 +65,7 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Write(" DOS/4GW Professional Protected Mode Run-Time Versiom 2.1c\n", ConsoleColor.White);
             Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
-            Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.4\n", ConsoleColor.Red);
+            Write(" Engine Version: ", ConsoleColor.DarkGray); Write(engineVersion + "\n", ConsoleColor.Red);
             Console.WriteLine();
             Write(" -- Please use ALT+ENTER for fullscreen [", ConsoleColor.DarkGray);
             Write("recommended", ConsoleColor.Green);
@@ -135,8 +117,24 @@ public partial class TextAdventureGame
                                     }
                                 }
 
+                                string awards = "";
+
+                                if (File.Exists(files[i] + ".save"))
+                                {
+                                    var savegame = JsonConvert.DeserializeObject<SaveGameFile>(File.ReadAllText(files[i] + ".save"));
+                                    var _gam = JsonConvert.DeserializeObject<Game>(File.ReadAllText(files[i]));
+
+                                    awards = savegame.player.awards.Count() + "/" + _gam.awards.Count();
+                                }
+
                                 Write(" " + (i + 1) + " - ", ConsoleColor.DarkGray);
                                 Write(g_name.PadRight(35, ' '), ConsoleColor.White);
+
+                                if (awards != "")
+                                {
+                                    Write(" -- awards: ", ConsoleColor.DarkGray);
+                                    Write(awards + " ", ConsoleColor.Green);
+                                }
 
                                 if (seconds > 0)
                                 {
@@ -174,6 +172,7 @@ public partial class TextAdventureGame
                             {
                                 currentFile = files[selectedIndex - 1];
                                 Console.WriteLine();
+
                                 game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(currentFile));
 
                                 if (monitor.games == null)
