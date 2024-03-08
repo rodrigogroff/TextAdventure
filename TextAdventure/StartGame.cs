@@ -31,13 +31,13 @@ public partial class TextAdventureGame
         string formattedTime = "";
 
         if (timeSpan.Days > 0)
-            formattedTime += $"{timeSpan.Days} days, ";
+            formattedTime += $"{timeSpan.Days}D,";
         if (timeSpan.Hours > 0)
-            formattedTime += $"{timeSpan.Hours} hours, ";
+            formattedTime += $"{timeSpan.Hours}h,";
         if (timeSpan.Minutes > 0)
-            formattedTime += $"{timeSpan.Minutes} minutes, ";
+            formattedTime += $"{timeSpan.Minutes}m,";
         if (timeSpan.Seconds > 0)
-            formattedTime += $"{timeSpan.Seconds} seconds";
+            formattedTime += $"{timeSpan.Seconds}s";
 
         if (!string.IsNullOrEmpty(formattedTime))
             formattedTime = formattedTime.TrimEnd(',', ' ');
