@@ -1,13 +1,14 @@
 ﻿
 public partial class TextAdventureGame
 {
-    public bool quote = false;
-    public bool red_quote = false;
-    public bool blue_quote = false;
+    public 
+        bool 
+            quote = false,
+            red_quote = false,
+            blue_quote = false;
 
     public ConsoleColor lastColor = ConsoleColor.Yellow;
 
-    public string itemOriginating = "";
     public string nextLocation = "";
 
     void PrintGameBig()
@@ -66,17 +67,12 @@ public partial class TextAdventureGame
             Console.Write(c);
 
             if (!bFastMode)
-            {
                 if (";,-.!?—'\"".Contains(c))
-                {
                     Thread.Sleep(300);
-                }
                 else
-                {
                     Thread.Sleep(ms);
-                }
-            }
         }
+
         Console.WriteLine();
     }
 

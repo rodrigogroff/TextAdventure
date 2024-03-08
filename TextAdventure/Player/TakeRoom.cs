@@ -1,5 +1,4 @@
-﻿using System.Collections;
-
+﻿
 public partial class TextAdventureGame
 {
     void TakeRoom()
@@ -61,6 +60,7 @@ public partial class TextAdventureGame
                 Console.WriteLine();
                 continue;
             }
+
             var g_item_take = stage_inventory[Convert.ToInt32(option) - 1];
             var guid_item_world = guid_inventory[Convert.ToInt32(option) - 1];
             var gg_item = game.itens.FirstOrDefault(y => y.name == g_item_take.name);
@@ -81,7 +81,6 @@ public partial class TextAdventureGame
 
             if (!string.IsNullOrEmpty(g_item_take.formula))
             {
-                itemOriginating = gg_item.name;
                 ProcessCommand(g_item_take.formula, "take");
             }
 
