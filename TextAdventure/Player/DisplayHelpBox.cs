@@ -91,9 +91,15 @@ public partial class TextAdventureGame
         lines.Add(" game quests list".PadRight(w2, ' '));
 
         colors.Add(ConsoleColor.Green);
-        lines.Add(" ".PadRight(w1, ' '));
+        lines.Add(" /automap".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" \n");
+        lines.Add(" force /map in the first command ");
+
+        colors.Add(ConsoleColor.White);
+        if (bAutomap)
+            lines.Add("[ON]\n");
+        else
+            lines.Add("[OFF]\n");
 
         colors.Add(ConsoleColor.Green);
         lines.Add(" /award".PadRight(w1, ' '));
@@ -103,8 +109,7 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.Green);
         lines.Add(" ".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" \n");
-        colors.Add(ConsoleColor.Green);
+        lines.Add("  \n");
                         
         Print(lines, colors, 0);
     }

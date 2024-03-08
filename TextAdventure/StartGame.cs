@@ -14,7 +14,9 @@ public partial class TextAdventureGame
             Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
             Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.3\n", ConsoleColor.Red);
             Console.WriteLine();
-            Write(" -- Use ALT+ENTER for fullscreen\n", ConsoleColor.Yellow);
+            Write(" -- Please use ALT+ENTER for fullscreen [", ConsoleColor.DarkGray);
+            Write("recommended", ConsoleColor.Green);
+            Write("]\n", ConsoleColor.DarkGray);
             Console.WriteLine();
             Console.WriteLine();
             Thread.Sleep(2000);            
@@ -46,27 +48,24 @@ public partial class TextAdventureGame
                             Console.WriteLine();
                             Write(" [Select your game:] -- use ", ConsoleColor.DarkGray);
                             Write("/s ", ConsoleColor.White);
-                            Write(" for faster text, \n", ConsoleColor.DarkGray);
+                            Write("for faster text]\n", ConsoleColor.DarkGray);
                             Write(" [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;
                             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                             
                             Console.CursorVisible = true;
-                            string option = Console.ReadLine().Trim();
+                            var option = Console.ReadLine().Trim().ToLower().Split(' ');
 
-                            if (option.EndsWith("/s"))
+                            if (option.Contains("/s"))
                             {
                                 bFastMode = true;
                                 Write(" [> FASTMODE [", ConsoleColor.DarkGray);
                                 Write("ON", ConsoleColor.Green);
                                 Write("]\n", ConsoleColor.DarkGray);
-                                EnterToContinue();
-                                continue;
+                                EnterToContinue();                                
                             }
 
-                            option = option.Replace("/s", "");
-
-                            if (int.TryParse(option, out int selectedIndex) &&
+                            if (int.TryParse(option[0], out int selectedIndex) &&
                                 selectedIndex > 0 && selectedIndex <= files.Length)
                             {
                                 currentFile = files[selectedIndex - 1];
@@ -129,13 +128,17 @@ public partial class TextAdventureGame
                                 mode = 3;
                                 break;
                             }
+                            else
+                                continue;
                         }
                         break;
 
                     case 3:
                         DisplayStartScreen();
                         Console.WriteLine();
-                        Write(" [" + game.gameName + "]\n", ConsoleColor.Yellow);
+                        Write(" Game [", ConsoleColor.Yellow);
+                        Write( game.gameName, ConsoleColor.White);
+                        Write("]\n", ConsoleColor.Yellow);
                         Console.WriteLine();
                         Write(" 1 - ", ConsoleColor.DarkGray);
                         Write("Easy       ", ConsoleColor.Yellow);
@@ -147,7 +150,7 @@ public partial class TextAdventureGame
                         Write("Old School ", ConsoleColor.Red);
                         Write("-- Alone in the dark\n", ConsoleColor.DarkGray);
                         Console.WriteLine();
-                        Write(" [Select your difficuly:]\n", ConsoleColor.DarkGray);
+                        Write(" [Select your game difficulty:]\n", ConsoleColor.DarkGray);
                         Write(" [> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;
@@ -164,7 +167,7 @@ public partial class TextAdventureGame
                             bHintsDisabled = false;
                         }
                         else if (diff == "3")
-                        {                            
+                        {
                             bHintsDisabled = true;
                             bFastMode = true;
                         }
@@ -172,12 +175,15 @@ public partial class TextAdventureGame
                         {
                             bHardcore = true;
                             bFastMode = true;
-                            
+
                             Write("\n  --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
                             Thread.Sleep(2000);
                         }
                         else
+                        {
                             bUnlimitedHints = true;
+                            bAutomap = false;
+                        }
 
                         mode = 4;
                         break;
@@ -195,43 +201,50 @@ public partial class TextAdventureGame
 
                         if (File.Exists(currentFile + ".save"))
                         {
-                            Console.WriteLine();
-                            Write(" 1 - ", ConsoleColor.DarkGray);
-                            Write("Continue from saved game\n", ConsoleColor.White);
-                            Write(" 2 - ", ConsoleColor.DarkGray);
-                            Write("New game (lose all awards!)\n", ConsoleColor.DarkGray);
-                            Console.WriteLine();
-                            Write(" [> ", ConsoleColor.Green);
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.CursorVisible = true;
-                            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                            option_load = Console.ReadLine().Trim();
-                            if (option_load == "1")
+                            while (true)
                             {
-                                var savegame = JsonConvert.DeserializeObject<SaveGameFile>(File.ReadAllText(currentFile + ".save"));
-                                game.player = savegame.player;
-                                game.world = savegame.world;
-                                game.world_itens = savegame.world_itens;
-                                game.currentRoom = savegame.currentRoom;
-                                game.logs = savegame.logs;
-                                game.hints = savegame.hints;
-                                Thread.Sleep(1000);
+                                Console.WriteLine();
+                                Write(" 1 - ", ConsoleColor.DarkGray);
+                                Write("Continue from saved game\n", ConsoleColor.White);
+                                Write(" 2 - ", ConsoleColor.DarkGray);
+                                Write("New game (lose all awards!)\n", ConsoleColor.DarkGray);
+                                Console.WriteLine();
+                                Write(" [> ", ConsoleColor.Green);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.CursorVisible = true;
+                                while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+                                option_load = Console.ReadLine().Trim();
+
+                                if (option_load == "")
+                                {
+                                    option_load = "1";
+                                    Write(" [Continue]\n", ConsoleColor.Yellow);
+                                }
+
+                                if (option_load == "1")
+                                {
+                                    var savegame = JsonConvert.DeserializeObject<SaveGameFile>(File.ReadAllText(currentFile + ".save"));
+                                    game.player = savegame.player;
+                                    game.world = savegame.world;
+                                    game.world_itens = savegame.world_itens;
+                                    game.currentRoom = savegame.currentRoom;
+                                    game.logs = savegame.logs;
+                                    game.hints = savegame.hints;
+                                    Thread.Sleep(1000);
+                                    break;
+                                }
+                                else
+                                {
+                                    File.Delete(currentFile + ".save");
+                                    break;
+                                }
                             }
-                            else
-                                File.Delete(currentFile + ".save");
-                        }
-                        else
-                        {
-                            DisplayTips();
                         }
 
                         Console.WriteLine();
-
                         EnterToContinue();
-
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
-
                         Console.Clear();
                         ProcessRoom(game.currentRoom);
                         break;

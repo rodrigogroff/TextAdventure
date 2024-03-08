@@ -7,12 +7,17 @@ public partial class TextAdventureGame
         {
             case "/help":
                 DisplayHelpBox();
-                DisplayTips();
                 Console.CursorVisible = true;
                 break;
 
             case "/give":
                 GiveRoom();
+                break;
+
+            case "/cls":
+                Console.Clear();
+                Console.WriteLine();
+                DisplayCurrentRoomText();
                 break;
 
             case "/repeat":
@@ -43,24 +48,9 @@ public partial class TextAdventureGame
                 Console.WriteLine();
                 break;
 
-            case "/cls":
-                Console.Clear();
-                Console.WriteLine();
-                DisplayCurrentRoomText();
-                break;
-
             case "/save":
                 SaveGame();
                 break;
-
-                /*
-            case "/quicksave":
-                bQuickSave = !bQuickSave;
-                Console.WriteLine();
-                Print("Quicksave: " + (bQuickSave ? "[ON]" : "[OFF]"), ConsoleColor.White, 15);
-                Console.WriteLine();
-                break;
-                */
 
             case "/map":
                 MapRoom();
@@ -84,6 +74,13 @@ public partial class TextAdventureGame
 
             case "/bag":
                 BagRoom();
+                break;
+
+            case "/automap":
+                bAutomap = !bAutomap;
+                Console.WriteLine();
+                Print("Automap: " + (bAutomap ? "[ON]" : "[OFF]"), ConsoleColor.White, 15);
+                Console.WriteLine();
                 break;
 
             case "/log":
@@ -130,6 +127,7 @@ public partial class TextAdventureGame
                                 Write(game.player.name + "\n", ConsoleColor.Yellow);
                                 Console.WriteLine();
                                 EnterToContinue();
+                                
                                 ProcessRoom(current_game_Room.nextStep[0]);
                             }
                         }

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Immutable;
 
 public partial class TextAdventureGame
 {
@@ -13,6 +12,7 @@ public partial class TextAdventureGame
     bool bAbortOp = false;
     bool bUnlimitedHints = false;
     bool bHintsDisabled = false;
+    bool bAutomap = false;
     bool bHardcore = false;
 
     string gameDifficulty = "";

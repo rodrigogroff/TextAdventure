@@ -11,7 +11,13 @@ public partial class TextAdventureGame
         {
             Write(" ▒▓██ ", ConsoleColor.Blue);
             Write(current_game_Room.label, ConsoleColor.White);
-            Write(" █████████▓▒\n", ConsoleColor.Blue);
+            Write(" █████████▓▒ ", ConsoleColor.Blue);
+
+            if (bAutomap)
+            {
+                Write(" -- Automap: ", ConsoleColor.DarkGray);
+                Write("ON", ConsoleColor.White);
+            }
         }
         else
         {
@@ -106,8 +112,17 @@ public partial class TextAdventureGame
 
                 DisplayCurrentRoomText();
 
+                bool bAlreadyMapped = false;
+
                 while (true)
                 {
+                    if (bAutomap && !bAlreadyMapped)
+                    {
+                        MapRoom();
+                        bAlreadyMapped = true;
+                        Console.WriteLine();
+                    }
+
                     DisplayPlayerInputBox();
                     first = false;
                     Console.ForegroundColor = ConsoleColor.Green;

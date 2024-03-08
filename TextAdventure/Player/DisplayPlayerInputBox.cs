@@ -89,7 +89,7 @@ public partial class TextAdventureGame
             }
                         
             Write(" [Type ", ConsoleColor.DarkGray);
-            Write("/help", ConsoleColor.White);
+            Write("/help", ConsoleColor.Green);
             Write(" to see a list of commands]\n", ConsoleColor.DarkGray);
             Write(" [Type ", ConsoleColor.DarkGray);
             Write("/map", ConsoleColor.Green);

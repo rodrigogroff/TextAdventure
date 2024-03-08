@@ -9,12 +9,14 @@ public partial class TextAdventureGame
             Thread.Sleep(50);
             if (item.Length > max_len)
                 max_len = item.Length;
-            Print(item, ConsoleColor.DarkRed);
+            Print(" " + item, ConsoleColor.DarkRed);
         }
-        Write("               [", ConsoleColor.Gray);
+        Console.WriteLine();
+        Write(" [", ConsoleColor.Gray);
         Write(game.gameName, ConsoleColor.Yellow);
         Write("] - ", ConsoleColor.Gray);
         Write(game.gameVersion + "\n", ConsoleColor.DarkGray);
+        Console.WriteLine();
     }
 
     void Write(string text, ConsoleColor color)

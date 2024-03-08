@@ -3,7 +3,7 @@
 public partial class TextAdventureGame
 {
     void MapRoom()
-    {
+    {        
         if (string.IsNullOrEmpty(current_game_Room.map))
         {
             Console.WriteLine();
@@ -25,7 +25,7 @@ public partial class TextAdventureGame
                     var letter = item.Split('|')[0];
                     var letter_id = item.Split('|')[1];
 
-                    if (letter_id == current_game_Room.id)
+                    if (letter_id.Split(',').Contains(current_game_Room.id))
                     {
                         cur_letter = letter;
                         break;
@@ -47,7 +47,6 @@ public partial class TextAdventureGame
                 int idx_line = 0;
                 foreach (var item in current_map.graphics)
                 {
-
                     Write(" ", ConsoleColor.DarkGray);
                     foreach (var c in item)
                     {
@@ -104,7 +103,7 @@ public partial class TextAdventureGame
                             lines.Add("[NPC]");
                         }
 
-                    if (letter_id == current_game_Room.id)
+                    if (letter_id.Split(',').Contains(current_game_Room.id))
                     {
                         colors.Add(ConsoleColor.Blue);
                         lines.Add("[Player]");
@@ -128,17 +127,18 @@ public partial class TextAdventureGame
                     foreach (var item in current_map.places)
                     {
                         var letter = item.Split('|')[0];
-                        var letter_id = item.Split('|')[1];
+                        var letter_id = item.Split('|')[1].Split(',');
                         var letter_dest = item.Split('|')[2];
                         var letter_name = item.Split('|')[3];
 
-                        if (letter_id == current_game_Room.id)
+                        if (letter_id.Contains(current_game_Room.id))
                         {
                             foreach (var it in letter_dest.Split(','))
                             {
                                 if (option == it.ToLower())
                                 {
                                     nextLocation = hashLetterId[option] as string;
+                                    nextLocation = nextLocation.Split(',')[0];
 
                                     Console.WriteLine();
 
@@ -163,8 +163,8 @@ public partial class TextAdventureGame
                                         Print("You walk towards your destination...", ConsoleColor.DarkYellow);
                                         Console.WriteLine();
 
-                                        EnterToContinue();
-                                        ProcessRoom(hashLetterId[it.ToLower()] as string);
+                                        EnterToContinue();                                                                                
+                                        ProcessRoom((hashLetterId[it.ToLower()] as string).Split(',')[0]);
                                     }
                                                                        
                                     this.bAbortOp = false;

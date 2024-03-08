@@ -60,6 +60,10 @@
     {
       "id": "11",
       "text": "Being crushed by a troll"
+    },
+    {
+      "id": "12",
+      "text": "Make the skeleton dance!"
     }
   ],
   "quests": [
@@ -165,7 +169,7 @@
       "places": [
         "E|60|A|Waterfall entrance",
         "A|60_1|E,B|Cave start",
-        "B|60_2|A,C|Skeleton",
+        "B|60_2,60_22|A,C|Skeleton",
         "C|60_3|B|Fire remains"
       ],
       "graphics": [
@@ -182,7 +186,7 @@
       "name": "map_watercave_002",
       "places": [
         "D|60_4|C|Troll Lair",
-        "B|60_2|A,C|Skeleton",
+        "B|60_2,60_22|A,C|Skeleton",
         "C|60_3|B,D|Fire remains"
       ],
       "graphics": [
@@ -203,7 +207,7 @@
       "places": [
         "F|60_5|F|Goblin Temple",
         "D|60_4_1|C|Troll Lair",
-        "B|60_2|A,C|Skeleton",
+        "B|60_2,60_22|A,C|Skeleton",
         "C|60_3|B,D|Fire remains"
       ],
       "graphics": [
@@ -1379,28 +1383,30 @@
         "You look closely to the skeleton. There is 5 coins in the ground.",
         "His eyes spark in the dark from his sockets.",
         "The skeleton comes to life.",
-        "/goto 60_2:2"
+        "/goto 60_22:1"
       ],
       "program": [],
       "hint": [
         "Old spirits tend to be mean when people touches their things."
       ],
       "give": [
-        "Gold 1|/msgRnd The troll is a nice fella, just don't go there empty handed.%There is a secret passage to the goblin temple.%Last time I was alive, PC games we're only text. Boring!%Go away now.%The first rule of Hellfire Club is... oh, wait.%Where are you Mathilda, my love, my everything!%I killed a demon some years ago. My sword was stuck in his chest! Probably a rust thing now!%Why aren't you working now?"
+        "Gold 1|/msgRnd A voice tells you: \"The troll is a nice fella, just don't go there empty handed.\"%A voice tells you: \"There is a secret passage to the goblin temple.\"%A voice tells you: \"Last time I was alive, PC games we're only text. Boring!\"%A voice tells you: \"Go away now.\"%A voice tells you: \"The first rule of Hellfire Club is... oh, wait.\"%A voice tells you: \"Where are you Mathilda, my love, my everything!\"%A voice tells you: \"I killed a demon some years ago. My sword was stuck in his chest! Probably a rust thing now!\"%A voice tells you: \"Why aren't you working now?\""
       ],
       "take": [
         "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1"
       ]
     },
     {
-      "id": "60_2",
-      "version": 2,
+      "id": "60_22",
+      "version": 1,
       "map": "map_watercave_001",
       "option": "",
       "npc": true,
       "label": "Hell - waterfall [Alive Skeleton]",
       "text": [
-        ""
+        "The skeleton is jumping on one leg, with his yellow shining magic eyes.",
+        "",
+        "He says: \"I used to be a good soldier. Now I can't even stand upstraight.\""
       ],
       "textOptional": [],
       "nextStep": [],
@@ -1412,10 +1418,10 @@
         "Old spirits tend to be mean when people touches their things."
       ],
       "give": [
-        "Gold 5|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse!\";/giveI Apple 1;"
+        "Bone 1|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse!\";/giveI Apple 1;/msgO \"Oh, look! Now I can dance!\";/award 12"
       ],
       "take": [
-        "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1"
+        "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1",
       ]
     },
     {
@@ -1473,6 +1479,5 @@
       "give": [],
       "take": []
     }
-
   ],
 }
