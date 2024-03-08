@@ -313,7 +313,6 @@ public partial class TextAdventureGame
                         else
                         {
                             bUnlimitedHints = true;
-                            bAutomap = false;
                         }
 
                         mode = 4;

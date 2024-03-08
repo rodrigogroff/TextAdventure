@@ -98,7 +98,7 @@
     {
       "name": "map_000",
       "places": [
-        "X|13||The gatekeeper",
+        "X|12||The gatekeeper",
       ],
       "graphics": [
         "▒▓██ The wall █▓▒",
@@ -116,7 +116,7 @@
     {
       "name": "map_001",
       "places": [
-        "X|13||The gatekeeper",
+        "X|12||The gatekeeper",
         "A|20|B|Gate",
         "B|30|A,C|Death Tree",
         "C|40|B,H|River crossing bridge (left)",
@@ -1427,11 +1427,16 @@
       "npc": false,
       "label": "Hell - waterfall [Fire remains]",
       "text": [
-        "Fire remains text."
+        "You see an almost extinguished campfire with flies buzzing around a dead rabbit.",
+        "",
+        "From the looks of it, the people doing the cooking fled in a hurry."
       ],
       "textOptional": [],
       "nextStep": [],
-      "look": [],
+      "look": [
+        "The rabbit head is partially cooked.",
+        "/giveI_CTitle Human_Thief Apple 1|You find a good apple among the trash."
+      ],
       "program": [],
       "hint": [],
       "give": [],

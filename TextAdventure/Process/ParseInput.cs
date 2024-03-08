@@ -88,6 +88,10 @@ public partial class TextAdventureGame
                 break;
 
             case "/die":
+                ProcessRoom("0");
+                break;
+
+            case "/quit":
             case "/q":
                 StartGame();
                 break;

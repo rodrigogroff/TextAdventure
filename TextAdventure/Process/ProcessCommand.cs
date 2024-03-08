@@ -82,7 +82,7 @@ public partial class TextAdventureGame
                             game.player.inventory.Remove(_item);
                     }
 
-                    ProcessCommand(subC_cmd_ok.Replace("?", ";"), from);                    
+                    ProcessCommand(subC_cmd_ok.Replace("?", ";"), from);
                 }
                 else
                 {
@@ -108,7 +108,7 @@ public partial class TextAdventureGame
                 {
                     if (attr.quantity == w_attr_value)
                     {
-                        var cmd_to_do = cmd.Split(':')[1].Replace(",",";");
+                        var cmd_to_do = cmd.Split(':')[1].Replace(",", ";");
                         ProcessCommand(cmd_to_do, "proc");
                     }
                 }
@@ -140,7 +140,7 @@ public partial class TextAdventureGame
                         ProcessCommand(cmd_to_do, "formula");
                     }
                 }
-            }            
+            }
             else if (cmd.StartsWith("/award"))
             {
                 var aw = game.awards.FirstOrDefault(y => y.id == cmd.Split(' ')[1]);
@@ -156,9 +156,9 @@ public partial class TextAdventureGame
                             done = true
                         });
 
-                        Console.WriteLine();                        
+                        Console.WriteLine();
                         Write(" (+) New Award: ", ConsoleColor.Green);
-                        Write(aw.text + "\n", ConsoleColor.White);                        
+                        Write(aw.text + "\n", ConsoleColor.White);
                         game.logs.Add(" (+) New Award: " + aw.text);
                         Console.WriteLine();
                     }
@@ -207,7 +207,7 @@ public partial class TextAdventureGame
             {
                 var quest_id = cmd.Split(' ')[1];
 
-                if (!game.player.quests.Any( y=> y.id == quest_id))
+                if (!game.player.quests.Any(y => y.id == quest_id))
                 {
                     var quest = game.quests.FirstOrDefault(y => y.id == quest_id);
 
@@ -220,7 +220,7 @@ public partial class TextAdventureGame
                         active = true,
                         completed = false,
                         description = quest.description,
-                        dt_start = DateTime.Now,                        
+                        dt_start = DateTime.Now,
                     });
 
                     Console.WriteLine();
@@ -250,53 +250,68 @@ public partial class TextAdventureGame
                     formula = originalTrait.formula,
                     trigger = originalTrait.trigger
                 });
+            }            
+            else if (cmd.StartsWith("/giveI_CTitle"))
+            {
+                var _cmd = cmd.Split('|')[0];
+                var _msg = cmd.Split('|')[1];
+
+                PrintRoomText(_msg.Trim(), ConsoleColor.DarkYellow, 15);
+                Thread.Sleep(400);
+
+                var _title = _cmd.Split(' ')[1];
+                var item = _cmd.Split(' ')[2];
+                var qqty = Convert.ToInt32(_cmd.Split(' ')[3]);
+
+                if (game.player.title == _title.Replace("_", " "))
+                {
+                    foreach (var tr in game.player.traits)
+                    {
+                        int idx_trig = 0;
+
+                        foreach (var trig in tr.trigger)
+                        {
+                            if (trig == item)
+                            {
+                                Write(" (+) Triggered ", ConsoleColor.Blue);
+                                Write(tr.name + "\n", ConsoleColor.White);
+
+                                var vr_to_add = 0;
+                                var form = tr.formula[idx_trig];
+
+                                if (form.StartsWith("/randNeg"))
+                                {
+                                    var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
+                                    vr_to_add = -(((qqty * range) / 100) + 1);
+                                    Write("    (-) Lost ", ConsoleColor.Red);
+                                    Write(vr_to_add.ToString().Substring(1), ConsoleColor.White);
+                                    Write("    " + item + "\n", ConsoleColor.Yellow);
+                                    qqty += vr_to_add;
+                                }
+                                else if (form.StartsWith("/rand"))
+                                {
+                                    var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
+                                    vr_to_add = (qqty * range) / 100;
+                                    Write("    (+) Found ", ConsoleColor.Blue);
+                                    Write(vr_to_add.ToString(), ConsoleColor.White);
+                                    Write("    " + item + "\n", ConsoleColor.Yellow);
+                                    qqty += vr_to_add;
+                                }
+                            }
+
+                            idx_trig++;
+                        }
+                    }
+                    UpdateInventory(new GameItem
+                    {
+                        name = item,
+                        quantity = Convert.ToInt32(qqty)
+                    });
+                }
             }
             else if (cmd.StartsWith("/giveI"))
             {
-                var item = cmd.Split(' ')[1];
-                var qqty = Convert.ToInt32(cmd.Split(' ')[2]);
-                foreach (var tr in game.player.traits)
-                {
-                    int idx_trig = 0;
 
-                    foreach (var trig in tr.trigger)
-                    {
-                        if (trig == item)
-                        {
-                            Write(" (+) Triggered ", ConsoleColor.Blue);
-                            Write(tr.name + "\n", ConsoleColor.White);
-
-                            var vr_to_add = 0;
-                            var form = tr.formula[idx_trig];
-
-                            if (form.StartsWith("/randNeg"))
-                            {
-                                var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
-                                vr_to_add = -(((qqty * range) / 100) + 1);
-                                Write("    (-) Lost ", ConsoleColor.Red);
-                                Write(vr_to_add.ToString().Substring(1), ConsoleColor.White);
-                                Write("    " + item +"\n", ConsoleColor.Yellow);
-                                qqty += vr_to_add;
-                            }
-                            else if (form.StartsWith("/rand"))
-                            {
-                                var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
-                                vr_to_add = (qqty * range) / 100;
-                                Write("    (+) Found ", ConsoleColor.Blue);
-                                Write(vr_to_add.ToString(), ConsoleColor.White);
-                                Write("    " + item + "\n", ConsoleColor.Yellow);
-                                qqty += vr_to_add;
-                            }                            
-                        }
-
-                        idx_trig++;
-                    }
-                }
-                UpdateInventory(new GameItem
-                {
-                    name = item,
-                    quantity = Convert.ToInt32(qqty)
-                });
             }
             else if (cmd.StartsWith("/title"))
             {
@@ -308,22 +323,22 @@ public partial class TextAdventureGame
             }
             else if (cmd.StartsWith("/msgRnd"))
             {
-                var msg = cmd.Substring(7).Split ('%');
+                var msg = cmd.Substring(7).Split('%');
                 var rnd_item = msg[GetRandomNumber(1, msg.Count()) - 1];
                 Console.WriteLine();
-                PrintRoomText( rnd_item.Trim(), ConsoleColor.DarkYellow, 15);
+                PrintRoomText(rnd_item.Trim(), ConsoleColor.DarkYellow, 15);
                 Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/msgO"))
             {
                 var msg = cmd.Substring(5).Trim();
-                PrintRoomText( msg.Trim(), ConsoleColor.Yellow, 15);
+                PrintRoomText(msg.Trim(), ConsoleColor.Yellow, 15);
                 Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/msgN"))
             {
                 var msg = cmd.Substring(5).Trim();
-                PrintRoomText( msg.Trim(), ConsoleColor.DarkYellow, 15);
+                PrintRoomText(msg.Trim(), ConsoleColor.DarkYellow, 15);
                 Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/msgR"))
@@ -335,12 +350,12 @@ public partial class TextAdventureGame
             else if (cmd.StartsWith("/gotoRnd"))
             {
                 var stage_rooms = cmd.Split(" ")[1].Split(',');
-                var stage = stage_rooms [ GetRandomNumber(1, stage_rooms.Count()) -1 ];
+                var stage = stage_rooms[GetRandomNumber(1, stage_rooms.Count()) - 1];
                 if (!string.IsNullOrEmpty(game.player.name))
                 {
                     Console.WriteLine();
                     EnterToContinue();
-                }                    
+                }
                 ProcessRoom(stage);
             }
             else if (cmd.StartsWith("/goto"))

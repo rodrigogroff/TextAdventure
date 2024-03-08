@@ -107,9 +107,9 @@ public partial class TextAdventureGame
         lines.Add(" game goals currently achieved".PadRight(w2, ' '));
 
         colors.Add(ConsoleColor.Green);
-        lines.Add(" ".PadRight(w1, ' '));
+        lines.Add(" /quit".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add("  \n");
+        lines.Add(" back to game selection\n");
                         
         Print(lines, colors, 0);
     }

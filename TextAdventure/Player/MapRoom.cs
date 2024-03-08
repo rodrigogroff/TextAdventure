@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel.Design;
 
 public partial class TextAdventureGame
 {
@@ -91,9 +92,19 @@ public partial class TextAdventureGame
 
                     List<string> lines = new List<string>();
                     List<ConsoleColor> colors = new List<ConsoleColor>();
-                    colors.Add(ConsoleColor.DarkGray);
+
+                    if (letter == cur_letter || cur_letter == "")
+                        colors.Add(ConsoleColor.Blue);                    
+                    else
+                        colors.Add(ConsoleColor.DarkGray);
+
                     lines.Add(" " + letter.PadRight(5, ' '));
-                    colors.Add(ConsoleColor.DarkGray);
+
+                    if (letter == cur_letter || cur_letter == "")
+                        colors.Add(ConsoleColor.Blue);
+                    else
+                        colors.Add(ConsoleColor.DarkGray);
+
                     lines.Add(letter_name.PadRight(35, ' '));
 
                     if (c_map_item != null)
@@ -103,7 +114,7 @@ public partial class TextAdventureGame
                             lines.Add("[NPC]");
                         }
 
-                    if (letter_id.Split(',').Contains(current_game_Room.id))
+                    if (letter_id.Split(',').Contains(current_game_Room.id) || cur_letter == "")
                     {
                         colors.Add(ConsoleColor.Blue);
                         lines.Add("[Player]");
