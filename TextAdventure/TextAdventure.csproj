@@ -14,6 +14,11 @@
     <EazfuscatorIntegration>MSBuild</EazfuscatorIntegration>
     <EazfuscatorActiveConfiguration>Release</EazfuscatorActiveConfiguration>
     <EazfuscatorCompatibilityVersion>2023.2</EazfuscatorCompatibilityVersion>
+    <SignAssembly>False</SignAssembly>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Company>BigBoysGames</Company>
+    <Description>Text Adventure
+</Description>
   </PropertyGroup>
 
   <ItemGroup>

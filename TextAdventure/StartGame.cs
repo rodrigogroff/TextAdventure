@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿//https://www.youtube.com/watch?v=NOkBUoP54b8
+
+using Newtonsoft.Json;
 
 public partial class TextAdventureGame
 {
