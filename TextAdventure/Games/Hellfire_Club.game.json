@@ -118,7 +118,7 @@
       "places": [
         "X|13||The gatekeeper",
         "A|20|B|Gate",
-        "B|30|C|Death Tree",
+        "B|30|A,C|Death Tree",
         "C|40|B,H|River crossing bridge (left)",
         "H|42|C,E,D|River crossing bridge (right)",
         "D|50|E,C|Abandoned outpost",
@@ -141,7 +141,7 @@
       "name": "map_002",
       "places": [
         "A|20|B|Gate",
-        "B|30|C|Death Tree",
+        "B|30|A,C|Death Tree",
         "C|40|B,H|River crossing bridge (left)",
         "H|42|C,E,D,F|River crossing bridge (right)",
         "D|50|E,C|Abandoned outpost",
@@ -1418,7 +1418,7 @@
         "Old spirits tend to be mean when people touches their things."
       ],
       "give": [
-        "Bone 1|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse!\";/giveI Apple 1;/msgO \"Oh, look! Now I can dance!\";/award 12"
+        "Bone 1|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse. Take this!\";/giveI Apple 1;/msgO \"Oh, look! Now I can shake it!\";/award 12"
       ],
       "take": [
         "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1",

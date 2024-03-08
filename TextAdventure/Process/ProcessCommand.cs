@@ -304,6 +304,7 @@ public partial class TextAdventureGame
                 game.logs.Add("Player received Title: " + game.player.title);
                 Write(" (+) Acquired Title: ", ConsoleColor.Blue);
                 Write(game.player.title + "\n", ConsoleColor.White);
+                Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/msgRnd"))
             {
@@ -311,21 +312,25 @@ public partial class TextAdventureGame
                 var rnd_item = msg[GetRandomNumber(1, msg.Count()) - 1];
                 Console.WriteLine();
                 PrintRoomText( rnd_item.Trim(), ConsoleColor.DarkYellow, 15);
+                Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/msgO"))
             {
                 var msg = cmd.Substring(5).Trim();
                 PrintRoomText( msg.Trim(), ConsoleColor.Yellow, 15);
+                Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/msgN"))
             {
                 var msg = cmd.Substring(5).Trim();
                 PrintRoomText( msg.Trim(), ConsoleColor.DarkYellow, 15);
+                Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/msgR"))
             {
                 var msg = cmd.Substring(5).Trim();
                 PrintRoomText(msg.Trim(), ConsoleColor.Red, 15);
+                Thread.Sleep(400);
             }
             else if (cmd.StartsWith("/gotoRnd"))
             {
