@@ -46,9 +46,11 @@ public partial class TextAdventureGame
                                 Write(Path.GetFileNameWithoutExtension(files[i]).Replace("_", " ").Replace(".game", "") + "\n", ConsoleColor.White);
                             }
                             Console.WriteLine();
-                            Write(" [Select your game:] -- use ", ConsoleColor.DarkGray);
+                            Write(" [Select your game:] -- use the ", ConsoleColor.DarkGray);
+                            Write("space key ", ConsoleColor.White);
+                            Write("to speed up text, or ", ConsoleColor.DarkGray);
                             Write("/s ", ConsoleColor.White);
-                            Write("for faster text]\n", ConsoleColor.DarkGray);
+                            Write("for instant text \n", ConsoleColor.DarkGray);
                             Write(" [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;
                             while (Console.KeyAvailable) Console.ReadKey(intercept: true);

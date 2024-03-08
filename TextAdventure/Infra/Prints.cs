@@ -74,6 +74,7 @@ public partial class TextAdventureGame
     public bool quote = false;
     public bool red_quote = false;
     public bool blue_quote = false;
+
     public ConsoleColor lastColor = ConsoleColor.Yellow;
 
     public string itemOriginating = "";
@@ -91,9 +92,19 @@ public partial class TextAdventureGame
 
         foreach (char c in text)
         {
+            var _timer = 50;
+
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Spacebar)
+                    _timer = 0;                    
+            }
+
             if (!bFastMode)
                 if (c == ' ')
-                    Thread.Sleep(100);
+                    if (_timer > 0)
+                        Thread.Sleep(100);
 
             if (c == '\"')
             {
@@ -131,7 +142,8 @@ public partial class TextAdventureGame
                 Console.Write(c);
             
             if (!bFastMode)
-                Thread.Sleep(5);
+                if (_timer > 0)
+                    Thread.Sleep(_timer);
         }
 
         Console.WriteLine();

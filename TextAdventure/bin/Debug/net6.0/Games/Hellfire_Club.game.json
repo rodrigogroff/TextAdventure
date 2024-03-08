@@ -1418,7 +1418,7 @@
         "Old spirits tend to be mean when people touches their things."
       ],
       "give": [
-        "Bone 1|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse!\";/giveI Apple 1;/msgO \"Oh, look! Now I can shake it!\";/award 12"
+        "Bone 1|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse. Take this!\";/giveI Apple 1;/msgO \"Oh, look! Now I can shake it!\";/award 12"
       ],
       "take": [
         "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1",

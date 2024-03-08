@@ -39,6 +39,7 @@ public partial class TextAdventureGame
             else
                 PrintRoomText(item, ConsoleColor.Yellow, 35);
         }
+
         if (current_game_Room.textOptional != null)
         {
             Thread.Sleep(10);
@@ -47,6 +48,24 @@ public partial class TextAdventureGame
                 foreach (var item in current_game_Room.textOptional)
                 {
                     ProcessCommand(item, "procRoom");
+                }
+            }
+        }
+
+        Thread.Sleep(100);
+
+        if (Console.KeyAvailable)
+        {
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Spacebar)
+            {
+                while (true)
+                {
+                    ConsoleKeyInfo _key = Console.ReadKey(true);
+                    if (_key.Key != ConsoleKey.Spacebar)
+                    {
+                        break;
+                    }
                 }
             }
         }
