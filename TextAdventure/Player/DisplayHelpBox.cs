@@ -74,7 +74,7 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.Green);
         lines.Add(" /die".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" give and suicide (in the game)\n");
+        lines.Add(" player suicide (in the game)\n");
         colors.Add(ConsoleColor.Green);
         lines.Add(" /map".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);

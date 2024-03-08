@@ -30,6 +30,8 @@ public partial class TextAdventureGame
         }
         else
         {
+            gamePlay.death = true;
+            FlushMonitorFile();
             bFastMode = true;
         }
 

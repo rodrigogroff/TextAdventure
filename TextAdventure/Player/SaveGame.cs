@@ -17,6 +17,8 @@ public partial class TextAdventureGame
         File.WriteAllText(currentFile + ".save", JsonConvert.SerializeObject(fileSaveGame));
         Console.WriteLine();
         Write(" The game is saved!", ConsoleColor.DarkYellow);
-        Console.WriteLine(); 
+        Console.WriteLine();
+
+        FlushMonitorFile();
     }
 }

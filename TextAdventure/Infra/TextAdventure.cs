@@ -12,7 +12,7 @@ public partial class TextAdventureGame
     bool bAbortOp = false;
     bool bUnlimitedHints = false;
     bool bHintsDisabled = false;
-    bool bAutomap = false;
+    bool bAutomap = true;
     bool bHardcore = false;
 
     string gameDifficulty = "";

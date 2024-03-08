@@ -1,4 +1,24 @@
-﻿using System.Collections;
+﻿
+public class GameMonitorPlays
+{
+    public DateTime dtStart { get; set; }
+
+    public DateTime? dtEnd { get; set; }
+
+    public bool death = false;
+}
+
+public class GameMonitor
+{
+    public string game_name { get; set; }
+
+    public List<GameMonitorPlays> plays { get; set; }
+}
+
+public class GameMonitoring
+{
+    public List<GameMonitor> games { get; set; }
+}
 
 public class Game
 {

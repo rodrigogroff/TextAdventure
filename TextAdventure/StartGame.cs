@@ -1,11 +1,80 @@
-﻿//https://www.youtube.com/watch?v=NOkBUoP54b8
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 public partial class TextAdventureGame
 {
+    private static TextAdventureGame textAdventureGame_obj;
+
+    GameMonitoring monitor;
+    GameMonitor gameMonitor;
+    GameMonitorPlays gamePlay;
+
+    public string monitor_file = "monitor.txt";
+
+    static void MonitorApplication()
+    {
+        while (true)
+        {
+            // Check if the console window is still open
+            if (Console.WindowHeight == 0 && Console.WindowWidth == 0)
+            {
+                // If the console window is closed, set the flag to indicate that the application is no longer running
+                textAdventureGame_obj.FlushMonitorFile();
+            }
+
+            // Sleep for a short interval before checking again
+            Thread.Sleep(100);
+        }
+    }
+
+    public void FlushMonitorFile()
+    {
+        gamePlay.dtEnd = DateTime.Now;
+
+        File.WriteAllText(monitor_file, JsonConvert.SerializeObject(monitor));
+
+        gamePlay = new GameMonitorPlays
+        {
+            dtStart = DateTime.Now,
+            dtEnd = null,
+            death = false
+        };
+
+        gameMonitor.plays.Add (gamePlay);
+    }
+
+    string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        string formattedTime = "";
+
+        if (timeSpan.Days > 0)
+            formattedTime += $"{timeSpan.Days} days, ";
+        if (timeSpan.Hours > 0)
+            formattedTime += $"{timeSpan.Hours} hours, ";
+        if (timeSpan.Minutes > 0)
+            formattedTime += $"{timeSpan.Minutes} minutes, ";
+        if (timeSpan.Seconds > 0)
+            formattedTime += $"{timeSpan.Seconds} seconds";
+
+        // Remove the trailing comma and space if they exist
+        if (!string.IsNullOrEmpty(formattedTime))
+            formattedTime = formattedTime.TrimEnd(',', ' ');
+
+        return formattedTime;
+    }
+
     public void StartGame()
     {
+        textAdventureGame_obj = this;
+
+        // Start a separate thread to monitor if the application is still running
+        Thread monitoringThread = new Thread(MonitorApplication);
+        monitoringThread.Start();
+
+        if (File.Exists(monitor_file))
+            monitor = JsonConvert.DeserializeObject<GameMonitoring>(File.ReadAllText(monitor_file));
+        else
+            monitor = new GameMonitoring();
+
         try
         {
             Console.CursorVisible = false;
@@ -14,7 +83,7 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Write(" DOS/4GW Professional Protected Mode Run-Time Versiom 2.1c\n", ConsoleColor.White);
             Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
-            Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.3\n", ConsoleColor.Red);
+            Write(" Engine Version:", ConsoleColor.DarkGray); Write(" 0.1.4\n", ConsoleColor.Red);
             Console.WriteLine();
             Write(" -- Please use ALT+ENTER for fullscreen [", ConsoleColor.DarkGray);
             Write("recommended", ConsoleColor.Green);
@@ -44,8 +113,39 @@ public partial class TextAdventureGame
 
                             for (int i = 0; i < files.Length; i++)
                             {
+                                int seconds = 0;
+                                int deaths = 0;
+
+                                string fileName = Path.GetFileNameWithoutExtension(files[i]);
+
+                                var g_name = fileName.Replace("_", " ").Replace(".game", "");
+
+                                var monit_game = monitor.games.FirstOrDefault(y => y.game_name == g_name);
+
+                                if (monit_game != null)
+                                {
+                                    foreach (var item in monit_game.plays)
+                                    {
+                                        if (item.dtEnd != null)
+                                        {
+                                            seconds += (int)Convert.ToDateTime(item.dtEnd).Subtract(item.dtStart).TotalSeconds;
+                                            if (item.death == true)
+                                                deaths++;
+                                        }
+                                    }
+                                }
+
                                 Write(" " + (i + 1) + " - ", ConsoleColor.DarkGray);
-                                Write(Path.GetFileNameWithoutExtension(files[i]).Replace("_", " ").Replace(".game", "") + "\n", ConsoleColor.White);
+                                Write(g_name.PadRight(35, ' '), ConsoleColor.White);
+
+                                if (seconds > 0)
+                                {
+                                    Write(" -- time: ", ConsoleColor.DarkGray);
+                                    Write(FormatTimeSpan(TimeSpan.FromSeconds(seconds)), ConsoleColor.Green);
+                                    Write(", deaths: ", ConsoleColor.DarkGray);
+                                    Write(deaths.ToString(), ConsoleColor.Green);
+                                }
+                                Write("\n", ConsoleColor.Green);
                             }
                             Console.WriteLine();
                             Write(" [Select your game:] -- use the ", ConsoleColor.DarkGray);
@@ -75,6 +175,34 @@ public partial class TextAdventureGame
                                 currentFile = files[selectedIndex - 1];
                                 Console.WriteLine();
                                 game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(currentFile));
+
+                                if (monitor.games == null)
+                                    monitor.games = new List<GameMonitor>();
+
+                                gamePlay = new GameMonitorPlays
+                                {
+                                    death = false,
+                                    dtStart = DateTime.Now,
+                                    dtEnd = null
+                                };
+
+                                gameMonitor = monitor.games.FirstOrDefault(y => y.game_name == game.gameName);
+
+                                if (gameMonitor == null)
+                                {
+                                    gameMonitor = new GameMonitor
+                                    {
+                                        game_name = game.gameName,
+                                        plays = new List<GameMonitorPlays>()
+                                    };
+
+                                    monitor.games.Add(gameMonitor);
+                                }
+
+                                if (gameMonitor.plays == null)
+                                    gameMonitor.plays = new List<GameMonitorPlays>();
+
+                                gameMonitor.plays.Add(gamePlay);                                
 
                                 if (game.gameBigTitle.Count == 0)
                                 {
