@@ -89,10 +89,19 @@ public partial class TextAdventureGame
             Console.ForegroundColor = ConsoleColor.White;
         else
             Console.ForegroundColor = color;
-
+        
         foreach (char c in text)
         {
             var _timer = 35;
+
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Escape)
+                {
+                    bFastMode = true;
+                }
+            }
 
             if (Console.KeyAvailable)
             {

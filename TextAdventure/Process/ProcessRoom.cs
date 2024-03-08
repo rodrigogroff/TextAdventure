@@ -18,6 +18,15 @@ public partial class TextAdventureGame
                 Write(" -- Automap: ", ConsoleColor.DarkGray);
                 Write("ON", ConsoleColor.White);
             }
+
+            if (!bFastMode)
+            {
+                Write(" -- Press ", ConsoleColor.DarkGray);
+                Write("Space", ConsoleColor.Green);
+                Write(" for faster text, ", ConsoleColor.DarkGray);
+                Write("Esc", ConsoleColor.Green);
+                Write(" to instant text, ", ConsoleColor.DarkGray);
+            }
         }
         else
         {
@@ -31,14 +40,28 @@ public partial class TextAdventureGame
         Console.WriteLine();
         Console.WriteLine();
 
+        bool _b_safe = bFastMode;
+
         foreach (var item in current_game_Room.text)
         {
             Thread.Sleep(10);
+
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Escape)
+                {
+                    bFastMode = true;
+                }
+            }
+
             if (current_game_Room.id == "0")
                 PrintRoomText(item, ConsoleColor.DarkRed, 35);
             else
                 PrintRoomText(item, ConsoleColor.Yellow, 35);
         }
+
+        bFastMode = _b_safe;
 
         if (current_game_Room.textOptional != null)
         {
