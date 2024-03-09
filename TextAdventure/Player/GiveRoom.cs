@@ -50,7 +50,7 @@ public partial class TextAdventureGame
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write(" >> ");
             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-            string option = Console.ReadLine().Trim();
+            string option = ConsoleReadLine().Trim();
             if (option == "")
                 break;
             try

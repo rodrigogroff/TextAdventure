@@ -103,6 +103,7 @@ public partial class TextAdventureGame
     {
         if (id == "1")
         {
+            game.playerDead = false;
             Write("\n --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();
             EnterToContinue();
@@ -173,7 +174,7 @@ public partial class TextAdventureGame
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.CursorVisible = true;
                     while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                    ParseInput(Console.ReadLine().Trim());
+                    ParseInput(ConsoleReadLine().Trim());
                     Console.WriteLine();
                 }
             }

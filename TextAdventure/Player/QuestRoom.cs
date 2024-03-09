@@ -28,7 +28,7 @@ public partial class TextAdventureGame
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write(" >> ");
         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-        string option = Console.ReadLine().Trim();
+        string option = ConsoleReadLine().Trim();
         if (option == "")
             return;
         var q = hsh[Convert.ToInt32(option)] as Quest;

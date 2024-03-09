@@ -45,7 +45,7 @@ public partial class TextAdventureGame
             Write(" [> ", ConsoleColor.Green);
             Console.ForegroundColor = ConsoleColor.Green;
             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-            string option = Console.ReadLine().Trim();
+            string option = ConsoleReadLine().Trim();
             if (option == "")
                 break;
             try
@@ -79,10 +79,13 @@ public partial class TextAdventureGame
                 quantity = Convert.ToInt32(g_item_take.quantity)
             });
 
+            currentItem = g_item_take.name;
+
+            if (!string.IsNullOrEmpty(gg_item.formula))
+                ProcessCommand(gg_item.formula, "take");            
+
             if (!string.IsNullOrEmpty(g_item_take.formula))
-            {
                 ProcessCommand(g_item_take.formula, "take");
-            }
 
             foreach (var item in game.world_itens.Where(y => y.scene_id == currentRoom.id && y.scene_version == currentRoom.version))
                 if (item.guid == guid_item_world)
@@ -90,6 +93,7 @@ public partial class TextAdventureGame
                     game.world_itens.Remove(item);
                     break;
                 }
+
             CheckConstraints();
         }
     }

@@ -98,7 +98,7 @@
     {
       "name": "map_000",
       "places": [
-        "X|12||The gatekeeper",
+        "X|12||The gatekeeper"
       ],
       "graphics": [
         "▒▓██ The wall █▓▒",
@@ -387,7 +387,10 @@
     }
   ],
   "constraints": [
-    "/getAL Life 1:/goto 0" 
+    "/getAL Life 1:/goto 0"
+  ],
+  "deathTriggers": [    
+    "/deathItemAward DeathFruit 2"
   ],
   "stages": [
     {
@@ -1406,7 +1409,7 @@
       "textOptional": [],
       "nextStep": [],
       "look": [
-        
+
       ],
       "program": [],
       "hint": [
@@ -1416,7 +1419,7 @@
         "Bone 1|/msgO \"I feel hungry, but I can't eat anymore, isn't that strange?\";/msgO \"That damn goblin always leaves me an apple here as a curse. Take this!\";/giveI Apple 1;/msgO \"Oh, look! Now I can shake it!\";/award 12"
       ],
       "take": [
-        "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1",
+        "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1"
       ]
     },
     {
@@ -1479,5 +1482,5 @@
       "give": [],
       "take": []
     }
-  ],
+  ]
 }

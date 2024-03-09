@@ -5,8 +5,33 @@ public partial class TextAdventureGame
     {
         foreach (var cmd in cmd_line.Split(';'))
         {
-            //"/nextLocationTitle Human_Mage:80||/msgR Mages don't use ropes, sorry!"
-            if (cmd.StartsWith("/nextLocationTitle"))
+            if (cmd.StartsWith("/deathItemAward"))
+            {
+                if (currentItem == cmd.Split(' ')[1])
+                {
+                    var aw = game.awards.FirstOrDefault(y => y.id == cmd.Split(' ')[2]);
+
+                    if (aw != null)
+                    {
+                        if (!game.player.awards.Any(y => y.id == aw.id))
+                        {
+                            game.player.awards.Add(new GameAward
+                            {
+                                id = aw.id,
+                                text = aw.text,
+                                done = true
+                            });
+
+                            Console.WriteLine();
+                            Write(" (+) New Award: ", ConsoleColor.Green);
+                            Write(aw.text + "\n", ConsoleColor.White);
+                            game.logs.Add(" (+) New Award: " + aw.text);
+                            Console.WriteLine();
+                        }
+                    }
+                }                
+            }
+            else if (cmd.StartsWith("/nextLocationTitle"))
             {
                 var _cmd_ = cmd.Substring("/nextLocationTitle".Length + 1).Split('|');
 
@@ -26,7 +51,6 @@ public partial class TextAdventureGame
                     this.bAbortOp = true;
                 }
             }
-            // "/nextLocationI Rope,1?Twigg,1?:80|/giveA Life -20?/msgR You use the rope.|/msgR You need a rope and a twigg to continue."
             else if (cmd.StartsWith("/nextLocationI"))
             {
                 var _cmd_ = cmd.Substring("/nextLocationI".Length + 1).Split('|');
@@ -360,6 +384,16 @@ public partial class TextAdventureGame
             }
             else if (cmd.StartsWith("/goto"))
             {
+                var room = cmd.Split(" ")[1];
+
+                if (room.StartsWith("0"))
+                {
+                    game.playerDead = true;
+
+                    foreach (var item in game.deathTriggers)
+                        ProcessCommand(item, "death");
+                }
+
                 if (!string.IsNullOrEmpty(game.player.name))
                 {
                     Console.WriteLine();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 
 public partial class TextAdventureGame
 {
@@ -7,7 +8,9 @@ public partial class TextAdventureGame
     Random random = new Random();
     
     string currentFile = "";
+    string currentItem = "";
 
+    bool bAutomation = false;
     bool bFastMode = false;
     bool bAbortOp = false;
     bool bUnlimitedHints = false;
@@ -16,6 +19,12 @@ public partial class TextAdventureGame
     bool bHardcore = false;
 
     string gameDifficulty = "";
+
+    GameMonitoring monitor;
+    GameMonitor gameMonitor;
+    GameMonitorPlays gamePlay;
+
+    public string monitor_file = "monitor.txt";
 
     Hashtable hshNumbers = new Hashtable();
 
@@ -54,6 +63,41 @@ public partial class TextAdventureGame
         Console.ForegroundColor = ConsoleColor.White;
         Console.CursorVisible = true;
         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-        Console.ReadLine();
+        ConsoleReadLine();
+    }
+
+    string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        string formattedTime = "";
+
+        if (timeSpan.Days > 0)
+            formattedTime += $"{timeSpan.Days}D,";
+        if (timeSpan.Hours > 0)
+            formattedTime += $"{timeSpan.Hours}h,";
+        if (timeSpan.Minutes > 0)
+            formattedTime += $"{timeSpan.Minutes}m,";
+        if (timeSpan.Seconds > 0)
+            formattedTime += $"{timeSpan.Seconds}s";
+
+        if (!string.IsNullOrEmpty(formattedTime))
+            formattedTime = formattedTime.TrimEnd(',', ' ');
+
+        return formattedTime;
+    }
+
+    public void FlushMonitorFile()
+    {
+        gamePlay.dtEnd = DateTime.Now;
+
+        File.WriteAllText(monitor_file, JsonConvert.SerializeObject(monitor));
+
+        gamePlay = new GameMonitorPlays
+        {
+            dtStart = DateTime.Now,
+            dtEnd = null,
+            death = false
+        };
+
+        gameMonitor.plays.Add(gamePlay);
     }
 }

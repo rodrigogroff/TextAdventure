@@ -39,7 +39,7 @@ public partial class TextAdventureGame
 
             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
 
-            string option = Console.ReadLine().Trim();
+            string option = ConsoleReadLine().Trim();
             if (option == "")
                 break;
 
@@ -60,7 +60,7 @@ public partial class TextAdventureGame
                     Console.Write(" >> ");
                     while (Console.KeyAvailable) Console.ReadKey(intercept: true);
 
-                    string option_qqy = Console.ReadLine().Trim();
+                    string option_qqy = ConsoleReadLine().Trim();
                     if (option_qqy == "")
                         break;
                     try

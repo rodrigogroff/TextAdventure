@@ -32,9 +32,12 @@ public class Game
     public int maxRings { get; set; }
     public int maxAmulets { get; set; }
 
+    public bool playerDead = false;
+
     public List<string> gameBigTitle = new List<string>();
     public List<string> logs = new List<string>();
     public List<string> constraints = new List<string>();
+    public List<string> deathTriggers = new List<string>();
     public List<Context> stages = new List<Context>();
     public List<GameTrait> traits = new List<GameTrait>();
     public List<GameVariable> world = new List<GameVariable>();

@@ -3,48 +3,7 @@
 public partial class TextAdventureGame
 {
     string engineVersion = "0.1.4.2";
-
-    GameMonitoring monitor;
-    GameMonitor gameMonitor;
-    GameMonitorPlays gamePlay;
-
-    public string monitor_file = "monitor.txt";
-
-    public void FlushMonitorFile()
-    {
-        gamePlay.dtEnd = DateTime.Now;
-
-        File.WriteAllText(monitor_file, JsonConvert.SerializeObject(monitor));
-
-        gamePlay = new GameMonitorPlays
-        {
-            dtStart = DateTime.Now,
-            dtEnd = null,
-            death = false
-        };
-
-        gameMonitor.plays.Add (gamePlay);
-    }
-
-    string FormatTimeSpan(TimeSpan timeSpan)
-    {
-        string formattedTime = "";
-
-        if (timeSpan.Days > 0)
-            formattedTime += $"{timeSpan.Days}D,";
-        if (timeSpan.Hours > 0)
-            formattedTime += $"{timeSpan.Hours}h,";
-        if (timeSpan.Minutes > 0)
-            formattedTime += $"{timeSpan.Minutes}m,";
-        if (timeSpan.Seconds > 0)
-            formattedTime += $"{timeSpan.Seconds}s";
-
-        if (!string.IsNullOrEmpty(formattedTime))
-            formattedTime = formattedTime.TrimEnd(',', ' ');
-
-        return formattedTime;
-    }
-
+        
     public void StartGame()
     {
         if (File.Exists(monitor_file))
@@ -146,24 +105,19 @@ public partial class TextAdventureGame
                                 Write("\n", ConsoleColor.Green);
                             }
                             Console.WriteLine();
-                            Write(" [Select your game:] -- use the ", ConsoleColor.DarkGray);
-                            Write("space key ", ConsoleColor.White);
-                            Write("to speed up text, or ", ConsoleColor.DarkGray);
-                            Write("escape key ", ConsoleColor.White);
-                            Write("for instant text \n", ConsoleColor.DarkGray);
+                            Write(" [Select your game:]\n", ConsoleColor.DarkGray);
                             Write(" [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;
                             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                             
                             Console.CursorVisible = true;
-                            var option = Console.ReadLine().Trim().ToLower().Split(' ');
+                            var option = ConsoleReadLine().Trim().ToLower().Split(' ');
 
-                            if (option.Contains("/s"))
+                            if (option.Contains("/qa"))
                             {
                                 bFastMode = true;
-                                Write(" [> FASTMODE [", ConsoleColor.DarkGray);
-                                Write("ON", ConsoleColor.Green);
-                                Write("]\n", ConsoleColor.DarkGray);
+                                bAutomation = true;
+                                Write(" [> AUTOMATION\n", ConsoleColor.DarkGray);
                                 EnterToContinue();                                
                             }
 
@@ -175,6 +129,11 @@ public partial class TextAdventureGame
 
                                 game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(currentFile));
 
+                                if (bAutomation)
+                                {
+                                    automationFile = File.ReadAllText(currentFile.Replace(".game.json", ".QA.txt")).Split("\r\n").ToList();
+                                }
+                                
                                 if (monitor.games == null)
                                     monitor.games = new List<GameMonitor>();
 
@@ -286,7 +245,7 @@ public partial class TextAdventureGame
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;
                         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                        var diff = Console.ReadLine().Trim();
+                        var diff = ConsoleReadLine().Trim();
 
                         bHardcore = false;
 
@@ -343,7 +302,7 @@ public partial class TextAdventureGame
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.CursorVisible = true;
                                 while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                                option_load = Console.ReadLine().Trim();
+                                option_load = ConsoleReadLine().Trim();
 
                                 if (option_load == "")
                                 {
@@ -384,8 +343,7 @@ public partial class TextAdventureGame
         catch (System.Exception ex)
         {
             Console.WriteLine(ex.Message);
-            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-            Console.ReadLine();
+            ConsoleReadLine();
         }
     }
 }

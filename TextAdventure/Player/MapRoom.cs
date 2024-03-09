@@ -132,7 +132,7 @@ public partial class TextAdventureGame
                     Write(" [Select destination:]\n", ConsoleColor.DarkGray);
                     Write(" [> ", ConsoleColor.Green);
                     while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                    string option = Console.ReadLine().ToLower().Trim();
+                    string option = ConsoleReadLine().ToLower().Trim();
                     if (option == "")
                         break;
                     foreach (var item in current_map.places)
