@@ -19,8 +19,7 @@ namespace TA_Update
 
             if (File.Exists(file))
             {
-                Extract(file);
-                File.Delete(file);
+                Extract(file);                
                 return true;
             }
 
