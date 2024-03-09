@@ -10,21 +10,27 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!-- Eazfuscator.NET is integrated with this project at MSBuild level: https://www.gapotchenko.com/eazfuscator.net/kb/100036 -->
+    <!-- Eazfuscator.NET is integrated with this project at MSBuild level: https://help.gapotchenko.com/eazfuscator.net/kb/100036 -->
     <EazfuscatorIntegration>MSBuild</EazfuscatorIntegration>
     <EazfuscatorActiveConfiguration>Release</EazfuscatorActiveConfiguration>
-    <EazfuscatorCompatibilityVersion>2023.2</EazfuscatorCompatibilityVersion>
+    <EazfuscatorCompatibilityVersion>2023.4</EazfuscatorCompatibilityVersion>
     <SignAssembly>False</SignAssembly>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Company>BigBoysGames</Company>
     <Description>Text Adventure
 </Description>
+    <ApplicationIcon>avatar.ico</ApplicationIcon>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="bin\**" />
     <EmbeddedResource Remove="bin\**" />
     <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="avatar.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,8 +83,10 @@
     <None Update="Games\Hellfire_Club.txt">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-    <None Update="Readme.txt">
+    <None Update="Readme.md">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
 
