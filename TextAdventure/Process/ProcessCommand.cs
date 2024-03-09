@@ -335,7 +335,50 @@ public partial class TextAdventureGame
             }
             else if (cmd.StartsWith("/giveI"))
             {
+                var item = cmd.Split(' ')[1];
+                var qqty = Convert.ToInt32(cmd.Split(' ')[2]);
+                foreach (var tr in game.player.traits)
+                {
+                    int idx_trig = 0;
 
+                    foreach (var trig in tr.trigger)
+                    {
+                        if (trig == item)
+                        {
+                            Write(" (+) Triggered ", ConsoleColor.Blue);
+                            Write(tr.name + "\n", ConsoleColor.White);
+
+                            var vr_to_add = 0;
+                            var form = tr.formula[idx_trig];
+
+                            if (form.StartsWith("/randNeg"))
+                            {
+                                var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
+                                vr_to_add = -(((qqty * range) / 100) + 1);
+                                Write("    (-) Lost ", ConsoleColor.Red);
+                                Write(vr_to_add.ToString().Substring(1), ConsoleColor.White);
+                                Write("    " + item + "\n", ConsoleColor.Yellow);
+                                qqty += vr_to_add;
+                            }
+                            else if (form.StartsWith("/rand"))
+                            {
+                                var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
+                                vr_to_add = (qqty * range) / 100;
+                                Write("    (+) Found ", ConsoleColor.Blue);
+                                Write(vr_to_add.ToString(), ConsoleColor.White);
+                                Write("    " + item + "\n", ConsoleColor.Yellow);
+                                qqty += vr_to_add;
+                            }
+                        }
+
+                        idx_trig++;
+                    }
+                }
+                UpdateInventory(new GameItem
+                {
+                    name = item,
+                    quantity = Convert.ToInt32(qqty)
+                });
             }
             else if (cmd.StartsWith("/title"))
             {

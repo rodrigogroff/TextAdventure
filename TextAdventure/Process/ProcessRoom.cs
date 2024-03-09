@@ -19,13 +19,17 @@ public partial class TextAdventureGame
                 Write("ON", ConsoleColor.White);
             }
 
+            if (bAutomation)
+            {
+                Write(" -- Automation: ", ConsoleColor.DarkGray);
+                Write(currentAutomation, ConsoleColor.Green);
+            }
+
             if (!bFastMode)
             {
                 Write(" -- Press ", ConsoleColor.DarkGray);
-                Write("Space", ConsoleColor.Green);
-                Write(" for faster text, ", ConsoleColor.DarkGray);
                 Write("Esc", ConsoleColor.Green);
-                Write(" to instant text, ", ConsoleColor.DarkGray);
+                Write(" to instant text", ConsoleColor.DarkGray);
             }
         }
         else
@@ -46,14 +50,21 @@ public partial class TextAdventureGame
 
         foreach (var item in current_game_Room.text)
         {
-            Thread.Sleep(10);
-
-            if (Console.KeyAvailable)
+            if (bAutomation || bFastMode)
             {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Escape)
+
+            }
+            else
+            {
+                Thread.Sleep(10);
+
+                if (Console.KeyAvailable)
                 {
-                    bFastMode = true;
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Escape)
+                    {
+                        bFastMode = true;
+                    }
                 }
             }
 
@@ -103,6 +114,11 @@ public partial class TextAdventureGame
     {
         if (id == "1")
         {
+            var pl = game.player;
+
+            LoadGame();
+
+            game.player = pl;
             game.playerDead = false;
             Write("\n --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();

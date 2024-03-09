@@ -14,7 +14,9 @@ public partial class TextAdventureGame
                 Write("[OK] " + item.text + "\n", ConsoleColor.Yellow);
             else
                 Write("[  ] " + item.text + "\n", ConsoleColor.Green);
-            Thread.Sleep(100);
+
+            if (!bAutomation)
+                Thread.Sleep(50);
         }
         Console.WriteLine();
     }

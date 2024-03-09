@@ -6,6 +6,8 @@ public partial class TextAdventureGame
 
     int automationIndex = 0;
 
+    string currentAutomation;
+
     public string ConsoleReadLine()
     {
         if (bAutomation)
@@ -22,6 +24,7 @@ public partial class TextAdventureGame
                 if (line.StartsWith("test:"))
                 {
                     automationFile_Out.Add(line);
+                    currentAutomation = line.Substring(5);
                 }
                 else if (line.StartsWith("check"))
                 {

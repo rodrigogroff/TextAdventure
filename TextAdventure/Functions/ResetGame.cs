@@ -8,8 +8,7 @@ public partial class TextAdventureGame
 
         game.player = new Player();
         game.player.awards = awards;
-
-        game.world = new List<GameVariable>();
+        game.world = new List<GameVariable>();        
     }
 
 }

@@ -46,6 +46,7 @@ public class Game
     public List<GameMap> maps = new List<GameMap>();
     public List<Quest> quests = new List<Quest>();
     public List<GameAward> awards = new List<GameAward>();
+    internal string gameJsonFile;
 }
 
 public class SaveGameFile

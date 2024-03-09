@@ -99,13 +99,6 @@ public partial class TextAdventureGame
                 }
             }
 
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Spacebar)
-                    _timer = 0;                    
-            }
-
             if (!bFastMode)
                 if (c == ' ')
                     if (_timer > 0)

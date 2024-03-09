@@ -71,16 +71,11 @@ public partial class TextAdventureGame
         string formattedTime = "";
 
         if (timeSpan.Days > 0)
-            formattedTime += $"{timeSpan.Days}D,";
+            formattedTime += $"{timeSpan.Days}Days ";
         if (timeSpan.Hours > 0)
-            formattedTime += $"{timeSpan.Hours}h,";
+            formattedTime += $"{timeSpan.Hours}h ";
         if (timeSpan.Minutes > 0)
-            formattedTime += $"{timeSpan.Minutes}m,";
-        if (timeSpan.Seconds > 0)
-            formattedTime += $"{timeSpan.Seconds}s";
-
-        if (!string.IsNullOrEmpty(formattedTime))
-            formattedTime = formattedTime.TrimEnd(',', ' ');
+            formattedTime += $"{timeSpan.Minutes}m ";
 
         return formattedTime;
     }

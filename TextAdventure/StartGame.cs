@@ -100,7 +100,7 @@ public partial class TextAdventureGame
                                     Write(" -- time: ", ConsoleColor.DarkGray);
                                     Write(FormatTimeSpan(TimeSpan.FromSeconds(seconds)), ConsoleColor.Green);
                                     Write(", deaths: ", ConsoleColor.DarkGray);
-                                    Write(deaths.ToString(), ConsoleColor.Green);
+                                    Write(deaths.ToString(), ConsoleColor.Red);
                                 }
                                 Write("\n", ConsoleColor.Green);
                             }
@@ -126,8 +126,10 @@ public partial class TextAdventureGame
                             {
                                 currentFile = files[selectedIndex - 1];
                                 Console.WriteLine();
+                                                                
+                                game.gameJsonFile = currentFile;
 
-                                game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(currentFile));
+                                LoadGame();
 
                                 if (bAutomation)
                                 {
@@ -160,60 +162,9 @@ public partial class TextAdventureGame
                                 if (gameMonitor.plays == null)
                                     gameMonitor.plays = new List<GameMonitorPlays>();
 
-                                gameMonitor.plays.Add(gamePlay);                                
+                                gameMonitor.plays.Add(gamePlay);
 
-                                if (game.gameBigTitle.Count == 0)
-                                {
-                                    var TitlefromFile = File.ReadAllText(currentFile.Replace(".game.json", ".title.txt"));
-                                    foreach (var item in TitlefromFile.Split('\n'))
-                                        game.gameBigTitle.Add(item);
-                                }
-
-                                // process all stages inventory
-                                foreach (var currentStage in game.stages)
-                                {
-                                    if (currentStage.take.Count > 0)
-                                    {
-                                        foreach (var takeItem in currentStage.take)
-                                        {
-                                            var _item = takeItem.Split('|')[0];
-                                            var _item_formula = takeItem.Contains("|") ? takeItem.Split('|')[1] : "";
-
-                                            var name = _item.Split(' ')[0];
-                                            var qtty = Convert.ToInt32(_item.Split(' ')[1].Split(':')[0]);
-                                            var g_item = game.itens.FirstOrDefault(y => y.name == name);
-
-                                            game.world_itens.Add(new GameSceneItem
-                                            {
-                                                guid = Guid.NewGuid(),
-                                                scene_id = currentStage.id,
-                                                scene_version = currentStage.version,
-
-                                                item = new GameItem
-                                                {
-                                                    name = name,
-                                                    quantity = qtty,
-                                                    persistInventory = g_item.persistInventory == true,
-                                                    formula = _item_formula
-                                                }
-                                            });
-                                        }
-
-                                        currentStage.take.Clear();
-                                    }
-                                }
-
-                                game.hintsMAX = game.hints;
-
-                                game.player.gear = new PlayerGear
-                                {
-                                    body = null,
-                                    feet = null,
-                                    hands = null,
-                                    head = null,
-                                    rings = new List<GameItem>(),
-                                    amulets = new List<GameItem>()
-                                };
+                                
 
                                 mode = 3;
                                 break;
