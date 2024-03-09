@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
-using TA_Update;
 using static Win32;
 
 public class Win32
@@ -31,6 +30,20 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        if (args.Length == 0)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "TA_AppUpdater.exe",
+                Arguments = "",
+                UseShellExecute = false,
+                CreateNoWindow = false
+            };
+
+            Process.Start(startInfo);
+            return;
+        }
+
         var hwnd = GetConsoleWindow();
         PostMessage(hwnd, WM_KEYDOWN, (IntPtr)VK_F11, IntPtr.Zero);
         PostMessage(hwnd, WM_MOUSEWHEEL, (IntPtr)(MK_CONTROL | WHEEL_DELTA), IntPtr.Zero);
@@ -47,21 +60,7 @@ public class Program
         Console.WriteLine();
         Console.WriteLine();
         Thread.Sleep(2000);
-        ta.Write(" --Checking for updates...\n", ConsoleColor.Yellow);
-        Thread.Sleep(2000);
-        if (new GameUpdater().CheckForUpdate())
-        {
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = "TA_AppUpdater.exe",
-                Arguments = "",
-                UseShellExecute = false,
-                CreateNoWindow = false
-            };
 
-            Process.Start(startInfo);
-        }
-        else
-            ta.StartGame();
+        ta.StartGame();
     }
 }

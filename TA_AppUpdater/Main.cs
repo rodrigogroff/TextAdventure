@@ -1,54 +1,51 @@
 ﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
-using static Win32;
-
-public class Win32
-{
-    public
-        const
-            int
-                VK_F11 = 0x7A,
-                SW_MAXIMIZE = 3;
-
-    public
-        const
-            uint
-                WM_KEYDOWN = 0x100,
-                WM_MOUSEWHEEL = 0x20A,
-                WHEEL_DELTA = 120,
-                MK_CONTROL = 0x00008 << 16;
-
-    [DllImport("kernel32.dll")]
-    public static extern IntPtr GetConsoleWindow();
-    [DllImport("user32.dll")]
-    public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
-    [DllImport("user32.dll")]
-    public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-}
-
 
 public class Program
 {
-    public static void Main(string[] args)
+    static async Task DownloadFile(string fileUrl, string outputPath)
     {
-        var hwnd = GetConsoleWindow();
-        PostMessage(hwnd, WM_KEYDOWN, (IntPtr)VK_F11, IntPtr.Zero);
-        PostMessage(hwnd, WM_MOUSEWHEEL, (IntPtr)(MK_CONTROL | WHEEL_DELTA), IntPtr.Zero);
+        using (HttpClient client = new HttpClient())
+        {
+            using (HttpResponseMessage response = await client.GetAsync(fileUrl))
+            {
+                using (HttpContent content = response.Content)
+                {
+                    using (Stream stream = await content.ReadAsStreamAsync())
+                    {
+                        using (FileStream fileStream = new FileStream(outputPath, FileMode.Create, FileAccess.Write))
+                        {
+                            await stream.CopyToAsync(fileStream);
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-        Console.WriteLine(" --Extracting and updating...");
-        Thread.Sleep(2000);
-        new TA_Update.GameUpdater().Update();
-        Console.WriteLine(" --Done!");
-        Thread.Sleep(2000);
+    public static async Task Main(string[] args)
+    {
+        try
+        {
+            string fileUrl = "https://drive.google.com/uc?id=1UCyQbt4J1hXcl7DKwCa85tO25cXWmfHS";
+            string outputPath = "downloaded_file.txt";
+            await DownloadFile(fileUrl, outputPath);
+            string fileContent = File.ReadAllText(outputPath);
+            await DownloadFile(fileContent.Trim(), outputPath);
+            new TA_Update.GameUpdater().Update();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Working offline...");
+        }
 
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = "TextAdventure.exe",
-            Arguments = "",
+            Arguments = "x",
             UseShellExecute = false,
             CreateNoWindow = false
         };
 
-        Process.Start(startInfo);
+        Process.Start(startInfo);        
     }
 }
