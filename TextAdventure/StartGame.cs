@@ -99,7 +99,7 @@ public partial class TextAdventureGame
                                 {
                                     Write(" -- time: ", ConsoleColor.DarkGray);
                                     Write(FormatTimeSpan(TimeSpan.FromSeconds(seconds)), ConsoleColor.Green);
-                                    Write(", deaths: ", ConsoleColor.DarkGray);
+                                    Write(" -- deaths: ", ConsoleColor.DarkGray);
                                     Write(deaths.ToString(), ConsoleColor.Red);
                                 }
                                 Write("\n", ConsoleColor.Green);
