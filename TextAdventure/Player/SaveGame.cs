@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using TextAdventure.Infra;
 
 public partial class TextAdventureGame
 {
@@ -13,8 +14,9 @@ public partial class TextAdventureGame
             logs = game.logs,
             hints = game.hints,
         };
-
-        File.WriteAllText(currentFile + ".save", JsonConvert.SerializeObject(fileSaveGame));
+        
+        crypt.EncryptContent(currentFile + ".save", JsonConvert.SerializeObject(fileSaveGame));
+                
         Console.WriteLine();
         Write(" The game is saved!", ConsoleColor.DarkYellow);
         Console.WriteLine();

@@ -75,13 +75,9 @@ C:\Teste\TA\TextAdventure\obj\Debug\net6.0\TextAdventure.pdb
 C:\Teste\TA\TextAdventure\obj\Debug\net6.0\TextAdventure.genruntimeconfig.cache
 C:\Teste\TA\TextAdventure\obj\Debug\net6.0\ref\TextAdventure.dll
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.exe
-C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Feed_Korg.game.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Feed_Korg.title.txt
-C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.game.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.title.txt
-C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.game.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.title.txt
-C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.game.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.title.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Readme.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.deps.json
@@ -102,3 +98,7 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdv
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.genruntimeconfig.cache
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\obj\Debug\net6.0\ref\TextAdventure.dll
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.QA.txt
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Feed_Korg.game.jsonx
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.game.jsonx
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.game.jsonx
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.game.jsonx

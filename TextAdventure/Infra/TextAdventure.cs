@@ -1,12 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
+using TextAdventure.Infra;
 
 public partial class TextAdventureGame
 {
     Game game = new Game();
     Context current_game_Room = new Context();
     Random random = new Random();
-    
+
+    FileEncryptorDecryptor crypt = new FileEncryptorDecryptor();
+
     string currentFile = "";
     string currentItem = "";
 
@@ -84,8 +87,8 @@ public partial class TextAdventureGame
     {
         gamePlay.dtEnd = DateTime.Now;
 
-        File.WriteAllText(monitor_file, JsonConvert.SerializeObject(monitor));
-
+        crypt.EncryptContent(monitor_file, JsonConvert.SerializeObject(monitor));
+        
         gamePlay = new GameMonitorPlays
         {
             dtStart = DateTime.Now,

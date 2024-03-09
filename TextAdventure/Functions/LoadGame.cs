@@ -6,12 +6,12 @@ public partial class TextAdventureGame
     {
         var file = game.gameJsonFile;
 
-        game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(game.gameJsonFile));
+        game = JsonConvert.DeserializeObject<Game>(crypt.DecryptFile(game.gameJsonFile));
         game.gameJsonFile = file;
 
         if (game.gameBigTitle.Count == 0)
         {
-            var TitlefromFile = File.ReadAllText(currentFile.Replace(".game.json", ".title.txt"));
+            var TitlefromFile = File.ReadAllText(currentFile.Replace(".game.jsonx", ".title.txt"));
             foreach (var item in TitlefromFile.Split('\n'))
                 game.gameBigTitle.Add(item);
         }

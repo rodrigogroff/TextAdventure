@@ -7,7 +7,7 @@ public partial class TextAdventureGame
     public void StartGame()
     {
         if (File.Exists(monitor_file))
-            monitor = JsonConvert.DeserializeObject<GameMonitoring>(File.ReadAllText(monitor_file));
+            monitor = JsonConvert.DeserializeObject<GameMonitoring>(crypt.DecryptFile(monitor_file));
         else
         {
             monitor = new GameMonitoring
@@ -34,6 +34,22 @@ public partial class TextAdventureGame
             Thread.Sleep(2000);            
             
             int mode = 2;
+            
+            // protect json file
+            {
+                string[] encfiles = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
+
+                if (encfiles.Count() == 0)
+                {
+                    string[] origfiles = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
+
+                    foreach (var item in origfiles)
+                    {
+                        crypt.EncryptFile(item, item + "x");
+                        File.Delete(item);
+                    }
+                }
+            }
 
             while (true)
             {                
@@ -50,7 +66,7 @@ public partial class TextAdventureGame
                             Console.WriteLine();
                             Write(" [Games available:]\n", ConsoleColor.Yellow);
                             Console.WriteLine();
-                            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
+                            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
 
                             for (int i = 0; i < files.Length; i++)
                             {
@@ -80,8 +96,9 @@ public partial class TextAdventureGame
 
                                 if (File.Exists(files[i] + ".save"))
                                 {
-                                    var savegame = JsonConvert.DeserializeObject<SaveGameFile>(File.ReadAllText(files[i] + ".save"));
-                                    var _gam = JsonConvert.DeserializeObject<Game>(File.ReadAllText(files[i]));
+                                    var contents = crypt.DecryptFile(files[i] + ".save");
+                                    var savegame = JsonConvert.DeserializeObject<SaveGameFile>(contents);
+                                    var _gam = JsonConvert.DeserializeObject<Game>(crypt.DecryptFile(files[i]));
 
                                     awards = savegame.player.awards.Count() + "/" + _gam.awards.Count();
                                 }
@@ -133,7 +150,7 @@ public partial class TextAdventureGame
 
                                 if (bAutomation)
                                 {
-                                    automationFile = File.ReadAllText(currentFile.Replace(".game.json", ".QA.txt")).Split("\r\n").ToList();
+                                    automationFile = File.ReadAllText(currentFile.Replace(".game.jsonx", ".QA.txt")).Split("\r\n").ToList();
                                 }
                                 
                                 if (monitor.games == null)
@@ -162,9 +179,7 @@ public partial class TextAdventureGame
                                 if (gameMonitor.plays == null)
                                     gameMonitor.plays = new List<GameMonitorPlays>();
 
-                                gameMonitor.plays.Add(gamePlay);
-
-                                
+                                gameMonitor.plays.Add(gamePlay);                               
 
                                 mode = 3;
                                 break;
@@ -263,7 +278,7 @@ public partial class TextAdventureGame
 
                                 if (option_load == "1")
                                 {
-                                    var savegame = JsonConvert.DeserializeObject<SaveGameFile>(File.ReadAllText(currentFile + ".save"));
+                                    var savegame = JsonConvert.DeserializeObject<SaveGameFile>(crypt.DecryptFile(currentFile + ".save"));
                                     game.player = savegame.player;
                                     game.world = savegame.world;
                                     game.world_itens = savegame.world_itens;
