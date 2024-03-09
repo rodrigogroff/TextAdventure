@@ -4,15 +4,11 @@ using static Win32;
 
 public class Win32
 {
-    public 
-        const 
-            int 
+    public const int 
                 VK_F11 = 0x7A,
                 SW_MAXIMIZE = 3;
 
-    public 
-        const 
-            uint
+    public const uint
                 WM_KEYDOWN = 0x100,
                 WM_MOUSEWHEEL = 0x20A,
                 WHEEL_DELTA = 120,
@@ -32,6 +28,7 @@ public class Program
     {
         if (args.Length == 0)
         {
+            #if RELEASE
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = "TA_AppUpdater.exe",
@@ -42,6 +39,7 @@ public class Program
 
             Process.Start(startInfo);
             return;
+            #endif
         }
 
         var hwnd = GetConsoleWindow();

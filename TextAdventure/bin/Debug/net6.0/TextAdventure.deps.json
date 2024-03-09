@@ -9,8 +9,7 @@
       "TextAdventure/1.0.0": {
         "dependencies": {
           "TA_AppUpdater": "1.0.0",
-          "TA_Core": "1.0.0",
-          "TA_Update": "1.0.0"
+          "TA_Core": "1.0.0"
         },
         "runtime": {
           "TextAdventure.dll": {}

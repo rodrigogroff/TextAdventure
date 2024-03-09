@@ -17,22 +17,6 @@ public partial class TextAdventureGame
         try
         {
             int mode = 2;
-            
-            // protect json file
-            {
-                string[] encfiles = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
-
-                if (encfiles.Count() == 0)
-                {
-                    string[] origfiles = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.json");
-
-                    foreach (var item in origfiles)
-                    {
-                        crypt.EncryptFile(item, item + "x");
-                        File.Delete(item);
-                    }
-                }
-            }
 
             while (true)
             {                

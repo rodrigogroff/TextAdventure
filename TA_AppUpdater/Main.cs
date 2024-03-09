@@ -26,11 +26,9 @@ public class Program
     {
         try
         {
-            string fileUrl = "https://drive.google.com/uc?id=1UCyQbt4J1hXcl7DKwCa85tO25cXWmfHS";
-            string outputPath = "downloaded_file.txt";
+            string fileUrl = "https://drive.google.com/uc?id=1h-Dpc0WFC9yGHKvuH5VhH4pPRn0ie8Ud";
+            string outputPath = "ta_upgrade.zip";
             await DownloadFile(fileUrl, outputPath);
-            string fileContent = File.ReadAllText(outputPath);
-            await DownloadFile(fileContent.Trim(), outputPath);
             new TA_Update.GameUpdater().Update();
         }
         catch (Exception ex)
