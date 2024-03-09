@@ -14,6 +14,19 @@
             "related": ".xml"
           }
         }
+      },
+      "TA_Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "bin/placeholder/TA_Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TA_Core.dll": {}
+        }
       }
     }
   },
@@ -47,11 +60,16 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "TA_Core/1.0.0": {
+      "type": "project",
+      "path": "../TA_Core/TA_Core.csproj",
+      "msbuildProject": "../TA_Core/TA_Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Newtonsoft.Json >= 13.0.3"
+      "TA_Core >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -62,11 +80,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+      "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
       "projectName": "TextAdventure",
-      "projectPath": "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+      "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
       "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rodri\\Source\\Repos\\TextAdventure\\TextAdventure\\obj\\",
+      "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -87,7 +105,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj": {
+              "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -104,12 +126,6 @@
     "frameworks": {
       "net6.0": {
         "targetAlias": "net6.0",
-        "dependencies": {
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "[13.0.3, )"
-          }
-        },
         "imports": [
           "net461",
           "net462",

@@ -4,14 +4,14 @@
     "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {
+    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
-        "projectName": "TextAdventure",
-        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj",
+        "projectName": "TA_Core",
+        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj",
         "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\obj\\",
+        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -55,6 +55,75 @@
               "version": "[13.0.3, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+        "projectName": "TextAdventure",
+        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+        "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj": {
+                "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",

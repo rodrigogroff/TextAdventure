@@ -79,7 +79,6 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\F
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.title.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.title.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.title.txt
-C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Readme.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.deps.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.runtimeconfig.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.dll
@@ -102,3 +101,6 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\F
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.game.jsonx
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.game.jsonx
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.game.jsonx
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Readme.md
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Core.dll
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Core.pdb
