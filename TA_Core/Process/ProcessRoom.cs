@@ -39,7 +39,8 @@ public partial class TextAdventureGame
             bFastMode = true;
         }
 
-        Thread.Sleep(500);
+        if (!bAutomation)
+            Thread.Sleep(500);
 
         game.logs.Add(" -- Entered: " + current_game_Room.label);
 
@@ -78,7 +79,8 @@ public partial class TextAdventureGame
 
         if (current_game_Room.textOptional != null)
         {
-            Thread.Sleep(10);
+            if (!bAutomation)
+                Thread.Sleep(10);
             if (current_game_Room.textOptional.Count > 0)
             {
                 foreach (var item in current_game_Room.textOptional)
@@ -88,7 +90,8 @@ public partial class TextAdventureGame
             }
         }
 
-        Thread.Sleep(100);
+        if (!bAutomation)
+            Thread.Sleep(100);
 
         if (Console.KeyAvailable)
         {

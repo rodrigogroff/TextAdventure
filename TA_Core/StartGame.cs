@@ -97,6 +97,7 @@ public partial class TextAdventureGame
                             Console.CursorVisible = true;
                             var option = ConsoleReadLine().Trim().ToLower().Split(' ');
 
+                            #if DEBUG
                             if (option.Contains("/qa"))
                             {
                                 bFastMode = true;
@@ -104,6 +105,7 @@ public partial class TextAdventureGame
                                 Write(" [> AUTOMATION\n", ConsoleColor.DarkGray);
                                 EnterToContinue();                                
                             }
+                            #endif
 
                             if (int.TryParse(option[0], out int selectedIndex) &&
                                 selectedIndex > 0 && selectedIndex <= files.Length)

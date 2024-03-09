@@ -65,9 +65,7 @@ input:
 input: 
 check:3
 test:Bribe the gatekeeper
-delay:6000
 input:1
-delay:6000
 input: 
 input: 
 input: 
@@ -79,14 +77,10 @@ input:
 input: 
 input: 
 input:/look
-delay:5000
 input:Rodrigo 
-delay:5000
 input: 
 input:/give
-delay:5000
 input:2
-delay:5000
 input: 
 input:/die
 input: 

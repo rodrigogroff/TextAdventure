@@ -39,7 +39,8 @@ public partial class TextAdventureGame
         Console.WriteLine();
         foreach (var line in q.description)
         {
-            Thread.Sleep(120);
+            if (!bAutomation)
+                Thread.Sleep(120);
             PrintRoomText(line, ConsoleColor.Yellow, 30);
         }
         Console.WriteLine();

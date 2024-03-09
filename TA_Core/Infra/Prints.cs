@@ -16,7 +16,8 @@ public partial class TextAdventureGame
         var max_len = 0;
         foreach (var item in game.gameBigTitle)
         {
-            Thread.Sleep(50);
+            if (!bAutomation)
+                Thread.Sleep(50);
             if (item.Length > max_len)
                 max_len = item.Length;
             Print(" " + item, ConsoleColor.DarkRed);
@@ -43,7 +44,8 @@ public partial class TextAdventureGame
             var color = colors[i];
             Console.ForegroundColor = color;
             Console.Write(text);
-            Thread.Sleep(ms);
+            if (!bAutomation)
+                Thread.Sleep(ms);
         }
     }
 
@@ -62,13 +64,17 @@ public partial class TextAdventureGame
         {
             if (!bFastMode)
                 if (c == ' ')
-                    Thread.Sleep(20);
+                    if (!bAutomation)
+                        Thread.Sleep(20);
 
             Console.Write(c);
 
             if (!bFastMode)
                 if (";,-.!?—'\"".Contains(c))
-                    Thread.Sleep(300);
+                {
+                    if (!bAutomation)
+                        Thread.Sleep(300);
+                }
                 else
                     Thread.Sleep(ms);
         }
@@ -102,7 +108,8 @@ public partial class TextAdventureGame
             if (!bFastMode)
                 if (c == ' ')
                     if (_timer > 0)
-                        Thread.Sleep(120);
+                        if (!bAutomation)
+                            Thread.Sleep(120);
 
             if (c == '\"')
             {
@@ -141,7 +148,8 @@ public partial class TextAdventureGame
             
             if (!bFastMode)
                 if (_timer > 0)
-                    Thread.Sleep(_timer);
+                    if (!bAutomation)
+                        Thread.Sleep(_timer);
         }
 
         Console.WriteLine();

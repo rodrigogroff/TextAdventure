@@ -16,7 +16,8 @@ public partial class TextAdventureGame
         {
             if (!item.Contains("/"))
             {
-                Thread.Sleep(200);
+                if (!bAutomation)
+                    Thread.Sleep(200);
                 PrintRoomText(item.Trim(), ConsoleColor.DarkYellow, 35);
             }
             else

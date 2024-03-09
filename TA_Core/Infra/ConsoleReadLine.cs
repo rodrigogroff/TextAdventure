@@ -28,9 +28,7 @@ public partial class TextAdventureGame
                 }
                 else if (line.StartsWith("check"))
                 {
-                    var award = line.Split(':')[1];
-
-                    if (game.player.awards.FirstOrDefault(y=> y.id == award).done == true)
+                    if (game.player.awards.FirstOrDefault(y=> y.id == line.Split(':')[1]).done == true)
                     {
                         automationFile_Out.Add("OK!");
                     }
@@ -41,12 +39,7 @@ public partial class TextAdventureGame
                 }
                 else if (line.StartsWith("input"))
                 {
-                    var inp = line.Substring("input:".Length);
-
-                    Console.Write("AUTO: >" + inp + "<");
-                    Thread.Sleep(50);
-
-                    return inp;
+                    return line.Substring("input:".Length);
                 }
             }
 
