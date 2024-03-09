@@ -104,3 +104,10 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\P
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Readme.md
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Core.dll
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Core.pdb
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Update.dll
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Update.pdb
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.deps.json
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.runtimeconfig.json
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.exe
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.dll
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.pdb

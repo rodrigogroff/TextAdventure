@@ -29,7 +29,7 @@ public partial class TextAdventureGame
         Console.WriteLine();
     }
 
-    void Write(string text, ConsoleColor color)
+    public void Write(string text, ConsoleColor color)
     {
         Console.ForegroundColor = color;
         Console.Write(text);

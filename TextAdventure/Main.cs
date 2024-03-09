@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
+using TA_Update;
 using static Win32;
 
 public class Win32
@@ -33,6 +35,33 @@ public class Program
         PostMessage(hwnd, WM_KEYDOWN, (IntPtr)VK_F11, IntPtr.Zero);
         PostMessage(hwnd, WM_MOUSEWHEEL, (IntPtr)(MK_CONTROL | WHEEL_DELTA), IntPtr.Zero);
 
-        new TextAdventureGame().StartGame();
+        var ta = new TextAdventureGame();
+
+        Console.CursorVisible = false;
+        Console.Clear();
+        Thread.Sleep(500);
+        Console.WriteLine();
+        ta.Write(" DOS/4GW Professional Protected Mode Run-Time Versiom 2.1c\n", ConsoleColor.White);
+        ta.Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
+        ta.Write(" Engine Version: 1.4.3", ConsoleColor.DarkGray);         
+        Console.WriteLine();
+        Console.WriteLine();
+        Thread.Sleep(2000);
+        ta.Write(" --Checking for updates...\n", ConsoleColor.Yellow);
+        Thread.Sleep(2000);
+        if (new GameUpdater().CheckForUpdate())
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "TA_AppUpdater.exe",
+                Arguments = "",
+                UseShellExecute = false,
+                CreateNoWindow = false
+            };
+
+            Process.Start(startInfo);
+        }
+        else
+            ta.StartGame();
     }
 }

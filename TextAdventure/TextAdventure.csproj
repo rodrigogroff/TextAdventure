@@ -34,7 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TA_AppUpdater\TA_AppUpdater.csproj" />
     <ProjectReference Include="..\TA_Core\TA_Core.csproj" />
+    <ProjectReference Include="..\TA_Update\TA_Update.csproj" />
   </ItemGroup>
 
   <ItemGroup>

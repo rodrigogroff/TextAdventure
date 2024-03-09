@@ -2,8 +2,6 @@
 
 public partial class TextAdventureGame
 {
-    string engineVersion = "0.1.4.2";
-        
     public void StartGame()
     {
         if (File.Exists(monitor_file))
@@ -18,21 +16,6 @@ public partial class TextAdventureGame
 
         try
         {
-            Console.CursorVisible = false;
-            Console.Clear();
-            Thread.Sleep(500);
-            Console.WriteLine();
-            Write(" DOS/4GW Professional Protected Mode Run-Time Versiom 2.1c\n", ConsoleColor.White);
-            Write(" Copyright (C) United TA Systems, Inc. 1976\n", ConsoleColor.DarkGray);
-            Write(" Engine Version: ", ConsoleColor.DarkGray); Write(engineVersion + "\n", ConsoleColor.Red);
-            Console.WriteLine();
-            Write(" -- Please use ALT+ENTER for fullscreen [", ConsoleColor.DarkGray);
-            Write("recommended", ConsoleColor.Green);
-            Write("]\n", ConsoleColor.DarkGray);
-            Console.WriteLine();
-            Console.WriteLine();
-            Thread.Sleep(2000);            
-            
             int mode = 2;
             
             // protect json file

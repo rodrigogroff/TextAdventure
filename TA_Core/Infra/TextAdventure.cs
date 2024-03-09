@@ -59,7 +59,7 @@ public partial class TextAdventureGame
         return resp;
     }
 
-    void EnterToContinue()
+    public void EnterToContinue()
     {
         Write(" [Enter to continue]", ConsoleColor.DarkGray);
         Write(" [> ", ConsoleColor.Green);
