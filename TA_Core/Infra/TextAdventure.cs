@@ -73,12 +73,19 @@ public partial class TextAdventureGame
     {
         string formattedTime = "";
 
-        if (timeSpan.Days > 0)
-            formattedTime += $"{timeSpan.Days}Days ";
-        if (timeSpan.Hours > 0)
-            formattedTime += $"{timeSpan.Hours}h ";
-        if (timeSpan.Minutes > 0)
-            formattedTime += $"{timeSpan.Minutes}m ";
+        if (timeSpan.TotalSeconds < 60)
+        {
+            formattedTime += $"{timeSpan.Seconds}s ";
+        }
+        else
+        {
+            if (timeSpan.Days > 0)
+                formattedTime += $"{timeSpan.Days}Days ";
+            if (timeSpan.Hours > 0)
+                formattedTime += $"{timeSpan.Hours}h ";
+            if (timeSpan.Minutes > 0)
+                formattedTime += $"{timeSpan.Minutes}m ";
+        }
 
         return formattedTime;
     }
