@@ -7,7 +7,7 @@ public partial class TextAdventureGame
 
         if (bHintsDisabled || bHardcore)
         {
-            Print("Hints disabled.", ConsoleColor.Red);
+            Write("¨ Hints disabled.", ConsoleColor.Red);
             return;
         }
 
@@ -17,13 +17,11 @@ public partial class TextAdventureGame
         if (current_game_Room.hint.Any(y => !string.IsNullOrEmpty(y) && game.hints > 0))
         {
             foreach (var item in current_game_Room.hint)
-                Print(">> " + item, ConsoleColor.DarkYellow);
+                Write("¨>> " + item, ConsoleColor.DarkYellow);
         }
         else
-        {
-            Print("No hints available.", ConsoleColor.DarkYellow);
-        }
-
+            Write("¨ No hints available.", ConsoleColor.DarkYellow);
+        
         Console.WriteLine();
     }
 }

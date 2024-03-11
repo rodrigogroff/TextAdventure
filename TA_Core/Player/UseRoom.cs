@@ -9,7 +9,7 @@ public partial class TextAdventureGame
         if (game.player.inventory.Count == 0)
         {
             Console.WriteLine();
-            Write(" Nothing to use!", ConsoleColor.DarkYellow);
+            Write("¨ Nothing to use!", ConsoleColor.DarkYellow);
             Console.WriteLine();
             return;
         }
@@ -26,7 +26,7 @@ public partial class TextAdventureGame
             if (!foundUsableItens)
             {
                 Console.WriteLine();
-                Write(" Nothing to use!", ConsoleColor.DarkYellow);
+                Write("¨ Nothing to use!", ConsoleColor.DarkYellow);
                 Console.WriteLine();
                 return;
             }
@@ -48,7 +48,7 @@ public partial class TextAdventureGame
                 }
             }
             Console.WriteLine();
-            Write(" [Select item to use:]", ConsoleColor.DarkGray);
+            Write("¨ [Select item to use:]", ConsoleColor.DarkGray);
             Write(" 'Enter'", ConsoleColor.White);
             Write(" to continue ", ConsoleColor.DarkGray);
             Console.ForegroundColor = ConsoleColor.Green;
@@ -61,13 +61,13 @@ public partial class TextAdventureGame
             {
                 if (Convert.ToInt32(option) > indexItem && Convert.ToInt32(option) < 1)
                 {
-                    Print(">> Invalid option!");
+                    Write("¨ >> Invalid option!", ConsoleColor.Red);
                     continue;
                 }
             }
             catch
             {
-                Print(">> Invalid option!");
+                Write("¨ >> Invalid option!", ConsoleColor.Red);
                 continue;
             }
             var current_give_item = hash[Convert.ToInt32(option)] as Item;

@@ -18,7 +18,7 @@ public partial class TextAdventureGame
         crypt.EncryptContent(currentFile + ".save", JsonConvert.SerializeObject(fileSaveGame));
                 
         Console.WriteLine();
-        Write(" The game is saved!", ConsoleColor.DarkYellow);
+        Write("¨ The game is saved!", ConsoleColor.DarkYellow);
         Console.WriteLine();
 
         FlushMonitorFile();

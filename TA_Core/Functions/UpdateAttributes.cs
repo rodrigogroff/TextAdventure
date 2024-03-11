@@ -11,7 +11,7 @@ public partial class TextAdventureGame
             if (!item.name.EndsWith("MAX"))
             {
                 string msg = "(+) Acquired Stat: " + item.name + " +[" + item.quantity + "]";
-                Print(msg, ConsoleColor.Blue);
+                Write("¨ " + msg + "\n", ConsoleColor.Blue);
                 game.logs.Add(msg);
             }
         }
@@ -29,7 +29,7 @@ public partial class TextAdventureGame
                 var max_st = game.player.attributes.FirstOrDefault(y => y.name == item.name + "MAX");
                 if (max_st != null)
                 {
-                    Write(" (-) Lost Stat: ", ConsoleColor.DarkGray);
+                    Write("¨ (-) Lost Stat: ", ConsoleColor.DarkGray);
                     Write(item.name, ConsoleColor.Yellow);
                     Write(" [", ConsoleColor.DarkGray);
                     Write(item.quantity.ToString(), ConsoleColor.White);
@@ -44,7 +44,7 @@ public partial class TextAdventureGame
                 {
                     msg = "(-) Lost Stat: " + item.name + " [" + i.quantity + item.quantity + "] = Remaining: " + rem;
 
-                    Write(" (-) Lost Stat: ", ConsoleColor.DarkGray);
+                    Write("¨ (-) Lost Stat: ", ConsoleColor.DarkGray);
                     Write(item.name, ConsoleColor.Yellow);
                     Write(" [", ConsoleColor.DarkGray);
                     Write((i.quantity + item.quantity).ToString(), ConsoleColor.White);
@@ -62,7 +62,7 @@ public partial class TextAdventureGame
                     var add_mx = item.quantity + i.quantity;
                     if (add_mx > max_st.quantity)
                         add_mx = max_st.quantity;
-                    lines.Add(" (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = ");
+                    lines.Add("¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = ");
                     colors.Add(ConsoleColor.DarkGray);
                     lines.Add(" Total: " + add_mx + "/" + max_st.quantity + "\n");
                     colors.Add(ConsoleColor.Yellow);
@@ -74,11 +74,10 @@ public partial class TextAdventureGame
                 {
                     msg = "(+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + (item.quantity + i.quantity);
                     i.quantity += item.quantity;
-                    Print(msg, ConsoleColor.Green);
+                    Write(msg+ "\n", ConsoleColor.Green);
                 }
             }
             game.logs.Add(msg);
         }
     }
-
 }

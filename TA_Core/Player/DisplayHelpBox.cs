@@ -7,7 +7,7 @@ public partial class TextAdventureGame
         if (bHardcore)
         {
             Console.WriteLine();
-            Write("  >> Hardcore is meant to play like living in a 80's non-intuitive parser: welcome to hell ;) <<", ConsoleColor.Red);
+            Write("¨  >> Hardcore is meant to play like living in a 80's non-intuitive parser: welcome to hell ;) <<", ConsoleColor.Red);
             Console.WriteLine();
             return;
         }
@@ -18,9 +18,9 @@ public partial class TextAdventureGame
         List<ConsoleColor> colors = new List<ConsoleColor>();
         int w1 = 15, w2 = 35;
         colors.Add(ConsoleColor.Yellow);
-        lines.Add(" --- Game Commands ----                            --- Interface commands ----\n\n");
+        lines.Add("¨ --- Game Commands ----                            --- Interface commands ----\n\n");
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /stat".PadRight(w1, ' '));
+        lines.Add("¨ /stat".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" show current attributes".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
@@ -28,7 +28,7 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.Blue);
         lines.Add(" discover how to play using hints\n");
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /bag".PadRight(w1, ' '));
+        lines.Add("¨ /bag".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" display player inventory".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
@@ -41,7 +41,7 @@ public partial class TextAdventureGame
         else
             lines.Add("[SLOW]\n");
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /look".PadRight(w1, ' '));
+        lines.Add("¨ /look".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" investigate npc / scene".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
@@ -49,18 +49,16 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" show the game's progress log\n");
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /give".PadRight(w1, ' '));
+        lines.Add("¨ /give".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" interact with npc".PadRight(w2, ' '));
-        colors.Add(ConsoleColor.Green);
-
-        
+        colors.Add(ConsoleColor.Green);        
         lines.Add(" /repeat".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" show stage/npc text again\n");
         
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /take".PadRight(w1, ' '));
+        lines.Add("¨ /take".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" interact with npc".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
@@ -68,7 +66,7 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" record your game to play later\n");
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /use".PadRight(w1, ' '));
+        lines.Add("¨ /use".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" consume inventory item".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
@@ -76,7 +74,7 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" player suicide (in the game)\n");
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /map".PadRight(w1, ' '));
+        lines.Add("¨ /map".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" show the current map".PadRight(w2, ' '));
 
@@ -86,7 +84,7 @@ public partial class TextAdventureGame
         lines.Add(" clear your screen\n");
 
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /quest".PadRight(w1, ' '));
+        lines.Add("¨ /quest".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" game quests list".PadRight(w2, ' '));
 
@@ -102,7 +100,7 @@ public partial class TextAdventureGame
             lines.Add("[OFF]\n");
 
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /award".PadRight(w1, ' '));
+        lines.Add("¨ /award".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" game goals currently achieved".PadRight(w2, ' '));
 

@@ -20,9 +20,9 @@ public partial class TextAdventureGame
             if (stage_inventory.Count == 0)
             {
                 if (currentRoom.npc == true)
-                    Write(" Nothing for you!", ConsoleColor.DarkYellow);
+                    Write("¨ Nothing for you!", ConsoleColor.DarkYellow);
                 else
-                    Write(" There is nothing around here...", ConsoleColor.DarkYellow);
+                    Write("¨ There is nothing around here...", ConsoleColor.DarkYellow);
                 Console.WriteLine();
                 break;
             }
@@ -31,7 +31,7 @@ public partial class TextAdventureGame
             {
                 var g_item = game.itens.FirstOrDefault(y => y.name == takeItem.name);
 
-                Write(" -- ", ConsoleColor.DarkGray);
+                Write("¨ -- ", ConsoleColor.DarkGray);
                 Write((index++).ToString(), ConsoleColor.White);
                 Write(" ", ConsoleColor.DarkGray);
                 Write(takeItem.name, ConsoleColor.Yellow);
@@ -41,8 +41,8 @@ public partial class TextAdventureGame
                 Write(g_item.description + "\n", ConsoleColor.Red);
             }
             Console.WriteLine();
-            Write(" [Select item to take:]\n", ConsoleColor.DarkGray);
-            Write(" [> ", ConsoleColor.Green);
+            Write("¨ [Select item to take:]\n", ConsoleColor.DarkGray);
+            Write("¨ [> ", ConsoleColor.Green);
             Console.ForegroundColor = ConsoleColor.Green;
             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
             string option = ConsoleReadLine().Trim();
@@ -56,7 +56,7 @@ public partial class TextAdventureGame
             catch
             {
                 Console.WriteLine();
-                Write(" >> Invalid option! <<\n", ConsoleColor.Red);
+                Write("¨ >> Invalid option! <<\n", ConsoleColor.Red);
                 Console.WriteLine();
                 continue;
             }
@@ -68,8 +68,8 @@ public partial class TextAdventureGame
             if (game.player.inventory.Count >= game.maxInventory)
             {
                 Console.WriteLine();
-                Write(" >> Maximum inventory reached! <<\n", ConsoleColor.Red);
-                Write(" >> Itens may be dropped on the ground <<\n", ConsoleColor.Red);
+                Write("¨ >> Maximum inventory reached! <<\n", ConsoleColor.Red);
+                Write("¨ >> Itens may be dropped on the ground <<\n", ConsoleColor.Red);
                 break;
             }
 
@@ -97,5 +97,4 @@ public partial class TextAdventureGame
             CheckConstraints();
         }
     }
-
 }

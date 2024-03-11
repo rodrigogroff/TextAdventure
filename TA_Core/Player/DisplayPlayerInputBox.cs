@@ -6,7 +6,7 @@ public partial class TextAdventureGame
     {
         if (!string.IsNullOrEmpty(game.player.name) && string.IsNullOrEmpty(game.player.title))
         {
-            Write(" [Player Name: ", ConsoleColor.DarkGray);
+            Write("¨ [Player Name: ", ConsoleColor.DarkGray);
             Write(game.player.name, ConsoleColor.Blue);
             Write(", Mode: ", ConsoleColor.DarkGray);
 
@@ -36,7 +36,7 @@ public partial class TextAdventureGame
         {
             Console.WriteLine();
 
-            Write(" [Player Name: ", ConsoleColor.DarkGray);
+            Write("¨ [Player Name: ", ConsoleColor.DarkGray);
             Write(game.player.name, ConsoleColor.Blue);
             Write(", Title: ", ConsoleColor.DarkGray);
             Write(game.player.title, ConsoleColor.Yellow);
@@ -81,7 +81,7 @@ public partial class TextAdventureGame
 
                 var tot = game.player.quests.Count();
 
-                Write(" [Quests(", ConsoleColor.DarkGray);
+                Write("¨ [Quests(", ConsoleColor.DarkGray);
                 Write(tot.ToString(), ConsoleColor.Yellow);
                 Write("), Last: ", ConsoleColor.DarkGray);
                 Write(lastQ.title, ConsoleColor.Red);
@@ -93,25 +93,25 @@ public partial class TextAdventureGame
                 var aw = game.player.awards.FirstOrDefault(y => y.text == y.text);
                 if (aw == null)
                 {
-                    Write(" [Target Award -- ", ConsoleColor.DarkGray);
+                    Write("¨ [Current puzzle: -- ", ConsoleColor.DarkGray);
                     Write(y.text, ConsoleColor.Blue);
                     Write(" ]\n", ConsoleColor.DarkGray);
                     break;
                 }
             }
                         
-            Write(" [Type ", ConsoleColor.DarkGray);
+            Write("¨ [Type ", ConsoleColor.DarkGray);
             Write("/help", ConsoleColor.Green);
             Write(" to see a list of commands]\n", ConsoleColor.DarkGray);
-            Write(" [Type ", ConsoleColor.DarkGray);
+            Write("¨ [Type ", ConsoleColor.DarkGray);
             Write("/map", ConsoleColor.Green);
             Write(" to see your current location]\n", ConsoleColor.DarkGray);
-            Write(" [Enter to continue]", ConsoleColor.DarkGray);
+            Write("¨ [Enter to continue]", ConsoleColor.DarkGray);
             Write(" [> ", ConsoleColor.Green);
         }
         else
         {
-            Write(" [Enter to continue]", ConsoleColor.DarkGray);
+            Write("¨ [Enter to continue]", ConsoleColor.DarkGray);
             Write(" [> ", ConsoleColor.Green);
         }        
     }

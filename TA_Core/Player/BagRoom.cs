@@ -1,5 +1,4 @@
-﻿using System.Collections;
-
+﻿
 public partial class TextAdventureGame
 {
     void BagRoom()
@@ -14,7 +13,7 @@ public partial class TextAdventureGame
                 var w_item = game.itens.FirstOrDefault(y => y.name == item.name);
                 var desc = w_item != null ? w_item.description : "";
 
-                Write(" -- ", ConsoleColor.DarkGray);
+                Write("¨ -- ", ConsoleColor.DarkGray);
                 Write((i++).ToString(), ConsoleColor.White);
                 Write(" ", ConsoleColor.DarkGray);
                 Write(item.name.PadRight(30,' '), ConsoleColor.Yellow);
@@ -26,11 +25,11 @@ public partial class TextAdventureGame
             }
             if (game.player.inventory.Count == 0)
             {
-                Write(" Empty!\n", ConsoleColor.DarkYellow);
+                Write("¨ Empty!\n", ConsoleColor.DarkYellow);
                 break;
             }
             Console.WriteLine();
-            Write(" [Select item to drop:]", ConsoleColor.DarkGray);
+            Write("¨ [Select item to drop:]", ConsoleColor.DarkGray);
             Write(" 'Enter'", ConsoleColor.White);
             Write(" to continue ", ConsoleColor.DarkGray);
 
@@ -55,7 +54,7 @@ public partial class TextAdventureGame
                 if (game_inv_item.quantity > 0)
                 {
                     Console.WriteLine();
-                    Write("[Type quantity:]", ConsoleColor.White);
+                    Write("¨ [Type quantity:]", ConsoleColor.White);
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write(" >> ");
                     while (Console.KeyAvailable) Console.ReadKey(intercept: true);
@@ -87,7 +86,7 @@ public partial class TextAdventureGame
                         }
                         else
                         {
-                            Print(" Wrong amount!", ConsoleColor.DarkGray);
+                            Write("¨ Wrong amount!", ConsoleColor.DarkGray);
                             break;
                         }
                     }
@@ -103,5 +102,4 @@ public partial class TextAdventureGame
             }
         }
     }
-
 }

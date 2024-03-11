@@ -4,6 +4,8 @@ public partial class TextAdventureGame
 {
     public void StartGame()
     {
+        InitScreen();
+
         if (File.Exists(monitor_file))
             monitor = JsonConvert.DeserializeObject<GameMonitoring>(crypt.DecryptFile(monitor_file));
         else
@@ -31,7 +33,7 @@ public partial class TextAdventureGame
                             Console.Clear();
                             DisplayStartScreen();
                             Console.WriteLine();
-                            Write(" [Games available:]\n", ConsoleColor.Yellow);
+                            Write("¨ [Games available:]\n", ConsoleColor.Yellow);
                             Console.WriteLine();
                             string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
 
@@ -70,7 +72,7 @@ public partial class TextAdventureGame
                                     awards = savegame.player.awards.Count() + "/" + _gam.awards.Count();
                                 }
 
-                                Write(" " + (i + 1) + " - ", ConsoleColor.DarkGray);
+                                Write("¨ " + (i + 1) + " - ", ConsoleColor.DarkGray);
                                 Write(g_name.PadRight(35, ' '), ConsoleColor.White);
 
                                 if (awards != "")
@@ -89,8 +91,8 @@ public partial class TextAdventureGame
                                 Write("\n", ConsoleColor.Green);
                             }
                             Console.WriteLine();
-                            Write(" [Select your game:]\n", ConsoleColor.DarkGray);
-                            Write(" [> ", ConsoleColor.Green);
+                            Write("¨ [Select your game:]\n", ConsoleColor.DarkGray);
+                            Write("¨ [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;
                             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                             
@@ -102,7 +104,7 @@ public partial class TextAdventureGame
                             {
                                 bFastMode = true;
                                 bAutomation = true;
-                                Write(" [> AUTOMATION\n", ConsoleColor.DarkGray);
+                                Write("¨ [> AUTOMATION\n", ConsoleColor.DarkGray);
                                 EnterToContinue();                                
                             }
                             #endif
@@ -161,22 +163,22 @@ public partial class TextAdventureGame
                     case 3:
                         DisplayStartScreen();
                         Console.WriteLine();
-                        Write(" Game [", ConsoleColor.Yellow);
+                        Write("¨ Game [", ConsoleColor.Yellow);
                         Write( game.gameName, ConsoleColor.White);
                         Write("]\n", ConsoleColor.Yellow);
                         Console.WriteLine();
-                        Write(" 1 - ", ConsoleColor.DarkGray);
+                        Write("¨ 1 - ", ConsoleColor.DarkGray);
                         Write("Easy       ", ConsoleColor.Yellow);
                         Write("-- Unlimited hints\n", ConsoleColor.DarkGray);
-                        Write(" 2 - ", ConsoleColor.DarkGray);
+                        Write("¨ 2 - ", ConsoleColor.DarkGray);
                         Write("Normal     ", ConsoleColor.DarkYellow);
                         Write("-- Counted hints\n", ConsoleColor.DarkGray);
-                        Write(" 3 - ", ConsoleColor.DarkGray);
+                        Write("¨ 3 - ", ConsoleColor.DarkGray);
                         Write("Old School ", ConsoleColor.Red);
                         Write("-- Alone in the dark\n", ConsoleColor.DarkGray);
                         Console.WriteLine();
-                        Write(" [Select your game difficulty:]\n", ConsoleColor.DarkGray);
-                        Write(" [> ", ConsoleColor.Green);
+                        Write("¨ [Select your game difficulty:]\n", ConsoleColor.DarkGray);
+                        Write("¨ [> ", ConsoleColor.Green);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.CursorVisible = true;
                         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
@@ -201,7 +203,7 @@ public partial class TextAdventureGame
                             bHardcore = true;
                             bFastMode = true;
 
-                            Write("\n  --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
+                            Write("\n¨  --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
                             Thread.Sleep(2000);
                         }
                         else
@@ -218,7 +220,8 @@ public partial class TextAdventureGame
                         Console.Clear();
                         Console.WriteLine();
                         Console.WriteLine();
-                        PrintRoomText("^Big Boys Games^ proudly presents ...", ConsoleColor.White, 10);
+                        Write("¨   Big Boys Games ", ConsoleColor.Blue);
+                        Write(" proudly presents ...\n", ConsoleColor.White);
                         Console.WriteLine();
                         PrintGameBig();
                         string option_load = "";
@@ -228,22 +231,19 @@ public partial class TextAdventureGame
                             while (true)
                             {
                                 Console.WriteLine();
-                                Write(" 1 - ", ConsoleColor.DarkGray);
+                                Write("¨ 1 - ", ConsoleColor.DarkGray);
                                 Write("Continue from saved game\n", ConsoleColor.White);
-                                Write(" 2 - ", ConsoleColor.DarkGray);
+                                Write("¨ 2 - ", ConsoleColor.DarkGray);
                                 Write("New game (lose all awards!)\n", ConsoleColor.DarkGray);
                                 Console.WriteLine();
-                                Write(" [> ", ConsoleColor.Green);
+                                Write("¨ [> ", ConsoleColor.Green);
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.CursorVisible = true;
                                 while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                                 option_load = ConsoleReadLine().Trim();
 
                                 if (option_load == "")
-                                {
-                                    option_load = "1";
-                                    Write(" [Continue]\n", ConsoleColor.Yellow);
-                                }
+                                    option_load = "1";                                    
 
                                 if (option_load == "1")
                                 {

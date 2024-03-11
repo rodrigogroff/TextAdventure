@@ -23,7 +23,7 @@ public partial class TextAdventureGame
                             });
 
                             Console.WriteLine();
-                            Write(" (+) New Award: ", ConsoleColor.Green);
+                            Write("¨ (+) New Award: ", ConsoleColor.Green);
                             Write(aw.text + "\n", ConsoleColor.White);
                             game.logs.Add(" (+) New Award: " + aw.text);
                             Console.WriteLine();
@@ -181,7 +181,7 @@ public partial class TextAdventureGame
                         });
 
                         Console.WriteLine();
-                        Write(" (+) New Award: ", ConsoleColor.Green);
+                        Write("¨ (+) New Award: ", ConsoleColor.Green);
                         Write(aw.text + "\n", ConsoleColor.White);
                         game.logs.Add(" (+) New Award: " + aw.text);
                         Console.WriteLine();
@@ -248,7 +248,7 @@ public partial class TextAdventureGame
                     });
 
                     Console.WriteLine();
-                    Write(" (+) New Quest: ", ConsoleColor.Red);
+                    Write("¨ (+) New Quest: ", ConsoleColor.Red);
                     Write(quest.title + "\n", ConsoleColor.White);
                     Console.WriteLine();
                 }
@@ -298,7 +298,7 @@ public partial class TextAdventureGame
                         {
                             if (trig == item)
                             {
-                                Write(" (+) Triggered ", ConsoleColor.Blue);
+                                Write("¨ (+) Triggered ", ConsoleColor.Blue);
                                 Write(tr.name + "\n", ConsoleColor.White);
 
                                 var vr_to_add = 0;
@@ -308,18 +308,18 @@ public partial class TextAdventureGame
                                 {
                                     var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
                                     vr_to_add = -(((qqty * range) / 100) + 1);
-                                    Write("    (-) Lost ", ConsoleColor.Red);
+                                    Write("¨    (-) Lost ", ConsoleColor.Red);
                                     Write(vr_to_add.ToString().Substring(1), ConsoleColor.White);
-                                    Write("    " + item + "\n", ConsoleColor.Yellow);
+                                    Write("   " + item + "\n", ConsoleColor.Yellow);
                                     qqty += vr_to_add;
                                 }
                                 else if (form.StartsWith("/rand"))
                                 {
                                     var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
                                     vr_to_add = (qqty * range) / 100;
-                                    Write("    (+) Found ", ConsoleColor.Blue);
+                                    Write("¨    (+) Found ", ConsoleColor.Blue);
                                     Write(vr_to_add.ToString(), ConsoleColor.White);
-                                    Write("    " + item + "\n", ConsoleColor.Yellow);
+                                    Write("   " + item + "\n", ConsoleColor.Yellow);
                                     qqty += vr_to_add;
                                 }
                             }
@@ -346,7 +346,7 @@ public partial class TextAdventureGame
                     {
                         if (trig == item)
                         {
-                            Write(" (+) Triggered ", ConsoleColor.Blue);
+                            Write("¨ (+) Triggered ", ConsoleColor.Blue);
                             Write(tr.name + "\n", ConsoleColor.White);
 
                             var vr_to_add = 0;
@@ -356,7 +356,7 @@ public partial class TextAdventureGame
                             {
                                 var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
                                 vr_to_add = -(((qqty * range) / 100) + 1);
-                                Write("    (-) Lost ", ConsoleColor.Red);
+                                Write("¨    (-) Lost ", ConsoleColor.Red);
                                 Write(vr_to_add.ToString().Substring(1), ConsoleColor.White);
                                 Write("    " + item + "\n", ConsoleColor.Yellow);
                                 qqty += vr_to_add;
@@ -365,7 +365,7 @@ public partial class TextAdventureGame
                             {
                                 var range = GetRandomNumber(1, Convert.ToInt32(form.Split(' ')[1]));
                                 vr_to_add = (qqty * range) / 100;
-                                Write("    (+) Found ", ConsoleColor.Blue);
+                                Write("¨    (+) Found ", ConsoleColor.Blue);
                                 Write(vr_to_add.ToString(), ConsoleColor.White);
                                 Write("    " + item + "\n", ConsoleColor.Yellow);
                                 qqty += vr_to_add;
@@ -385,7 +385,7 @@ public partial class TextAdventureGame
             {
                 game.player.title = cmd.Split(" ")[1].Replace("_", " ");
                 game.logs.Add("Player received Title: " + game.player.title);
-                Write(" (+) Acquired Title: ", ConsoleColor.Blue);
+                Write("¨ (+) Acquired Title: ", ConsoleColor.Blue);
                 Write(game.player.title + "\n", ConsoleColor.White);
                 if (!bAutomation)
                     Thread.Sleep(400);

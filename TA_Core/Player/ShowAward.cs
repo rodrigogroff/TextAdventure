@@ -3,6 +3,8 @@ public partial class TextAdventureGame
 {
     void ShowAward()
     {
+        Console.CursorVisible = false;
+
         Console.WriteLine();
         int x = 1;
 
@@ -12,7 +14,7 @@ public partial class TextAdventureGame
         {
             var i = game.player.awards.FirstOrDefault(y => y.id == item.id);
 
-            Write(" - " + (x++).ToString().PadLeft(3, '0') + " - ", ConsoleColor.DarkGray);
+            Write("¨ - " + (x++).ToString().PadLeft(3, '0') + " - ", ConsoleColor.DarkGray);
 
             if (i != null)
                 Write("[OK] " + item.text + "\n", ConsoleColor.Yellow);
@@ -34,5 +36,7 @@ public partial class TextAdventureGame
                 Thread.Sleep(10);
         }
         Console.WriteLine();
+
+        Console.CursorVisible = true;
     }
 }

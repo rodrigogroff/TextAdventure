@@ -7,7 +7,7 @@ public partial class TextAdventureGame
 
         if (current_game_Room.look.Count == 0)
         {
-            Write(" Nothing to look\n", ConsoleColor.DarkYellow);
+            Write("¨ Nothing to look\n", ConsoleColor.DarkYellow);
             return;
         }
 
@@ -23,6 +23,7 @@ public partial class TextAdventureGame
             else
                 ProcessCommand(item, "look");
         }
+
         current_game_Room.look.RemoveAll(y => y.StartsWith("/"));
     }
 }

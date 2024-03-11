@@ -9,7 +9,7 @@ public partial class TextAdventureGame
 
         if (current_game_Room.option?.ToLower() != "death")
         {
-            Write(" ▒▓██ ", ConsoleColor.Blue);
+            Write("¨ ▒▓██ ", ConsoleColor.Blue);
             Write(current_game_Room.label, ConsoleColor.White);
             Write(" █████████▓▒ ", ConsoleColor.Blue);
 
@@ -123,7 +123,8 @@ public partial class TextAdventureGame
 
             game.player = pl;
             game.playerDead = false;
-            Write("\n --- Current game awards ----- \n", ConsoleColor.Yellow);
+            Console.WriteLine();
+            Write("¨ --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();
             EnterToContinue();
             Console.Clear();

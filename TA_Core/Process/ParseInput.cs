@@ -127,7 +127,7 @@ public partial class TextAdventureGame
                                 game.player.name = command.PadRight(20, ' ').Substring(0, 20).Trim();
                                 game.logs.Add("Player entered name: " + command);
                                 Console.WriteLine();
-                                Write(" (+) Acquired player name: ", ConsoleColor.Blue);
+                                Write("¨ (+) Acquired player name: ", ConsoleColor.Blue);
                                 Write(game.player.name + "\n", ConsoleColor.Yellow);
                                 Console.WriteLine();
                                 EnterToContinue();

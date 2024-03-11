@@ -7,7 +7,7 @@ public partial class TextAdventureGame
         if (game.player.quests.Count == 0)
         {
             Console.WriteLine();
-            Write(" No quests available!", ConsoleColor.DarkYellow);
+            Write("¨ No quests available!", ConsoleColor.DarkYellow);
             Console.WriteLine();
             return;
         }
@@ -18,13 +18,13 @@ public partial class TextAdventureGame
         foreach (var qu in game.player.quests.OrderByDescending(y => y.dt_start))
         {
             hsh[index] = qu;
-            Write(" [" + index++ + "] - ", ConsoleColor.White);
+            Write("¨ [" + index++ + "] - ", ConsoleColor.White);
             Write(qu.active == true ? "[Active] " : "[Done] ", ConsoleColor.Blue);
             Write(qu.title + "   ", ConsoleColor.Yellow);
             Write(qu.subtitle + "\n", ConsoleColor.Red);
         }
         Console.WriteLine();
-        Write(" [Select quest to view:]", ConsoleColor.DarkGray);
+        Write("¨ [Select quest to view:]", ConsoleColor.DarkGray);
         Console.ForegroundColor = ConsoleColor.Green;
         Console.Write(" >> ");
         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
@@ -33,9 +33,9 @@ public partial class TextAdventureGame
             return;
         var q = hsh[Convert.ToInt32(option)] as Quest;
         Console.WriteLine();
-        Write(" -- Quest --\n", ConsoleColor.Green);
-        Write(" " + q.title + "\n", ConsoleColor.Blue);
-        Write(" " + q.subtitle + "\n", ConsoleColor.DarkYellow);
+        Write("¨ -- Quest --\n", ConsoleColor.Green);
+        Write("¨ " + q.title + "\n", ConsoleColor.Blue);
+        Write("¨ " + q.subtitle + "\n", ConsoleColor.DarkYellow);
         Console.WriteLine();
         foreach (var line in q.description)
         {
@@ -44,7 +44,7 @@ public partial class TextAdventureGame
             PrintRoomText(line, ConsoleColor.Yellow, 30);
         }
         Console.WriteLine();
-        Write(" -- Requirements: -- \n\n", ConsoleColor.Green);
+        Write("¨ -- Requirements: -- \n\n", ConsoleColor.Green);
         foreach (var gui in q.requirements)
         {
             var ms = game.player.inventory.Any(y => y.name == gui.name && y.quantity >= gui.quantity) ? " [OK] \n" : " [Not yet] \n";

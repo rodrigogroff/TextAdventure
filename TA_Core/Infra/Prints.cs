@@ -16,14 +16,15 @@ public partial class TextAdventureGame
         var max_len = 0;
         foreach (var item in game.gameBigTitle)
         {
+            Write("¨", ConsoleColor.White);
             if (!bAutomation)
                 Thread.Sleep(50);
             if (item.Length > max_len)
                 max_len = item.Length;
-            Print(" " + item, ConsoleColor.DarkRed);
+            Print(" " + item + "\n", ConsoleColor.DarkRed);
         }
         Console.WriteLine();
-        Write(" [", ConsoleColor.Gray);
+        Write("¨ [", ConsoleColor.Gray);
         Write(game.gameName, ConsoleColor.Yellow);
         Write("] - ", ConsoleColor.Gray);
         Write(game.gameVersion + "\n", ConsoleColor.DarkGray);
@@ -32,6 +33,13 @@ public partial class TextAdventureGame
 
     public void Write(string text, ConsoleColor color)
     {
+        if (text.StartsWith("¨"))
+        {
+            int emptySpace = ((screenWidth / 8 - 120) / 2);
+            Console.Write(" ".PadRight(emptySpace));
+            text = text.Substring(1);
+        }
+
         Console.ForegroundColor = color;
         Console.Write(text);
     }
@@ -42,8 +50,7 @@ public partial class TextAdventureGame
         {
             var text = lines[i];
             var color = colors[i];
-            Console.ForegroundColor = color;
-            Console.Write(text);
+            Write(text, color);
             if (!bAutomation)
                 Thread.Sleep(ms);
         }
@@ -51,8 +58,7 @@ public partial class TextAdventureGame
 
     void Print(string text, ConsoleColor color = ConsoleColor.White)
     {
-        Console.ForegroundColor = color;
-        Console.WriteLine(" " + PreProcessText(text));
+        Write(PreProcessText(text), color);
     }
 
     void Print(string text, ConsoleColor color, int ms)
@@ -91,6 +97,8 @@ public partial class TextAdventureGame
             Console.ForegroundColor = ConsoleColor.White;
         else
             Console.ForegroundColor = color;
+
+        Write("¨", color);
         
         foreach (char c in text)
         {

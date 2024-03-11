@@ -10,8 +10,8 @@ public partial class TextAdventureGame
             if (game.player.inventory.Count > game.maxInventory)
             {
                 Console.WriteLine();
-                Write(" >> Maximum inventory reached!", ConsoleColor.Red);
-                Write(" >> Item will be dropped on the ground <<\n", ConsoleColor.Red);
+                Write("¨ >> Maximum inventory reached!", ConsoleColor.Red);
+                Write("¨ >> Item will be dropped on the ground <<\n", ConsoleColor.Red);
                 Console.WriteLine();
 
                 game.world_itens.Add(new GameSceneItem
@@ -28,7 +28,7 @@ public partial class TextAdventureGame
             else
             {
                 game.player.inventory.Add(item);
-                Write(" (+) Acquired: ", ConsoleColor.Blue);
+                Write("¨ (+) Acquired: ", ConsoleColor.Blue);
                 Write(item.name, ConsoleColor.White);
                 Write(" [", ConsoleColor.DarkGray);
                 Write(item.quantity.ToString(), ConsoleColor.Yellow);
@@ -46,7 +46,7 @@ public partial class TextAdventureGame
                 msg = "(+) Acquired: " + item.name + " +[" + item.quantity + "] = Total: " + (myItem.quantity + item.quantity);
                 myItem.quantity += item.quantity;
 
-                Write(" (+) Acquired: ", ConsoleColor.Blue);
+                Write("¨ (+) Acquired: ", ConsoleColor.Blue);
                 Write(item.name, ConsoleColor.White);
 
                 Write(" +[ ", ConsoleColor.DarkGray);
@@ -61,7 +61,7 @@ public partial class TextAdventureGame
                     rem = 0;
                 msg = "(-) Lost: " + item.name + " [" + myItem.quantity + item.quantity + "] = Remaining: " + (myItem.quantity + item.quantity);
 
-                Write(" (-) Lost: ", ConsoleColor.Red);
+                Write("¨ (-) Lost: ", ConsoleColor.Red);
                 Write(item.name, ConsoleColor.White);
                 Write(" [", ConsoleColor.DarkGray);
                 Write(" " + (myItem.quantity + item.quantity) + " ", ConsoleColor.Yellow);
@@ -74,6 +74,7 @@ public partial class TextAdventureGame
             if (myItem.quantity == 0)
                 if (myItem.persistInventory != true)
                     game.player.inventory.Remove(myItem);
+
             game.logs.Add(msg);
         }
     }

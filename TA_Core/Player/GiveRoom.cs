@@ -9,7 +9,7 @@ public partial class TextAdventureGame
         if (currentRoom.npc != true)
         {
             Console.WriteLine();
-            Write(" No one is here to receive....\n", ConsoleColor.DarkYellow);
+            Write("¨ No one is here to receive....\n", ConsoleColor.DarkYellow);
             return;
         }
 
@@ -19,13 +19,13 @@ public partial class TextAdventureGame
 
             if (currentRoom.give.Count == 0)
             {
-                Write(" Not interested!\n", ConsoleColor.DarkYellow);
+                Write("¨ Not interested!\n", ConsoleColor.DarkYellow);
                 break;
             }
 
             if (game.player.inventory.Count == 0)
             {
-                Write(" You have nothing to give!\n", ConsoleColor.DarkYellow);
+                Write("¨ You have nothing to give!\n", ConsoleColor.DarkYellow);
                 break;
             }
 
@@ -34,7 +34,7 @@ public partial class TextAdventureGame
             {
                 var gameItem = game.itens.FirstOrDefault(y => y.name == item.name);
 
-                Write(" -- ", ConsoleColor.DarkGray);
+                Write("¨ -- ", ConsoleColor.DarkGray);
                 Write((index++).ToString(), ConsoleColor.White);
                 Write(" ", ConsoleColor.DarkGray);
                 Write(item.name, ConsoleColor.Yellow);
@@ -44,7 +44,7 @@ public partial class TextAdventureGame
                 Write(gameItem.description + "\n", ConsoleColor.Red);
             }
             Console.WriteLine();
-            Write(" [Select item to give:]", ConsoleColor.DarkGray);
+            Write("¨ [Select item to give:]", ConsoleColor.DarkGray);
             Write(" 'Enter'", ConsoleColor.White);
             Write(" to continue ", ConsoleColor.DarkGray);
             Console.ForegroundColor = ConsoleColor.Green;
@@ -80,11 +80,11 @@ public partial class TextAdventureGame
                     if (current_give_item.quantity >= item_qtty)
                     {
                         Console.WriteLine();
-                        Write(" Accepted!", ConsoleColor.DarkYellow);
+                        Write("¨ Accepted!", ConsoleColor.DarkYellow);
                         Console.WriteLine();
                         current_give_item.quantity -= item_qtty;
 
-                        Write(" (-) ", ConsoleColor.DarkGray);
+                        Write("¨ (-) ", ConsoleColor.DarkGray);
                         Write(item_name, ConsoleColor.Yellow);
                         Write(" loss (", ConsoleColor.DarkGray);
                         Write(item_qtty.ToString(), ConsoleColor.Yellow);
@@ -102,7 +102,7 @@ public partial class TextAdventureGame
                     else
                     {
                         Console.WriteLine();
-                        Write(" Not enough!", ConsoleColor.DarkYellow);
+                        Write("¨ Not enough!", ConsoleColor.DarkYellow);
                         Console.WriteLine();
                     }
                     break;
@@ -112,7 +112,7 @@ public partial class TextAdventureGame
             if (!match)
             {
                 Console.WriteLine();
-                Write(" Not interested in '" + current_give_item.name + "'", ConsoleColor.DarkYellow);
+                Write("¨ Not interested in '" + current_give_item.name + "'", ConsoleColor.DarkYellow);
                 Console.WriteLine();
             }
         }

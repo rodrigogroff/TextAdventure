@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
+using System.Runtime.InteropServices;
 using TextAdventure.Infra;
 
 public partial class TextAdventureGame
@@ -31,6 +32,27 @@ public partial class TextAdventureGame
 
     Hashtable hshNumbers = new Hashtable();
 
+    [DllImport("user32.dll")]
+    public static extern IntPtr GetDC(IntPtr hwnd);
+
+    [DllImport("gdi32.dll")]
+    public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+
+    [DllImport("user32.dll")]
+    public static extern int ReleaseDC(IntPtr hwnd, IntPtr hdc);
+
+    public const int DESKTOPHORZRES = 118;
+    public const int DESKTOPVERTRES = 117;
+
+    public int screenWidth = 0;
+
+    public void InitScreen()
+    {
+        IntPtr hdc = GetDC(IntPtr.Zero);
+        screenWidth = GetDeviceCaps(hdc, DESKTOPHORZRES);
+        ReleaseDC(IntPtr.Zero, hdc);
+    }
+
     int GetRandomNumber(int start, int finish)
     {
         var tag = game.currentRoom + "_" + start + "_" + finish;
@@ -61,7 +83,7 @@ public partial class TextAdventureGame
 
     public void EnterToContinue()
     {
-        Write(" [Enter to continue]", ConsoleColor.DarkGray);
+        Write("¨ [Enter to continue]", ConsoleColor.DarkGray);
         Write(" [> ", ConsoleColor.Green);
         Console.ForegroundColor = ConsoleColor.White;
         Console.CursorVisible = true;

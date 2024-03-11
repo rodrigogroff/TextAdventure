@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.ComponentModel.Design;
 
 public partial class TextAdventureGame
 {
@@ -8,7 +7,7 @@ public partial class TextAdventureGame
         if (string.IsNullOrEmpty(current_game_Room.map))
         {
             Console.WriteLine();
-            Write(" No map available to this area!", ConsoleColor.DarkYellow);
+            Write("¨ No map available to this area!", ConsoleColor.DarkYellow);
             Console.WriteLine();
             return;
         }
@@ -48,7 +47,7 @@ public partial class TextAdventureGame
                 int idx_line = 0;
                 foreach (var item in current_map.graphics)
                 {
-                    Write(" ", ConsoleColor.DarkGray);
+                    Write("¨ ", ConsoleColor.DarkGray);
                     foreach (var c in item)
                     {
                         if (c.ToString() == cur_letter)
@@ -98,7 +97,7 @@ public partial class TextAdventureGame
                     else
                         colors.Add(ConsoleColor.DarkGray);
 
-                    lines.Add(" " + letter.PadRight(5, ' '));
+                    lines.Add("¨ " + letter.PadRight(5, ' '));
 
                     if (letter == cur_letter || cur_letter == "")
                         colors.Add(ConsoleColor.Blue);
@@ -129,8 +128,8 @@ public partial class TextAdventureGame
 
                 if (current_map.places.Count > 1)
                 {
-                    Write(" [Select destination:]\n", ConsoleColor.DarkGray);
-                    Write(" [> ", ConsoleColor.Green);
+                    Write("¨ [Select destination:]\n", ConsoleColor.DarkGray);
+                    Write("¨ [> ", ConsoleColor.Green);
                     while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                     string option = ConsoleReadLine().ToLower().Trim();
                     if (option == "")
@@ -171,7 +170,7 @@ public partial class TextAdventureGame
                                         CheckConstraints();
 
                                         Console.WriteLine();
-                                        Print("You walk towards your destination...", ConsoleColor.DarkYellow);
+                                        Print("¨ You walk towards your destination...", ConsoleColor.DarkYellow);
                                         Console.WriteLine();
 
                                         EnterToContinue();                                                                                
@@ -186,9 +185,9 @@ public partial class TextAdventureGame
                     }
                     Console.WriteLine();
                     if (hashLetterId[option] as string == current_game_Room.id)
-                        Write(" You are already there!", ConsoleColor.DarkYellow);
+                        Write("¨ You are already there!", ConsoleColor.DarkYellow);
                     else
-                        Write(" Thats too far away...", ConsoleColor.DarkYellow);
+                        Write("¨ Thats too far away...", ConsoleColor.DarkYellow);
                     Console.WriteLine();
                 }
                 break;
