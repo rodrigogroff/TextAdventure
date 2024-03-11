@@ -87,6 +87,18 @@ public partial class TextAdventureGame
                 Write(lastQ.title, ConsoleColor.Red);
                 Write(" ]\n", ConsoleColor.DarkGray);
             }
+
+            foreach (var y in game.awards)
+            {
+                var aw = game.player.awards.FirstOrDefault(y => y.text == y.text);
+                if (aw == null)
+                {
+                    Write(" [Target Award -- ", ConsoleColor.DarkGray);
+                    Write(y.text, ConsoleColor.Blue);
+                    Write(" ]\n", ConsoleColor.DarkGray);
+                    break;
+                }
+            }
                         
             Write(" [Type ", ConsoleColor.DarkGray);
             Write("/help", ConsoleColor.Green);
