@@ -39,6 +39,7 @@ public partial class TextAdventureGame
                         string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
 
                         var hshGameInfo = new Hashtable();
+                        int totSeconds = 0, totDeaths = 0;
                         
                         for (int i = 0; i < files.Length; i++)
                         {
@@ -68,8 +69,12 @@ public partial class TextAdventureGame
                             }
                             if (seconds > 0)
                             {
-                                var str = " -- awards|" + awards + "| -- time: |" + FormatTimeSpan(TimeSpan.FromSeconds(seconds)) + "|" + " -- deaths: |" + deaths;
-                                hshGameInfo[g_name] = str;
+                                totSeconds += seconds;
+                                totDeaths += deaths;
+                                hshGameInfo[g_name] = 
+                                    " -- awards|" + awards + 
+                                    "| -- time: |" + FormatTimeSpan(TimeSpan.FromSeconds(seconds)) + 
+                                    "| -- deaths: |" + deaths;
                             }
                         }
 
@@ -147,7 +152,7 @@ public partial class TextAdventureGame
                                     }
                                 }
                             }
-
+    
                             Console.WriteLine();
                             Console.WriteLine();
                             Write("¨  Game Setup \n\n", ConsoleColor.Blue);
@@ -205,6 +210,23 @@ public partial class TextAdventureGame
                                 Write("[Quit]".PadRight(30, ' '), ConsoleColor.DarkGray);
                                 Write("\n", ConsoleColor.Black);
                             }
+
+                            List<string> msg = new List<string>
+                            {
+                                "Total time wasted on eighties nostalgia: ",
+                                "Total time doing actual work for non-real entities: ",
+                                "Total time wasted on fantasy chores: ",
+                            };
+
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            Console.WriteLine();
+
+                            Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.White);
+                            Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
+                            Write(" -- Total deaths: ", ConsoleColor.DarkGray);
+                            Write( totDeaths + "\n", ConsoleColor.Red);
 
                             var enterPressed = false;
 
