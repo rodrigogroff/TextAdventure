@@ -93,7 +93,7 @@ public partial class TextAdventureGame
                 var aw = game.player.awards.FirstOrDefault(y => y.text == y.text);
                 if (aw == null)
                 {
-                    Write("¨ [Current puzzle: -- ", ConsoleColor.DarkGray);
+                    Write("¨ [Target award -- ", ConsoleColor.DarkGray);
                     Write(y.text, ConsoleColor.Blue);
                     Write(" ]\n", ConsoleColor.DarkGray);
                     break;

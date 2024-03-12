@@ -181,19 +181,28 @@ public partial class TextAdventureGame
 
                     default:
 
-                        if (current_game_Room.program != null)
-                            if (current_game_Room.program.Count > 0)
-                            {
-                                Console.WriteLine();
-                                Console.WriteLine();
-                                foreach (var i_cmd in current_game_Room.program)
-                                    ProcessCommand(i_cmd, "procCommand");
-                                Console.WriteLine();
-                                EnterToContinue();
-                            }
+                        if (command == "")
+                        {
+                            if (current_game_Room.program != null)
+                                if (current_game_Room.program.Count > 0)
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    foreach (var i_cmd in current_game_Room.program)
+                                        ProcessCommand(i_cmd, "procCommand");
+                                    Console.WriteLine();
+                                    EnterToContinue();
+                                }
 
-                        if (current_game_Room.nextStep.Count > 0)
-                            ProcessRoom(current_game_Room.nextStep[0]);
+                            if (current_game_Room.nextStep.Count > 0)
+                                ProcessRoom(current_game_Room.nextStep[0]);
+                        }
+                        else
+                        {
+                            DisplayHelpBox();
+                            Console.CursorVisible = true;
+                        }
+
                         break;
                 }
                 break;

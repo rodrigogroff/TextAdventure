@@ -94,7 +94,7 @@ public partial class TextAdventureGame
                             Console.WriteLine();
                             Console.WriteLine();
 
-                            Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀▄░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
+                            Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
                             Write("¨ ░█▀█░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█▀▄░█▀▀░▀▀█\n", ConsoleColor.DarkGray);
                             Write("¨ ░▀░▀░▀▀░░░▀░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀\n", ConsoleColor.DarkGray);
 
@@ -111,7 +111,7 @@ public partial class TextAdventureGame
                                     Write("  ", ConsoleColor.Black);
                                     Write(g_name.PadRight(30, ' '), ConsoleColor.White);
                                     Write("   ", ConsoleColor.Black);
-                                    Console.BackgroundColor = ConsoleColor.Black;                                    
+                                    Console.BackgroundColor = ConsoleColor.Black;
                                 }
                                 else
                                 {
@@ -129,11 +129,18 @@ public partial class TextAdventureGame
                                         Write(" " + hsh_res[2], ConsoleColor.Gray);
                                         Write(" " + hsh_res[3], ConsoleColor.Green);
                                         Write(" " + hsh_res[4], ConsoleColor.Gray);
-                                        Write(" " + hsh_res[5], ConsoleColor.Red);
+                                        Write(" " + hsh_res[5] + "  ", ConsoleColor.Red);
+
+                                        if (i == indexSelected)
+                                        {
+                                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                                            Write("        ", ConsoleColor.Black);
+                                            Console.BackgroundColor = ConsoleColor.Black;
+                                        }
                                     }
                                 }
                                 else
-                                    Write("  -- not played ", ConsoleColor.Red);
+                                    Write("  -- not played ", ConsoleColor.DarkGray);
 
                                 Write("\n", ConsoleColor.Green);
 
@@ -415,6 +422,7 @@ public partial class TextAdventureGame
                         var diff = ConsoleReadLine().Trim();
                         Console.CursorVisible = false;
                         bHardcore = false;
+                        bFastMode = false;
 
                         gameDifficulty = diff;
 
@@ -500,6 +508,7 @@ public partial class TextAdventureGame
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
                         Console.Clear();
+                        bFastMode = false;
                         ProcessRoom(game.currentRoom);
                         break;
                 }
