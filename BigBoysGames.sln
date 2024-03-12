@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TA_Update", "TA_Update\TA_U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TA_AppUpdater", "TA_AppUpdater\TA_AppUpdater.csproj", "{9D95AB38-2B1B-4850-827D-50CFCAAAF5EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Creeper", "Creeper\Creeper.csproj", "{8415A677-04CA-438B-BFA4-468CAF367755}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Creeper", "Creeper\Creeper.csproj", "{8415A677-04CA-438B-BFA4-468CAF367755}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XTA", "XTA\XTA.csproj", "{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +117,22 @@ Global
 		{8415A677-04CA-438B-BFA4-468CAF367755}.Release|x64.Build.0 = Release|Any CPU
 		{8415A677-04CA-438B-BFA4-468CAF367755}.Release|x86.ActiveCfg = Release|Any CPU
 		{8415A677-04CA-438B-BFA4-468CAF367755}.Release|x86.Build.0 = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|ARM.Build.0 = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|x64.Build.0 = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Debug|x86.Build.0 = Debug|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|ARM.ActiveCfg = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|ARM.Build.0 = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|x64.ActiveCfg = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|x64.Build.0 = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|x86.ActiveCfg = Release|Any CPU
+		{EA90950C-2D5F-4BA6-9A3F-79607FBD1989}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

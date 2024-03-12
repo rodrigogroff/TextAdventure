@@ -4,14 +4,18 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/File.spritefont</File>
-    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/File2.spritefont</File>
-    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/File3.spritefont</File>
-    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/LucidaBig.spritefont</File>
-    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/MerriSmall.spritefont</File>
-    <File>C:/Users/rodri/Source/Repos/TextAdventure/XTA/Content/Roboto.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/ArialN.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/File.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/File2.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/File3.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/LucidaBig.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/MerriSmall.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/Merriweather.spritefont</File>
+    <File>C:/Users/rodri/source/repos/TextAdventure/XTA/Content/Roboto.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
