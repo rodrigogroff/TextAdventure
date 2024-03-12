@@ -20,6 +20,12 @@ public class GameMonitoring
     public List<GameMonitor> games { get; set; }
 }
 
+public class GameSummary
+{
+    public string game_name { get; set; }
+    public List<string> game_tip = new List<string>();
+}
+
 public class Game
 {
     public Player player = new Player();

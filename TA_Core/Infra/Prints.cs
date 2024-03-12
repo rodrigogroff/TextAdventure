@@ -35,7 +35,6 @@ public partial class TextAdventureGame
     {
         if (text.StartsWith("¨"))
         {
-            int emptySpace = ((screenWidth / 8 - 120) / 2);
             Console.Write(" ".PadRight(emptySpace));
             text = text.Substring(1);
         }

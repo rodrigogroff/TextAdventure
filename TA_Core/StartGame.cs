@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
+using System.Collections;
 
 public partial class TextAdventureGame
 {
     public void StartGame()
     {
+        Console.CursorVisible = false;
+
         InitScreen();
 
         if (File.Exists(monitor_file))
@@ -16,152 +19,206 @@ public partial class TextAdventureGame
             };
         }
 
+        var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\summary.json"));
+
         try
         {
             int mode = 2;
 
             while (true)
-            {                
+            {
                 switch (mode)
                 {
                     case 1:
                         break;
 
                     case 2:
-                        while (true)
+
+                        int indexSelected = 0;
+                        string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
+
+                        var hshGameInfo = new Hashtable();
+                        
+                        for (int i = 0; i < files.Length; i++)
                         {
-                            Console.Clear();
-                            DisplayStartScreen();
-                            Console.WriteLine();
-                            Write("¨ [Games available:]\n", ConsoleColor.Yellow);
-                            Console.WriteLine();
-                            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
-
-                            for (int i = 0; i < files.Length; i++)
+                            int seconds = 0, deaths = 0;
+                            string fileName = Path.GetFileNameWithoutExtension(files[i]);
+                            var g_name = fileName.Replace("_", " ").Replace(".game", "");
+                            var monit_game = monitor.games.FirstOrDefault(y => y.game_name == g_name);
+                            if (monit_game != null)
                             {
-                                int seconds = 0;
-                                int deaths = 0;
-
-                                string fileName = Path.GetFileNameWithoutExtension(files[i]);
-
-                                var g_name = fileName.Replace("_", " ").Replace(".game", "");
-
-                                var monit_game = monitor.games.FirstOrDefault(y => y.game_name == g_name);
-
-                                if (monit_game != null)
+                                foreach (var item in monit_game.plays)
                                 {
-                                    foreach (var item in monit_game.plays)
+                                    if (item.dtEnd != null)
                                     {
-                                        if (item.dtEnd != null)
-                                        {
-                                            seconds += (int)Convert.ToDateTime(item.dtEnd).Subtract(item.dtStart).TotalSeconds;
-                                            if (item.death == true)
-                                                deaths++;
-                                        }
+                                        seconds += (int)Convert.ToDateTime(item.dtEnd).Subtract(item.dtStart).TotalSeconds;
+                                        if (item.death == true)
+                                            deaths++;
                                     }
                                 }
-
-                                string awards = "";
-
-                                if (File.Exists(files[i] + ".save"))
-                                {
-                                    var contents = crypt.DecryptFile(files[i] + ".save");
-                                    var savegame = JsonConvert.DeserializeObject<SaveGameFile>(contents);
-                                    var _gam = JsonConvert.DeserializeObject<Game>(crypt.DecryptFile(files[i]));
-
-                                    awards = savegame.player.awards.Count() + "/" + _gam.awards.Count();
-                                }
-
-                                Write("¨ " + (i + 1) + " - ", ConsoleColor.DarkGray);
-                                Write(g_name.PadRight(35, ' '), ConsoleColor.White);
-
-                                if (awards != "")
-                                {
-                                    Write(" -- awards: ", ConsoleColor.DarkGray);
-                                    Write(awards + " ", ConsoleColor.Green);
-                                }
-
-                                if (seconds > 0)
-                                {
-                                    Write(" -- time: ", ConsoleColor.DarkGray);
-                                    Write(FormatTimeSpan(TimeSpan.FromSeconds(seconds)), ConsoleColor.Green);
-                                    Write(" -- deaths: ", ConsoleColor.DarkGray);
-                                    Write(deaths.ToString(), ConsoleColor.Red);
-                                }
-                                Write("\n", ConsoleColor.Green);
                             }
-                            Console.WriteLine();
-                            Write("¨ [Select your game:]\n", ConsoleColor.DarkGray);
-                            Write("¨ [> ", ConsoleColor.Green);
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                            
-                            Console.CursorVisible = true;
-                            var option = ConsoleReadLine().Trim().ToLower().Split(' ');
-
-                            #if DEBUG
-                            if (option.Contains("/qa"))
+                            string awards = "";
+                            if (File.Exists(files[i] + ".save"))
                             {
-                                bFastMode = true;
-                                bAutomation = true;
-                                Write("¨ [> AUTOMATION\n", ConsoleColor.DarkGray);
-                                EnterToContinue();                                
+                                var contents = crypt.DecryptFile(files[i] + ".save");
+                                var savegame = JsonConvert.DeserializeObject<SaveGameFile>(contents);
+                                var _gam = JsonConvert.DeserializeObject<Game>(crypt.DecryptFile(files[i]));
+                                awards = savegame.player.awards.Count() + "/" + _gam.awards.Count();
                             }
-                            #endif
-
-                            if (int.TryParse(option[0], out int selectedIndex) &&
-                                selectedIndex > 0 && selectedIndex <= files.Length)
+                            if (seconds > 0)
                             {
-                                currentFile = files[selectedIndex - 1];
-                                Console.WriteLine();
-                                                                
-                                game.gameJsonFile = currentFile;
-
-                                LoadGame();
-
-                                if (bAutomation)
-                                {
-                                    automationFile = File.ReadAllText(currentFile.Replace(".game.jsonx", ".QA.txt")).Split("\r\n").ToList();
-                                }
-                                
-                                if (monitor.games == null)
-                                    monitor.games = new List<GameMonitor>();
-
-                                gamePlay = new GameMonitorPlays
-                                {
-                                    death = false,
-                                    dtStart = DateTime.Now,
-                                    dtEnd = null
-                                };
-
-                                gameMonitor = monitor.games.FirstOrDefault(y => y.game_name == game.gameName);
-
-                                if (gameMonitor == null)
-                                {
-                                    gameMonitor = new GameMonitor
-                                    {
-                                        game_name = game.gameName,
-                                        plays = new List<GameMonitorPlays>()
-                                    };
-
-                                    monitor.games.Add(gameMonitor);
-                                }
-
-                                if (gameMonitor.plays == null)
-                                    gameMonitor.plays = new List<GameMonitorPlays>();
-
-                                gameMonitor.plays.Add(gamePlay);                               
-
-                                mode = 3;
-                                break;
+                                var str = " -- awards|" + awards + "| -- time: |" + FormatTimeSpan(TimeSpan.FromSeconds(seconds)) + "|" + " -- deaths: |" + deaths;
+                                hshGameInfo[g_name] = str;
                             }
-                            else
-                                continue;
                         }
+
+                        bool bShowDetails = false;
+
+                        while (true)
+                        {
+                            DisplayLogo();                            
+                            Console.WriteLine();
+                            Write("¨ [Use the ", ConsoleColor.DarkGray);
+                            Write("arrows", ConsoleColor.Green);
+                            Write(" to select, ", ConsoleColor.DarkGray);
+                            Write("Space", ConsoleColor.White);
+                            Write(" for details, ", ConsoleColor.DarkGray);
+                            Write("Enter", ConsoleColor.Green);
+                            Write(" to start]\n", ConsoleColor.DarkGray);
+                            Console.WriteLine();
+                            for (int i = 0; i < files.Length; i++)
+                            {
+                                string fileName = Path.GetFileNameWithoutExtension(files[i]);
+                                var g_name = fileName.Replace("_", " ").Replace(".game", "");
+
+                                if (i == indexSelected)
+                                {
+                                    Write("¨", ConsoleColor.Black);
+                                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                                    Write("  ", ConsoleColor.Black);
+                                    Write(g_name.PadRight(30, ' '), ConsoleColor.White);
+                                    Write("   ", ConsoleColor.Black);
+                                    Console.BackgroundColor = ConsoleColor.Black;                                    
+                                }
+                                else
+                                {
+                                    Write("¨  " + g_name.PadRight(33, ' '), ConsoleColor.White);
+                                }
+
+                                var hsh_res = (hshGameInfo[g_name] as string)?.Split('|');
+
+                                if (hsh_res != null)
+                                    if (hsh_res.Length > 0)
+                                    {
+                                        Write(" " + hsh_res[0], ConsoleColor.Gray);
+                                        Write(" " + hsh_res[1], ConsoleColor.Yellow);
+                                        Write(" " + hsh_res[2], ConsoleColor.Gray);
+                                        Write(" " + hsh_res[3], ConsoleColor.Green);
+                                        Write(" " + hsh_res[4], ConsoleColor.Gray);
+                                        Write(" " + hsh_res[5], ConsoleColor.Red);
+                                    }
+
+                                Write("\n", ConsoleColor.Green);
+
+                                var pTip = summary.FirstOrDefault(y => y.game_name == g_name);
+
+                                if (i == indexSelected && bShowDetails)
+                                {
+                                    if (pTip != null)
+                                    {
+                                        foreach (var t in pTip.game_tip)
+                                            Write("¨    " + t + "\n", ConsoleColor.DarkGray);
+                                        Write("¨\n", ConsoleColor.DarkGray);
+                                    }
+                                }
+                            }
+
+                            var enterPressed = false;
+
+                            while (true)
+                            {
+                                if (Console.KeyAvailable)
+                                {
+                                    ConsoleKeyInfo key = Console.ReadKey(true);
+                                    if (key.Key == ConsoleKey.UpArrow && indexSelected > 0)
+                                    {
+                                        indexSelected--;
+                                        bShowDetails = false;
+                                        break;
+                                    }
+                                    if (key.Key == ConsoleKey.DownArrow && indexSelected < files.Length - 1)
+                                    {
+                                        indexSelected++;
+                                        bShowDetails = false;
+                                        break;
+                                    }
+                                    if (key.Key == ConsoleKey.Spacebar || key.Key == ConsoleKey.RightArrow || key.Key == ConsoleKey.LeftArrow)
+                                    {
+                                        bShowDetails = !bShowDetails;
+                                        break;
+                                    }
+                                    if (key.Key == ConsoleKey.Enter)
+                                    {
+                                        enterPressed = true;
+                                        break;
+                                    }
+                                    if (key.Key == ConsoleKey.End)
+                                    {
+                                        bFastMode = true;
+                                        bAutomation = true;
+                                        enterPressed = true;
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (enterPressed)
+                                break;
+                        }
+                                                
+                        currentFile = files[indexSelected];
+                        Console.WriteLine();
+                        game.gameJsonFile = currentFile;
+                        LoadGame();
+
+                        if (bAutomation)
+                            automationFile = File.ReadAllText(currentFile.Replace(".game.jsonx", ".QA.txt")).Split("\r\n").ToList();                        
+
+                        if (monitor.games == null)
+                            monitor.games = new List<GameMonitor>();
+
+                        gamePlay = new GameMonitorPlays
+                        {
+                            death = false,
+                            dtStart = DateTime.Now,
+                            dtEnd = null
+                        };
+
+                        gameMonitor = monitor.games.FirstOrDefault(y => y.game_name == game.gameName);
+
+                        if (gameMonitor == null)
+                        {
+                            gameMonitor = new GameMonitor
+                            {
+                                game_name = game.gameName,
+                                plays = new List<GameMonitorPlays>()
+                            };
+
+                            monitor.games.Add(gameMonitor);
+                        }
+
+                        if (gameMonitor.plays == null)
+                            gameMonitor.plays = new List<GameMonitorPlays>();
+
+                        gameMonitor.plays.Add(gamePlay);
+
+                        mode = 3;
                         break;
 
                     case 3:
-                        DisplayStartScreen();
+                        Console.CursorVisible = false;
+
+                        DisplayLogo();
                         Console.WriteLine();
                         Write("¨ Game [", ConsoleColor.Yellow);
                         Write( game.gameName, ConsoleColor.White);

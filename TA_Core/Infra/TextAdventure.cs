@@ -44,12 +44,13 @@ public partial class TextAdventureGame
     public const int DESKTOPHORZRES = 118;
     public const int DESKTOPVERTRES = 117;
 
-    public int screenWidth = 0;
+    public int screenWidth = 0, emptySpace = 0;
 
     public void InitScreen()
     {
         IntPtr hdc = GetDC(IntPtr.Zero);
         screenWidth = GetDeviceCaps(hdc, DESKTOPHORZRES);
+        emptySpace = ((screenWidth / 8 - 120) / 2);
         ReleaseDC(IntPtr.Zero, hdc);
     }
 
