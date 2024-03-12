@@ -78,8 +78,7 @@ public partial class TextAdventureGame
                         while (true)
                         {
                             DisplayLogo();                            
-                            Console.WriteLine();
-                            Write("¨ [Use the ", ConsoleColor.DarkGray);
+                            Write("¨                        [Use the ", ConsoleColor.DarkGray);
                             Write("arrows", ConsoleColor.Green);
                             Write(" to select, ", ConsoleColor.DarkGray);
                             Write("Space", ConsoleColor.White);
@@ -87,7 +86,13 @@ public partial class TextAdventureGame
                             Write("Enter", ConsoleColor.Green);
                             Write(" to start]\n", ConsoleColor.DarkGray);
                             Console.WriteLine();
-                            Write("¨ Games available\n", ConsoleColor.Blue);
+                            Console.WriteLine();
+                            Console.WriteLine();
+
+                            Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀▄░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
+                            Write("¨ ░█▀█░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█▀▄░█▀▀░▀▀█\n", ConsoleColor.DarkGray);
+                            Write("¨ ░▀░▀░▀▀░░░▀░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀\n", ConsoleColor.DarkGray);
+
                             Console.WriteLine();
                             for (int i = 0; i < files.Length; i++)
                             {
@@ -145,8 +150,7 @@ public partial class TextAdventureGame
 
                             Console.WriteLine();
                             Console.WriteLine();
-                            Write("¨ Game Setup\n", ConsoleColor.Blue);
-                            Console.WriteLine();
+                            Write("¨  Game Setup \n\n", ConsoleColor.Blue);
 
                             if (indexSelected == files.Length)
                             {
