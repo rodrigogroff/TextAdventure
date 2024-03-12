@@ -98,10 +98,12 @@ public partial class TextAdventureGame
             Console.ForegroundColor = color;
 
         Write("¨", color);
+
+        char last = '!';
         
         foreach (char c in text)
         {
-            var _timer = 35;
+            var _timer = ms;
 
             if (Console.KeyAvailable)
             {
@@ -113,10 +115,21 @@ public partial class TextAdventureGame
             }
 
             if (!bFastMode)
-                if (c == ' ')
+            {
+                if (c == ' ' && last != ' ')
+                {
                     if (_timer > 0)
                         if (!bAutomation)
+                        {
                             Thread.Sleep(120);
+                            last = ' ';
+                        }
+                }
+                else
+                {
+                    last = '!';
+                }
+            }
 
             if (c == '\"')
             {

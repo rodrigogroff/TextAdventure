@@ -87,6 +87,8 @@ public partial class TextAdventureGame
                             Write("Enter", ConsoleColor.Green);
                             Write(" to start]\n", ConsoleColor.DarkGray);
                             Console.WriteLine();
+                            Write("¨ Games available\n", ConsoleColor.Blue);
+                            Console.WriteLine();
                             for (int i = 0; i < files.Length; i++)
                             {
                                 string fileName = Path.GetFileNameWithoutExtension(files[i]);
@@ -103,7 +105,7 @@ public partial class TextAdventureGame
                                 }
                                 else
                                 {
-                                    Write("¨  " + g_name.PadRight(33, ' '), ConsoleColor.White);
+                                    Write("¨  " + g_name.PadRight(33, ' '), ConsoleColor.DarkGray);
                                 }
 
                                 var hsh_res = (hshGameInfo[g_name] as string)?.Split('|');
@@ -121,26 +123,29 @@ public partial class TextAdventureGame
                                     }
                                 }
                                 else
-                                {
-                                    Write("  -- not played ", ConsoleColor.Gray);
-                                    Write("yet", ConsoleColor.Red);
-                                }
+                                    Write("  -- not played ", ConsoleColor.Red);
 
                                 Write("\n", ConsoleColor.Green);
 
-                                var pTip = summary.FirstOrDefault(y => y.game_name == g_name);
+                                var pTip2 = summary.FirstOrDefault(y => y.game_name == g_name);
 
                                 if (i == indexSelected && bShowDetails)
                                 {
-                                    if (pTip != null)
+                                    if (pTip2 != null)
                                     {
-                                        foreach (var t in pTip.game_tip)
-                                            Write("¨    " + t + "\n", ConsoleColor.DarkGray);
+                                        Write("¨\n", ConsoleColor.DarkGray);
+                                        bFastMode = false;
+                                        foreach (var t in pTip2.game_tip)
+                                            PrintRoomText(t, ConsoleColor.Yellow, 5);
+
                                         Write("¨\n", ConsoleColor.DarkGray);
                                     }
                                 }
                             }
 
+                            Console.WriteLine();
+                            Console.WriteLine();
+                            Write("¨ Game Setup\n", ConsoleColor.Blue);
                             Console.WriteLine();
 
                             if (indexSelected == files.Length)
@@ -207,23 +212,27 @@ public partial class TextAdventureGame
                                     if (key.Key == ConsoleKey.UpArrow && indexSelected > 0)
                                     {
                                         indexSelected--;
+                                        Thread.Sleep(100);
                                         bShowDetails = false;
                                         break;
                                     }
                                     if (key.Key == ConsoleKey.DownArrow && indexSelected < files.Length + 2)
                                     {
                                         indexSelected++;
+                                        Thread.Sleep(100);
                                         bShowDetails = false;
                                         break;
                                     }
                                     if (key.Key == ConsoleKey.Spacebar || key.Key == ConsoleKey.RightArrow || key.Key == ConsoleKey.LeftArrow)
                                     {
                                         bShowDetails = !bShowDetails;
+                                        Thread.Sleep(100);
                                         break;
                                     }
                                     if (key.Key == ConsoleKey.Enter)
                                     {
                                         enterPressed = true;
+                                        Thread.Sleep(100);
                                         break;
                                     }
                                     if (key.Key == ConsoleKey.End)
@@ -231,6 +240,7 @@ public partial class TextAdventureGame
                                         bFastMode = true;
                                         bAutomation = true;
                                         enterPressed = true;
+                                        Thread.Sleep(100);
                                         break;
                                     }
                                 }
@@ -247,6 +257,7 @@ public partial class TextAdventureGame
                         else if (indexSelected == files.Length + 1)
                         {
                             // about
+                            bFastMode = false;
                             DisplayLogo();
                             Console.WriteLine();
                             {
@@ -254,8 +265,10 @@ public partial class TextAdventureGame
                                 Console.BackgroundColor = ConsoleColor.DarkRed;
                                 Write("  ", ConsoleColor.Black);
                                 Write("[About]".PadRight(30, ' '), ConsoleColor.White);
-                                Write("\n", ConsoleColor.Black);
                                 Console.BackgroundColor = ConsoleColor.Black;
+                                Write(" -- use ", ConsoleColor.DarkGray);
+                                Write("Escape", ConsoleColor.Blue);
+                                Write(" for instant text\n", ConsoleColor.DarkGray);                                
                             }
                             Console.WriteLine();
 
@@ -266,7 +279,7 @@ public partial class TextAdventureGame
                                 Console.CursorVisible = false;
                                 Console.WriteLine();
                                 foreach (var line in itemDet.text)
-                                    PrintRoomText(line, ConsoleColor.Yellow, 20);
+                                    PrintRoomText(line, ConsoleColor.Yellow, 5);
                                 Thread.Sleep(500);
                                 Console.CursorVisible = true;
                                 EnterToContinue();
@@ -285,7 +298,7 @@ public partial class TextAdventureGame
                                         Write("  ", ConsoleColor.Black);
                                         Write("[About]".PadRight(30, ' '), ConsoleColor.White);
                                         Console.BackgroundColor = ConsoleColor.Black;
-                                        Write("     -- page: ", ConsoleColor.DarkGray);
+                                        Write(" -- page: ", ConsoleColor.DarkGray);
                                         Write(_page.ToString(), ConsoleColor.Green);
                                         Write("\n", ConsoleColor.Black);
                                     }
@@ -345,9 +358,18 @@ public partial class TextAdventureGame
 
                         DisplayLogo();
                         Console.WriteLine();
-                        Write("¨ Game [", ConsoleColor.Yellow);
-                        Write( game.gameName, ConsoleColor.White);
-                        Write("]\n", ConsoleColor.Yellow);
+                        Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);                        
+                        Console.WriteLine();
+
+                        var pTip = summary.FirstOrDefault(y => y.game_name == game.gameName);
+
+                        if (pTip != null)
+                        {
+                            foreach (var t in pTip.game_tip)
+                                Write("¨    " + t + "\n", ConsoleColor.Yellow);
+                            Write("¨\n", ConsoleColor.DarkGray);
+                        }
+
                         Console.WriteLine();
                         Write("¨ 1 - ", ConsoleColor.DarkGray);
                         Write("Easy       ", ConsoleColor.Yellow);
@@ -365,7 +387,7 @@ public partial class TextAdventureGame
                         Console.CursorVisible = true;
                         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                         var diff = ConsoleReadLine().Trim();
-
+                        Console.CursorVisible = false;
                         bHardcore = false;
 
                         gameDifficulty = diff;
@@ -384,8 +406,8 @@ public partial class TextAdventureGame
                         {
                             bHardcore = true;
                             bFastMode = true;
-
-                            Write("\n¨  --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
+                            Console.WriteLine();
+                            Write("¨ --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
                             Thread.Sleep(2000);
                         }
                         else

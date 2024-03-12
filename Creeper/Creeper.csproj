@@ -48,7 +48,7 @@
     <None Update="Games\Paranormal_investigator.title.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Games\Paranormal_investigators.txt">
+    <None Update="Games\Paranormal_investigator.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -9,7 +9,7 @@
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine();
-        Write("¨                                           Text Adventures by\n", ConsoleColor.Yellow);
+        Write("¨                                           Text Adventures by\n", ConsoleColor.DarkGray);
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine();
