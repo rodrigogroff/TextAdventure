@@ -20,6 +20,7 @@ public partial class TextAdventureGame
         }
 
         var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\summary.json"));
+        var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\about.json"));
 
         try
         {
@@ -108,6 +109,7 @@ public partial class TextAdventureGame
                                 var hsh_res = (hshGameInfo[g_name] as string)?.Split('|');
 
                                 if (hsh_res != null)
+                                {
                                     if (hsh_res.Length > 0)
                                     {
                                         Write(" " + hsh_res[0], ConsoleColor.Gray);
@@ -117,6 +119,12 @@ public partial class TextAdventureGame
                                         Write(" " + hsh_res[4], ConsoleColor.Gray);
                                         Write(" " + hsh_res[5], ConsoleColor.Red);
                                     }
+                                }
+                                else
+                                {
+                                    Write("  -- not played ", ConsoleColor.Gray);
+                                    Write("yet", ConsoleColor.Red);
+                                }
 
                                 Write("\n", ConsoleColor.Green);
 
@@ -133,6 +141,62 @@ public partial class TextAdventureGame
                                 }
                             }
 
+                            Console.WriteLine();
+
+                            if (indexSelected == files.Length)
+                            {
+                                Write("¨", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                Write("  ", ConsoleColor.Black);
+                                Write("[Language]".PadRight(30, ' '), ConsoleColor.White);
+                                Write("\n", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                            }
+                            else
+                            {
+                                Write("¨", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Write("  ", ConsoleColor.Black);
+                                Write("[Language]".PadRight(30, ' '), ConsoleColor.DarkGray);
+                                Write("\n", ConsoleColor.Black);                                
+                            }
+
+                            if (indexSelected == files.Length + 1)
+                            {
+                                Write("¨", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                Write("  ", ConsoleColor.Black);
+                                Write("[About]".PadRight(30, ' '), ConsoleColor.White);
+                                Write("\n", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                            }
+                            else
+                            {
+                                Write("¨", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Write("  ", ConsoleColor.Black);
+                                Write("[About]".PadRight(30, ' '), ConsoleColor.DarkGray);
+                                Write("\n", ConsoleColor.Black);                                
+                            }
+
+                            if (indexSelected == files.Length + 2)
+                            {
+                                Write("¨", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                Write("  ", ConsoleColor.Black);
+                                Write("[Quit]".PadRight(30, ' '), ConsoleColor.White);
+                                Write("\n", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                            }
+                            else
+                            {
+                                Write("¨", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Write("  ", ConsoleColor.Black);
+                                Write("[Quit]".PadRight(30, ' '), ConsoleColor.DarkGray);
+                                Write("\n", ConsoleColor.Black);
+                            }
+
                             var enterPressed = false;
 
                             while (true)
@@ -146,7 +210,7 @@ public partial class TextAdventureGame
                                         bShowDetails = false;
                                         break;
                                     }
-                                    if (key.Key == ConsoleKey.DownArrow && indexSelected < files.Length - 1)
+                                    if (key.Key == ConsoleKey.DownArrow && indexSelected < files.Length + 2)
                                     {
                                         indexSelected++;
                                         bShowDetails = false;
@@ -175,7 +239,68 @@ public partial class TextAdventureGame
                             if (enterPressed)
                                 break;
                         }
-                                                
+                         
+                        if (indexSelected == files.Length)
+                        {
+                            // language
+                        }
+                        else if (indexSelected == files.Length + 1)
+                        {
+                            // about
+                            DisplayLogo();
+                            Console.WriteLine();
+                            {
+                                Write("¨", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                Write("  ", ConsoleColor.Black);
+                                Write("[About]".PadRight(30, ' '), ConsoleColor.White);
+                                Write("\n", ConsoleColor.Black);
+                                Console.BackgroundColor = ConsoleColor.Black;
+                            }
+                            Console.WriteLine();
+
+                            int enters = 0, _page = 1;
+
+                            foreach (var itemDet in aboutText.FirstOrDefault(y => y.lang == "ENG").info)
+                            {
+                                Console.CursorVisible = false;
+                                Console.WriteLine();
+                                foreach (var line in itemDet.text)
+                                    PrintRoomText(line, ConsoleColor.Yellow, 20);
+                                Thread.Sleep(500);
+                                Console.CursorVisible = true;
+                                EnterToContinue();
+                                Console.WriteLine();
+                                bFastMode = false;
+
+                                if (++enters == 3)
+                                {
+                                    enters = 0;
+                                    _page++;
+                                    DisplayLogo();
+                                    Console.WriteLine();
+                                    {
+                                        Write("¨", ConsoleColor.Black);
+                                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                                        Write("  ", ConsoleColor.Black);
+                                        Write("[About]".PadRight(30, ' '), ConsoleColor.White);
+                                        Console.BackgroundColor = ConsoleColor.Black;
+                                        Write("     -- page: ", ConsoleColor.DarkGray);
+                                        Write(_page.ToString(), ConsoleColor.Green);
+                                        Write("\n", ConsoleColor.Black);
+                                    }
+                                    Console.WriteLine();
+                                }
+                            }
+                            Console.CursorVisible = false;
+                            continue;
+                        }
+                        else if (indexSelected == files.Length + 2)
+                        {
+                            // quit
+                            return;
+                        }
+
                         currentFile = files[indexSelected];
                         Console.WriteLine();
                         game.gameJsonFile = currentFile;

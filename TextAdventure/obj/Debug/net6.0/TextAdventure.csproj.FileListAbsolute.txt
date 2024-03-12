@@ -117,3 +117,4 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\H
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.title.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.title.txt
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\summary.json
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\about.json

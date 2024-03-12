@@ -20,6 +20,17 @@ public class GameMonitoring
     public List<GameMonitor> games { get; set; }
 }
 
+public class GameAboutDetail
+{
+    public string lang { get; set; }
+    public GameAboutDetailInfo[] info { get; set; }
+}
+
+public class GameAboutDetailInfo
+{
+    public string[] text { get; set; }
+}
+
 public class GameSummary
 {
     public string game_name { get; set; }
@@ -39,6 +50,7 @@ public class Game
     public int maxAmulets { get; set; }
 
     public bool playerDead = false;
+    public bool patreonExclusive = false;
 
     public List<string> gameBigTitle = new List<string>();
     public List<string> logs = new List<string>();

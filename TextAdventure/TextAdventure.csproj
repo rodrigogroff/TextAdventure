@@ -63,6 +63,11 @@
     <None Update="Games\Paranormal_investigator.title.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Games\about.json">
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>True</Pack>
+    </None>
     <None Update="Games\summary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
