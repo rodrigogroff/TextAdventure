@@ -133,7 +133,7 @@ public partial class TextAdventureGame
                                             indexSelected++;
                                             break;
                                         }
-                                        if (key.Key == ConsoleKey.Enter)
+                                        if (key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) 
                                         {
                                             bEnterPressed = true;
                                             break;
@@ -151,7 +151,8 @@ public partial class TextAdventureGame
 
                             if (indexSelected == 0)
                             {
-                                bool bShowDetails = false;
+                                bool    bShowDetails = false,
+                                        escapePressed = false;
 
                                 while (true)
                                 {
@@ -249,9 +250,7 @@ public partial class TextAdventureGame
                                     Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
                                     Write(" -- Total deaths: ", ConsoleColor.DarkGray);
                                     Write(totDeaths + "\n", ConsoleColor.Red);
-
-                                    var enterPressed = false;
-
+                                    
                                     while (true)
                                     {
                                         if (Console.KeyAvailable)
@@ -279,7 +278,7 @@ public partial class TextAdventureGame
                                             }
                                             if (key.Key == ConsoleKey.Enter)
                                             {
-                                                enterPressed = true;
+                                                bEnterPressed = true;
                                                 Thread.Sleep(100);
                                                 break;
                                             }
@@ -287,16 +286,24 @@ public partial class TextAdventureGame
                                             {
                                                 bFastMode = true;
                                                 bAutomation = true;
-                                                enterPressed = true;
+                                                bEnterPressed = true;
                                                 Thread.Sleep(100);
+                                                break;
+                                            }
+                                            if (key.Key == ConsoleKey.Escape)
+                                            {
+                                                escapePressed = true;
                                                 break;
                                             }
                                         }
                                     }
 
-                                    if (enterPressed)
+                                    if (bEnterPressed || escapePressed)
                                         break;
                                 }
+
+                                if (escapePressed)
+                                    break;
                                 
                                 currentFile = files[indexSelected];
                                 Console.WriteLine();
