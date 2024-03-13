@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections;
 using System.Diagnostics;
 
@@ -86,7 +85,6 @@ public partial class TextAdventureGame
                         var mainMenu = new List<string>
                         {
                             "     Start  ",
-                            "  Language  ",
                             "     About  ",
                             "   Patreon  ",
                             "      Exit  ",
@@ -102,26 +100,22 @@ public partial class TextAdventureGame
 
                                 for (int i = 0; i < mainMenu.Count; i++)
                                 {
-                                    var idx = mainMenu[i];
-                                    int len = idx.Length;
+                                    Write("¨", ConsoleColor.Black);
+                                    Write("  ".PadLeft(49, ' '), ConsoleColor.Black);
 
                                     if (i == indexSelected)
-                                    {
-                                        Write("¨", ConsoleColor.Black);
-                                        Write("  ".PadLeft(50 - len / 2, ' '), ConsoleColor.Black);
+                                    {                                        
                                         Console.BackgroundColor = ConsoleColor.DarkBlue;
-                                        Write(idx, ConsoleColor.White);
-                                        Write("\n", ConsoleColor.Black);
-                                        Console.BackgroundColor = ConsoleColor.Black;
+                                        Write(mainMenu[i], ConsoleColor.White);                                        
                                     }
                                     else
                                     {
-                                        Console.BackgroundColor = ConsoleColor.Black;
-                                        Write("¨", ConsoleColor.Black);
-                                        Write("  ".PadLeft(50 - len / 2, ' '), ConsoleColor.Black);
-                                        Write(idx, ConsoleColor.DarkGray);
-                                        Write("\n", ConsoleColor.Black);
+                                        Console.BackgroundColor = ConsoleColor.Black;                                        
+                                        Write(mainMenu[i], ConsoleColor.DarkGray);                                        
                                     }
+
+                                    Write("\n", ConsoleColor.Black);
+                                    Console.BackgroundColor = ConsoleColor.Black;
                                 }
 
                                 while (true)
@@ -162,7 +156,7 @@ public partial class TextAdventureGame
                                 while (true)
                                 {
                                     DisplayLogo();
-                                    Write("¨                        [Use the ", ConsoleColor.DarkGray);
+                                    Write("¨                         [Use the ", ConsoleColor.DarkGray);
                                     Write("arrows", ConsoleColor.Green);
                                     Write(" to select, ", ConsoleColor.DarkGray);
                                     Write("Space", ConsoleColor.White);
@@ -345,17 +339,6 @@ public partial class TextAdventureGame
                             }
                             else if (indexSelected == 1)
                             {
-                                DisplayLogo();
-                                Console.WriteLine();
-                                Console.WriteLine();
-                                Console.WriteLine();
-                                Write("¨ ░█░░░█▀█░█▀█░█▀▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
-                                Write("¨ ░█░░░█▀█░█░█░█░█░█░█░█▀█░█░█░█▀▀\n", ConsoleColor.DarkGray);
-                                Write("¨ ░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░\n", ConsoleColor.DarkGray);
-                                EnterToContinue();
-                            }
-                            else if (indexSelected == 2)
-                            {
                                 // about
                                 while (true)
                                 {
@@ -398,7 +381,7 @@ public partial class TextAdventureGame
                                     break;
                                 }
                             }
-                            else if (indexSelected == 3)
+                            else if (indexSelected == 2)
                             {
                                 // patreon
                                 while (true)
@@ -452,7 +435,7 @@ public partial class TextAdventureGame
                                     break;
                                 }
                             }
-                            else if (indexSelected == 4)
+                            else if (indexSelected == 3)
                             {
                                 return;
                             }
