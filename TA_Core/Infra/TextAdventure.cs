@@ -89,7 +89,19 @@ public partial class TextAdventureGame
         Console.ForegroundColor = ConsoleColor.White;
         Console.CursorVisible = true;
         while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-        ConsoleReadLine();
+        while (true)
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
+                if (key.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+            }
+        }
+        Console.CursorVisible = false;
     }
 
     string FormatTimeSpan(TimeSpan timeSpan)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("XTA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9585abb5500a4d65837660e31a67580ca5000d21")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cacd5dfbdfe9a9347afae87dbb6386e10621a2e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("XTA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("XTA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
