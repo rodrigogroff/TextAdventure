@@ -20,9 +20,9 @@ public partial class TextAdventureGame
             };
         }
 
-        var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\summary.json"));
-        var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\about.json"));
-        var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\patreon.json"));
+        var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + summary_file));
+        var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + about_file));
+        var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + patreon_file));
 
         try
         {
@@ -81,14 +81,6 @@ public partial class TextAdventureGame
                         }
 
                         bool bEnterPressed = false;
-
-                        var mainMenu = new List<string>
-                        {
-                            "     Start  ",
-                            "     About  ",
-                            "   Patreon  ",
-                            "      Exit  ",
-                        };
 
                         while (true)
                         {

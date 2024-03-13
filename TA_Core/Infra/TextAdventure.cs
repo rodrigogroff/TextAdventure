@@ -11,24 +11,37 @@ public partial class TextAdventureGame
 
     FileEncryptorDecryptor crypt = new FileEncryptorDecryptor();
 
-    string currentFile = "";
-    string currentItem = "";
+    string
+        currentFile = "",
+        currentItem = "",
+        gameDifficulty = "",
+        monitor_file = "monitor.txt",
+        summary_file = "\\Games\\summary.json",
+        about_file = "\\Games\\about.json",
+        patreon_file = "\\Games\\patreon.json";
 
-    bool bAutomation = false;
-    bool bFastMode = false;
-    bool bAbortOp = false;
-    bool bUnlimitedHints = false;
-    bool bHintsDisabled = false;
-    bool bAutomap = false;
-    bool bHardcore = false;
+    readonly 
+        List<string> 
+            mainMenu = new()
+            {
+                "     Start  ",
+                "     About  ",
+                "   Patreon  ",
+                "      Exit  ",
+            };
 
-    string gameDifficulty = "";
+    bool 
+        bAutomation = false,
+        bFastMode = false,
+        bAbortOp = false,
+        bUnlimitedHints = false,
+        bHintsDisabled = false,
+        bAutomap = false,
+        bHardcore = false;
 
     GameMonitoring monitor;
     GameMonitor gameMonitor;
     GameMonitorPlays gamePlay;
-
-    public string monitor_file = "monitor.txt";
 
     Hashtable hshNumbers = new Hashtable();
 

@@ -28,7 +28,7 @@ public partial class TextAdventureGame
                 }
                 else if (line.StartsWith("check"))
                 {
-                    if (game.player.awards.FirstOrDefault(y=> y.id == line.Split(':')[1]).done == true)
+                    if (game.player.awards.FirstOrDefault(y => y.id == line.Split(':')[1]).done == true)
                     {
                         automationFile_Out.Add("OK!");
                     }
@@ -50,9 +50,28 @@ public partial class TextAdventureGame
                 File.Delete("automation.txt");
 
             File.WriteAllText("automation.txt", string.Join(Environment.NewLine, automationFile_Out));
+
             return Console.ReadLine();
         }
         else
-            return Console.ReadLine();
+        {
+            string acc = "";
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+                    
+                    if (key.Key == ConsoleKey.Enter)
+                        break;
+                    else
+                    {
+                        Console.Write(key.KeyChar);
+                        acc += key.KeyChar;
+                    }
+                }
+            }
+            return acc;
+        }
     }
 }

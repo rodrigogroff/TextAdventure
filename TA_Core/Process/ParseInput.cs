@@ -199,6 +199,7 @@ public partial class TextAdventureGame
                         }
                         else
                         {
+                            Console.WriteLine();
                             DisplayHelpBox();
                             Console.CursorVisible = true;
                         }
