@@ -39,6 +39,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Games\patreon.json">
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Pack>True</Pack>
+    </None>
     <None Update="Games\Feed_Korg.game.jsonx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

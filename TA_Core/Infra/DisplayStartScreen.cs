@@ -7,7 +7,7 @@
         Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine(); 
-        Write("¨                                           Text Adventures by\n", ConsoleColor.DarkGray);
+        Write("¨                                         Text Adventures by\n", ConsoleColor.DarkGray);
         Console.WriteLine();
         Console.WriteLine();
         Write("¨  ▄▄▄▄    ██▓  ▄████     ▄▄▄▄    ▒█████ ▓██   ██▓  ██████      ▄████  ▄▄▄       ███▄ ▄███▒ █████   ██████ \n", ConsoleColor.DarkRed);

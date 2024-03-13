@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
+using System.Diagnostics;
 
 public partial class TextAdventureGame
 {
@@ -21,6 +23,7 @@ public partial class TextAdventureGame
 
         var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\summary.json"));
         var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\about.json"));
+        var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + "\\Games\\patreon.json"));
 
         try
         {
@@ -78,313 +81,385 @@ public partial class TextAdventureGame
                             }
                         }
 
-                        bool bShowDetails = false;
+                        bool bEnterPressed = false;
+
+                        var mainMenu = new List<string>
+                        {
+                            "     Start  ",
+                            "  Language  ",
+                            "     About  ",
+                            "   Patreon  ",
+                            "      Exit  ",
+                        };
 
                         while (true)
                         {
-                            DisplayLogo();                            
-                            Write("¨                        [Use the ", ConsoleColor.DarkGray);
-                            Write("arrows", ConsoleColor.Green);
-                            Write(" to select, ", ConsoleColor.DarkGray);
-                            Write("Space", ConsoleColor.White);
-                            Write(" for details, ", ConsoleColor.DarkGray);
-                            Write("Enter", ConsoleColor.Green);
-                            Write(" to start]\n", ConsoleColor.DarkGray);
-                            Console.WriteLine();
-                            Console.WriteLine();
-                            Console.WriteLine();
-
-                            Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
-                            Write("¨ ░█▀█░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█▀▄░█▀▀░▀▀█\n", ConsoleColor.DarkGray);
-                            Write("¨ ░▀░▀░▀▀░░░▀░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀\n", ConsoleColor.DarkGray);
-
-                            Console.WriteLine();
-                            for (int i = 0; i < files.Length; i++)
+                            while (true)
                             {
-                                string fileName = Path.GetFileNameWithoutExtension(files[i]);
-                                var g_name = fileName.Replace("_", " ").Replace(".game", "");
+                                DisplayLogo();
+                                Console.WriteLine();
+                                Console.WriteLine();
 
-                                if (i == indexSelected)
+                                for (int i = 0; i < mainMenu.Count; i++)
                                 {
-                                    Write("¨", ConsoleColor.Black);
-                                    Console.BackgroundColor = ConsoleColor.DarkRed;
-                                    Write("  ", ConsoleColor.Black);
-                                    Write(g_name.PadRight(30, ' '), ConsoleColor.White);
-                                    Write("   ", ConsoleColor.Black);
-                                    Console.BackgroundColor = ConsoleColor.Black;
-                                }
-                                else
-                                {
-                                    Write("¨  " + g_name.PadRight(33, ' '), ConsoleColor.DarkGray);
-                                }
+                                    var idx = mainMenu[i];
+                                    int len = idx.Length;
 
-                                var hsh_res = (hshGameInfo[g_name] as string)?.Split('|');
-
-                                if (hsh_res != null)
-                                {
-                                    if (hsh_res.Length > 0)
+                                    if (i == indexSelected)
                                     {
-                                        Write(" " + hsh_res[0], ConsoleColor.Gray);
-                                        Write(" " + hsh_res[1], ConsoleColor.Yellow);
-                                        Write(" " + hsh_res[2], ConsoleColor.Gray);
-                                        Write(" " + hsh_res[3], ConsoleColor.Green);
-                                        Write(" " + hsh_res[4], ConsoleColor.Gray);
-                                        Write(" " + hsh_res[5] + "  ", ConsoleColor.Red);
+                                        Write("¨", ConsoleColor.Black);
+                                        Write("  ".PadLeft(50 - len / 2, ' '), ConsoleColor.Black);
+                                        Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                        Write(idx, ConsoleColor.White);
+                                        Write("\n", ConsoleColor.Black);
+                                        Console.BackgroundColor = ConsoleColor.Black;
+                                    }
+                                    else
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Black;
+                                        Write("¨", ConsoleColor.Black);
+                                        Write("  ".PadLeft(50 - len / 2, ' '), ConsoleColor.Black);
+                                        Write(idx, ConsoleColor.DarkGray);
+                                        Write("\n", ConsoleColor.Black);
+                                    }
+                                }
 
-                                        if (i == indexSelected)
+                                while (true)
+                                {
+                                    if (Console.KeyAvailable)
+                                    {
+                                        ConsoleKeyInfo key = Console.ReadKey(true);
+                                        if (key.Key == ConsoleKey.UpArrow && indexSelected > 0)
                                         {
-                                            Console.BackgroundColor = ConsoleColor.DarkRed;
-                                            Write("        ", ConsoleColor.Black);
-                                            Console.BackgroundColor = ConsoleColor.Black;
+                                            indexSelected--;
+                                            break;
+                                        }
+                                        if (key.Key == ConsoleKey.DownArrow && indexSelected < mainMenu.Count - 1)
+                                        {
+                                            indexSelected++;
+                                            break;
+                                        }
+                                        if (key.Key == ConsoleKey.Enter)
+                                        {
+                                            bEnterPressed = true;
+                                            break;
                                         }
                                     }
                                 }
-                                else
-                                    Write("  -- not played ", ConsoleColor.DarkGray);
 
-                                Write("\n", ConsoleColor.Green);
-
-                                var pTip2 = summary.FirstOrDefault(y => y.game_name == g_name);
-
-                                if (i == indexSelected && bShowDetails)
+                                if (bEnterPressed)
                                 {
-                                    if (pTip2 != null)
-                                    {
-                                        Write("¨\n", ConsoleColor.DarkGray);
-                                        bFastMode = false;
-                                        foreach (var t in pTip2.game_tip)
-                                            PrintRoomText(t, ConsoleColor.Yellow, 5);
-
-                                        Write("¨\n", ConsoleColor.DarkGray);
-                                    }
-                                }
-                            }
-    
-                            Console.WriteLine();
-                            Console.WriteLine();
-                            Write("¨  Game Setup \n\n", ConsoleColor.Blue);
-
-                            if (indexSelected == files.Length)
-                            {
-                                Write("¨", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.DarkRed;
-                                Write("  ", ConsoleColor.Black);
-                                Write("[Language]".PadRight(30, ' '), ConsoleColor.White);
-                                Write("\n", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.Black;
-                            }
-                            else
-                            {
-                                Write("¨", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                Write("  ", ConsoleColor.Black);
-                                Write("[Language]".PadRight(30, ' '), ConsoleColor.DarkGray);
-                                Write("\n", ConsoleColor.Black);                                
-                            }
-
-                            if (indexSelected == files.Length + 1)
-                            {
-                                Write("¨", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.DarkRed;
-                                Write("  ", ConsoleColor.Black);
-                                Write("[About]".PadRight(30, ' '), ConsoleColor.White);
-                                Write("\n", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.Black;
-                            }
-                            else
-                            {
-                                Write("¨", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                Write("  ", ConsoleColor.Black);
-                                Write("[About]".PadRight(30, ' '), ConsoleColor.DarkGray);
-                                Write("\n", ConsoleColor.Black);                                
-                            }
-
-                            if (indexSelected == files.Length + 2)
-                            {
-                                Write("¨", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.DarkRed;
-                                Write("  ", ConsoleColor.Black);
-                                Write("[Quit]".PadRight(30, ' '), ConsoleColor.White);
-                                Write("\n", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.Black;
-                            }
-                            else
-                            {
-                                Write("¨", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                Write("  ", ConsoleColor.Black);
-                                Write("[Quit]".PadRight(30, ' '), ConsoleColor.DarkGray);
-                                Write("\n", ConsoleColor.Black);
-                            }
-
-                            List<string> msg = new List<string>
-                            {
-                                "Total time wasted on eighties nostalgia: ",
-                                "Total time doing actual work for non-real entities: ",
-                                "Total time wasted on fantasy chores: ",
-                            };
-
-                            Console.WriteLine();
-                            Console.WriteLine();
-                            Console.WriteLine();
-                            Console.WriteLine();
-
-                            Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.White);
-                            Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
-                            Write(" -- Total deaths: ", ConsoleColor.DarkGray);
-                            Write( totDeaths + "\n", ConsoleColor.Red);
-
-                            var enterPressed = false;
-
-                            while (true)
-                            {
-                                if (Console.KeyAvailable)
-                                {
-                                    ConsoleKeyInfo key = Console.ReadKey(true);
-                                    if (key.Key == ConsoleKey.UpArrow && indexSelected > 0)
-                                    {
-                                        indexSelected--;
-                                        Thread.Sleep(100);
-                                        bShowDetails = false;
-                                        break;
-                                    }
-                                    if (key.Key == ConsoleKey.DownArrow && indexSelected < files.Length + 2)
-                                    {
-                                        indexSelected++;
-                                        Thread.Sleep(100);
-                                        bShowDetails = false;
-                                        break;
-                                    }
-                                    if (key.Key == ConsoleKey.Spacebar || key.Key == ConsoleKey.RightArrow || key.Key == ConsoleKey.LeftArrow)
-                                    {
-                                        bShowDetails = !bShowDetails;
-                                        Thread.Sleep(100);
-                                        break;
-                                    }
-                                    if (key.Key == ConsoleKey.Enter)
-                                    {
-                                        enterPressed = true;
-                                        Thread.Sleep(100);
-                                        break;
-                                    }
-                                    if (key.Key == ConsoleKey.End)
-                                    {
-                                        bFastMode = true;
-                                        bAutomation = true;
-                                        enterPressed = true;
-                                        Thread.Sleep(100);
-                                        break;
-                                    }
+                                    break;
                                 }
                             }
 
-                            if (enterPressed)
+                            bEnterPressed = false;
+
+                            if (indexSelected == 0)
+                            {
+                                bool bShowDetails = false;
+
+                                while (true)
+                                {
+                                    DisplayLogo();
+                                    Write("¨                        [Use the ", ConsoleColor.DarkGray);
+                                    Write("arrows", ConsoleColor.Green);
+                                    Write(" to select, ", ConsoleColor.DarkGray);
+                                    Write("Space", ConsoleColor.White);
+                                    Write(" for details, ", ConsoleColor.DarkGray);
+                                    Write("Enter", ConsoleColor.Green);
+                                    Write(" to start]\n", ConsoleColor.DarkGray);
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+
+                                    Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░█▀█░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█▀▄░█▀▀░▀▀█\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░▀░▀░▀▀░░░▀░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀\n", ConsoleColor.DarkGray);
+
+                                    Console.WriteLine();
+                                    for (int i = 0; i < files.Length; i++)
+                                    {
+                                        string fileName = Path.GetFileNameWithoutExtension(files[i]);
+                                        var g_name = fileName.Replace("_", " ").Replace(".game", "");
+
+                                        if (i == indexSelected)
+                                        {
+                                            Write("¨", ConsoleColor.Black);
+                                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                                            Write("  ", ConsoleColor.Black);
+                                            Write(g_name.PadRight(30, ' '), ConsoleColor.White);
+                                            Write("   ", ConsoleColor.Black);
+                                            Console.BackgroundColor = ConsoleColor.Black;
+                                        }
+                                        else
+                                        {
+                                            Write("¨  " + g_name.PadRight(33, ' '), ConsoleColor.DarkGray);
+                                        }
+
+                                        var hsh_res = (hshGameInfo[g_name] as string)?.Split('|');
+
+                                        if (hsh_res != null)
+                                        {
+                                            if (hsh_res.Length > 0)
+                                            {
+                                                Write(" " + hsh_res[0], ConsoleColor.Gray);
+                                                Write(" " + hsh_res[1], ConsoleColor.Yellow);
+                                                Write(" " + hsh_res[2], ConsoleColor.Gray);
+                                                Write(" " + hsh_res[3], ConsoleColor.Green);
+                                                Write(" " + hsh_res[4], ConsoleColor.Gray);
+                                                Write(" " + hsh_res[5] + "  ", ConsoleColor.Red);
+
+                                                if (i == indexSelected)
+                                                {
+                                                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                                                    Write("        ", ConsoleColor.Black);
+                                                    Console.BackgroundColor = ConsoleColor.Black;
+                                                }
+                                            }
+                                        }
+                                        else
+                                            Write("  -- not played ", ConsoleColor.DarkGray);
+
+                                        Write("\n", ConsoleColor.Green);
+
+                                        var pTip2 = summary.FirstOrDefault(y => y.game_name == g_name);
+
+                                        if (i == indexSelected && bShowDetails)
+                                        {
+                                            if (pTip2 != null)
+                                            {
+                                                Write("¨\n", ConsoleColor.DarkGray);
+                                                bFastMode = false;
+                                                foreach (var t in pTip2.game_tip)
+                                                    PrintRoomText(t, ConsoleColor.Yellow, 5);
+
+                                                Write("¨\n", ConsoleColor.DarkGray);
+                                            }
+                                        }
+                                    }
+                                    
+                                    List<string> msg = new List<string>
+                                    {
+                                        "Total time wasted on eighties nostalgia: ",
+                                        "Total time doing actual work for non-real entities: ",
+                                        "Total time wasted on fantasy chores: ",
+                                    };
+
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+
+                                    Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.White);
+                                    Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
+                                    Write(" -- Total deaths: ", ConsoleColor.DarkGray);
+                                    Write(totDeaths + "\n", ConsoleColor.Red);
+
+                                    var enterPressed = false;
+
+                                    while (true)
+                                    {
+                                        if (Console.KeyAvailable)
+                                        {
+                                            ConsoleKeyInfo key = Console.ReadKey(true);
+                                            if (key.Key == ConsoleKey.UpArrow && indexSelected > 0)
+                                            {
+                                                indexSelected--;
+                                                Thread.Sleep(100);
+                                                bShowDetails = false;
+                                                break;
+                                            }
+                                            if (key.Key == ConsoleKey.DownArrow && indexSelected < files.Length - 1)
+                                            {
+                                                indexSelected++;
+                                                Thread.Sleep(100);
+                                                bShowDetails = false;
+                                                break;
+                                            }
+                                            if (key.Key == ConsoleKey.Spacebar || key.Key == ConsoleKey.RightArrow || key.Key == ConsoleKey.LeftArrow)
+                                            {
+                                                bShowDetails = !bShowDetails;
+                                                Thread.Sleep(100);
+                                                break;
+                                            }
+                                            if (key.Key == ConsoleKey.Enter)
+                                            {
+                                                enterPressed = true;
+                                                Thread.Sleep(100);
+                                                break;
+                                            }
+                                            if (key.Key == ConsoleKey.End)
+                                            {
+                                                bFastMode = true;
+                                                bAutomation = true;
+                                                enterPressed = true;
+                                                Thread.Sleep(100);
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if (enterPressed)
+                                        break;
+                                }
+                                
+                                currentFile = files[indexSelected];
+                                Console.WriteLine();
+                                game.gameJsonFile = currentFile;
+                                LoadGame();
+
+                                if (bAutomation)
+                                    automationFile = File.ReadAllText(currentFile.Replace(".game.jsonx", ".QA.txt")).Split("\r\n").ToList();
+
+                                if (monitor.games == null)
+                                    monitor.games = new List<GameMonitor>();
+
+                                gamePlay = new GameMonitorPlays
+                                {
+                                    death = false,
+                                    dtStart = DateTime.Now,
+                                    dtEnd = null
+                                };
+
+                                gameMonitor = monitor.games.FirstOrDefault(y => y.game_name == game.gameName);
+
+                                if (gameMonitor == null)
+                                {
+                                    gameMonitor = new GameMonitor
+                                    {
+                                        game_name = game.gameName,
+                                        plays = new List<GameMonitorPlays>()
+                                    };
+
+                                    monitor.games.Add(gameMonitor);
+                                }
+
+                                if (gameMonitor.plays == null)
+                                    gameMonitor.plays = new List<GameMonitorPlays>();
+
+                                gameMonitor.plays.Add(gamePlay);
+
+                                mode = 3;
                                 break;
-                        }
-                         
-                        if (indexSelected == files.Length)
-                        {
-                            // language
-                        }
-                        else if (indexSelected == files.Length + 1)
-                        {
-                            // about
-                            bFastMode = false;
-                            DisplayLogo();
-                            Console.WriteLine();
-                            {
-                                Write("¨", ConsoleColor.Black);
-                                Console.BackgroundColor = ConsoleColor.DarkRed;
-                                Write("  ", ConsoleColor.Black);
-                                Write("[About]".PadRight(30, ' '), ConsoleColor.White);
-                                Console.BackgroundColor = ConsoleColor.Black;
-                                Write(" -- use ", ConsoleColor.DarkGray);
-                                Write("Escape", ConsoleColor.Blue);
-                                Write(" for instant text\n", ConsoleColor.DarkGray);                                
                             }
-                            Console.WriteLine();
-
-                            int enters = 0, _page = 1;
-
-                            foreach (var itemDet in aboutText.FirstOrDefault(y => y.lang == "ENG").info)
+                            else if (indexSelected == 1)
                             {
-                                Console.CursorVisible = false;
+                                DisplayLogo();
                                 Console.WriteLine();
-                                foreach (var line in itemDet.text)
-                                    PrintRoomText(line, ConsoleColor.Yellow, 5);
-                                Thread.Sleep(500);
-                                Console.CursorVisible = true;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                Write("¨ ░█░░░█▀█░█▀█░█▀▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
+                                Write("¨ ░█░░░█▀█░█░█░█░█░█░█░█▀█░█░█░█▀▀\n", ConsoleColor.DarkGray);
+                                Write("¨ ░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░\n", ConsoleColor.DarkGray);
                                 EnterToContinue();
-                                Console.WriteLine();
-                                bFastMode = false;
-
-                                if (++enters == 3)
+                            }
+                            else if (indexSelected == 2)
+                            {
+                                // about
+                                while (true)
                                 {
-                                    enters = 0;
-                                    _page++;
                                     DisplayLogo();
                                     Console.WriteLine();
-                                    {
-                                        Write("¨", ConsoleColor.Black);
-                                        Console.BackgroundColor = ConsoleColor.DarkRed;
-                                        Write("  ", ConsoleColor.Black);
-                                        Write("[About]".PadRight(30, ' '), ConsoleColor.White);
-                                        Console.BackgroundColor = ConsoleColor.Black;
-                                        Write(" -- page: ", ConsoleColor.DarkGray);
-                                        Write(_page.ToString(), ConsoleColor.Green);
-                                        Write("\n", ConsoleColor.Black);
-                                    }
                                     Console.WriteLine();
+                                    Console.WriteLine();
+                                    Write("¨ ░█▀█░█▀▄░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░█▀█░█▀▄░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
+                                    Console.WriteLine();
+                                    int enters = 0, _page = 1;
+                                    foreach (var itemDet in aboutText.FirstOrDefault(y => y.lang == "ENG").info)
+                                    {
+                                        Console.CursorVisible = false;
+                                        Console.WriteLine();
+                                        foreach (var line in itemDet.text)
+                                            PrintRoomText(line, ConsoleColor.Yellow, 5);
+                                        Thread.Sleep(500);
+                                        Console.CursorVisible = true;
+                                        EnterToContinue();
+                                        Console.CursorVisible = false;
+                                        Console.WriteLine();
+                                        bFastMode = false;
+
+                                        if (++enters == 2)
+                                        {
+                                            enters = 0;
+                                            _page++;
+                                            DisplayLogo();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Write("¨ ░█▀█░█▀▄░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
+                                            Write("¨ ░█▀█░█▀▄░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
+                                            Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
+                                            Console.WriteLine();
+                                        }
+                                    }
+                                    break;
                                 }
                             }
-                            Console.CursorVisible = false;
-                            continue;
-                        }
-                        else if (indexSelected == files.Length + 2)
-                        {
-                            // quit
-                            return;
-                        }
-
-                        currentFile = files[indexSelected];
-                        Console.WriteLine();
-                        game.gameJsonFile = currentFile;
-                        LoadGame();
-
-                        if (bAutomation)
-                            automationFile = File.ReadAllText(currentFile.Replace(".game.jsonx", ".QA.txt")).Split("\r\n").ToList();                        
-
-                        if (monitor.games == null)
-                            monitor.games = new List<GameMonitor>();
-
-                        gamePlay = new GameMonitorPlays
-                        {
-                            death = false,
-                            dtStart = DateTime.Now,
-                            dtEnd = null
-                        };
-
-                        gameMonitor = monitor.games.FirstOrDefault(y => y.game_name == game.gameName);
-
-                        if (gameMonitor == null)
-                        {
-                            gameMonitor = new GameMonitor
+                            else if (indexSelected == 3)
                             {
-                                game_name = game.gameName,
-                                plays = new List<GameMonitorPlays>()
-                            };
+                                // patreon
+                                while (true)
+                                {
+                                    DisplayLogo();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    Console.WriteLine();
+                                    Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
 
-                            monitor.games.Add(gameMonitor);
+                                    Console.WriteLine();
+                                    int enters = 0, _page = 1;
+                                    foreach (var itemDet in patreonText.FirstOrDefault(y => y.lang == "ENG").info)
+                                    {
+                                        Console.CursorVisible = false;
+                                        Console.WriteLine();
+                                        foreach (var line in itemDet.text)
+                                            PrintRoomText(line, ConsoleColor.Yellow, 5);
+                                        Console.WriteLine();
+                                        Thread.Sleep(500);
+                                        Console.CursorVisible = true;
+                                        EnterToContinue();
+                                        Console.CursorVisible = false;
+                                        Console.WriteLine();
+                                        bFastMode = false;
+
+                                        if (++enters == 2)
+                                        {
+                                            enters = 0;
+                                            _page++;
+                                            DisplayLogo();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Console.WriteLine();
+                                            Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
+                                            Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
+                                            Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
+                                            Console.WriteLine();
+                                        }
+                                    }
+
+                                    var url = "https://www.patreon.com/bigboysbooks";
+
+                                    Process.Start(new ProcessStartInfo(url)
+                                    {
+                                        UseShellExecute = true
+                                    });
+
+                                    break;
+                                }
+                            }
+                            else if (indexSelected == 4)
+                            {
+                                return;
+                            }
                         }
 
-                        if (gameMonitor.plays == null)
-                            gameMonitor.plays = new List<GameMonitorPlays>();
+                     break;
 
-                        gameMonitor.plays.Add(gamePlay);
-
-                        mode = 3;
-                        break;
 
                     case 3:
                         Console.CursorVisible = false;
