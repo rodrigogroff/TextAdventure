@@ -1,5 +1,26 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
+using static Win32;
+
+public class Win32
+{
+    public const int
+                VK_F11 = 0x7A,
+                SW_MAXIMIZE = 3;
+
+    public const uint
+                WM_KEYDOWN = 0x100,
+                WM_MOUSEWHEEL = 0x20A,
+                WHEEL_DELTA = 120,
+                MK_CONTROL = 0x00008 << 16;
+
+    [DllImport("kernel32.dll")]
+    public static extern IntPtr GetConsoleWindow();
+    [DllImport("user32.dll")]
+    public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+    [DllImport("user32.dll")]
+    public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+}
 
 public class Program
 {
@@ -23,6 +44,29 @@ public class Program
         }
     }
 
+    static bool IsExecutableInstalled(string executableName)
+    {
+        // Get the directories listed in the PATH environment variable
+        string[] pathDirectories = Environment.GetEnvironmentVariable("PATH").Split(Path.PathSeparator);
+
+        // Search each directory for the executable
+        foreach (string directory in pathDirectories)
+        {
+            string executablePath = Path.Combine(directory, executableName);
+            if (File.Exists(executablePath))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool IsWT_Installed()
+    {
+        return IsExecutableInstalled("wt.exe");
+    }
+
     public static async Task Main(string[] args)
     {
         if (args.Length == 0)
@@ -32,7 +76,7 @@ public class Program
             Process process = new();
             process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\" + batFile;
             process.Start();
-            return;
+            return;            
 #endif
 
 #if RELEASE
@@ -47,6 +91,13 @@ public class Program
             Process.Start(startInfo);
             return;
 #endif
+        }
+        
+        if (!IsWT_Installed())
+        {
+            var hwnd = GetConsoleWindow();
+            PostMessage(hwnd, WM_KEYDOWN, (IntPtr)VK_F11, IntPtr.Zero);
+            PostMessage(hwnd, WM_MOUSEWHEEL, (IntPtr)(MK_CONTROL | WHEEL_DELTA), IntPtr.Zero);
         }
 
         try
@@ -63,11 +114,16 @@ public class Program
             ta.Write(" Engine Version: 1.4.3", ConsoleColor.DarkGray);
             ta.Write(" ", ConsoleColor.Yellow);
             Thread.Sleep(2000);
-        
+
+            ta.Write("\n Checking patreon... ", ConsoleColor.Green);
+
             string savePassword = "";
 
             if (File.Exists("password.txt"))
+            {
                 savePassword = File.ReadAllText("password.txt");
+                ta.Write("\n Password found... ", ConsoleColor.Green);
+            }
         
             string fileUrl = "https://drive.google.com/uc?id=1ceZUuXUPh8anIY0nEi_pF26HECvxJqGa";
             string outputPath = "ta_password.1";
@@ -79,6 +135,8 @@ public class Program
             {
                 if (savePassword.ToLower().Trim() == currentPatreonPass.ToLower().Trim())
                 {
+                    ta.Write("\n Checked!", ConsoleColor.Green);
+                    Thread.Sleep(2000);
                     ta.StartGame();
                     return;
                 }
@@ -88,16 +146,16 @@ public class Program
                     ta.Write(" epxired!\n\n", ConsoleColor.Red);
                 }
             }
-
+                        
             while (true)
             {
-                ta.Write(" [Inform current ", ConsoleColor.Green);
+                ta.Write("\n [Inform current ", ConsoleColor.Green);
                 ta.Write("patreon", ConsoleColor.Yellow);
                 ta.Write(" password:] \n", ConsoleColor.Green);
                 ta.Write(" [> ", ConsoleColor.Green);
                 var pass = ta.ConsoleReadLine();
 
-                if (pass.ToLower().Trim() != currentPatreonPass.ToLower().Trim()) 
+                if (pass.ToLower().Trim() != currentPatreonPass.ToLower().Trim())
                 {
                     ta.Write(" -- Password ", ConsoleColor.Gray);
                     ta.Write(" incorrect!\n\n", ConsoleColor.Red);

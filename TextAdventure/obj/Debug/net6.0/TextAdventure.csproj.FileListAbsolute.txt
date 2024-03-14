@@ -90,7 +90,8 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\P
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\patreon.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\summary.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Readme.md
-C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\wallpaper.png
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\wallpaper_1_1920.jpg
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\wallpaper_1_2560.jpg
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.deps.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.runtimeconfig.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.dll

@@ -22,6 +22,29 @@ public class Program
         }
     }
 
+    static bool IsExecutableInstalled(string executableName)
+    {
+        // Get the directories listed in the PATH environment variable
+        string[] pathDirectories = Environment.GetEnvironmentVariable("PATH").Split(Path.PathSeparator);
+
+        // Search each directory for the executable
+        foreach (string directory in pathDirectories)
+        {
+            string executablePath = Path.Combine(directory, executableName);
+            if (File.Exists(executablePath))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool IsWT_Installed()
+    {
+        return IsExecutableInstalled("wt.exe");
+    }
+
     public static async Task Main(string[] args)
     {
         try
@@ -34,7 +57,12 @@ public class Program
             File.Delete(outputPath);
             var batFile = "start.bat";
             if (File.Exists(batFile)) File.Delete(batFile);
-            File.WriteAllText(batFile, "wt -F \"" + Directory.GetCurrentDirectory() + "\\TextAdventure.exe\" start");
+
+            if (IsWT_Installed())
+                File.WriteAllText(batFile, "wt -F \"" + Directory.GetCurrentDirectory() + "\\TextAdventure.exe\" start");
+            else
+                File.WriteAllText(batFile, "\"" + Directory.GetCurrentDirectory() + "\\TextAdventure.exe\" start");
+
             Console.WriteLine("Starting game...");
             Process process = new();
             process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\" + batFile;
