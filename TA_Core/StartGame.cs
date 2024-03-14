@@ -21,8 +21,11 @@ public partial class TextAdventureGame
         }
 
         var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + summary_file));
+        var setupCfg = JsonConvert.DeserializeObject<GameSetup>(File.ReadAllText(Directory.GetCurrentDirectory() + setup_file));
         var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + about_file));
         var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + patreon_file));
+
+        emptySpace = setupCfg.emptySpace;
 
         try
         {
@@ -37,11 +40,12 @@ public partial class TextAdventureGame
 
                     case 2:
 
-                        int indexSelected = 0;
+                        int indexSelected = 0, totSeconds = 0, totDeaths = 0;
                         string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "\\Games", "*.game.jsonx");
 
-                        var hshGameInfo = new Hashtable();
-                        int totSeconds = 0, totDeaths = 0;
+                        #region - setup summary - 
+
+                        var hshGameInfo = new Hashtable();                        
                         
                         for (int i = 0; i < files.Length; i++)
                         {
@@ -80,7 +84,17 @@ public partial class TextAdventureGame
                             }
                         }
 
+                        #endregion
+
                         bool bEnterPressed = false;
+
+                        List<string> mainMenu = new() {
+                            "     Games    ",
+                            "    Screen    ",
+                            "     About    ",
+                            "    Patreon   ",
+                            "     Exit     ",
+                        };
 
                         while (true)
                         {
@@ -96,7 +110,7 @@ public partial class TextAdventureGame
 
                                     if (i == indexSelected)
                                     {                                        
-                                        Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                        Console.BackgroundColor = ConsoleColor.DarkGreen;
                                         Write(mainMenu[i], ConsoleColor.White);                                        
                                     }
                                     else
@@ -144,7 +158,9 @@ public partial class TextAdventureGame
 
                             if (indexSelected == 0)
                             {
-                                bool    bShowDetails = false,
+                                #region - games - 
+
+                                bool bShowDetails = false,
                                         escapePressed = false;
 
                                 while (true)
@@ -235,7 +251,7 @@ public partial class TextAdventureGame
                                     Console.WriteLine();
                                     Console.WriteLine();
                                     
-                                    Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.White);
+                                    Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.Yellow);
                                     Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
                                     Write(" -- Total deaths: ", ConsoleColor.DarkGray);
                                     Write(totDeaths + "\n", ConsoleColor.Red);
@@ -332,10 +348,55 @@ public partial class TextAdventureGame
 
                                 mode = 3;
                                 break;
+
+                                #endregion
                             }
                             else if (indexSelected == 1)
                             {
-                                // about
+                                #region - setup - 
+
+                                while (true)
+                                {
+                                    DisplayLogo();
+                                    Console.WriteLine();
+                                    Write("¨ ░█▀▀░█▀▀░▀█▀░█░█░█▀█\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░▀▀█░█▀▀░░█░░█░█░█▀▀\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░░\n", ConsoleColor.DarkGray);
+                                    Console.WriteLine();
+                                    Write("¨ You can configure the screen by your custom terminal appearance.\n", ConsoleColor.DarkGray);
+                                    Write("¨ Adjust the number ", ConsoleColor.DarkGray);
+                                    Write(setupCfg.emptySpace.ToString(), ConsoleColor.Green);
+                                    Write(" to adjust for your preferences.", ConsoleColor.DarkGray);
+                                    Console.WriteLine();
+                                    Console.CursorVisible = true;
+                                    Write("¨ > ", ConsoleColor.Green);
+                                    var newSPace = ConsoleReadLine().Trim();
+                                    if (newSPace == "")
+                                    {
+                                        Console.CursorVisible = false;
+                                        break;
+                                    }                                    
+                                    try
+                                    {
+                                        emptySpace = Convert.ToInt32(newSPace);
+                                        setupCfg.emptySpace = emptySpace;
+                                        File.Delete(Directory.GetCurrentDirectory() + setup_file);
+                                        File.WriteAllText(Directory.GetCurrentDirectory() + setup_file, JsonConvert.SerializeObject(setupCfg));
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine();
+                                        Write("¨ You are a funny human being!\n", ConsoleColor.Red);
+                                        EnterToContinue();
+                                    }                                    
+                                }
+
+                                #endregion
+                            }
+                            else if (indexSelected == 2)
+                            {
+                                #region - about - 
+                                                                
                                 while (true)
                                 {
                                     DisplayLogo();
@@ -372,10 +433,13 @@ public partial class TextAdventureGame
                                     }
                                     break;
                                 }
+
+                                #endregion
                             }
-                            else if (indexSelected == 2)
+                            else if (indexSelected == 3)
                             {
-                                // patreon
+                                #region - patreon - 
+                                
                                 while (true)
                                 {
                                     DisplayLogo();
@@ -422,9 +486,12 @@ public partial class TextAdventureGame
 
                                     break;
                                 }
+
+                                #endregion
                             }
-                            else if (indexSelected == 3)
+                            else if (indexSelected == 4)
                             {
+                                // exit
                                 return;
                             }
                         }

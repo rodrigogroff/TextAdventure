@@ -119,4 +119,5 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\P
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\summary.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\about.json
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\patreon.json
-C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Spectre.Console.dll
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\wallpaper.png
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\setup.json

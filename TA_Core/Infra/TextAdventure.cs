@@ -15,20 +15,11 @@ public partial class TextAdventureGame
         currentFile = "",
         currentItem = "",
         gameDifficulty = "",
-        monitor_file = "monitor.txt",
+        monitor_file = "monitor.txt",        
         summary_file = "\\Games\\summary.json",
         about_file = "\\Games\\about.json",
+        setup_file = "\\Games\\setup.json",
         patreon_file = "\\Games\\patreon.json";
-
-    readonly 
-        List<string> 
-            mainMenu = new()
-            {
-                "     Start    ",
-                "     About    ",
-                "    Patreon   ",
-                "     Exit     ",
-            };
 
     bool 
         bAutomation = false,

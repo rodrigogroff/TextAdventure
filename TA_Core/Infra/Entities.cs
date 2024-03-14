@@ -8,6 +8,11 @@ public class GameMonitorPlays
     public bool death = false;
 }
 
+public class GameSetup
+{
+    public int emptySpace = 0;
+}
+
 public class GameMonitor
 {
     public string game_name { get; set; }

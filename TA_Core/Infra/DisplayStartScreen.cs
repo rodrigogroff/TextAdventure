@@ -6,7 +6,7 @@ public partial class TextAdventureGame
         bAutomation = true;
         Console.Clear();
         Console.WriteLine(); 
-        Write("¨                                              Text Adventures by\n", ConsoleColor.White);
+        Write("¨                                              Text Adventures by\n", ConsoleColor.DarkGray);
         Console.WriteLine();
         Write("¨   ▄▄▄▄    ██▓  ▄████      ▄▄▄▄    ▒█████ ▓██   ██▓  ██████       ▄████  ▄▄▄       ███▄ ▄███▒ █████   ██████ \n", ConsoleColor.DarkRed);
         Write("¨  ▓█████▄ ▓██▒ ██▒ ▀█▒    ▓█████▄ ▒██▒  ██▒▒██  ██░▒██    ▒      ██▒ ▀█▒▒████▄    ▓██▒▀█▀▒██▒ █▒▒▒▀ ▒██▒░░ ▒ \n", ConsoleColor.DarkRed);

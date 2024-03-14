@@ -1,126 +1,68 @@
 ﻿[
 	{
-		"lang": "ENG",
-		"info": [
-			{
-				"text": [
-					"Thanks for trying out this tribute to text adventure games of the past,",
-					"while I hope we try something new in terms of:",
-					"",
-					"1 - Making players to not give up frustrated in their absolute first move",
-					"2 - Focus on playing experience, a mix of text adventure (TA) and interactive fiction (IF)",
-					"3 - Stay in old school environment *pure console*, using colors and ascii table fx",
-					"4 - Use maps, hints, quests and awards to help people keep engaging in the game",
-					""
-				]
-			},
-			{
-				"text": [
-					"~-- Text Adventures (TA) & Interactive Fiction (IF)~",
-					"",
-					"Pure text games were born in a time when computers did not have most",
-					"graphical capabilites. Just like interactive books, the game makers",
-					"use text to give the players a fly into their own imagination while",
-					"the computer persisted the players decisions.",
-					"",
-					"With the decline of TA because of the rise on the game graphics, these",
-					"type of games were introverted to a more niche location inside the",
-					"interactive fiction community (derived from books).",
-					""
-				]
-			},
-			{
-				"text": [
-					"~-- What can be learned from past mistakes?~",
-					"",
-					"Text adventure games from 80's open the vault of interactivity, but could not compete",
-					"with even 8 bit era graphics, because, in my humble opinion:",
-					"",
-					"-sentence logic \"use sword on troll\" completely non-intuitive",
-					"-complicated puzzles for the sake of complexity (cruelty)",
-					"-required physical notes of locations for players to not get lost",
-					""
-				]
-			},
-			{
-				"text": [
-					"~--The 'big boys games' style of text adventure~",
-					"",
-					"By experience, text adventures are EXTREMELY frustrating to newbies, and",
-					"by this premisse, the games in this collection were thought out with these",
-					"checkpoints in mind:",
-					""
-				]
-			},
-			{
-				"text": [
-					"^1) (very) limited actions:^",
-					"",
-					"No crazyness on the input. Inside the scene you can type anything, but is",
-					"also expressed objetively as choice (1 - \"do this\", 2 - \"do that\") or ",
-					"just what the \"/help\" provide as all the commands for the game.",
-					""
-				]
-			},
-			{
-				"text": [
-					"^2) please forget about 'advanced' parsing, and let it stay DEAD:^",
-					"",
-					"A \"no boundaries\" interface (even 3+ words!) drives people CRAZY (and away to the ",
-					"game) really f* fast (\"turn off lamp\", \"rub oil lamp\") -- also complicates ",
-					"matters for everyone: coder and the player.",
-					""
-				]
-			},
-			{
-				"text": [
-					"^3) hints:^",
-					"",
-					"Just for people cheat legally in the game -- its counted and persisted",
-					"on the save game. If you wanna go hardcore (difficulty 4), just dont use it.",
-					""
-				]
-			},
-			{
-				"text": [
-					"^4) awards:^",
-					"",
-					"To make our player visualize how much he explored the game, and can be",
-					"a place to get a free hint about what can you do.",
-					""
-				]
-			},
-			{
-				"text": [
-					"^5) quests / logs:^",
-					"",
-					"Aid the player about what to do next, instead of wondering about.",
-					""
-				]
-			},
-			{
-				"text": [
-					"^6) on-game map:^",
-					"",
-					"No more Left, Right, West, East commands... lets provide the player with the",
-					"aid of some visualization of space represented in a simple ascii map.",
-					"",
-					"The focus is on interactivity and decision making, NOT F* memorization and",
-					"eventually cruelty for the sake of being hard.",
-					""
-				]
-			},
-			{
-				"text": [
-					"^7) on-game map (fog of war):^",
-					"",
-					"Maps unfold themselves, not a big one map.",
-					"",
-					"You should see probably 3 or 4 maps as you go inside an area.",
-					"Some maps will have secrets.",
-					""
-				]
-			}
+		"game_name": "Feed Korg",
+		"game_tip": [
+			"      As a teenager, you went missing in the woods for three days. You came back in the",
+			"      middle of the night, dirty and hurt.",
+			"",
+			"      For the whole of your life, you were a skinny person.",
+			"",
+			"      Forty years later, now in your fifties, you are a factory worker living in Colorado",
+			"      -- one day, going to the grocery store, a terrible accident happens, losing your right",
+			"      leg. In the middle of the pool of blood, your missing limb transforms into a little",
+			"      demonic entity.",
+			"",
+			"      The creature said to you: \"You must... feed... Korg!\""
+		]
+	},
+	{
+		"game_name": "Hellfire Club",
+		"game_tip": [
+			"      Deep in hell, there is a club for tormented spirits.",
+			"",
+			"      Select your soul to enter this alternate reality, and in there, unravel all it's",
+			"      unique secrets and strange lost creatures.",
+			"",
+			"      With a ticket to enter this club, you realize that everytime you die in this place,",
+			"      you will keep coming back, like a curse. ",
+			"",
+			"      Until the contract from Hellfire is lifted, guide your spirit to the light, understanding",
+			"      all the work needed to cleanse your soul from your previous life trauma by winning the",
+			"      challenges from the demon world."
+		]
+	},
+	{
+		"game_name": "NightCrawlers",
+		"game_tip": [
+			"      After losing your mother in a terrible and devastating cancer, you felt your life is",
+			"      completely lost of meaning, and you shutdown yourself to others; thus you become a ",
+			"      Hikimori (a modern hermit).",
+			"",
+			"      You now have 32 years old and live in Tokyo, Japan. Your military father tries to bring",
+			"      you back into reality, with no success. Food arrives at your door from a maid, and you ",
+			"      forcibly take a bath once a week in order to have something to eat.",
+			"",
+			"      One day you fall ill, stay between life and death for almost a week inside your rooom. ",
+			"      As you got a little better, you see that there is no more food at your door. You receive",
+			"      a strange email from your father, asking you to wait for him at the helicopter pod at the",
+			"      the nearby comercial building to escape \"the invasion\".",
+			"",
+			"      When you open the door, you see a alien ball of fur and teeth eating your maid corpse."
+		]
+	},
+	{
+		"game_name": "Paranormal investigator",
+		"game_tip": [
+			"      Early on, you discovered that ghost are real. Your grandfather stayed with you for five",
+			"      years, telling you everything about the post-life underworld. It was scary, but eventually",
+			"      you became more seasoned to the strange and the otherworldly.",
+			"",
+			"      As people come for you in need of help, you solve their problems by feeling the psychic",
+			"      connection between them, all the trauma and the strange energy creatures that cause mayhem",
+			"      crossing overto the human realm.",
+			"",
+			"      By opening a private detective office, now you must confront your fears and maintain the rest",
+			"      of your failing sanity for your next paycheck."
 		]
 	}
 ]
