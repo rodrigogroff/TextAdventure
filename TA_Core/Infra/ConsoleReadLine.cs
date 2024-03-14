@@ -55,23 +55,7 @@ public partial class TextAdventureGame
         }
         else
         {
-            string acc = "";
-            while (true)
-            {
-                if (Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo key = Console.ReadKey(true);
-                    
-                    if (key.Key == ConsoleKey.Enter)
-                        break;
-                    else
-                    {
-                        Console.Write(key.KeyChar);
-                        acc += key.KeyChar;
-                    }
-                }
-            }
-            return acc;
+            return Console.ReadLine();
         }
     }
 }

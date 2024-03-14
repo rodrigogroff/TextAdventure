@@ -101,11 +101,11 @@ public partial class TextAdventureGame
                         bool bEnterPressed = false;
 
                         List<string> mainMenu = new() {
-                            "     Games    ",
-                            "    Screen    ",
-                            "     About    ",
-                            "    Patreon   ",
-                            "     Exit     ",
+                            "     Games ",
+                            "    Screen ",
+                            "     About ",
+                            "   Patreon ",
+                            "      Exit ",
                         };
 
                         while (true)
@@ -115,20 +115,45 @@ public partial class TextAdventureGame
                                 DisplayLogo();
                                 Console.WriteLine();
 
+                                ConsoleColor colorSel = ConsoleColor.Green;
+
                                 for (int i = 0; i < mainMenu.Count; i++)
                                 {
                                     Write("¨", ConsoleColor.Black);
                                     Write(" ".PadLeft(48, ' '), ConsoleColor.Black);
 
+                                    /*
                                     if (i == indexSelected)
                                     {
-                                        Console.BackgroundColor = ConsoleColor.DarkGreen;
-                                        Write(mainMenu[i], ConsoleColor.White);
+                                        Console.BackgroundColor = colorSel;
+                                        Write("  ", ConsoleColor.Black);
+                                    }
+                                    else
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Black;
+                                        Write("  ", ConsoleColor.Black);
+                                    }*/
+
+                                    if (i == indexSelected)
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Black;
+                                        Write(mainMenu[i], colorSel);
                                     }
                                     else
                                     {
                                         Console.BackgroundColor = ConsoleColor.Black;
                                         Write(mainMenu[i], ConsoleColor.DarkGray);
+                                    }
+
+                                    if (i == indexSelected)
+                                    {
+                                        Console.BackgroundColor = colorSel;
+                                        Write("  ", ConsoleColor.Black);
+                                    }
+                                    else
+                                    {
+                                        Console.BackgroundColor = ConsoleColor.Black;
+                                        Write("  ", ConsoleColor.Black);
                                     }
 
                                     Write("\n", ConsoleColor.Black);
@@ -175,6 +200,62 @@ public partial class TextAdventureGame
                                 bool bShowDetails = false,
                                         escapePressed = false;
 
+                                List<string> msg = new()
+                                    {
+                                        "Total time spent reminiscing about the '80s: ",
+                                        "Total time devoted to non-essential tasks: ",
+                                        "Total time consumed by imaginary responsibilities: ",
+                                        "Total time squandered on retro daydreams: ",
+                                        "Total time invested in nostalgic reverie: ",
+                                        "Total time lost to retro fantasies: ",
+                                        "Total time dedicated to non-productive endeavors: ",
+                                        "Total time frittered away on nostalgia: ",
+                                        "Total time consumed by irrelevant activities: ",
+                                        "Total time absorbed by fantasy tasks: ",
+                                        "Total time wasted on vintage musings: ",
+                                        "Total time allocated to non-essential duties: ",
+                                        "Total time expended on '80s daydreams: ",
+                                        "Total time utilized on trivial pursuits: ",
+                                        "Total time spent on fictional obligations: ",
+                                        "Total time dissipated on throwback thoughts: ",
+                                        "Total time exhausted on non-realistic chores: ",
+                                        "Total time consumed by retro escapades: ",
+                                        "Total time devoted to unproductive ventures: ",
+                                        "Total time utilized on imaginative tasks: ",
+                                        "Total time expended on reminiscing about yesteryears: ",
+                                        "Total time wasted on non-essential activities: ",
+                                        "Total time lost to vintage nostalgia: ",
+                                        "Total time invested in non-essential endeavors: ",
+                                        "Total time squandered on fantastical duties: ",
+                                        "Total time consumed by retro reflections: ",
+                                        "Total time devoted to non-essential pursuits: ",
+                                        "Total time absorbed by nostalgic daydreams: ",
+                                        "Total time frittered away on fictional tasks: ",
+                                        "Total time dedicated to unproductive activities: ",
+                                        "Total time dissipated on '80s reverie: ",
+                                        "Total time exhausted on fantasy obligations: ",
+                                        "Total time utilized on nostalgic reminiscence: ",
+                                        "Total time expended on non-essential chores: ",
+                                        "Total time consumed by imaginary chores: ",
+                                        "Total time lost to retro musings: ",
+                                        "Total time invested in non-realistic pursuits: ",
+                                        "Total time squandered on vintage fantasies: ",
+                                        "Total time devoted to unproductive fantasies: ",
+                                        "Total time absorbed by throwback daydreams: ",
+                                        "Total time frittered away on irrelevant tasks: ",
+                                        "Total time dedicated to non-realistic activities: ",
+                                        "Total time dissipated on fantasy musings: ",
+                                        "Total time exhausted on retro reflections: ",
+                                        "Total time utilized on non-essential daydreams: ",
+                                        "Total time expended on '80s nostalgia: ",
+                                        "Total time consumed by fantasy reminiscence: ",
+                                        "Total time lost to nostalgic fantasies: ",
+                                        "Total time invested in irrelevant pursuits: ",
+                                        "Total time squandered on throwback tasks: "
+                                    };
+
+                                var hashtableMsg = new Hashtable();
+
                                 while (true)
                                 {
                                     DisplayLogo();
@@ -185,6 +266,7 @@ public partial class TextAdventureGame
                                     Write(" for details, ", ConsoleColor.DarkGray);
                                     Write("Enter", ConsoleColor.Green);
                                     Write(" to start]\n", ConsoleColor.DarkGray);
+                                    Console.WriteLine();
                                     Console.WriteLine();
 
                                     Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
@@ -253,17 +335,22 @@ public partial class TextAdventureGame
                                         }
                                     }
 
-                                    List<string> msg = new List<string>
-                                {
-                                    "Total time wasted on eighties nostalgia: ",
-                                    "Total time doing actual work for non-real entities: ",
-                                    "Total time wasted on fantasy chores: ",
-                                };
-
                                     Console.WriteLine();
                                     Console.WriteLine();
 
-                                    Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.Yellow);
+                                    int rnd = 0;
+
+                                    while (true)
+                                    {
+                                        rnd = GetRandomNumber(0, msg.Count - 1);
+                                        if (hashtableMsg[rnd] == null)
+                                        {
+                                            hashtableMsg[rnd] = true;
+                                            break; 
+                                        }
+                                    }
+
+                                    Write("¨  " + msg[rnd], ConsoleColor.Blue);
                                     Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
                                     Write(" -- Total deaths: ", ConsoleColor.DarkGray);
                                     Write(totDeaths + "\n", ConsoleColor.Red);
@@ -371,6 +458,7 @@ public partial class TextAdventureGame
                                 {
                                     DisplayLogo();
                                     Console.WriteLine();
+                                    Console.WriteLine();
                                     Write("¨ ░█▀▀░█▀▀░▀█▀░█░█░█▀█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀▀█░█▀▀░░█░░█░█░█▀▀\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░░\n", ConsoleColor.DarkGray);
@@ -430,6 +518,7 @@ public partial class TextAdventureGame
                                 {
                                     DisplayLogo();
                                     Console.WriteLine();
+                                    Console.WriteLine();
                                     Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
                                     Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
@@ -454,6 +543,7 @@ public partial class TextAdventureGame
                                             _page++;
                                             DisplayLogo();
                                             Console.WriteLine();
+                                            Console.WriteLine();
                                             Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
                                             Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
                                             Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
@@ -472,6 +562,7 @@ public partial class TextAdventureGame
                                 while (true)
                                 {
                                     DisplayLogo();
+                                    Console.WriteLine();
                                     Console.WriteLine();
                                     Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
@@ -498,6 +589,7 @@ public partial class TextAdventureGame
                                             enters = 0;
                                             _page++;
                                             DisplayLogo();
+                                            Console.WriteLine();
                                             Console.WriteLine();
                                             Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
                                             Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
@@ -612,7 +704,7 @@ public partial class TextAdventureGame
                             {
                                 Console.WriteLine();
                                 Write("¨ 1 - ", ConsoleColor.DarkGray);
-                                Write("Continue from saved game\n", ConsoleColor.White);
+                                Write("Continue \n", ConsoleColor.White);
                                 Write("¨ 2 - ", ConsoleColor.DarkGray);
                                 Write("New game (lose all awards!)\n", ConsoleColor.DarkGray);
                                 Console.WriteLine();

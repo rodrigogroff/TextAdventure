@@ -88,13 +88,14 @@ public partial class TextAdventureGame
                 Write(" ]\n", ConsoleColor.DarkGray);
             }
 
-            foreach (var y in game.awards)
+            foreach (var awx in game.awards)
             {
-                var aw = game.player.awards.FirstOrDefault(y => y.text == y.text);
+                var aw = game.player.awards.FirstOrDefault(y => y.text == awx.text);
+
                 if (aw == null)
                 {
                     Write("¨ [Target award -- ", ConsoleColor.DarkGray);
-                    Write(y.text, ConsoleColor.Blue);
+                    Write(awx.text, ConsoleColor.Blue);
                     Write(" ]\n", ConsoleColor.DarkGray);
                     break;
                 }
