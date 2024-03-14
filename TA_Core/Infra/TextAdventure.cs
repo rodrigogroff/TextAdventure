@@ -18,7 +18,7 @@ public partial class TextAdventureGame
         monitor_file = "monitor.txt",        
         summary_file = "\\Games\\summary.json",
         about_file = "\\Games\\about.json",
-        setup_file = "\\Games\\setup.json",
+        setup_file = "\\setup.json",
         patreon_file = "\\Games\\patreon.json";
 
     bool 

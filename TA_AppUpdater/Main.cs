@@ -26,24 +26,23 @@ public class Program
     {
         try
         {
+            Console.WriteLine("Checking for new version...");
             string fileUrl = "https://drive.google.com/uc?id=1h-Dpc0WFC9yGHKvuH5VhH4pPRn0ie8Ud";
             string outputPath = "ta_upgrade.zip";
             await DownloadFile(fileUrl, outputPath);
             new TA_Update.GameUpdater().Update();
+            File.Delete(outputPath);
+            var batFile = "start.bat";
+            if (File.Exists(batFile)) File.Delete(batFile);
+            File.WriteAllText(batFile, "wt -F \"" + Directory.GetCurrentDirectory() + "\\TextAdventure.exe\" start");
+            Console.WriteLine("Starting game...");
+            Process process = new Process();
+            process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\" + batFile;
+            process.Start();
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Working offline...");
+            Console.WriteLine("You are offline...");
         }
-
-        ProcessStartInfo startInfo = new ProcessStartInfo
-        {
-            FileName = "TextAdventure.exe",
-            Arguments = "x",
-            UseShellExecute = false,
-            CreateNoWindow = false
-        };
-
-        Process.Start(startInfo);        
     }
 }

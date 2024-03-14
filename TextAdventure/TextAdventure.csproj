@@ -73,7 +73,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Pack>True</Pack>
     </None>
-    <None Update="Games\setup.json">
+    <None Update="setup.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Games\summary.json">

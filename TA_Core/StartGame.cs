@@ -6,29 +6,29 @@ public partial class TextAdventureGame
 {
     public void StartGame()
     {
-        Console.CursorVisible = false;
-
-        InitScreen();
-
-        if (File.Exists(monitor_file))
-            monitor = JsonConvert.DeserializeObject<GameMonitoring>(crypt.DecryptFile(monitor_file));
-        else
-        {
-            monitor = new GameMonitoring
-            {
-                games = new List<GameMonitor>()
-            };
-        }
-
-        var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + summary_file));
-        var setupCfg = JsonConvert.DeserializeObject<GameSetup>(File.ReadAllText(Directory.GetCurrentDirectory() + setup_file));
-        var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + about_file));
-        var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + patreon_file));
-
-        emptySpace = setupCfg.emptySpace;
-
         try
         {
+            Console.CursorVisible = false;
+
+            InitScreen();
+
+            if (File.Exists(monitor_file))
+                monitor = JsonConvert.DeserializeObject<GameMonitoring>(crypt.DecryptFile(monitor_file));
+            else
+            {
+                monitor = new GameMonitoring
+                {
+                    games = new List<GameMonitor>()
+                };
+            }
+
+            var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + summary_file));
+            var setupCfg = JsonConvert.DeserializeObject<GameSetup>(File.ReadAllText(Directory.GetCurrentDirectory() + setup_file));
+            var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + about_file));
+            var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + patreon_file));
+
+            emptySpace = setupCfg.emptySpace;
+
             int mode = 2;
 
             while (true)
@@ -45,8 +45,8 @@ public partial class TextAdventureGame
 
                         #region - setup summary - 
 
-                        var hshGameInfo = new Hashtable();                        
-                        
+                        var hshGameInfo = new Hashtable();
+
                         for (int i = 0; i < files.Length; i++)
                         {
                             int seconds = 0, deaths = 0;
@@ -77,9 +77,9 @@ public partial class TextAdventureGame
                             {
                                 totSeconds += seconds;
                                 totDeaths += deaths;
-                                hshGameInfo[g_name] = 
-                                    " -- awards|" + awards + 
-                                    "| -- time: |" + FormatTimeSpan(TimeSpan.FromSeconds(seconds)) + 
+                                hshGameInfo[g_name] =
+                                    " -- awards|" + awards +
+                                    "| -- time: |" + FormatTimeSpan(TimeSpan.FromSeconds(seconds)) +
                                     "| -- deaths: |" + deaths;
                             }
                         }
@@ -89,12 +89,12 @@ public partial class TextAdventureGame
                         bool bEnterPressed = false;
 
                         List<string> mainMenu = new() {
-                            "     Games    ",
-                            "    Screen    ",
-                            "     About    ",
-                            "    Patreon   ",
-                            "     Exit     ",
-                        };
+                        "     Games    ",
+                        "    Screen    ",
+                        "     About    ",
+                        "    Patreon   ",
+                        "     Exit     ",
+                    };
 
                         while (true)
                         {
@@ -109,14 +109,14 @@ public partial class TextAdventureGame
                                     Write(" ".PadLeft(48, ' '), ConsoleColor.Black);
 
                                     if (i == indexSelected)
-                                    {                                        
+                                    {
                                         Console.BackgroundColor = ConsoleColor.DarkGreen;
-                                        Write(mainMenu[i], ConsoleColor.White);                                        
+                                        Write(mainMenu[i], ConsoleColor.White);
                                     }
                                     else
                                     {
-                                        Console.BackgroundColor = ConsoleColor.Black;                                        
-                                        Write(mainMenu[i], ConsoleColor.DarkGray);                                        
+                                        Console.BackgroundColor = ConsoleColor.Black;
+                                        Write(mainMenu[i], ConsoleColor.DarkGray);
                                     }
 
                                     Write("\n", ConsoleColor.Black);
@@ -140,7 +140,7 @@ public partial class TextAdventureGame
                                             indexSelected++;
                                             break;
                                         }
-                                        if (key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar) 
+                                        if (key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Spacebar)
                                         {
                                             bEnterPressed = true;
                                             break;
@@ -174,7 +174,7 @@ public partial class TextAdventureGame
                                     Write("Enter", ConsoleColor.Green);
                                     Write(" to start]\n", ConsoleColor.DarkGray);
                                     Console.WriteLine();
-                                    
+
                                     Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
                                     Write("¨ ░█▀█░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█▀▄░█▀▀░▀▀█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀░▀░▀▀░░░▀░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀\n", ConsoleColor.DarkGray);
@@ -240,22 +240,22 @@ public partial class TextAdventureGame
                                             }
                                         }
                                     }
-                                    
+
                                     List<string> msg = new List<string>
-                                    {
-                                        "Total time wasted on eighties nostalgia: ",
-                                        "Total time doing actual work for non-real entities: ",
-                                        "Total time wasted on fantasy chores: ",
-                                    };
+                                {
+                                    "Total time wasted on eighties nostalgia: ",
+                                    "Total time doing actual work for non-real entities: ",
+                                    "Total time wasted on fantasy chores: ",
+                                };
 
                                     Console.WriteLine();
                                     Console.WriteLine();
-                                    
+
                                     Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.Yellow);
                                     Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
                                     Write(" -- Total deaths: ", ConsoleColor.DarkGray);
                                     Write(totDeaths + "\n", ConsoleColor.Red);
-                                    
+
                                     while (true)
                                     {
                                         if (Console.KeyAvailable)
@@ -309,7 +309,7 @@ public partial class TextAdventureGame
 
                                 if (escapePressed)
                                     break;
-                                
+
                                 currentFile = files[indexSelected];
                                 Console.WriteLine();
                                 game.gameJsonFile = currentFile;
@@ -375,7 +375,7 @@ public partial class TextAdventureGame
                                     {
                                         Console.CursorVisible = false;
                                         break;
-                                    }                                    
+                                    }
                                     try
                                     {
                                         emptySpace = Convert.ToInt32(newSPace);
@@ -387,8 +387,9 @@ public partial class TextAdventureGame
                                     {
                                         Console.WriteLine();
                                         Write("¨ You are a funny human being!\n", ConsoleColor.Red);
+                                        Console.WriteLine();
                                         EnterToContinue();
-                                    }                                    
+                                    }
                                 }
 
                                 #endregion
@@ -396,11 +397,11 @@ public partial class TextAdventureGame
                             else if (indexSelected == 2)
                             {
                                 #region - about - 
-                                                                
+
                                 while (true)
                                 {
                                     DisplayLogo();
-                                    Console.WriteLine();                                    
+                                    Console.WriteLine();
                                     Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
                                     Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
@@ -424,7 +425,7 @@ public partial class TextAdventureGame
                                             enters = 0;
                                             _page++;
                                             DisplayLogo();
-                                            Console.WriteLine();                                            
+                                            Console.WriteLine();
                                             Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
                                             Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
                                             Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
@@ -439,11 +440,11 @@ public partial class TextAdventureGame
                             else if (indexSelected == 3)
                             {
                                 #region - patreon - 
-                                
+
                                 while (true)
                                 {
                                     DisplayLogo();
-                                    Console.WriteLine();                                    
+                                    Console.WriteLine();
                                     Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
@@ -469,7 +470,7 @@ public partial class TextAdventureGame
                                             enters = 0;
                                             _page++;
                                             DisplayLogo();
-                                            Console.WriteLine();                                            
+                                            Console.WriteLine();
                                             Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
                                             Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
                                             Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
@@ -496,7 +497,7 @@ public partial class TextAdventureGame
                             }
                         }
 
-                     break;
+                        break;
 
 
                     case 3:
@@ -504,7 +505,7 @@ public partial class TextAdventureGame
 
                         DisplayLogo();
                         Console.WriteLine();
-                        Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);                        
+                        Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);
                         Console.WriteLine();
 
                         var pTip = summary.FirstOrDefault(y => y.game_name == game.gameName);
@@ -594,7 +595,7 @@ public partial class TextAdventureGame
                                 option_load = ConsoleReadLine().Trim();
 
                                 if (option_load == "")
-                                    option_load = "1";                                    
+                                    option_load = "1";
 
                                 if (option_load == "1")
                                 {
