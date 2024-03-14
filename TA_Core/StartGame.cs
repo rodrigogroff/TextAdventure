@@ -23,7 +23,19 @@ public partial class TextAdventureGame
             }
 
             var summary = JsonConvert.DeserializeObject<List<GameSummary>>(File.ReadAllText(Directory.GetCurrentDirectory() + summary_file));
+            
+            if (!File.Exists(setup_file))
+            {
+                var setupCfg_temp = new GameSetup
+                {
+                    emptySpace = this.emptySpace
+                };
+
+                File.WriteAllText(Directory.GetCurrentDirectory() + setup_file, JsonConvert.SerializeObject(setupCfg_temp));
+            }
+
             var setupCfg = JsonConvert.DeserializeObject<GameSetup>(File.ReadAllText(Directory.GetCurrentDirectory() + setup_file));
+
             var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + about_file));
             var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + patreon_file));
 
@@ -89,12 +101,12 @@ public partial class TextAdventureGame
                         bool bEnterPressed = false;
 
                         List<string> mainMenu = new() {
-                        "     Games    ",
-                        "    Screen    ",
-                        "     About    ",
-                        "    Patreon   ",
-                        "     Exit     ",
-                    };
+                            "     Games    ",
+                            "    Screen    ",
+                            "     About    ",
+                            "    Patreon   ",
+                            "     Exit     ",
+                        };
 
                         while (true)
                         {
@@ -363,10 +375,20 @@ public partial class TextAdventureGame
                                     Write("¨ ░▀▀█░█▀▀░░█░░█░█░█▀▀\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░░\n", ConsoleColor.DarkGray);
                                     Console.WriteLine();
-                                    Write("¨ You can configure the screen by your custom terminal appearance.\n", ConsoleColor.DarkGray);
-                                    Write("¨ Adjust the number ", ConsoleColor.DarkGray);
+                                    Write("¨ You can configure the ", ConsoleColor.DarkGray);
+                                    Write("background image", ConsoleColor.Yellow);
+                                    Write(" by your windwos terminal settings.\n", ConsoleColor.DarkGray);
+                                    Write("¨ In this release, we provide some ", ConsoleColor.DarkGray);
+                                    Write("wallpapers", ConsoleColor.Yellow);
+                                    Write(" for you to use in TA.\n", ConsoleColor.DarkGray);
+                                    Console.WriteLine();
+                                    Write("¨ Default values for the ", ConsoleColor.DarkGray);
+                                    Write("font centering", ConsoleColor.DarkGray);
+                                    Write(" are used for the standard console font, 'Cascadia Mono', at 12pt.\n", ConsoleColor.DarkGray);
+                                    Console.WriteLine();
+                                    Write("¨ Adjust the number: ", ConsoleColor.DarkGray);
                                     Write(setupCfg.emptySpace.ToString(), ConsoleColor.Green);
-                                    Write(" to adjust for your preferences.", ConsoleColor.DarkGray);
+                                    Write(" to suit your personal preference, or press 'Enter' to finish.", ConsoleColor.DarkGray);
                                     Console.WriteLine();
                                     Console.CursorVisible = true;
                                     Write("¨ > ", ConsoleColor.Green);

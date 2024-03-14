@@ -27,6 +27,14 @@ public class Program
     {
         if (args.Length == 0)
         {
+#if DEBUG
+            var batFile = "start.bat";
+            Process process = new();
+            process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\" + batFile;
+            process.Start();
+            return;
+#endif
+
 #if RELEASE
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
@@ -60,7 +68,6 @@ public class Program
 
             if (File.Exists("password.txt"))
                 savePassword = File.ReadAllText("password.txt");
-        
         
             string fileUrl = "https://drive.google.com/uc?id=1ceZUuXUPh8anIY0nEi_pF26HECvxJqGa";
             string outputPath = "ta_password.1";

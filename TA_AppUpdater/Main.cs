@@ -36,7 +36,7 @@ public class Program
             if (File.Exists(batFile)) File.Delete(batFile);
             File.WriteAllText(batFile, "wt -F \"" + Directory.GetCurrentDirectory() + "\\TextAdventure.exe\" start");
             Console.WriteLine("Starting game...");
-            Process process = new Process();
+            Process process = new();
             process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\" + batFile;
             process.Start();
         }

@@ -54,8 +54,13 @@ public partial class TextAdventureGame
     {
         IntPtr hdc = GetDC(IntPtr.Zero);
         screenWidth = GetDeviceCaps(hdc, DESKTOPHORZRES);
-        emptySpace = (screenWidth - 800)/2;
-        emptySpace = (emptySpace / 12);
+
+        if (screenWidth == 2560)
+            emptySpace = 85;
+        else if (screenWidth == 1920)
+            emptySpace = 50;
+        else if (screenWidth <= 1366)
+            emptySpace = 19;
 
         ReleaseDC(IntPtr.Zero, hdc);
     }
