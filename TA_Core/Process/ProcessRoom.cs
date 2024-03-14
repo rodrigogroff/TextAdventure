@@ -123,6 +123,10 @@ public partial class TextAdventureGame
 
             game.player = pl;
             game.playerDead = false;
+
+            if (!bAutomation)
+                bFastMode = false;
+
             Console.WriteLine();
             Write("¨ --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();

@@ -1,68 +1,136 @@
 ﻿[
 	{
-		"game_name": "Feed Korg",
-		"game_tip": [
-			"      As a teenager, you went missing in the woods for three days. You came back in the",
-			"      middle of the night, dirty and hurt.",
-			"",
-			"      For the whole of your life, you were a skinny person.",
-			"",
-			"      Forty years later, now in your fifties, you are a factory worker living in Colorado",
-			"      -- one day, going to the grocery store, a terrible accident happens, losing your right",
-			"      leg. In the middle of the pool of blood, your missing limb transforms into a little",
-			"      demonic entity.",
-			"",
-			"      The creature said to you: \"You must... feed... Korg!\""
-		]
-	},
-	{
-		"game_name": "Hellfire Club",
-		"game_tip": [
-			"      Deep in hell, there is a club for tormented spirits.",
-			"",
-			"      Select your soul to enter this alternate reality, and in there, unravel all it's",
-			"      unique secrets and strange lost creatures.",
-			"",
-			"      With a ticket to enter this club, you realize that everytime you die in this place,",
-			"      you will keep coming back, like a curse. ",
-			"",
-			"      Until the contract from Hellfire is lifted, guide your spirit to the light, understanding",
-			"      all the work needed to cleanse your soul from your previous life trauma by winning the",
-			"      challenges from the demon world."
-		]
-	},
-	{
-		"game_name": "NightCrawlers",
-		"game_tip": [
-			"      After losing your mother in a terrible and devastating cancer, you felt your life is",
-			"      completely lost of meaning, and you shutdown yourself to others; thus you become a ",
-			"      Hikimori (a modern hermit).",
-			"",
-			"      You now have 32 years old and live in Tokyo, Japan. Your military father tries to bring",
-			"      you back into reality, with no success. Food arrives at your door from a maid, and you ",
-			"      forcibly take a bath once a week in order to have something to eat.",
-			"",
-			"      One day you fall ill, stay between life and death for almost a week inside your rooom. ",
-			"      As you got a little better, you see that there is no more food at your door. You receive",
-			"      a strange email from your father, asking you to wait for him at the helicopter pod at the",
-			"      the nearby comercial building to escape \"the invasion\".",
-			"",
-			"      When you open the door, you see a alien ball of fur and teeth eating your maid corpse."
-		]
-	},
-	{
-		"game_name": "Paranormal investigator",
-		"game_tip": [
-			"      Early on, you discovered that ghost are real. Your grandfather stayed with you for five",
-			"      years, telling you everything about the post-life underworld. It was scary, but eventually",
-			"      you became more seasoned to the strange and the otherworldly.",
-			"",
-			"      As people come for you in need of help, you solve their problems by feeling the psychic",
-			"      connection between them, all the trauma and the strange energy creatures that cause mayhem",
-			"      crossing overto the human realm.",
-			"",
-			"      By opening a private detective office, now you must confront your fears and maintain the rest",
-			"      of your failing sanity for your next paycheck."
+		"lang": "ENG",
+		"info": [
+			{
+				"text": [
+					"Thanks for trying out this tribute to text adventure games of the past, while BBG (~big~",
+					"~boys games~) we hope to acchieve something new in terms of:",
+					"",
+					"1 - Making players to not give up frustrated in their absolute first move;",
+					"2 - Focus on playing experience, a mix of text adventure and interactive fiction;",
+					"3 - Stay in old school environment using ^pure console^, limited colors and ascii table fx;",
+					"4 - Using huds, maps, hints, quests and awards to help people keep from going lost;"
+				]
+			},
+			{
+				"text": [
+					"Games from 80's open the vault of interactivity, but could not compete with even 8 bit era",
+					"graphics, because:",
+					"",
+					"-sentence logic \"use sword on troll\" completely non-intuitive, even for programmers;",
+					"-complicated puzzles for the sake of complexity (cruelty);",
+					"-required physical notes of locations for players to not get lost;"
+				]
+			},
+
+			{
+				"text": [
+					"~Text Adventures (TA) & Interactive Fiction (IF)~",
+					"",
+					"Pure text games were born in a time when computers did not have the most graphical capabilites.",
+					"Just like interactive books, the game makers used text to give the players a fly into their",
+					"own imagination while the computer persisted the players decisions."
+				]
+			},
+			{
+				"text": [
+					"With the decline of TA because of the rise on the game graphics, these text games were introverted",
+					"to a more niche location inside the interactive fiction community (derived from books).",
+					""
+				]
+			},
+
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"By experience, text adventures are EXTREMELY frustrating to newbies, and by this premisse, the games",
+					"in this collection were thought out with these checkpoints in mind:"
+				]
+			},
+			{
+				"text": [
+					"1. ^(very) limited actions^ >> No crazyness on the input. Inside the scene you can type anything, but is",
+					"also expressed objetively as choice (1 - \"do this\", 2 - \"do that\") or just what the /help provide with",
+					"the commands available.",
+					"",
+					"Think of the input blinking cursor as \"homage\", and using the keyboard instead of a mouse."
+				]
+			},
+
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"2. ^please forget about 'advanced' parsing^, and let it stay DEAD.",
+					""
+				]
+			},
+			{
+				"text": [
+					"One \"no boundaries\" interface (even 3+ words) drives people CRAZY (and away to the game) really fucking fast",
+					"(\"turn off lamp\", \"rub oil lamp\") -- also complicates matters for everyone: coder and the player."
+				]
+			},
+
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"3. ^hints^ >> Just for people cheat legally in the game -- its counted and persisted on the save game.",
+					"If you wanna go hardcore, just dont use it (or use option 4 on difficulty to see the difference)  ;)",
+					"",
+					"When you are stuck, use ^/hint^."
+				]
+			},
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"4. ^awards^ >> To make our player visualize how much he explored the game, and also a place to get a free hint",
+					"about what can you do next."
+				]
+			},
+
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"5. ^player hud in the input text^ >> Instead of the standard \"> \", we use the text to also inform the player",
+					"what is going on. This will help everyone staying on track for the current objetives."
+				]
+			},
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"6. ^quests^ >> A more elaborate way to engage in the game world, with a better reference on ~what~ to do and",
+					"the context of the objetive. This is copy and paste from RPGs, and text adventures can benefit enormously."
+				]
+			},
+
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"7. ^game map using text^ >> No more Left, Right, West, East commands... lets provide the player with the",
+					"aid of some visualization of space represented in a simple ascii map.",
+					"",
+					"The main focus of the games is on interactivity and decision making, not memorization and eventually cruelty for",
+					"the sake of only being hard. BBG is about ^telling awesome stories within the gameplay^."
+				]
+			},
+			{
+				"text": [
+					"~The 'big boys games' style of text adventure~",
+					"",
+					"Maps also unfold themselves, not a big one map. You start in a \"cave\" and you should see probably 3 or 4 maps ", 
+					"as you go. Some maps have secrets."
+				]
+			}
+
+
 		]
 	}
 ]

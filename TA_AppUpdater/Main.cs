@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Newtonsoft.Json.Linq;
+using System.Diagnostics;
 
 public class Program
 {
@@ -45,6 +46,23 @@ public class Program
         return IsExecutableInstalled("wt.exe");
     }
 
+    static void ModifyTerminalSettings(string wallpaperPath)
+    {
+        string settingsFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json");
+
+        // Read the settings file
+        string settingsJson = File.ReadAllText(settingsFilePath);
+
+        // Parse the JSON
+        JObject settings = JObject.Parse(settingsJson);
+
+        // Modify the background image setting
+        settings["profiles"]["defaults"]["backgroundImage"] = wallpaperPath;
+
+        // Write the modified settings back to the file
+        File.WriteAllText(settingsFilePath, settings.ToString());
+    }
+
     public static async Task Main(string[] args)
     {
         try
@@ -55,6 +73,16 @@ public class Program
             await DownloadFile(fileUrl, outputPath);
             new TA_Update.GameUpdater().Update();
             File.Delete(outputPath);
+
+            Console.WriteLine("> abrindo arquivo");
+            Thread.Sleep(1000);
+
+            // Path to the wallpaper image
+            string wallpaperPath = Directory.GetCurrentDirectory() + "\\wallpaper_1_2560.jpg";
+
+            // Set the wallpaper
+            ModifyTerminalSettings(wallpaperPath);
+
             var batFile = "start.bat";
             if (File.Exists(batFile)) File.Delete(batFile);
 
@@ -64,13 +92,16 @@ public class Program
                 File.WriteAllText(batFile, "\"" + Directory.GetCurrentDirectory() + "\\TextAdventure.exe\" start");
 
             Console.WriteLine("Starting game...");
+            Thread.Sleep(2000);
+
             Process process = new();
             process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\" + batFile;
             process.Start();
         }
         catch (Exception ex)
         {
-            Console.WriteLine("You are offline...");
+            Console.WriteLine(ex.ToString());
+            Console.ReadLine();
         }
     }
 }

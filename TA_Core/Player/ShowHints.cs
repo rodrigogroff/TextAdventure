@@ -17,10 +17,10 @@ public partial class TextAdventureGame
         if (current_game_Room.hint.Any(y => !string.IsNullOrEmpty(y) && game.hints > 0))
         {
             foreach (var item in current_game_Room.hint)
-                Write("¨>> " + item, ConsoleColor.DarkYellow);
+                Write("¨  >> " + item, ConsoleColor.Magenta);
         }
         else
-            Write("¨ No hints available.", ConsoleColor.DarkYellow);
+            Write("¨ No hints available.", ConsoleColor.Magenta);
         
         Console.WriteLine();
     }

@@ -71,14 +71,6 @@ public class Program
     {
         if (args.Length == 0)
         {
-#if DEBUG
-            var batFile = "start.bat";
-            Process process = new();
-            process.StartInfo.FileName = Directory.GetCurrentDirectory() + "\\" + batFile;
-            process.Start();
-            return;            
-#endif
-
 #if RELEASE
             ProcessStartInfo startInfo = new ProcessStartInfo
             {

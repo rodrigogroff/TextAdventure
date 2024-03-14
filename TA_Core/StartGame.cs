@@ -35,7 +35,6 @@ public partial class TextAdventureGame
             }
 
             var setupCfg = JsonConvert.DeserializeObject<GameSetup>(File.ReadAllText(Directory.GetCurrentDirectory() + setup_file));
-
             var aboutText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + about_file));
             var patreonText = JsonConvert.DeserializeObject<List<GameAboutDetail>>(File.ReadAllText(Directory.GetCurrentDirectory() + patreon_file));
 
@@ -268,11 +267,7 @@ public partial class TextAdventureGame
                                     Write(" to start]\n", ConsoleColor.DarkGray);
                                     Console.WriteLine();
                                     Console.WriteLine();
-
-                                    Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░█▀█░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█▀▄░█▀▀░▀▀█\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░▀░▀░▀▀░░░▀░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀\n", ConsoleColor.DarkGray);
-
+                                    Write("¨ -- Adventures\n", ConsoleColor.White);
                                     Console.WriteLine();
                                     for (int i = 0; i < files.Length; i++)
                                     {
@@ -459,13 +454,8 @@ public partial class TextAdventureGame
                                     DisplayLogo();
                                     Console.WriteLine();
                                     Console.WriteLine();
-                                    Write("¨ ░█▀▀░█▀▀░▀█▀░█░█░█▀█\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░▀▀█░█▀▀░░█░░█░█░█▀▀\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░░\n", ConsoleColor.DarkGray);
+                                    Write("¨ -- Setup\n", ConsoleColor.White);
                                     Console.WriteLine();
-                                    Write("¨ In Windows 11 you can configure the ", ConsoleColor.DarkGray);
-                                    Write("background image", ConsoleColor.Yellow);
-                                    Write(" by your windows terminal settings.\n", ConsoleColor.DarkGray);
                                     Write("¨ In Windows 10 you need to install ", ConsoleColor.DarkGray);
                                     Write("Windows Terminal", ConsoleColor.Yellow);
                                     Write(" from the ", ConsoleColor.DarkGray);
@@ -480,10 +470,11 @@ public partial class TextAdventureGame
                                     Write("font centering", ConsoleColor.DarkGray);
                                     Write(" are used for the standard console font, 'Cascadia Mono', at 12pt.\n", ConsoleColor.DarkGray);
                                     Console.WriteLine();
-                                    Write("¨ Adjust the number: ", ConsoleColor.DarkGray);
+                                    Write("¨ Adjust the number: ", ConsoleColor.Yellow);
                                     Write(setupCfg.emptySpace.ToString(), ConsoleColor.Green);
-                                    Write(" to suit your personal preference, or press 'Enter' to finish.", ConsoleColor.DarkGray);
-                                    Console.WriteLine();
+                                    Write(" to suit your personal preference, or press ", ConsoleColor.Yellow);
+                                    Write("Enter", ConsoleColor.Blue);
+                                    Write(" to finish.\n", ConsoleColor.Yellow);
                                     Console.CursorVisible = true;
                                     Write("¨ > ", ConsoleColor.Green);
                                     var newSPace = ConsoleReadLine().Trim();
@@ -519,24 +510,23 @@ public partial class TextAdventureGame
                                     DisplayLogo();
                                     Console.WriteLine();
                                     Console.WriteLine();
-                                    Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
+                                    Write("¨ -- About\n", ConsoleColor.White);
                                     Console.WriteLine();
                                     int enters = 0, _page = 1;
                                     foreach (var itemDet in aboutText.FirstOrDefault(y => y.lang == "ENG").info)
                                     {
                                         Console.CursorVisible = false;
                                         Console.WriteLine();
+                                        Console.WriteLine();
                                         foreach (var line in itemDet.text)
                                             PrintRoomText(line, ConsoleColor.Yellow, 5);
                                         Thread.Sleep(500);
                                         Console.CursorVisible = true;
+                                        Console.WriteLine();
                                         EnterToContinue();
                                         Console.CursorVisible = false;
                                         Console.WriteLine();
                                         bFastMode = false;
-
                                         if (++enters == 2)
                                         {
                                             enters = 0;
@@ -544,10 +534,8 @@ public partial class TextAdventureGame
                                             DisplayLogo();
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
-                                            Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
-                                            Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
-                                            Console.WriteLine();
+                                            Write("¨ -- About\n", ConsoleColor.White);
+                                            Console.WriteLine();                                            
                                         }
                                     }
                                     break;
@@ -564,10 +552,7 @@ public partial class TextAdventureGame
                                     DisplayLogo();
                                     Console.WriteLine();
                                     Console.WriteLine();
-                                    Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
-
+                                    Write("¨ -- Patreon\n", ConsoleColor.White);
                                     Console.WriteLine();
                                     int enters = 0, _page = 1;
                                     foreach (var itemDet in patreonText.FirstOrDefault(y => y.lang == "ENG").info)
@@ -591,9 +576,7 @@ public partial class TextAdventureGame
                                             DisplayLogo();
                                             Console.WriteLine();
                                             Console.WriteLine();
-                                            Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
-                                            Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
-                                            Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
+                                            Write("¨ -- Patreon\n", ConsoleColor.White);
                                             Console.WriteLine();
                                         }
                                     }

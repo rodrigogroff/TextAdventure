@@ -94,7 +94,7 @@ public partial class TextAdventureGame
 
                 if (aw == null)
                 {
-                    Write("¨ [Target award -- ", ConsoleColor.DarkGray);
+                    Write("¨ [Target award -- ", ConsoleColor.White);
                     Write(awx.text, ConsoleColor.Blue);
                     Write(" ]\n", ConsoleColor.DarkGray);
                     break;

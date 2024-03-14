@@ -168,11 +168,10 @@ public partial class TextAdventureGame
                                     if (!this.bAbortOp)
                                     {
                                         CheckConstraints();
-
                                         Console.WriteLine();
                                         Print("¨ You walk towards your destination...", ConsoleColor.DarkYellow);
                                         Console.WriteLine();
-
+                                        Console.WriteLine();
                                         EnterToContinue();                                                                                
                                         ProcessRoom((hashLetterId[it.ToLower()] as string).Split(',')[0]);
                                     }
