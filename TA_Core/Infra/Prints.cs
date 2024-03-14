@@ -38,7 +38,7 @@ public partial class TextAdventureGame
             Console.Write(" ".PadRight(emptySpace));
             text = text.Substring(1);
         }
-
+                
         Console.ForegroundColor = color;
         Console.Write(text);
     }

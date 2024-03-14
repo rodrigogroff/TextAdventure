@@ -167,7 +167,7 @@ public partial class TextAdventureGame
                             catch
                             {
                                 Console.WriteLine();
-                                Write(" >> Invalid choice option! << " + command, ConsoleColor.Red);
+                                Write("¨ >> Invalid choice option! << " + command, ConsoleColor.Red);
                                 Console.WriteLine();
                             }
                         }

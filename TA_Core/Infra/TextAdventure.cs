@@ -24,10 +24,10 @@ public partial class TextAdventureGame
         List<string> 
             mainMenu = new()
             {
-                "     Start  ",
-                "     About  ",
-                "   Patreon  ",
-                "      Exit  ",
+                "     Start    ",
+                "     About    ",
+                "    Patreon   ",
+                "     Exit     ",
             };
 
     bool 
@@ -63,7 +63,9 @@ public partial class TextAdventureGame
     {
         IntPtr hdc = GetDC(IntPtr.Zero);
         screenWidth = GetDeviceCaps(hdc, DESKTOPHORZRES);
-        emptySpace = ((screenWidth / 8 - 120) / 2);
+        emptySpace = (screenWidth - 800)/2;
+        emptySpace = (emptySpace / 12);
+
         ReleaseDC(IntPtr.Zero, hdc);
     }
 

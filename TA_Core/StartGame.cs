@@ -88,12 +88,11 @@ public partial class TextAdventureGame
                             {
                                 DisplayLogo();
                                 Console.WriteLine();
-                                Console.WriteLine();
 
                                 for (int i = 0; i < mainMenu.Count; i++)
                                 {
                                     Write("¨", ConsoleColor.Black);
-                                    Write("  ".PadLeft(49, ' '), ConsoleColor.Black);
+                                    Write(" ".PadLeft(48, ' '), ConsoleColor.Black);
 
                                     if (i == indexSelected)
                                     {                                        
@@ -109,6 +108,8 @@ public partial class TextAdventureGame
                                     Write("\n", ConsoleColor.Black);
                                     Console.BackgroundColor = ConsoleColor.Black;
                                 }
+
+                                Thread.Sleep(200);
 
                                 while (true)
                                 {
@@ -157,9 +158,7 @@ public partial class TextAdventureGame
                                     Write("Enter", ConsoleColor.Green);
                                     Write(" to start]\n", ConsoleColor.DarkGray);
                                     Console.WriteLine();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-
+                                    
                                     Write("¨ ░█▀█░█▀▄░█░█░█▀▀░█▀█░▀█▀░█░█░█▀█░█▀▀░█▀▀\n", ConsoleColor.DarkGray);
                                     Write("¨ ░█▀█░█░█░▀▄▀░█▀▀░█░█░░█░░█░█░█▀▄░█▀▀░▀▀█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀░▀░▀▀░░░▀░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀\n", ConsoleColor.DarkGray);
@@ -235,9 +234,7 @@ public partial class TextAdventureGame
 
                                     Console.WriteLine();
                                     Console.WriteLine();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-
+                                    
                                     Write("¨  " + msg[GetRandomNumber(0, msg.Count - 1)], ConsoleColor.White);
                                     Write(" " + FormatTimeSpan(TimeSpan.FromSeconds(totSeconds)), ConsoleColor.Green);
                                     Write(" -- Total deaths: ", ConsoleColor.DarkGray);
@@ -342,11 +339,9 @@ public partial class TextAdventureGame
                                 while (true)
                                 {
                                     DisplayLogo();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-                                    Write("¨ ░█▀█░█▀▄░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
-                                    Write("¨ ░█▀█░█▀▄░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
+                                    Console.WriteLine();                                    
+                                    Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
+                                    Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
                                     Console.WriteLine();
                                     int enters = 0, _page = 1;
@@ -368,11 +363,9 @@ public partial class TextAdventureGame
                                             enters = 0;
                                             _page++;
                                             DisplayLogo();
-                                            Console.WriteLine();
-                                            Console.WriteLine();
-                                            Console.WriteLine();
-                                            Write("¨ ░█▀█░█▀▄░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
-                                            Write("¨ ░█▀█░█▀▄░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
+                                            Console.WriteLine();                                            
+                                            Write("¨ ░█▀█░█▀█░█▀█░█░█░▀█▀\n", ConsoleColor.DarkGray);
+                                            Write("¨ ░█▀█░█▀█░█░█░█░█░░█░\n", ConsoleColor.DarkGray);
                                             Write("¨ ░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░\n", ConsoleColor.DarkGray);
                                             Console.WriteLine();
                                         }
@@ -386,9 +379,7 @@ public partial class TextAdventureGame
                                 while (true)
                                 {
                                     DisplayLogo();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
+                                    Console.WriteLine();                                    
                                     Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
                                     Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
@@ -414,9 +405,7 @@ public partial class TextAdventureGame
                                             enters = 0;
                                             _page++;
                                             DisplayLogo();
-                                            Console.WriteLine();
-                                            Console.WriteLine();
-                                            Console.WriteLine();
+                                            Console.WriteLine();                                            
                                             Write("¨ ░█▀█░█▀█░▀█▀░█▀█░█▀▀░█▀█░█▀█\n", ConsoleColor.DarkGray);
                                             Write("¨ ░█▀▀░█▀█░░█░░█▀▄░█▀▀░█░█░█░█\n", ConsoleColor.DarkGray);
                                             Write("¨ ░▀░░░▀░▀░░▀░░▀░▀░▀▀▀░▀▀▀░▀░▀░\n", ConsoleColor.DarkGray);
