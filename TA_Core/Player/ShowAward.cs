@@ -3,13 +3,10 @@ public partial class TextAdventureGame
 {
     void ShowAward()
     {
-        Console.CursorVisible = false;
-
         Console.WriteLine();
+
         int x = 1;
-
         bool first = true;
-
         foreach (var item in game.awards)
         {
             var i = game.player.awards.FirstOrDefault(y => y.id == item.id);
@@ -35,8 +32,7 @@ public partial class TextAdventureGame
             if (!bAutomation)
                 Thread.Sleep(10);
         }
-        Console.WriteLine();
 
-        Console.CursorVisible = true;
+        Console.WriteLine();
     }
 }

@@ -33,12 +33,31 @@ public partial class TextAdventureGame
 
     public void Write(string text, ConsoleColor color)
     {
-        if (text.StartsWith("¨"))
+        if (game.gameName == null)
         {
-            Console.Write(" ".PadRight(emptySpace));
-            text = text.Substring(1);
+            if (text.StartsWith("¨"))
+            {
+                Console.Write(" ".PadRight(emptySpace));
+                text = text.Substring(1);
+            }
         }
-                
+        else
+        {
+            if (text.StartsWith("¨"))
+            {
+                if (game.textAlign == "center")
+                {
+                    Console.Write(" ".PadRight(emptySpace));
+                    text = text.Substring(1);
+                }
+                else if (game.textAlign == "left")
+                {
+                    Console.Write(" ");
+                    text = text.Substring(1);
+                }
+            }
+        }
+
         Console.ForegroundColor = color;
         Console.Write(text);
     }
@@ -88,7 +107,7 @@ public partial class TextAdventureGame
     }
 
     void PrintRoomText(string text, ConsoleColor color, int ms)
-    {        
+    {
         Console.Write(' ');
         text = PreProcessText(text);
 
@@ -171,7 +190,7 @@ public partial class TextAdventureGame
                     if (!bAutomation)
                         Thread.Sleep(_timer);
         }
-
+        
         Console.WriteLine();
     }
 

@@ -101,7 +101,6 @@ public partial class TextAdventureGame
 
                         List<string> mainMenu = new() {
                             "     Games ",
-                            "    Screen ",
                             "     About ",
                             "   Patreon ",
                             "      Exit ",
@@ -120,19 +119,7 @@ public partial class TextAdventureGame
                                 {
                                     Write("¨", ConsoleColor.Black);
                                     Write(" ".PadLeft(48, ' '), ConsoleColor.Black);
-
-                                    /*
-                                    if (i == indexSelected)
-                                    {
-                                        Console.BackgroundColor = colorSel;
-                                        Write("  ", ConsoleColor.Black);
-                                    }
-                                    else
-                                    {
-                                        Console.BackgroundColor = ConsoleColor.Black;
-                                        Write("  ", ConsoleColor.Black);
-                                    }*/
-
+                                   
                                     if (i == indexSelected)
                                     {
                                         Console.BackgroundColor = ConsoleColor.Black;
@@ -447,62 +434,6 @@ public partial class TextAdventureGame
                             }
                             else if (indexSelected == 1)
                             {
-                                #region - setup - 
-
-                                while (true)
-                                {
-                                    DisplayLogo();
-                                    Console.WriteLine();
-                                    Console.WriteLine();
-                                    Write("¨ -- Setup\n", ConsoleColor.White);
-                                    Console.WriteLine();
-                                    Write("¨ In Windows 10 you need to install ", ConsoleColor.DarkGray);
-                                    Write("Windows Terminal", ConsoleColor.Yellow);
-                                    Write(" from the ", ConsoleColor.DarkGray);
-                                    Write("microsoft store page", ConsoleColor.DarkBlue);
-                                    Write(".\n", ConsoleColor.DarkGray);
-                                    Console.WriteLine();
-                                    Write("¨ In this release, we provide some ", ConsoleColor.DarkGray);
-                                    Write("wallpapers", ConsoleColor.Yellow);
-                                    Write(" for you to use (in your installation foldes).\n", ConsoleColor.DarkGray);
-                                    Console.WriteLine();
-                                    Write("¨ Default values for the ", ConsoleColor.DarkGray);
-                                    Write("font centering", ConsoleColor.DarkGray);
-                                    Write(" are used for the standard console font, 'Cascadia Mono', at 12pt.\n", ConsoleColor.DarkGray);
-                                    Console.WriteLine();
-                                    Write("¨ Adjust the number: ", ConsoleColor.Yellow);
-                                    Write(setupCfg.emptySpace.ToString(), ConsoleColor.Green);
-                                    Write(" to suit your personal preference, or press ", ConsoleColor.Yellow);
-                                    Write("Enter", ConsoleColor.Blue);
-                                    Write(" to finish.\n", ConsoleColor.Yellow);
-                                    Console.CursorVisible = true;
-                                    Write("¨ > ", ConsoleColor.Green);
-                                    var newSPace = ConsoleReadLine().Trim();
-                                    if (newSPace == "")
-                                    {
-                                        Console.CursorVisible = false;
-                                        break;
-                                    }
-                                    try
-                                    {
-                                        emptySpace = Convert.ToInt32(newSPace);
-                                        setupCfg.emptySpace = emptySpace;
-                                        File.Delete(Directory.GetCurrentDirectory() + setup_file);
-                                        File.WriteAllText(Directory.GetCurrentDirectory() + setup_file, JsonConvert.SerializeObject(setupCfg));
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine();
-                                        Write("¨ You are a funny human being!\n", ConsoleColor.Red);
-                                        Console.WriteLine();
-                                        EnterToContinue();
-                                    }
-                                }
-
-                                #endregion
-                            }
-                            else if (indexSelected == 2)
-                            {
                                 #region - about - 
 
                                 while (true)
@@ -543,7 +474,7 @@ public partial class TextAdventureGame
 
                                 #endregion
                             }
-                            else if (indexSelected == 3)
+                            else if (indexSelected == 2)
                             {
                                 #region - patreon - 
 
@@ -593,10 +524,9 @@ public partial class TextAdventureGame
 
                                 #endregion
                             }
-                            else if (indexSelected == 4)
-                            {
-                                // exit
-                                return;
+                            else if (indexSelected == 3)
+                            {                                
+                                return; // exit
                             }
                         }
 
@@ -609,17 +539,6 @@ public partial class TextAdventureGame
                         DisplayLogo();
                         Console.WriteLine();
                         Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);
-                        Console.WriteLine();
-
-                        var pTip = summary.FirstOrDefault(y => y.game_name == game.gameName);
-
-                        if (pTip != null)
-                        {
-                            foreach (var t in pTip.game_tip)
-                                Write("¨    " + t + "\n", ConsoleColor.Yellow);
-                            Write("¨\n", ConsoleColor.DarkGray);
-                        }
-
                         Console.WriteLine();
                         Write("¨ 1 - ", ConsoleColor.DarkGray);
                         Write("Easy       ", ConsoleColor.Yellow);
@@ -719,9 +638,7 @@ public partial class TextAdventureGame
                                 }
                             }
                         }
-
-                        Console.WriteLine();
-                        EnterToContinue();
+                        
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
                         Console.Clear();

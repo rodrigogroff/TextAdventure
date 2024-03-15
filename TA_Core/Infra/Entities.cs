@@ -53,7 +53,7 @@ public class Game
     public int maxInventory { get; set; }
     public int maxRings { get; set; }
     public int maxAmulets { get; set; }
-
+    public string textAlign { get; set; }
     public bool playerDead = false;
     public bool patreonExclusive = false;
 

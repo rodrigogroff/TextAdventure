@@ -1,6 +1,7 @@
 {
   "gameName": "Hellfire Club",
   "gameVersion": "Beta 0.2.52",
+  "textAlign": "center",
   "hints": 10,
   "maxInventory": 8,
   "maxRings": 2,
@@ -389,7 +390,7 @@
   "constraints": [
     "/getAL Life 1:/goto 0"
   ],
-  "deathTriggers": [    
+  "deathTriggers": [
     "/deathItemAward DeathFruit 2"
   ],
   "stages": [

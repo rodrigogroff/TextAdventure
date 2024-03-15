@@ -210,7 +210,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TextAdventure"
         "ProductCode" = "8:{391947D6-4149-4737-8929-DE1B2A7C07B5}"
-        "PackageCode" = "8:{ACD95EC0-6FBD-4B42-A596-2A4984376C9C}"
+        "PackageCode" = "8:{98F46F91-5557-48A4-8481-20EFEEF5B030}"
         "UpgradeCode" = "8:{B8FEEFC1-1ED6-4162-AAD0-306E40C06872}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

@@ -10,6 +10,8 @@ public partial class TextAdventureGame
 
     public string ConsoleReadLine()
     {
+        Console.CursorVisible = true;
+
         if (bAutomation)
         {
             if (automationFile == null)
@@ -51,11 +53,15 @@ public partial class TextAdventureGame
 
             File.WriteAllText("automation.txt", string.Join(Environment.NewLine, automationFile_Out));
 
-            return Console.ReadLine();
+            var ret = Console.ReadLine();
+            Console.CursorVisible = false;
+            return ret;
         }
         else
         {
-            return Console.ReadLine();
+            var ret = Console.ReadLine();
+            Console.CursorVisible = false;
+            return ret;
         }
     }
 }

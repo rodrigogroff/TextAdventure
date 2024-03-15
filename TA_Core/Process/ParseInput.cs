@@ -7,7 +7,6 @@ public partial class TextAdventureGame
         {
             case "/help":
                 DisplayHelpBox();
-                Console.CursorVisible = true;
                 break;
 
             case "/give":
@@ -200,8 +199,7 @@ public partial class TextAdventureGame
                         else
                         {
                             Console.WriteLine();
-                            DisplayHelpBox();
-                            Console.CursorVisible = true;
+                            DisplayHelpBox();                            
                         }
 
                         break;

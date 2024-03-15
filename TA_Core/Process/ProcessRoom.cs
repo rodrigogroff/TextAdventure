@@ -196,7 +196,6 @@ public partial class TextAdventureGame
                     DisplayPlayerInputBox();
                     first = false;
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.CursorVisible = true;
                     while (Console.KeyAvailable) Console.ReadKey(intercept: true);
                     ParseInput(ConsoleReadLine().Trim());
                     Console.WriteLine();

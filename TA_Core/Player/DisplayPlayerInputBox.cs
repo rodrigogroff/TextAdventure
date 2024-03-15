@@ -1,12 +1,11 @@
-﻿using System.Collections;
-
+﻿
 public partial class TextAdventureGame
 {
     void DisplayPlayerInputBox()
     {
         if (!string.IsNullOrEmpty(game.player.name) && string.IsNullOrEmpty(game.player.title))
         {
-            Write("¨ [Player Name: ", ConsoleColor.DarkGray);
+            Write("¨ ▓ Player Name: ", ConsoleColor.DarkGray);
             Write(game.player.name, ConsoleColor.Blue);
             Write(", Mode: ", ConsoleColor.DarkGray);
 
@@ -30,13 +29,13 @@ public partial class TextAdventureGame
             else
                 Write("HARDCORE", ConsoleColor.Red);
 
-            Write(" ]\n", ConsoleColor.DarkGray);
+            Write("\n", ConsoleColor.DarkGray);
         }
         else if (!string.IsNullOrEmpty(game.player.title))
         {
             Console.WriteLine();
-
-            Write("¨ [Player Name: ", ConsoleColor.DarkGray);
+            
+            Write("¨ ▓ Player Name: ", ConsoleColor.DarkGray);
             Write(game.player.name, ConsoleColor.Blue);
             Write(", Title: ", ConsoleColor.DarkGray);
             Write(game.player.title, ConsoleColor.Yellow);
@@ -66,7 +65,7 @@ public partial class TextAdventureGame
             else
                 Write("HARDCORE", ConsoleColor.Red);
 
-            Write(" ]\n", ConsoleColor.DarkGray);
+            Write("\n", ConsoleColor.DarkGray);
         }
 
         if (!bHardcore)
@@ -81,39 +80,37 @@ public partial class TextAdventureGame
 
                 var tot = game.player.quests.Count();
 
-                Write("¨ [Quests(", ConsoleColor.DarkGray);
+                Write("¨ ▓ Quests(", ConsoleColor.DarkGray);
                 Write(tot.ToString(), ConsoleColor.Yellow);
                 Write("), Last: ", ConsoleColor.DarkGray);
                 Write(lastQ.title, ConsoleColor.Red);
-                Write(" ]\n", ConsoleColor.DarkGray);
+                Write("\n", ConsoleColor.DarkGray);
             }
 
             foreach (var awx in game.awards)
             {
                 var aw = game.player.awards.FirstOrDefault(y => y.text == awx.text);
-
                 if (aw == null)
                 {
-                    Write("¨ [Target award -- ", ConsoleColor.White);
+                    Write("¨ ▓ ", ConsoleColor.DarkGray);
+                    Write("Target award -- ", ConsoleColor.DarkMagenta);
                     Write(awx.text, ConsoleColor.Blue);
                     Write(" ]\n", ConsoleColor.DarkGray);
                     break;
                 }
             }
                         
-            Write("¨ [Type ", ConsoleColor.DarkGray);
+            Write("¨ ▓ Type ", ConsoleColor.DarkGray);
             Write("/help", ConsoleColor.Green);
             Write(" to see a list of commands]\n", ConsoleColor.DarkGray);
-            Write("¨ [Type ", ConsoleColor.DarkGray);
+            Write("¨ ▓ Type ", ConsoleColor.DarkGray);
             Write("/map", ConsoleColor.Green);
             Write(" to see your current location]\n", ConsoleColor.DarkGray);
-            Write("¨ [Enter to continue]", ConsoleColor.DarkGray);
-            Write(" [> ", ConsoleColor.Green);
+            Write("¨ ▓ > ", ConsoleColor.DarkGray);
         }
         else
         {
-            Write("¨ [Enter to continue]", ConsoleColor.DarkGray);
-            Write(" [> ", ConsoleColor.Green);
+            Write("¨ ▓ > ", ConsoleColor.DarkGray);
         }        
     }
 }

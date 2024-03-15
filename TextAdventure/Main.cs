@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using static Win32;
 
 public class Win32
@@ -27,38 +26,22 @@ public class Program
     static async Task DownloadFile(string fileUrl, string outputPath)
     {
         using (HttpClient client = new HttpClient())
-        {
             using (HttpResponseMessage response = await client.GetAsync(fileUrl))
-            {
                 using (HttpContent content = response.Content)
-                {
                     using (Stream stream = await content.ReadAsStreamAsync())
-                    {
                         using (FileStream fileStream = new FileStream(outputPath, FileMode.Create, FileAccess.Write))
-                        {
                             await stream.CopyToAsync(fileStream);
-                        }
-                    }
-                }
-            }
-        }
     }
 
     static bool IsExecutableInstalled(string executableName)
     {
-        // Get the directories listed in the PATH environment variable
         string[] pathDirectories = Environment.GetEnvironmentVariable("PATH").Split(Path.PathSeparator);
-
-        // Search each directory for the executable
         foreach (string directory in pathDirectories)
         {
             string executablePath = Path.Combine(directory, executableName);
             if (File.Exists(executablePath))
-            {
                 return true;
-            }
         }
-
         return false;
     }
 
@@ -107,15 +90,10 @@ public class Program
             ta.Write(" ", ConsoleColor.Yellow);
             Thread.Sleep(2000);
 
-            ta.Write("\n Checking patreon... ", ConsoleColor.Green);
-
             string savePassword = "";
 
             if (File.Exists("password.txt"))
-            {
                 savePassword = File.ReadAllText("password.txt");
-                ta.Write("\n Password found... ", ConsoleColor.Green);
-            }
         
             string fileUrl = "https://drive.google.com/uc?id=1ceZUuXUPh8anIY0nEi_pF26HECvxJqGa";
             string outputPath = "ta_password.1";
@@ -127,8 +105,6 @@ public class Program
             {
                 if (savePassword.ToLower().Trim() == currentPatreonPass.ToLower().Trim())
                 {
-                    ta.Write("\n Checked!", ConsoleColor.Green);
-                    Thread.Sleep(2000);
                     ta.StartGame();
                     return;
                 }
@@ -156,7 +132,6 @@ public class Program
                 {
                     if (File.Exists("password.txt"))
                         File.Delete("password.txt");
-
                     File.WriteAllText("password.txt", currentPatreonPass);
                     break;
                 }
@@ -164,9 +139,10 @@ public class Program
 
             ta.StartGame();
         }
-        catch
+        catch (Exception ex)
         {
-
+            Console.WriteLine(" " + ex.ToString());
+            Console.ReadLine();
         }
     }
 }
