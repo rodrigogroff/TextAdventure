@@ -104,20 +104,15 @@ public partial class TextAdventureGame
                 break;
 
             case "/die":
-                ProcessRoom("S1");
+                var awards = game.player.awards;
+                game.player = new Player();
+                game.player.awards = awards;
+                ProcessRoom("1");
                 break;
 
             case "/quit":
             case "/q":
                 StartGame();
-                break;
-
-            case "/reset":
-                Console.Clear();
-                ResetGame();
-                game.currentRoom = "1";
-                game.hints = game.hintsMAX;
-                ProcessRoom(game.currentRoom);
                 break;
 
             default:

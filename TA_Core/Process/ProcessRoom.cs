@@ -15,7 +15,8 @@ public partial class TextAdventureGame
         if (current_game_Room.option?.ToLower() != "death")
         {
             Console.WriteLine();
-            
+            Console.WriteLine();
+
             Write("¨ ▒▓██ ", ConsoleColor.Blue);
             Write(current_game_Room.label, ConsoleColor.White);
             Write(" █████████▓▒ ", ConsoleColor.Blue);
@@ -36,7 +37,7 @@ public partial class TextAdventureGame
             {
                 Write(" -- Press ", ConsoleColor.DarkGray);
                 Write("Esc", ConsoleColor.Green);
-                Write(" to instant text", ConsoleColor.DarkGray);
+                Write(" to skip text dialogue", ConsoleColor.DarkGray);
             }
         }
         else
@@ -122,27 +123,22 @@ public partial class TextAdventureGame
 
     void ProcessRoom(string id)
     {
-        Console.WriteLine();
-
         if (id == "1")
         {
             var pl = game.player;
-
             LoadGame();
-
             game.player = pl;
-
             if (!bAutomation)
                 bFastMode = false;
-
+            Console.WriteLine();
             Console.WriteLine();
             Write("¨ --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();
             EnterToContinue();
             Console.Clear();            
         }
-
-        Console.WriteLine();
+        else
+            Console.WriteLine();
 
         int version = 1;
 
@@ -184,6 +180,7 @@ public partial class TextAdventureGame
                         CheckConstraints();
                 }
 
+                Console.WriteLine();
                 DisplayCurrentRoomText();
 
                 bool bAlreadyMapped = false;

@@ -613,6 +613,11 @@ public partial class TextAdventureGame
 
                         Console.CursorVisible = false;
                         Console.Clear();
+
+                        game.player = new Player();
+
+                        Console.WriteLine();
+                        Console.WriteLine();
                         Console.WriteLine();
                         Console.WriteLine();
                         Write("¨   Big Boys Games ", ConsoleColor.Blue);
@@ -666,7 +671,6 @@ public partial class TextAdventureGame
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
                         Console.Clear();
-                        
                         bFastMode = false;
                         ProcessRoom(game.currentRoom);
                         break;
