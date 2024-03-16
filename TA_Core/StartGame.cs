@@ -12,6 +12,13 @@ public partial class TextAdventureGame
 
             InitScreen();
 
+            var wallpaper = Directory.GetCurrentDirectory() + "\\Images\\wallpaper_" + screenWidth + ".jpg";
+
+            if (File.Exists(wallpaper))
+            {
+                ChangeWallpaper(wallpaper);
+            }
+
             if (File.Exists(monitor_file))
                 monitor = JsonConvert.DeserializeObject<GameMonitoring>(crypt.DecryptFile(monitor_file));
             else

@@ -5,6 +5,13 @@ public partial class TextAdventureGame
     {
         Console.WriteLine();
 
+        var wallpaper = Directory.GetCurrentDirectory() + "\\Images\\" + game.gameName + "\\img_" + current_game_Room.id + "_" + current_game_Room.version + "_" + screenWidth + ".jpg";
+
+        if (File.Exists(wallpaper))
+        {
+            ChangeWallpaper(wallpaper);
+        }
+
         var Old_fast = bFastMode;
 
         if (current_game_Room.option?.ToLower() != "death")

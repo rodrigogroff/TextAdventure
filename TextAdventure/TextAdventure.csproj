@@ -73,6 +73,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <Pack>True</Pack>
     </None>
+    <None Update="Images\Hellfire Club\img_1_1920.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\Hellfire Club\img_1_1_1920.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\Hellfire Club\img_1_1_2560.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\Hellfire Club\img_1_2560.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\wallpaper_1920.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Images\wallpaper_2560.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="setup.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>

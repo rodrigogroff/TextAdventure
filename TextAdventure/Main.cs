@@ -81,7 +81,9 @@ public class Program
 
             Console.CursorVisible = false;
             Console.Clear();
-        
+            ta.ChangeWallpaper("");
+
+
             Thread.Sleep(500);
             Console.WriteLine();
             ta.Write(" DOS/4GW Professional Protected Mode Run-Time Version 2.1c\n", ConsoleColor.White);
