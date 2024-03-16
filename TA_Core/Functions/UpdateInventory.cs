@@ -43,8 +43,9 @@ public partial class TextAdventureGame
             string msg = "";
             if (item.quantity > 0)
             {
-                msg = "(+) Acquired: " + item.name + " +[" + item.quantity + "] = Total: " + (myItem.quantity + item.quantity);
                 myItem.quantity += item.quantity;
+
+                msg = "(+) Acquired: " + item.name + " +[" + item.quantity + "] = Total: " + myItem.quantity;
 
                 Write("¨ (+) Acquired: ", ConsoleColor.Blue);
                 Write(item.name, ConsoleColor.White);

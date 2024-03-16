@@ -62,18 +62,13 @@ public partial class TextAdventureGame
                     var add_mx = item.quantity + i.quantity;
                     if (add_mx > max_st.quantity)
                         add_mx = max_st.quantity;
-                    lines.Add("¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = ");
-                    colors.Add(ConsoleColor.DarkGray);
-                    lines.Add(" Total: " + add_mx + "/" + max_st.quantity + "\n");
-                    colors.Add(ConsoleColor.Yellow);
                     msg = "(+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + add_mx + "/" + max_st.quantity;
                     i.quantity += add_mx;
-                    Print(lines, colors);
                 }
                 else
                 {
-                    msg = "(+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + (item.quantity + i.quantity);
                     i.quantity += item.quantity;
+                    msg = "¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + i.quantity;
                     Write(msg+ "\n", ConsoleColor.Green);
                 }
             }

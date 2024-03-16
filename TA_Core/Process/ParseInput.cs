@@ -78,7 +78,7 @@ public partial class TextAdventureGame
             case "/automap":
                 bAutomap = !bAutomap;
                 Console.WriteLine();
-                Print("Automap: " + (bAutomap ? "[ON]" : "[OFF]"), ConsoleColor.White, 15);
+                Print("¨ Automap: " + (bAutomap ? "[ON]" : "[OFF]"), ConsoleColor.White, 15);
                 Console.WriteLine();
                 break;
 

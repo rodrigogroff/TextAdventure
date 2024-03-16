@@ -138,12 +138,7 @@ public partial class TextAdventureGame
             Write("¨ --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();
             EnterToContinue();
-            Console.Clear();
-            DisplayHelpBox();
-            Write("\n", ConsoleColor.Yellow);
-            EnterToContinue();
-            Write("\n", ConsoleColor.Yellow);
-            Console.Clear();
+            Console.Clear();            
         }
 
         int version = 1;

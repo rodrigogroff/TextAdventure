@@ -95,17 +95,19 @@ public partial class TextAdventureGame
                     Write("¨ ▓ ", ConsoleColor.DarkGray);
                     Write("Target award -- ", ConsoleColor.DarkMagenta);
                     Write(awx.text, ConsoleColor.Blue);
-                    Write(" ]\n", ConsoleColor.DarkGray);
+                    Write("\n", ConsoleColor.DarkGray);
                     break;
                 }
             }
                         
             Write("¨ ▓ Type ", ConsoleColor.DarkGray);
+            Write("/hint", ConsoleColor.Green);
+            Write(" for a tip, and ", ConsoleColor.DarkGray);
             Write("/help", ConsoleColor.Green);
-            Write(" to see a list of commands]\n", ConsoleColor.DarkGray);
+            Write(" to see a list of commands\n", ConsoleColor.DarkGray);
             Write("¨ ▓ Type ", ConsoleColor.DarkGray);
             Write("/map", ConsoleColor.Green);
-            Write(" to see your current location]\n", ConsoleColor.DarkGray);
+            Write(" to see your current location\n", ConsoleColor.DarkGray);
             Write("¨ ▓ > ", ConsoleColor.DarkGray);
         }
         else

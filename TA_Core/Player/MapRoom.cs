@@ -48,34 +48,42 @@ public partial class TextAdventureGame
                 foreach (var item in current_map.graphics)
                 {
                     Write("¨ ", ConsoleColor.DarkGray);
-                    foreach (var c in item)
-                    {
-                        if (c.ToString() == cur_letter)
-                            Write(c.ToString(), ConsoleColor.Blue);
-                        else
-                        {
-                            if (Char.IsLetter(c) && idx_line > 0)
-                            {
-                                var letterStageId = hashLetterId[c.ToString().ToLower()] as string;
-                                
-                                var c_map_item = game.stages.FirstOrDefault(y => y.id == letterStageId);
 
-                                if (c_map_item != null)
+                    if (idx_line++ < 1)
+                    {
+                        Write(item, ConsoleColor.DarkGray);
+                    }
+                    else
+                    {
+                        foreach (var c in item)
+                        {
+                            if (c.ToString() == cur_letter)
+                                Write(c.ToString(), ConsoleColor.Blue);
+                            else
+                            {
+                                if (Char.IsLetter(c) && idx_line > 0)
                                 {
-                                    if (c_map_item.npc == true)
-                                        Write(c.ToString(), ConsoleColor.Red);
+                                    var letterStageId = hashLetterId[c.ToString().ToLower()] as string;
+
+                                    var c_map_item = game.stages.FirstOrDefault(y => y.id == letterStageId);
+
+                                    if (c_map_item != null)
+                                    {
+                                        if (c_map_item.npc == true)
+                                            Write(c.ToString(), ConsoleColor.Red);
+                                        else
+                                            Write(c.ToString(), ConsoleColor.Yellow);
+                                    }
                                     else
-                                        Write(c.ToString(), ConsoleColor.Yellow);
+                                        Write(c.ToString(), ConsoleColor.DarkGray);
                                 }
                                 else
                                     Write(c.ToString(), ConsoleColor.DarkGray);
                             }
-                            else
-                                Write(c.ToString(), ConsoleColor.DarkGray);
                         }
                     }
-                    Write("\n", ConsoleColor.DarkGray);
-                    idx_line++;
+
+                    Write("\n", ConsoleColor.DarkGray);                    
                 }
 
                 Console.WriteLine();

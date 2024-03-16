@@ -278,18 +278,18 @@ public partial class TextAdventureGame
             else if (cmd.StartsWith("/giveI_CTitle"))
             {
                 var _cmd = cmd.Split('|')[0];
-                var _msg = cmd.Split('|')[1];
 
-                PrintRoomText(_msg.Trim(), ConsoleColor.DarkYellow, 15);
-                if (!bAutomation)
-                    Thread.Sleep(400);
-
-                var _title = _cmd.Split(' ')[1];
-                var item = _cmd.Split(' ')[2];
-                var qqty = Convert.ToInt32(_cmd.Split(' ')[3]);
-
-                if (game.player.title == _title.Replace("_", " "))
+                if (game.player.title == cmd.Split(' ')[1].Replace("_"," "))
                 {
+                    var _msg = cmd.Split('|')[1];
+
+                    PrintRoomText(_msg.Trim(), ConsoleColor.DarkYellow, 15);
+                    if (!bAutomation)
+                        Thread.Sleep(400);
+
+                    var item = _cmd.Split(' ')[2];
+                    var qqty = Convert.ToInt32(_cmd.Split(' ')[3]);
+                    
                     foreach (var tr in game.player.traits)
                     {
                         int idx_trig = 0;
@@ -332,6 +332,7 @@ public partial class TextAdventureGame
                         name = item,
                         quantity = Convert.ToInt32(qqty)
                     });
+                    
                 }
             }
             else if (cmd.StartsWith("/giveI"))

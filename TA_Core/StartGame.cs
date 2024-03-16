@@ -597,6 +597,13 @@ public partial class TextAdventureGame
 
                     case 4:
 
+                        var wall = Directory.GetCurrentDirectory() + "\\Images\\" + game.gameName + "\\wallpaper_" + screenWidth + ".jpg";
+
+                        if (File.Exists(wall))
+                        {
+                            ChangeWallpaper(wall);
+                        }
+
                         Console.CursorVisible = false;
                         Console.Clear();
                         Console.WriteLine();
@@ -605,6 +612,7 @@ public partial class TextAdventureGame
                         Write(" proudly presents ...\n", ConsoleColor.White);
                         Console.WriteLine();
                         PrintGameBig();
+                        
                         string option_load = "";
 
                         if (File.Exists(currentFile + ".save"))
@@ -645,7 +653,9 @@ public partial class TextAdventureGame
                                 }
                             }
                         }
-                        
+                        else
+                            EnterToContinue();
+
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
                         Console.Clear();
