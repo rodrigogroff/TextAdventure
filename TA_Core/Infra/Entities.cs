@@ -54,8 +54,6 @@ public class Game
     public int maxRings { get; set; }
     public int maxAmulets { get; set; }
     public string textAlign { get; set; }
-    public bool playerDead = false;
-    public bool patreonExclusive = false;
 
     public List<string> gameBigTitle = new List<string>();
     public List<string> logs = new List<string>();

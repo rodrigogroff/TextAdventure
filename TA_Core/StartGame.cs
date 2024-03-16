@@ -542,7 +542,7 @@ public partial class TextAdventureGame
 
                     case 3:
                         Console.CursorVisible = false;
-
+                        game.player = null;
                         DisplayLogo();
                         Console.WriteLine();
                         Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);
@@ -659,6 +659,7 @@ public partial class TextAdventureGame
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
                         Console.Clear();
+                        
                         bFastMode = false;
                         ProcessRoom(game.currentRoom);
                         break;

@@ -62,14 +62,14 @@ public partial class TextAdventureGame
                     var add_mx = item.quantity + i.quantity;
                     if (add_mx > max_st.quantity)
                         add_mx = max_st.quantity;
-                    msg = "(+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + add_mx + "/" + max_st.quantity;
+                    msg = "¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + add_mx + "/" + max_st.quantity;
                     i.quantity += add_mx;
                 }
                 else
                 {
                     i.quantity += item.quantity;
                     msg = "¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + i.quantity;
-                    Write(msg+ "\n", ConsoleColor.Green);
+                    Write(msg + "\n", ConsoleColor.DarkGray);
                 }
             }
             game.logs.Add(msg);

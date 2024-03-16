@@ -6,10 +6,14 @@ public partial class TextAdventureGame
         switch (command.ToLower().Trim())
         {
             case "/help":
+                Console.Clear(); 
+                Console.WriteLine();
                 DisplayHelpBox();
                 break;
 
             case "/give":
+                Console.Clear();
+                Console.WriteLine();
                 GiveRoom();
                 break;
 
@@ -19,23 +23,27 @@ public partial class TextAdventureGame
                 DisplayCurrentRoomText();
                 break;
 
-            case "/repeat":
-                DisplayCurrentRoomText();
-                break;
-
             case "/take":
+                Console.Clear();
+                Console.WriteLine();
                 TakeRoom();
                 break;
 
             case "/award":
+                Console.Clear();
+                Console.WriteLine();
                 ShowAward();
                 break;
 
             case "/quest":
+                Console.Clear();
+                Console.WriteLine();
                 QuestRoom();
                 break;
 
             case "/use":
+                Console.Clear();
+                Console.WriteLine();
                 UseRoom();
                 break;
 
@@ -52,6 +60,8 @@ public partial class TextAdventureGame
                 break;
 
             case "/map":
+                Console.Clear();
+                Console.WriteLine();
                 MapRoom();
                 break;
 
@@ -60,10 +70,14 @@ public partial class TextAdventureGame
                 break;
 
             case "/stat":
+                Console.Clear();
+                Console.WriteLine();
                 ShowStat();
                 break;
 
             case "/gear":
+                Console.Clear();
+                Console.WriteLine();
                 ShowGear();
                 break;
 
@@ -72,6 +86,8 @@ public partial class TextAdventureGame
                 break;
 
             case "/bag":
+                Console.Clear();
+                Console.WriteLine();
                 BagRoom();
                 break;
 
@@ -83,6 +99,7 @@ public partial class TextAdventureGame
                 break;
 
             case "/log":
+                Console.Clear();
                 ShowLog();
                 break;
 

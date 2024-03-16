@@ -43,7 +43,15 @@ public partial class TextAdventureGame
         }
         else
         {
-            if (text.StartsWith("¨"))
+            if (game.player == null)
+            {
+                if (text.StartsWith("¨"))
+                {
+                    Console.Write(" ".PadRight(emptySpace));
+                    text = text.Substring(1);
+                }
+            }
+            else if (text.StartsWith("¨"))
             {
                 if (game.textAlign == "center")
                 {

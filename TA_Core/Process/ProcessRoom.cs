@@ -3,8 +3,6 @@ public partial class TextAdventureGame
 {
     void DisplayCurrentRoomText()
     {
-        Console.WriteLine();
-
         var wallpaper = Directory.GetCurrentDirectory() + "\\Images\\" + game.gameName + "\\img_" + current_game_Room.id + "_" + current_game_Room.version + "_" + screenWidth + ".jpg";
 
         if (File.Exists(wallpaper))
@@ -16,6 +14,8 @@ public partial class TextAdventureGame
 
         if (current_game_Room.option?.ToLower() != "death")
         {
+            Console.WriteLine();
+            
             Write("¨ ▒▓██ ", ConsoleColor.Blue);
             Write(current_game_Room.label, ConsoleColor.White);
             Write(" █████████▓▒ ", ConsoleColor.Blue);
@@ -122,6 +122,8 @@ public partial class TextAdventureGame
 
     void ProcessRoom(string id)
     {
+        Console.WriteLine();
+
         if (id == "1")
         {
             var pl = game.player;
@@ -129,7 +131,6 @@ public partial class TextAdventureGame
             LoadGame();
 
             game.player = pl;
-            game.playerDead = false;
 
             if (!bAutomation)
                 bFastMode = false;
@@ -140,6 +141,8 @@ public partial class TextAdventureGame
             EnterToContinue();
             Console.Clear();            
         }
+
+        Console.WriteLine();
 
         int version = 1;
 

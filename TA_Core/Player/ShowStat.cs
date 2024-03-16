@@ -3,7 +3,11 @@ public partial class TextAdventureGame
 {
     void ShowStat()
     {
+        Console.Clear();
         Console.WriteLine();
+        Console.WriteLine();
+
+        Write("¨ ▒▓██ Player Stats \n\n", ConsoleColor.DarkGray);
         Write("¨ Name:  ", ConsoleColor.DarkGray);
         Write(game.player.name + "\n", ConsoleColor.Yellow);
         Write("¨ Title: ", ConsoleColor.DarkGray);
@@ -33,7 +37,7 @@ public partial class TextAdventureGame
         }
         if (game.player.attributes.Count == 0)
             Write("¨ Empty!", ConsoleColor.DarkGray);
-        Write("¨--- Traits ----", ConsoleColor.Green);
+        Write("¨ --- Traits ----\n", ConsoleColor.Green);
         foreach (var item in game.player.traits)
         {
             Write("¨ " + item.name.PadRight(text_size - 1, ' '), ConsoleColor.DarkGray);

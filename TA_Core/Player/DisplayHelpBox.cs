@@ -53,9 +53,9 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" interact with npc".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);        
-        lines.Add(" /repeat".PadRight(w1, ' '));
+        lines.Add("  ".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" show stage/npc text again\n");
+        lines.Add("   \n");
         
         colors.Add(ConsoleColor.Green);
         lines.Add("¨ /take".PadRight(w1, ' '));

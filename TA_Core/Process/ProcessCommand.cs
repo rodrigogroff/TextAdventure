@@ -437,12 +437,8 @@ public partial class TextAdventureGame
                 var room = cmd.Split(" ")[1];
 
                 if (room.StartsWith("0"))
-                {
-                    game.playerDead = true;
-
                     foreach (var item in game.deathTriggers)
                         ProcessCommand(item, "death");
-                }
 
                 if (!string.IsNullOrEmpty(game.player.name))
                 {
