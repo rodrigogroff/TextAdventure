@@ -461,7 +461,14 @@ public partial class TextAdventureGame
                                         Thread.Sleep(500);
                                         Console.CursorVisible = true;
                                         Console.WriteLine();
-                                        EnterToContinue();
+
+                                        Write("¨ Enter to continue, X to quit\n", ConsoleColor.DarkGray);
+                                        Write("¨ > ", ConsoleColor.Green);
+                                        var resp = ConsoleReadLine();
+
+                                        if (resp.ToLower() == "x")
+                                            break;
+
                                         Console.CursorVisible = false;
                                         Console.WriteLine();
                                         bFastMode = false;
