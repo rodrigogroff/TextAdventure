@@ -67,6 +67,15 @@ public partial class TextAdventureGame
 
                     text = text.Substring(1);
                 }
+                else if (game.textAlign == "right")
+                {
+                    if (screenWidth == 2560)
+                        Console.Write(" ".PadRight(170, ' '));
+                    else
+                        Console.Write(" ".PadRight(104, ' '));
+
+                    text = text.Substring(1);
+                }
             }
         }
 

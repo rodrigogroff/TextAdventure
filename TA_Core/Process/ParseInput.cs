@@ -112,6 +112,7 @@ public partial class TextAdventureGame
 
             case "/quit":
             case "/q":
+                game.player = null;
                 StartGame();
                 break;
 

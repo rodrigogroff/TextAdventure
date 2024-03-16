@@ -25,7 +25,7 @@ public partial class TextAdventureGame
             Write(" █████████▓▒ ", ConsoleColor.Blue);
             
             if (!foundIMg)
-                Write(" Missing img_" + current_game_Room.version + "_" + current_game_Room.id + "  ", ConsoleColor.Red );
+                Write(" Missing img_" + current_game_Room.id + "_" + current_game_Room.version + "  ", ConsoleColor.Red );
 
             if (bAutomap)
             {
