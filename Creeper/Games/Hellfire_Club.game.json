@@ -1,7 +1,7 @@
 {
   "gameName": "Hellfire Club",
   "gameVersion": "Beta 0.2.52",
-  "textAlign": "center",
+  "textAlign": "left",
   "hints": 10,
   "maxInventory": 8,
   "maxRings": 2,

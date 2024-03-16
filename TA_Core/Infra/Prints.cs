@@ -52,7 +52,11 @@ public partial class TextAdventureGame
                 }
                 else if (game.textAlign == "left")
                 {
-                    Console.Write(" ");
+                    if (screenWidth == 2560)
+                        Console.Write(" ".PadRight(16, ' '));
+                    else
+                        Console.Write(" ".PadRight(4, ' '));
+
                     text = text.Substring(1);
                 }
             }
