@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Text Adventure\r\n")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ab7441b39a0ea25d8b82e3afee02ea594d891b97")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4c4475085d1d796164167a42bf87521a33e7cdb")]
 [assembly: System.Reflection.AssemblyProductAttribute("TextAdventure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TextAdventure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

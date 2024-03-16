@@ -95,6 +95,9 @@ public partial class TextAdventureGame
 
     public void EnterToContinue()
     {
+        if (bAutomation)
+            return;
+
         Write("¨ [Enter to continue]", ConsoleColor.Green);
         Write(" [> ", ConsoleColor.Green);
         Console.ForegroundColor = ConsoleColor.White;

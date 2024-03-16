@@ -125,3 +125,4 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\img_1_1_2560.jpg
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\wallpaper_1920.jpg
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\wallpaper_2560.jpg
+C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.QA.txt

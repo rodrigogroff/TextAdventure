@@ -3,7 +3,6 @@ public partial class TextAdventureGame
 {
     public void DisplayLogo()
     {
-        bAutomation = true;
         Console.Clear();
         Console.WriteLine(); 
         Write("¨                                              Text Adventures by\n", ConsoleColor.DarkGray);
@@ -14,8 +13,6 @@ public partial class TextAdventureGame
         Write("¨  ▒█████  ░██░░▓█ ▓██▓    ▒█████  ▒██   ██░ ░ ▐██░░  ▒   ██▒    ░▓█  ██▓░██▄▄▄▄██ ▒██░   ▒██ ▒▓█  ▄   ▒   ██▒\n", ConsoleColor.DarkRed);
         Write("¨  ░██  ▀█▓░██░░▒▓███▀▒    ░██  ▀█▓░ ████▓▒░ ░ ██░░░▒██████▒▒    ░▒▓███▀▒ ▓█ ░░▓██▒▒██▒   ░██▒░▒████▒▒██████▒▒\n", ConsoleColor.DarkRed);
         Write("¨   ▒▓███▀▒░▓              ░█████▓           ▒██░     ▒▓▓▓           ▓▒                                        \n", ConsoleColor.DarkRed);
-        
-        Console.WriteLine(); 
-        bAutomation = false;
+        Console.WriteLine();         
     }
 }

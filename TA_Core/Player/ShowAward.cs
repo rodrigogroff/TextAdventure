@@ -4,7 +4,6 @@ public partial class TextAdventureGame
     void ShowAward()
     {
         Console.WriteLine();
-
         int x = 1;
         bool first = true;
         foreach (var item in game.awards)
@@ -21,7 +20,8 @@ public partial class TextAdventureGame
                 {
                     first = false;
                     Write("[  ] " + item.text + "\n", ConsoleColor.Blue);
-                    Thread.Sleep(2000);
+                    if (!bAutomation)
+                        Thread.Sleep(2000);
                 }
                 else
                 {

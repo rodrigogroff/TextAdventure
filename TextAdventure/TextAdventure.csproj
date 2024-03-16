@@ -39,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Games\Hellfire_Club.QA.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Games\patreon.json">
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

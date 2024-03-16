@@ -35,7 +35,8 @@ public partial class TextAdventureGame
 
             if (bAutomation)
             {
-                Write(" -- Automation: ", ConsoleColor.DarkGray);
+                Write("\n", ConsoleColor.DarkGray);
+                Write("¨ -- Automation: ", ConsoleColor.DarkGray);
                 Write(currentAutomation, ConsoleColor.Green);
             }
 

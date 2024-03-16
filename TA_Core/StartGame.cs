@@ -543,60 +543,70 @@ public partial class TextAdventureGame
                                 return; // exit
                             }
                         }
-
                         break;
-
 
                     case 3:
                         Console.CursorVisible = false;
                         game.player = null;
-                        DisplayLogo();
-                        Console.WriteLine();
-                        Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);
-                        Console.WriteLine();
-                        Write("¨ 1 - ", ConsoleColor.DarkGray);
-                        Write("Easy       ", ConsoleColor.Yellow);
-                        Write("-- Unlimited hints\n", ConsoleColor.DarkGray);
-                        Write("¨ 2 - ", ConsoleColor.DarkGray);
-                        Write("Normal     ", ConsoleColor.DarkYellow);
-                        Write("-- Counted hints\n", ConsoleColor.DarkGray);
-                        Write("¨ 3 - ", ConsoleColor.DarkGray);
-                        Write("Old School ", ConsoleColor.Red);
-                        Write("-- Alone in the dark\n", ConsoleColor.DarkGray);
-                        Console.WriteLine();
-                        Write("¨ [Select your game difficulty:]\n", ConsoleColor.DarkGray);
-                        Write("¨ [> ", ConsoleColor.Green);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.CursorVisible = true;
-                        while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                        var diff = ConsoleReadLine().Trim();
-                        Console.CursorVisible = false;
-                        bHardcore = false;
-                        bFastMode = false;
-
-                        gameDifficulty = diff;
-
-                        if (diff == "2")
+                        while (true)
                         {
-                            bUnlimitedHints = false;
-                            bHintsDisabled = false;
-                        }
-                        else if (diff == "3")
-                        {
-                            bHintsDisabled = true;
-                            bFastMode = true;
-                        }
-                        else if (diff == "4")
-                        {
-                            bHardcore = true;
-                            bFastMode = true;
+                            DisplayLogo();
                             Console.WriteLine();
-                            Write("¨ --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
-                            Thread.Sleep(2000);
-                        }
-                        else
-                        {
-                            bUnlimitedHints = true;
+                            Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);
+                            Console.WriteLine();
+                            Write("¨ 1 - ", ConsoleColor.DarkGray);
+                            Write("Easy       ", ConsoleColor.Yellow);
+                            Write("-- Unlimited hints\n", ConsoleColor.DarkGray);
+                            Write("¨ 2 - ", ConsoleColor.DarkGray);
+                            Write("Normal     ", ConsoleColor.DarkYellow);
+                            Write("-- Counted hints\n", ConsoleColor.DarkGray);
+                            Write("¨ 3 - ", ConsoleColor.DarkGray);
+                            Write("Old School ", ConsoleColor.Red);
+                            Write("-- Alone in the dark\n", ConsoleColor.DarkGray);
+                            Console.WriteLine();
+                            Write("¨ [Select your game difficulty:]\n", ConsoleColor.DarkGray);
+                            Write("¨ [> ", ConsoleColor.Green);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.CursorVisible = true;
+                            while (Console.KeyAvailable) Console.ReadKey(intercept: true);
+                            var diff = ConsoleReadLine().Trim();
+                            Console.CursorVisible = false;
+                            bHardcore = false;
+                            bFastMode = false;
+
+                            gameDifficulty = diff;
+
+                            if (diff == "1")
+                            {
+                                bUnlimitedHints = false;
+                                bHintsDisabled = false;
+                                break;
+                            }
+                            else if (diff == "2")
+                            {
+                                break;
+                            }
+                            else if (diff == "3")
+                            {
+                                bHintsDisabled = true;
+                                bFastMode = true;
+                                break;
+                            }
+                            else if (diff == "4")
+                            {
+                                bHardcore = true;
+                                bFastMode = true;
+                                Console.WriteLine();
+                                Write("¨ --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
+                                Thread.Sleep(2000);
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                                Write("¨ --- Wrong option \n", ConsoleColor.White);
+                                EnterToContinue();
+                            }
                         }
 
                         mode = 4;

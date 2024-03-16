@@ -26,7 +26,6 @@ public partial class TextAdventureGame
                             Write("¨ (+) New Award: ", ConsoleColor.Green);
                             Write(aw.text + "\n", ConsoleColor.White);
                             game.logs.Add(" (+) New Award: " + aw.text);
-                            Console.WriteLine();
                         }
                     }
                 }                
@@ -184,7 +183,6 @@ public partial class TextAdventureGame
                         Write("¨ (+) New Award: ", ConsoleColor.Green);
                         Write(aw.text + "\n", ConsoleColor.White);
                         game.logs.Add(" (+) New Award: " + aw.text);
-                        Console.WriteLine();
                     }
                 }
             }
