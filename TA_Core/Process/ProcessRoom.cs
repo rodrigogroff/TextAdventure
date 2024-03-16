@@ -5,8 +5,11 @@ public partial class TextAdventureGame
     {
         var wallpaper = Directory.GetCurrentDirectory() + "\\Images\\" + game.gameName + "\\img_" + current_game_Room.id + "_" + current_game_Room.version + "_" + screenWidth + ".jpg";
 
+        var foundIMg = false;
+
         if (File.Exists(wallpaper))
         {
+            foundIMg = true;
             ChangeWallpaper(wallpaper);
         }
 
@@ -20,6 +23,9 @@ public partial class TextAdventureGame
             Write("¨ ▒▓██ ", ConsoleColor.Blue);
             Write(current_game_Room.label, ConsoleColor.White);
             Write(" █████████▓▒ ", ConsoleColor.Blue);
+            
+            if (!foundIMg)
+                Write(" Missing img_" + current_game_Room.version + "_" + current_game_Room.id + "  ", ConsoleColor.Red );
 
             if (bAutomap)
             {
