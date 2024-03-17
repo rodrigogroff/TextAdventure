@@ -7,6 +7,14 @@ public partial class TextAdventureGame
 
         while (true)
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Write("¨ ▒▓██ Take from scene ██▓▒\n", ConsoleColor.DarkGray);
+
             Console.WriteLine();
 
             var world_inventory = game.world_itens.Where(y => y.scene_id == currentRoom.id && y.scene_version == currentRoom.version).ToList();

@@ -381,6 +381,9 @@ public partial class TextAdventureGame
                                                 bAutomation = true;
                                                 bEnterPressed = true;
                                                 Thread.Sleep(100);
+                                                Console.WriteLine();
+                                                Write("¨        Automation delay: ", ConsoleColor.White);
+                                                automationDelay = Convert.ToInt32(ConsoleReadLine());
                                                 break;
                                             }
                                             if (key.Key == ConsoleKey.Escape)

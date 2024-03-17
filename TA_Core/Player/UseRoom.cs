@@ -4,6 +4,12 @@ public partial class TextAdventureGame
 {
     void UseRoom()
     {
+        Console.Clear();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
         var currentRoom = game.stages.FirstOrDefault(y => y.id == game.currentRoom);
 
         if (game.player.inventory.Count == 0)

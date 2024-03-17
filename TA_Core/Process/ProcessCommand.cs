@@ -265,6 +265,12 @@ public partial class TextAdventureGame
             {
                 var item = cmd.Split(' ')[1];
                 var originalTrait = game.traits.FirstOrDefault(y => y.name == item);
+
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+
                 UpdateTraits(new GameTrait
                 {
                     name = originalTrait.name,

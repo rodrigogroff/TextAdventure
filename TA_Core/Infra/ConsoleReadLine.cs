@@ -49,8 +49,7 @@ public partial class TextAdventureGame
                         Write("\n", ConsoleColor.Red);
                         Write("¨ ---------->" + m + "<----------\n", ConsoleColor.Red);
                         Write("\n", ConsoleColor.Red);
-                        //if (automationIndex > 62)
-                        Thread.Sleep(500);
+                        Thread.Sleep(automationDelay);
                         return m;
                     }
                 }

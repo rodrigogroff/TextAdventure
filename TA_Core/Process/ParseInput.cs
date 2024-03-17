@@ -24,26 +24,18 @@ public partial class TextAdventureGame
                 break;
 
             case "/take":
-                Console.Clear();
-                Console.WriteLine();
                 TakeRoom();
                 break;
 
             case "/award":
-                Console.Clear();
-                Console.WriteLine();
                 ShowAward();
                 break;
 
             case "/quest":
-                Console.Clear();
-                Console.WriteLine();
                 QuestRoom();
                 break;
 
             case "/use":
-                Console.Clear();
-                Console.WriteLine();
                 UseRoom();
                 break;
 
@@ -60,8 +52,6 @@ public partial class TextAdventureGame
                 break;
 
             case "/map":
-                Console.Clear();
-                Console.WriteLine();
                 MapRoom();
                 break;
 
@@ -86,8 +76,6 @@ public partial class TextAdventureGame
                 break;
 
             case "/bag":
-                Console.Clear();
-                Console.WriteLine();
                 BagRoom();
                 break;
 

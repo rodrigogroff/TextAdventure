@@ -48,7 +48,7 @@ public partial class TextAdventureGame
     public const int DESKTOPHORZRES = 118;
     public const int DESKTOPVERTRES = 117;
 
-    public int screenWidth = 0, emptySpace = 0;
+    public int screenWidth = 0, emptySpace = 0, automationDelay = 0;
 
     public void InitScreen()
     {
@@ -98,7 +98,7 @@ public partial class TextAdventureGame
         if (bAutomation)
             return;
 
-        Write("¨ [Enter to continue]", ConsoleColor.Green);
+        Write("¨ [Enter to continue]", ConsoleColor.DarkGray);
         Write(" [> ", ConsoleColor.Green);
         Console.ForegroundColor = ConsoleColor.White;
         Console.CursorVisible = true;

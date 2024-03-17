@@ -1,5 +1,4 @@
 ﻿
-using System.Collections;
 
 public partial class TextAdventureGame
 {
@@ -7,6 +6,12 @@ public partial class TextAdventureGame
     {
         if (!game.player.traits.Any(y => y.name == item.name))
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            
             game.player.traits.Add(item);
             string msg = "(+) Acquired Trait: " + item.name + " > " + item.description;
             Write("¨ (+) Acquired Trait: ", ConsoleColor.Blue);

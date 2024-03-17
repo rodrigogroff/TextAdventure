@@ -4,6 +4,12 @@ public partial class TextAdventureGame
 {
     void QuestRoom()
     {
+        Console.Clear();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
         if (game.player.quests.Count == 0)
         {
             Console.WriteLine();

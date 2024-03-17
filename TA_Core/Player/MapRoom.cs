@@ -7,6 +7,10 @@ public partial class TextAdventureGame
         if (string.IsNullOrEmpty(current_game_Room.map))
         {
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
             Write("¨ No map available to this area!", ConsoleColor.DarkYellow);
             Console.WriteLine();
             return;
@@ -15,9 +19,14 @@ public partial class TextAdventureGame
         var current_map = game.maps.FirstOrDefault(y => y.name == current_game_Room.map);
 
         if (current_map != null)
-        {
+        {            
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+
                 var cur_letter = "";
 
                 foreach (var item in current_map.places)
