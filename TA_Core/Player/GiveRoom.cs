@@ -4,17 +4,31 @@ public partial class TextAdventureGame
 {
     void GiveRoom()
     {
+        Console.Clear();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
         var currentRoom = game.stages.FirstOrDefault(y => y.id == game.currentRoom);
 
         if (currentRoom.npc != true)
         {
-            Console.WriteLine();
+            
             Write("¨ No one is here to receive....\n", ConsoleColor.DarkYellow);
             return;
         }
 
         while (true)
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Write("¨ ▒▓██ Give Item ██▓▒\n", ConsoleColor.DarkGray);
+
             Console.WriteLine();
 
             if (currentRoom.give.Count == 0)
@@ -76,11 +90,10 @@ public partial class TextAdventureGame
                 if (current_give_item.name == item_name)
                 {
                     match = true;
-
                     if (current_give_item.quantity >= item_qtty)
                     {
                         Console.WriteLine();
-                        Write("¨ Accepted!", ConsoleColor.DarkYellow);
+                        Write("¨ Accepted!\n", ConsoleColor.DarkYellow);
                         Console.WriteLine();
                         current_give_item.quantity -= item_qtty;
 
@@ -90,10 +103,7 @@ public partial class TextAdventureGame
                         Write(item_qtty.ToString(), ConsoleColor.Yellow);
                         Write(") = ", ConsoleColor.DarkGray);
                         Write(current_give_item.quantity.ToString() + "\n", ConsoleColor.Yellow);
-
-                        string msg = "(-) " + item_name + " loss (" + item_qtty + ") = " + current_give_item.quantity;
-
-                        game.logs.Add(msg);
+                                                
                         ProcessCommand(item_program, "give");
                         if (current_give_item.quantity == 0)
                             if (current_give_item.persistInventory != true)
@@ -102,7 +112,7 @@ public partial class TextAdventureGame
                     else
                     {
                         Console.WriteLine();
-                        Write("¨ Not enough!", ConsoleColor.DarkYellow);
+                        Write("¨ Not enough!\n", ConsoleColor.DarkYellow);
                         Console.WriteLine();
                     }
                     break;

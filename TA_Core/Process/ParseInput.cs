@@ -12,13 +12,12 @@ public partial class TextAdventureGame
                 break;
 
             case "/give":
-                Console.Clear();
-                Console.WriteLine();
                 GiveRoom();
                 break;
 
             case "/cls":
                 Console.Clear();
+                Console.WriteLine();
                 Console.WriteLine();
                 DisplayCurrentRoomText();
                 break;
@@ -86,11 +85,6 @@ public partial class TextAdventureGame
                 Console.WriteLine();
                 break;
 
-            case "/log":
-                Console.Clear();
-                ShowLog();
-                break;
-
             case "/skip":
                 SkipRoom();
                 break;
@@ -129,13 +123,11 @@ public partial class TextAdventureGame
                             if (!command.StartsWith("/"))
                             {
                                 game.player.name = command.PadRight(20, ' ').Substring(0, 20).Trim();
-                                game.logs.Add("Player entered name: " + command);
                                 Console.WriteLine();
                                 Write("¨ (+) Acquired player name: ", ConsoleColor.Blue);
                                 Write(game.player.name + "\n", ConsoleColor.Yellow);
                                 Console.WriteLine();
                                 EnterToContinue();
-                                
                                 ProcessRoom(current_game_Room.nextStep[0]);
                             }
                         }

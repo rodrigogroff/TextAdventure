@@ -7,18 +7,14 @@ public partial class TextAdventureGame
         if (!game.player.attributes.Any(y => y.name == item.name))
         {
             game.player.attributes.Add(item);
-
             if (!item.name.EndsWith("MAX"))
             {
-                string msg = "(+) Acquired Stat: " + item.name + " +[" + item.quantity + "]";
-                Write("¨ " + msg + "\n", ConsoleColor.Blue);
-                game.logs.Add(msg);
+                Write("¨ (+) Acquired Stat: " + item.name + " +[" + item.quantity + "]\n", ConsoleColor.Blue);
             }
         }
         else
         {
             var i = game.player.attributes.FirstOrDefault(y => y.name == item.name);
-            string msg = "";
             List<string> lines = new List<string>();
             List<ConsoleColor> colors = new List<ConsoleColor>();
             if (item.quantity < 0)
@@ -37,13 +33,9 @@ public partial class TextAdventureGame
                     Write(rem.ToString(), ConsoleColor.Yellow);
                     Write("/", ConsoleColor.DarkGray);
                     Write(max_st.quantity + "\n", ConsoleColor.Yellow);
-
-                    msg = "(-) Lost Stat: " + item.name + " [" + i.quantity + item.quantity + "] = Remaining: " + rem + "/" + max_st.quantity;
                 }
                 else
                 {
-                    msg = "(-) Lost Stat: " + item.name + " [" + i.quantity + item.quantity + "] = Remaining: " + rem;
-
                     Write("¨ (-) Lost Stat: ", ConsoleColor.DarkGray);
                     Write(item.name, ConsoleColor.Yellow);
                     Write(" [", ConsoleColor.DarkGray);
@@ -62,17 +54,14 @@ public partial class TextAdventureGame
                     var add_mx = item.quantity + i.quantity;
                     if (add_mx > max_st.quantity)
                         add_mx = max_st.quantity;
-                    msg = "¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + add_mx + "/" + max_st.quantity;
                     i.quantity += add_mx;
                 }
                 else
                 {
                     i.quantity += item.quantity;
-                    msg = "¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + i.quantity;
-                    Write(msg + "\n", ConsoleColor.DarkGray);
+                    Write("¨ (+) Acquired Stat: " + item.name + " [+" + item.quantity + "] = Total: " + i.quantity + "\n", ConsoleColor.DarkGray);
                 }
             }
-            game.logs.Add(msg);
         }
     }
 }

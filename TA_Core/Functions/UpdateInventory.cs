@@ -33,8 +33,6 @@ public partial class TextAdventureGame
                 Write(" [", ConsoleColor.DarkGray);
                 Write(item.quantity.ToString(), ConsoleColor.Yellow);
                 Write("] \n", ConsoleColor.DarkGray);
-                string msg = "(+) Acquired: " + item.name + " [" + item.quantity + "]";
-                game.logs.Add(msg);
             }
         }
         else
@@ -75,8 +73,6 @@ public partial class TextAdventureGame
             if (myItem.quantity == 0)
                 if (myItem.persistInventory != true)
                     game.player.inventory.Remove(myItem);
-
-            game.logs.Add(msg);
         }
     }
 }

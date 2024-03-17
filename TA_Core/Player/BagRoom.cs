@@ -9,7 +9,11 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
+            Console.WriteLine();
+            
             Write("¨ ▒▓██ Player Bag ██▓▒\n", ConsoleColor.DarkGray);
+
+            Console.WriteLine();
 
             int i = 1;
             foreach (var item in game.player.inventory)

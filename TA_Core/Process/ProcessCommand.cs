@@ -25,7 +25,6 @@ public partial class TextAdventureGame
                             Console.WriteLine();
                             Write("¨ (+) New Award: ", ConsoleColor.Green);
                             Write(aw.text + "\n", ConsoleColor.White);
-                            game.logs.Add(" (+) New Award: " + aw.text);
                         }
                     }
                 }                
@@ -182,7 +181,6 @@ public partial class TextAdventureGame
                         Console.WriteLine();
                         Write("¨ (+) New Award: ", ConsoleColor.Green);
                         Write(aw.text + "\n", ConsoleColor.White);
-                        game.logs.Add(" (+) New Award: " + aw.text);
                     }
                 }
             }
@@ -245,6 +243,10 @@ public partial class TextAdventureGame
                         dt_start = DateTime.Now,
                     });
 
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
                     Console.WriteLine();
                     Write("¨ (+) New Quest: ", ConsoleColor.Red);
                     Write(quest.title + "\n", ConsoleColor.White);
@@ -389,7 +391,6 @@ public partial class TextAdventureGame
             else if (cmd.StartsWith("/title"))
             {
                 game.player.title = cmd.Split(" ")[1].Replace("_", " ");
-                game.logs.Add("Player received Title: " + game.player.title);
                 Write("¨ (+) Acquired Title: ", ConsoleColor.Blue);
                 Write(game.player.title + "\n", ConsoleColor.White);
                 if (!bAutomation)

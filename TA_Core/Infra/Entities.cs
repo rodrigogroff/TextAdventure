@@ -56,7 +56,6 @@ public class Game
     public string textAlign { get; set; }
 
     public List<string> gameBigTitle = new List<string>();
-    public List<string> logs = new List<string>();
     public List<string> constraints = new List<string>();
     public List<string> deathTriggers = new List<string>();
     public List<Context> stages = new List<Context>();
@@ -78,7 +77,6 @@ public class SaveGameFile
     public Player player = new Player();
     public List<GameVariable> world = new List<GameVariable>();
     public List<GameSceneItem> world_itens = new List<GameSceneItem>();
-    public List<string> logs = new List<string>();
 }
 
 public class Quest

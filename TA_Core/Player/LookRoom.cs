@@ -10,8 +10,7 @@ public partial class TextAdventureGame
             Write("¨ Nothing to look\n", ConsoleColor.DarkYellow);
             return;
         }
-
-        game.logs.Add("inspected room [" + current_game_Room.label + "]");
+        
         foreach (var item in current_game_Room.look)
         {
             if (!item.Contains("/"))

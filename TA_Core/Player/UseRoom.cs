@@ -10,6 +10,8 @@ public partial class TextAdventureGame
         Console.WriteLine();
         Console.WriteLine();
 
+        Write("¨ ▒▓██ Use Item ██▓▒\n", ConsoleColor.DarkGray);
+
         var currentRoom = game.stages.FirstOrDefault(y => y.id == game.currentRoom);
 
         if (game.player.inventory.Count == 0)

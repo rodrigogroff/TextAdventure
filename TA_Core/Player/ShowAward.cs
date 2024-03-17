@@ -3,7 +3,16 @@ public partial class TextAdventureGame
 {
     void ShowAward()
     {
+        Console.Clear();
         Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
+        Write("¨ ▒▓██ Current Game Awards ██▓▒\n", ConsoleColor.DarkGray);
+
+        Console.WriteLine();
+        
         int x = 1;
         bool first = true;
         foreach (var item in game.awards)

@@ -11,7 +11,6 @@ public partial class TextAdventureGame
             player = game.player,
             world = game.world,
             world_itens = game.world_itens,
-            logs = game.logs,
             hints = game.hints,
         };
         

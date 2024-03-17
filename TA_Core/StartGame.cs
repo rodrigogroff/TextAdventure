@@ -681,7 +681,6 @@ public partial class TextAdventureGame
                                     game.world = savegame.world;
                                     game.world_itens = savegame.world_itens;
                                     game.currentRoom = savegame.currentRoom;
-                                    game.logs = savegame.logs;
                                     game.hints = savegame.hints;
                                     Thread.Sleep(1000);
                                     break;

@@ -45,9 +45,9 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" investigate npc / scene".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);
-        lines.Add(" /log".PadRight(w1, ' '));
+        lines.Add("    ".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add(" show the game's progress log\n");
+        lines.Add(" \n");
         colors.Add(ConsoleColor.Green);
         lines.Add("¨ /give".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);

@@ -57,8 +57,6 @@ public partial class TextAdventureGame
         if (!bAutomation)
             Thread.Sleep(500);
 
-        game.logs.Add(" -- Entered: " + current_game_Room.label);
-
         Console.WriteLine();
         Console.WriteLine();
 
@@ -146,9 +144,6 @@ public partial class TextAdventureGame
             game.player = pl;
             if (!bAutomation)
                 bFastMode = false;
-            Console.WriteLine();
-            Console.WriteLine();
-            Write("¨ --- Current game awards ----- \n", ConsoleColor.Yellow);
             ShowAward();
             EnterToContinue();
             Console.Clear();            
