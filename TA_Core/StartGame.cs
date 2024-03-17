@@ -548,6 +548,7 @@ public partial class TextAdventureGame
                     case 3:
                         Console.CursorVisible = false;
                         game.player = null;
+                        var returnBack = false;
                         while (true)
                         {
                             DisplayLogo();
@@ -564,62 +565,76 @@ public partial class TextAdventureGame
                             Write("Old School ", ConsoleColor.Red);
                             Write("-- Alone in the dark\n", ConsoleColor.DarkGray);
                             Console.WriteLine();
-                            Write("¨ [Select your game difficulty:]\n", ConsoleColor.DarkGray);
+                            Write("¨ [Select your game difficulty, or X to return]\n", ConsoleColor.DarkGray);
                             Write("¨ [> ", ConsoleColor.Green);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.CursorVisible = true;
                             while (Console.KeyAvailable) Console.ReadKey(intercept: true);
-                            var diff = ConsoleReadLine().Trim();
+
+                            var diff = "";
+                            
+                            if (!bAutomation)
+                                diff = ConsoleReadLine().Trim();
+
                             Console.CursorVisible = false;
                             bHardcore = false;
                             bFastMode = false;
 
                             gameDifficulty = diff;
 
-                            if (diff == "1")
-                            {
-                                bUnlimitedHints = false;
-                                bHintsDisabled = false;
+                            if (bAutomation)
                                 break;
-                            }
-                            else if (diff == "2")
+
+                            if (diff.ToLower() == "x")
                             {
-                                break;
-                            }
-                            else if (diff == "3")
-                            {
-                                bHintsDisabled = true;
-                                bFastMode = true;
-                                break;
-                            }
-                            else if (diff == "4")
-                            {
-                                bHardcore = true;
-                                bFastMode = true;
-                                Console.WriteLine();
-                                Write("¨ --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
-                                Thread.Sleep(2000);
+                                returnBack = true;
                                 break;
                             }
                             else
                             {
-                                Console.WriteLine();
-                                Write("¨ --- Wrong option \n", ConsoleColor.White);
-                                EnterToContinue();
+                                if (diff == "1")
+                                {
+                                    bUnlimitedHints = false;
+                                    bHintsDisabled = false;
+                                    break;
+                                }
+                                else if (diff == "2")
+                                {
+                                    break;
+                                }
+                                else if (diff == "3")
+                                {
+                                    bHintsDisabled = true;
+                                    bFastMode = true;
+                                    break;
+                                }
+                                else if (diff == "4")
+                                {
+                                    bHardcore = true;
+                                    bFastMode = true;
+                                    Console.WriteLine();
+                                    Write("¨ --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
+                                    Thread.Sleep(2000);
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine();
+                                    Write("¨ --- Wrong option \n", ConsoleColor.White);
+                                    EnterToContinue();
+                                }
                             }
                         }
 
-                        mode = 4;
+                        if (!returnBack)
+                            mode = 4;
+                        else
+                            mode = 2;
                         break;
 
                     case 4:
 
-                        var wall = Directory.GetCurrentDirectory() + "\\Images\\" + game.gameName + "\\wallpaper_" + screenWidth + ".jpg";
-
-                        if (File.Exists(wall))
-                        {
-                            ChangeWallpaper(wall);
-                        }
+                        ChangeWallpaper(Directory.GetCurrentDirectory() + "\\Images\\" + game.gameName + "\\wallpaper_" + screenWidth + ".jpg");
 
                         Console.CursorVisible = false;
                         Console.Clear();

@@ -33,6 +33,9 @@ public partial class TextAdventureGame
 
     public void Write(string text, ConsoleColor color)
     {
+        if (text == null)
+            text = "";
+
         if (game.gameName == null)
         {
             if (text.StartsWith("¨"))

@@ -36,7 +36,8 @@ public partial class TextAdventureGame
             }
         }
         if (game.player.attributes.Count == 0)
-            Write("¨ Empty!", ConsoleColor.DarkGray);
+            Write("¨ Empty!\n", ConsoleColor.DarkGray);
+
         Write("¨ --- Traits ----\n", ConsoleColor.Green);
         foreach (var item in game.player.traits)
         {

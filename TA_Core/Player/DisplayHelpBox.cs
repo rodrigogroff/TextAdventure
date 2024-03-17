@@ -53,9 +53,9 @@ public partial class TextAdventureGame
         colors.Add(ConsoleColor.DarkGray);
         lines.Add(" interact with npc".PadRight(w2, ' '));
         colors.Add(ConsoleColor.Green);        
-        lines.Add("  ".PadRight(w1, ' '));
+        lines.Add(" /skip".PadRight(w1, ' '));
         colors.Add(ConsoleColor.DarkGray);
-        lines.Add("   \n");
+        lines.Add(" Bypass a long sequence of events\n");
         
         colors.Add(ConsoleColor.Green);
         lines.Add("¨ /take".PadRight(w1, ' '));

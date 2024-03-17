@@ -161,6 +161,7 @@ public class Context
     public List<string> nextStep = new List<string>();
     public List<string> program = new List<string>();
     public List<string> mapProgram = new List<string>();
+    public List<string> skip = new List<string>();
     public List<string> look = new List<string>();
     public List<string> give = new List<string>();
     public List<string> take = new List<string>();

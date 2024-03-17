@@ -105,6 +105,15 @@ public partial class TextAdventureGame
             }
         }
 
+        if (current_game_Room.skip.Any())
+        {
+            Console.WriteLine();
+            Write("¨ (Use ", ConsoleColor.Magenta);
+            Write("/skip", ConsoleColor.White);
+            Write(" to pass this scene)", ConsoleColor.Magenta);
+            Console.WriteLine();
+        }
+
         if (!bAutomation)
             Thread.Sleep(100);
 

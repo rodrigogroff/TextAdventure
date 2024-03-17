@@ -578,6 +578,10 @@
         "a simple cold, or a sore throat from their children without going mental.",
         ""
       ],
+      "skip": [
+        "/giveT Guilt",
+        "/goto S1"
+      ],
       "nextStep": [ "6:2" ],
       "look": [ "You are seeing your previouos life in a flash." ],
       "hint": [ "" ]

@@ -103,11 +103,15 @@ public partial class TextAdventureGame
                 ShowLog();
                 break;
 
+            case "/skip":
+                SkipRoom();
+                break;
+
             case "/die":
-                var awards = game.player.awards;
+                var oldAwards = game.player.awards;
                 game.player = new Player();
-                game.player.awards = awards;
-                ProcessRoom("1");
+                game.player.awards = oldAwards;
+                ProcessRoom("0");
                 break;
 
             case "/quit":
