@@ -559,13 +559,13 @@ public partial class TextAdventureGame
                             Write("¨ " + game.gameName + "\n", ConsoleColor.Blue);
                             Console.WriteLine();
                             Write("¨ 1 - ", ConsoleColor.DarkGray);
-                            Write("Easy       ", ConsoleColor.Yellow);
+                            Write("Easy             ", ConsoleColor.Yellow);
                             Write("-- Unlimited hints\n", ConsoleColor.DarkGray);
                             Write("¨ 2 - ", ConsoleColor.DarkGray);
-                            Write("Normal     ", ConsoleColor.DarkYellow);
+                            Write("Normal [default] ", ConsoleColor.White);
                             Write("-- Counted hints\n", ConsoleColor.DarkGray);
                             Write("¨ 3 - ", ConsoleColor.DarkGray);
-                            Write("Old School ", ConsoleColor.Red);
+                            Write("Old School       ", ConsoleColor.Red);
                             Write("-- Alone in the dark\n", ConsoleColor.DarkGray);
                             Console.WriteLine();
                             Write("¨ [Select your game difficulty, or X to return]\n", ConsoleColor.DarkGray);
@@ -578,6 +578,15 @@ public partial class TextAdventureGame
                             
                             if (!bAutomation)
                                 diff = ConsoleReadLine().Trim();
+
+                            if (diff == "")
+                            {
+                                diff = "2";
+                                Console.WriteLine();
+                                Write("¨ >> Normal difficulty selected!", ConsoleColor.DarkYellow);
+                                Console.WriteLine();
+                                EnterToContinue();
+                            }
 
                             Console.CursorVisible = false;
                             bHardcore = false;

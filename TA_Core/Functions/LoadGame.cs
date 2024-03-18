@@ -9,58 +9,41 @@ public partial class TextAdventureGame
         game = JsonConvert.DeserializeObject<Game>(crypt.DecryptFile(game.gameJsonFile));
         game.gameJsonFile = file;
 
-        if (game.gameBigTitle.Count == 0)
+        if (game.gameBigTitle.Count() == 0)
         {
             var TitlefromFile = File.ReadAllText(currentFile.Replace(".game.jsonx", ".title.txt"));
             foreach (var item in TitlefromFile.Split('\n'))
                 game.gameBigTitle.Add(item);
         }
 
-        // process all stages inventory
         foreach (var currentStage in game.stages)
         {
-            if (currentStage.take.Count > 0)
+            foreach (var takeItem in currentStage.take)
             {
-                foreach (var takeItem in currentStage.take)
+                var _item = takeItem.Split('|')[0];
+                var _item_formula = takeItem.Contains("|") ? takeItem.Split('|')[1] : "";
+
+                var name = _item.Split(' ')[0];
+                var qtty = Convert.ToInt32(_item.Split(' ')[1].Split(':')[0]);
+                var g_item = game.itens.FirstOrDefault(y => y.name == name);
+                    
+                game.world_itens.Add(new GameSceneItem
                 {
-                    var _item = takeItem.Split('|')[0];
-                    var _item_formula = takeItem.Contains("|") ? takeItem.Split('|')[1] : "";
+                    guid = Guid.NewGuid(),
+                    scene_id = currentStage.id,
+                    scene_version = currentStage.version,
 
-                    var name = _item.Split(' ')[0];
-                    var qtty = Convert.ToInt32(_item.Split(' ')[1].Split(':')[0]);
-                    var g_item = game.itens.FirstOrDefault(y => y.name == name);
-
-                    game.world_itens.Add(new GameSceneItem
+                    item = new GameItem
                     {
-                        guid = Guid.NewGuid(),
-                        scene_id = currentStage.id,
-                        scene_version = currentStage.version,
-
-                        item = new GameItem
-                        {
-                            name = name,
-                            quantity = qtty,
-                            persistInventory = g_item.persistInventory == true,
-                            formula = _item_formula
-                        }
-                    });
-                }
-
-                currentStage.take.Clear();
+                        name = name,
+                        quantity = qtty,
+                        persistInventory = g_item.persistInventory == true,
+                        formula = _item_formula
+                    }
+                });
             }
+            currentStage.take.Clear();            
         }
-
         game.hintsMAX = game.hints;
-
-        game.player.gear = new PlayerGear
-        {
-            body = null,
-            feet = null,
-            hands = null,
-            head = null,
-            rings = new List<GameItem>(),
-            amulets = new List<GameItem>()
-        };
     }
-
 }

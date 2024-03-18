@@ -164,6 +164,13 @@ public class Context
     public List<string> give = new List<string>();
     public List<string> take = new List<string>();
     public List<string> hint = new List<string>();
+    public List<ContextUseItem> use = new List<ContextUseItem>();
+}
+
+public class ContextUseItem
+{
+    public string item { get; set; }
+    public List<string> formula = new List<string>();
 }
 
 public class GameItem

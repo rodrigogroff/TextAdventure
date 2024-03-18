@@ -5,7 +5,7 @@ public partial class TextAdventureGame
     {
         Console.WriteLine();
 
-        if (current_game_Room.look.Count == 0)
+        if (current_game_Room.look.Count() == 0)
         {
             Write("¨ Nothing to look\n", ConsoleColor.DarkYellow);
             return;
@@ -20,7 +20,7 @@ public partial class TextAdventureGame
                 PrintRoomText(item.Trim(), ConsoleColor.DarkYellow, 35);
             }
             else
-                ProcessCommand(item, "look");
+                ProcessCommand(item);
         }
 
         current_game_Room.look.RemoveAll(y => y.StartsWith("/"));

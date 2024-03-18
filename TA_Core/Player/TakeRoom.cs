@@ -90,10 +90,10 @@ public partial class TextAdventureGame
             currentItem = g_item_take.name;
 
             if (!string.IsNullOrEmpty(gg_item.formula))
-                ProcessCommand(gg_item.formula, "take");            
+                ProcessCommand(gg_item.formula);            
 
             if (!string.IsNullOrEmpty(g_item_take.formula))
-                ProcessCommand(g_item_take.formula, "take");
+                ProcessCommand(g_item_take.formula);
 
             foreach (var item in game.world_itens.Where(y => y.scene_id == currentRoom.id && y.scene_version == currentRoom.version))
                 if (item.guid == guid_item_world)

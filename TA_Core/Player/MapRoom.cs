@@ -22,10 +22,17 @@ public partial class TextAdventureGame
         {            
             while (true)
             {
-                Console.Clear();
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
+                if (!bAutomap)
+                {
+                    Console.Clear();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
 
                 var cur_letter = "";
 
@@ -143,7 +150,7 @@ public partial class TextAdventureGame
 
                 Console.WriteLine();
 
-                if (current_map.places.Count > 1)
+                if (current_map.places.Count() > 1)
                 {
                     Write("¨ [Select destination:]\n", ConsoleColor.DarkGray);
                     Write("¨ [> ", ConsoleColor.Green);
@@ -175,7 +182,7 @@ public partial class TextAdventureGame
                                     {
                                         foreach (var prg in current_game_Room.mapProgram)
                                         {
-                                            ProcessCommand(prg, "MapRoom");
+                                            ProcessCommand(prg);
 
                                             if (this.bAbortOp)
                                                 break;

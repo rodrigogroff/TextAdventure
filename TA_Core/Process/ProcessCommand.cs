@@ -1,7 +1,7 @@
 ﻿
 public partial class TextAdventureGame
 {
-    void ProcessCommand(string cmd_line, string from)
+    void ProcessCommand(string cmd_line)
     {
         foreach (var cmd in cmd_line.Split(';'))
         {
@@ -45,7 +45,7 @@ public partial class TextAdventureGame
 
                 if (title.Replace("_", " ") == game.player.title)
                 {
-                    ProcessCommand(subC_cmd_false.Replace("?", ";"), from);
+                    ProcessCommand(subC_cmd_false.Replace("?", ";"));
                     this.bAbortOp = true;
                 }
             }
@@ -104,11 +104,11 @@ public partial class TextAdventureGame
                             game.player.inventory.Remove(_item);
                     }
 
-                    ProcessCommand(subC_cmd_ok.Replace("?", ";"), from);
+                    ProcessCommand(subC_cmd_ok.Replace("?", ";"));
                 }
                 else
                 {
-                    ProcessCommand(subC_cmd_false.Replace("?", ";"), from);
+                    ProcessCommand(subC_cmd_false.Replace("?", ";"));
                     this.bAbortOp = true;
                 }
             }
@@ -118,7 +118,7 @@ public partial class TextAdventureGame
                 {
                     var cmd_to_do = cmd.Split('|')[1];
 
-                    ProcessCommand(cmd_to_do, from);
+                    ProcessCommand(cmd_to_do);
                 }
             }
             else if (cmd.StartsWith("/getAE")) // get attribute equals
@@ -131,7 +131,7 @@ public partial class TextAdventureGame
                     if (attr.quantity == w_attr_value)
                     {
                         var cmd_to_do = cmd.Split(':')[1].Replace(",", ";");
-                        ProcessCommand(cmd_to_do, "proc");
+                        ProcessCommand(cmd_to_do);
                     }
                 }
             }
@@ -145,7 +145,7 @@ public partial class TextAdventureGame
                     if (attr.quantity < w_attr_value)
                     {
                         var cmd_to_do = cmd.Split(':')[1];
-                        ProcessCommand(cmd_to_do, "proc");
+                        ProcessCommand(cmd_to_do);
                     }
                 }
             }
@@ -159,7 +159,7 @@ public partial class TextAdventureGame
                     if (attr.quantity > w_attr_value)
                     {
                         var cmd_to_do = cmd.Split(':')[1];
-                        ProcessCommand(cmd_to_do, "formula");
+                        ProcessCommand(cmd_to_do);
                     }
                 }
             }
@@ -190,7 +190,7 @@ public partial class TextAdventureGame
                 if (game.player.title == w_title_name.Replace("_", " "))
                 {
                     var cmd_to_do = cmd.Split(':')[1];
-                    ProcessCommand(cmd_to_do, "formula");
+                    ProcessCommand(cmd_to_do);
                 }
             }
             else if (cmd.StartsWith("/getT"))
@@ -200,7 +200,7 @@ public partial class TextAdventureGame
                 if (trait != null)
                 {
                     var cmd_to_do = cmd.Split(':')[1];
-                    ProcessCommand(cmd_to_do, "formula");
+                    ProcessCommand(cmd_to_do);
                 }
             }
             else if (cmd.StartsWith("/worldGet"))
@@ -211,7 +211,7 @@ public partial class TextAdventureGame
                 var w_item = game.world.FirstOrDefault(y => y.variable == w_variable);
                 if (w_item != null)
                     if (w_item.content == w_content_expected)
-                        ProcessCommand(cmd_to_do, "formula");
+                        ProcessCommand(cmd_to_do);
             }
             else if (cmd.StartsWith("/worldSet"))
             {
@@ -443,7 +443,7 @@ public partial class TextAdventureGame
 
                 if (room.StartsWith("0"))
                     foreach (var item in game.deathTriggers)
-                        ProcessCommand(item, "death");
+                        ProcessCommand(item);
 
                 if (!string.IsNullOrEmpty(game.player.name))
                 {

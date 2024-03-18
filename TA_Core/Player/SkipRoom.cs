@@ -4,6 +4,6 @@
     {
         if (current_game_Room.skip.Any())
             foreach (var item in current_game_Room.skip)
-                ProcessCommand(item, "skip");
+                ProcessCommand(item);
     }
 }

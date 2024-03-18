@@ -248,25 +248,25 @@
       "name": "Rope",
       "description": "Simple rope to climb or descend places.",
       "formula": "",
-      "usable": true
+      "usable": false
     },
     {
       "name": "Wood_piece",
       "description": "A small sized wood, good for a fire.",
       "formula": "",
-      "usable": true
+      "usable": false
     },
     {
       "name": "Nail",
       "description": "A fairly decent iron nail.",
       "formula": "",
-      "usable": true
+      "usable": false
     },
     {
       "name": "Bone",
       "description": "Old bone from a dead person or animal.",
       "formula": "",
-      "usable": true
+      "usable": false
     },
     {
       "name": "Gold",
@@ -456,9 +456,6 @@
       ],
       "nextStep": [ "1" ]
     },
-
-    // here goes nothing....
-
     {
       "id": "1",
       "version": 1,
@@ -469,16 +466,14 @@
       "text": [
         "Please select your soul to play, with a origin story (and disadvantage):",
         "",
-        "^1^ - \"Sarah\"   [Neg. Trait: ~Guilt~]"
-        //"^2^ - \"Gilbert\" [Neg. Trait: ~BadLuck~]",
-        //"^3^ - \"Lionel\"  [Neg. Trait: ~Religious~]",
-        //"^4^ - \"Anne\"    [Neg. Trait: ~BadHealth~]",
-        //"^5^ - \"Burt\"    [Neg. Trait: ~Karma~]",
-        //"^6^ - \"Jonesy\"  [Neg. Trait: ~Smelly~]",
-        //"^7^ - \"Phil\"    [Neg. Trait: ~Frail~]",
-        //"^8^ - \"Anthony\" [Neg. Trait: ~Clumsy~]",
-        //"",
-        //"^9^ - ** random soul **"
+        "^1^ - \"Sarah\"   [Neg. Trait: ~Guilt~]",
+        "^2^ - \"Gilbert\" [Neg. Trait: ~BadLuck~]",
+        "^3^ - \"Lionel\"  [Neg. Trait: ~Religious~]",
+        "^4^ - \"Anne\"    [Neg. Trait: ~BadHealth~]",
+        "^5^ - \"Burt\"    [Neg. Trait: ~Karma~]",
+        "^6^ - \"Jonesy\"  [Neg. Trait: ~Smelly~]",
+        "^7^ - \"Phil\"    [Neg. Trait: ~Frail~]",
+        "^8^ - \"Anthony\" [Neg. Trait: ~Clumsy~]"
       ],
       "nextStep": [],
       "program": [
@@ -489,8 +484,7 @@
         "/goto 5",
         "/goto 7",
         "/goto 8",
-        "/goto 9",
-        "/gotoRnd 6,2,3,4,5,7,8,9"
+        "/goto 9"
       ],
       "look": [],
       "hint": [
@@ -1307,7 +1301,7 @@
       "mapProgram": [
         "/nextLocationTitle Human_Mage:80||/msgR Mages don't use ropes, sorry.",
         "/nextLocationTitle Human_Lazy:80||/msgR I'm tired man, sorry.",
-        "/nextLocationI Rope,1?Twigg,1?:80|/msgR You use the rope and a twigg to reach your destination.|/msgR You need a rope and a twigg to continue."
+        "/nextLocationI Rope,1?Twigg,1?:80|/msgR You use the rope and a twigg to reach your destination.|/msgR You see that you need a rope and a twigg to continue."
       ],
       "hint": [ "When looking from above, you can see more things.. in the /map" ],
       "give": [],
@@ -1391,11 +1385,19 @@
         "/goto 60_22:1"
       ],
       "program": [],
+      "use": [
+        {
+          "item": "Rusty_Sword",
+          "formula": [
+            "/msgR You swing your sword in the empty space."
+          ]
+        }
+      ],
       "hint": [
         "Old spirits tend to be mean when people touches their things."
       ],
       "give": [
-        "Gold 1|/msgRnd A voice tells you: \"The troll is a nice fella, just don't go there empty handed.\"%A voice tells you: \"There is a secret passage to the goblin temple.\"%A voice tells you: \"Last time I was alive, PC games we're only text. Boring!\"%A voice tells you: \"Go away now.\"%A voice tells you: \"The first rule of Hellfire Club is... oh, wait.\"%A voice tells you: \"Where are you Mathilda, my love, my everything!\"%A voice tells you: \"I killed a demon some years ago. My sword was stuck in his chest! Probably a rust thing now!\"%A voice tells you: \"Why aren't you working now?\""
+        "Gold 1|/msgRnd A voice tells you: \"The troll is a nice fella, just don't go there empty handed.\"%A voice tells you: \"There is a secret passage to the goblin temple.\"%A voice tells you: \"Last time I was alive, PC games we're only text. Boring!\"%A voice tells you: \"Go away now.\"%A voice tells you: \"The first rule of Hellfire Club is... oh, wait.\"%A voice tells you: \"Where are you Mathilda, my love, my everything!\"%A voice tells you: \"I killed a demon some years ago. Probably a rust thing now!\"%A voice tells you: \"Why aren't you working now?\""
       ],
       "take": [
         "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1"
@@ -1415,6 +1417,15 @@
       ],
       "textOptional": [],
       "nextStep": [],
+      "use": [
+        {
+          "item": "Rusty_Sword",
+          "formula": [
+            "/msgR You crushed the skeleton back to the ground.",
+            "/giveI Gold 20"
+          ]
+        }
+      ],
       "look": [
 
       ],

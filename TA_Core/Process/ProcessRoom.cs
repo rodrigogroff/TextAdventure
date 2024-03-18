@@ -1,6 +1,13 @@
 ﻿
 public partial class TextAdventureGame
 {
+    void DisplayCurrentSceneTitle()
+    {
+        Write("¨ ▒▓██ ", ConsoleColor.Blue);
+        Write(current_game_Room.label, ConsoleColor.White);
+        Write(" █████████▓▒ ", ConsoleColor.Blue);
+    }
+
     void DisplayCurrentRoomText()
     {
         var wallpaper = Directory.GetCurrentDirectory() + "\\Images\\" + game.gameName + "\\img_" + current_game_Room.id + "_" + current_game_Room.version + "_" + screenWidth + ".jpg";
@@ -20,10 +27,8 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Console.WriteLine();
 
-            Write("¨ ▒▓██ ", ConsoleColor.Blue);
-            Write(current_game_Room.label, ConsoleColor.White);
-            Write(" █████████▓▒ ", ConsoleColor.Blue);
-            
+            DisplayCurrentSceneTitle();
+
             if (!foundIMg)
                 Write(" Missing img_" + current_game_Room.id + "_" + current_game_Room.version + "  ", ConsoleColor.Red );
 
@@ -94,13 +99,10 @@ public partial class TextAdventureGame
         {
             if (!bAutomation)
                 Thread.Sleep(10);
-            if (current_game_Room.textOptional.Count > 0)
-            {
+
+            if (current_game_Room.textOptional.Count() > 0)
                 foreach (var item in current_game_Room.textOptional)
-                {
-                    ProcessCommand(item, "procRoom");
-                }
-            }
+                    ProcessCommand(item);
         }
 
         if (current_game_Room.skip.Any())
@@ -181,11 +183,11 @@ public partial class TextAdventureGame
                 if (first)
                 {
                     if (!string.IsNullOrEmpty(current_game_Room.startup))
-                        ProcessCommand(current_game_Room.startup, "procRoom");
+                        ProcessCommand(current_game_Room.startup);
 
                     if (current_game_Room.startupProgram.Any())
                         foreach (var _p in current_game_Room.startupProgram)
-                            ProcessCommand(_p, "procRoom");
+                            ProcessCommand(_p);
 
                     if (current_game_Room.option != "death")
                         CheckConstraints();

@@ -81,7 +81,7 @@ public partial class TextAdventureGame
             case "/automap":
                 bAutomap = !bAutomap;
                 Console.WriteLine();
-                Print("¨ Automap: " + (bAutomap ? "[ON]" : "[OFF]"), ConsoleColor.White, 15);
+                Write("¨ Automap: " + (bAutomap ? "[ON]" : "[OFF]"), ConsoleColor.White);
                 Console.WriteLine();
                 break;
 
@@ -104,7 +104,7 @@ public partial class TextAdventureGame
 
             default:
 
-                switch (current_game_Room.option.ToLower())
+                switch (current_game_Room.option?.ToLower())
                 {
                     case "startup":
                         Console.WriteLine();
@@ -112,7 +112,7 @@ public partial class TextAdventureGame
                         if (current_game_Room.program.Any())
                         {
                             foreach (var prg in current_game_Room.program)
-                                ProcessCommand(prg, "procCommand");
+                                ProcessCommand(prg);
 
                             Console.WriteLine();
                             EnterToContinue();
@@ -155,7 +155,7 @@ public partial class TextAdventureGame
                             {
                                 Console.WriteLine();
                                 string opt_command = current_game_Room.program[Convert.ToInt32(command) - 1];
-                                ProcessCommand(opt_command, "procCommand");
+                                ProcessCommand(opt_command);
                                 Console.WriteLine();
                                 EnterToContinue();
                                 ProcessRoom(current_game_Room.nextStep[0]);
@@ -169,7 +169,7 @@ public partial class TextAdventureGame
                         }
                         else if (current_game_Room.nextStep != null)
                         {
-                            if (current_game_Room.nextStep.Count > 1)
+                            if (current_game_Room.nextStep.Count() > 1)
                                 ProcessRoom(current_game_Room.nextStep[1]);
                         }
 
@@ -180,17 +180,17 @@ public partial class TextAdventureGame
                         if (command == "")
                         {
                             if (current_game_Room.program != null)
-                                if (current_game_Room.program.Count > 0)
+                                if (current_game_Room.program.Count() > 0)
                                 {
                                     Console.WriteLine();
                                     Console.WriteLine();
                                     foreach (var i_cmd in current_game_Room.program)
-                                        ProcessCommand(i_cmd, "procCommand");
+                                        ProcessCommand(i_cmd);
                                     Console.WriteLine();
                                     EnterToContinue();
                                 }
 
-                            if (current_game_Room.nextStep.Count > 0)
+                            if (current_game_Room.nextStep.Count() > 0)
                                 ProcessRoom(current_game_Room.nextStep[0]);
                         }
                         else
