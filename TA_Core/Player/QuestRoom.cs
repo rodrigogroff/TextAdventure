@@ -10,6 +10,15 @@ public partial class TextAdventureGame
         Console.WriteLine();
         Console.WriteLine();
 
+        DisplayCurrentSceneTitle();
+
+        Console.WriteLine();
+        Console.WriteLine();
+
+        Write("¨ ▒▓██ Quests\n", ConsoleColor.DarkGray);
+
+        Console.WriteLine();
+
         if (game.player.quests.Count == 0)
         {
             Console.WriteLine();
@@ -26,9 +35,9 @@ public partial class TextAdventureGame
             hsh[index] = qu;
             Write("¨ [" + index++ + "] - ", ConsoleColor.White);
             Write(qu.active == true ? "[Active] " : "[Done] ", ConsoleColor.Blue);
-            Write(qu.title + "   ", ConsoleColor.Yellow);
-            Write(qu.subtitle + "\n", ConsoleColor.Red);
+            Write(qu.title + "\n", ConsoleColor.Yellow);
         }
+
         Console.WriteLine();
         Write("¨ [Select quest to view:]", ConsoleColor.DarkGray);
         Console.ForegroundColor = ConsoleColor.Green;
@@ -55,13 +64,15 @@ public partial class TextAdventureGame
         {
             var ms = game.player.inventory.Any(y => y.name == gui.name && y.quantity >= gui.quantity) ? " [OK] \n" : " [Not yet] \n";
 
-            Write("  " + gui.name + ": ", ConsoleColor.DarkGray);
+            Write("¨  " + gui.name + ": ", ConsoleColor.DarkGray);
             Write(gui.quantity.ToString(), ConsoleColor.Yellow);
 
             if (ms.Contains("OK"))
                 Write(" " + ms, ConsoleColor.Blue);
             else
                 Write(" " + ms, ConsoleColor.Red);
+
+            Write("\n", ConsoleColor.Red);
         }
         Console.WriteLine();
         Console.WriteLine();

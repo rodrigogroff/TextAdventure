@@ -44,7 +44,7 @@
     },
     {
       "id": "7",
-      "text": "Play with a Dwarf Bard"
+      "text": "Find mushroom in cave"
     },
     {
       "id": "8",
@@ -1456,12 +1456,15 @@
           "item": "Twigg",
           "formula": [
             "/msgR You poke around and find something beneath the small rocks.",
-            "/giveI Mushroom 1"
+            "/giveI Mushroom 1",
+            "/award 7"
           ]
         }
       ],
       "program": [],
-      "hint": [],
+      "hint": [
+        "Poking around in this cave could yield some results..."
+      ],
       "give": [],
       "take": []
     },
