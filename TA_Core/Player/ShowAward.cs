@@ -3,13 +3,10 @@ public partial class TextAdventureGame
 {
     void ShowAward()
     {
-        Console.Clear();
-        Console.WriteLine();
-        Console.WriteLine();
         Console.WriteLine();
         Console.WriteLine();
 
-        Write("¨ ▒▓██ Current Game Awards ██▓▒\n", ConsoleColor.DarkGray);
+        Write("¨ ▒▓██ Current Game Awards \n", ConsoleColor.DarkGray);
 
         Console.WriteLine();
         

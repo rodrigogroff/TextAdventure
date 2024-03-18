@@ -5,7 +5,6 @@ public partial class TextAdventureGame
     {
         Write("¨ ▒▓██ ", ConsoleColor.Blue);
         Write(current_game_Room.label, ConsoleColor.White);
-        Write(" █████████▓▒ ", ConsoleColor.Blue);
     }
 
     void DisplayCurrentRoomText()

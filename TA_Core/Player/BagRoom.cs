@@ -10,8 +10,13 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
-            
-            Write("¨ ▒▓██ Player Bag ██▓▒\n", ConsoleColor.DarkGray);
+
+            DisplayCurrentSceneTitle();
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Write("¨ ▒▓██ Player Bag \n", ConsoleColor.DarkGray);
 
             Console.WriteLine();
 

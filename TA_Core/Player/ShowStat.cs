@@ -9,7 +9,12 @@ public partial class TextAdventureGame
         Console.WriteLine();
         Console.WriteLine();
 
-        Write("¨ ▒▓██ Player Stats ██▓▒\n\n", ConsoleColor.DarkGray);
+        DisplayCurrentSceneTitle();
+
+        Console.WriteLine();
+        Console.WriteLine();
+
+        Write("¨ ▒▓██ Player Stats\n\n", ConsoleColor.DarkGray);
         Write("¨ Name:  ", ConsoleColor.DarkGray);
         Write(game.player.name + "\n", ConsoleColor.Yellow);
         Write("¨ Title: ", ConsoleColor.DarkGray);

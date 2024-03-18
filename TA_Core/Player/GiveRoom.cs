@@ -16,7 +16,7 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Console.WriteLine();
 
-            Write("¨ ▒▓██ Give Item ██▓▒\n", ConsoleColor.DarkGray);
+            Write("¨ ▒▓██ Give Item\n", ConsoleColor.DarkGray);
 
             Console.WriteLine();
 

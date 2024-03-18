@@ -3,15 +3,20 @@
 public partial class TextAdventureGame
 {
     void MapRoom()
-    {        
+    {
+        Console.Clear();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine();
+
+        DisplayCurrentSceneTitle();
+
+        Console.WriteLine();
+
         if (string.IsNullOrEmpty(current_game_Room.map))
         {
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Write("¨ No map available to this area!", ConsoleColor.DarkYellow);
+            Write("¨ No map available to this area!\n", ConsoleColor.DarkYellow);
             Console.WriteLine();
             return;
         }
@@ -22,17 +27,7 @@ public partial class TextAdventureGame
         {            
             while (true)
             {
-                if (!bAutomap)
-                {
-                    Console.Clear();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                }
-                else
-                {
-                    Console.WriteLine();
-                }
+                Console.WriteLine();
 
                 var cur_letter = "";
 
@@ -65,40 +60,33 @@ public partial class TextAdventureGame
                 {
                     Write("¨ ", ConsoleColor.DarkGray);
 
-                    if (idx_line++ < 1)
+                    foreach (var c in item)
                     {
-                        Write(item, ConsoleColor.DarkGray);
-                    }
-                    else
-                    {
-                        foreach (var c in item)
+                        if (c.ToString() == cur_letter)
+                            Write(c.ToString(), ConsoleColor.Blue);
+                        else
                         {
-                            if (c.ToString() == cur_letter)
-                                Write(c.ToString(), ConsoleColor.Blue);
-                            else
+                            if (Char.IsLetter(c) && idx_line > 0)
                             {
-                                if (Char.IsLetter(c) && idx_line > 0)
+                                var letterStageId = hashLetterId[c.ToString().ToLower()] as string;
+
+                                var c_map_item = game.stages.FirstOrDefault(y => y.id == letterStageId);
+
+                                if (c_map_item != null)
                                 {
-                                    var letterStageId = hashLetterId[c.ToString().ToLower()] as string;
-
-                                    var c_map_item = game.stages.FirstOrDefault(y => y.id == letterStageId);
-
-                                    if (c_map_item != null)
-                                    {
-                                        if (c_map_item.npc == true)
-                                            Write(c.ToString(), ConsoleColor.Red);
-                                        else
-                                            Write(c.ToString(), ConsoleColor.Yellow);
-                                    }
+                                    if (c_map_item.npc == true)
+                                        Write(c.ToString(), ConsoleColor.Red);
                                     else
-                                        Write(c.ToString(), ConsoleColor.DarkGray);
+                                        Write(c.ToString(), ConsoleColor.Yellow);
                                 }
                                 else
                                     Write(c.ToString(), ConsoleColor.DarkGray);
                             }
+                            else
+                                Write(c.ToString(), ConsoleColor.DarkGray);
                         }
                     }
-
+                
                     Write("\n", ConsoleColor.DarkGray);                    
                 }
 

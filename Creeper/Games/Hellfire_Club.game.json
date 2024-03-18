@@ -102,8 +102,6 @@
         "X|12||The gatekeeper"
       ],
       "graphics": [
-        "▒▓██ The wall █▓▒",
-        "",
         "                  ▒▒",
         "                  ▒░",
         "               ▒▒▒▒░",
@@ -126,8 +124,6 @@
         "E|60|C,D,H|Waterfall"
       ],
       "graphics": [
-        "▒▓██ Hell Outlands  █▓▒",
-        "",
         "      ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█ E █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
         "      ▒░░░░░░░░░░░░░░░░.░░░░░░░░░█▓▓▓▓█▓▓▓█▒▒",
         "   ▒▒▒▒░░░░░░░░░░░░░░░.░░░░░░░░░░▓░░░░░░░░▓▒▒",
@@ -152,8 +148,6 @@
         "I|60_1|E|Cave inside waterfall"
       ],
       "graphics": [
-        "▒▓██ Hell Outlands [2]  █▓▒",
-        "",
         "                 █I█",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█ E █▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒",
         "▒░░░░░░G@░░░░░░░░░.░░░░░░░░█▓▓▓▓█▓▓▓█▒▒",
@@ -174,8 +168,6 @@
         "C|60_3|B|Fire remains"
       ],
       "graphics": [
-        "▒▓██ Hell Outlands | Waterfall cave [1] █▓▒",
-        "",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█   ██████████     █▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█      B        C  █▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█ A ████████████████▒▒▒",
@@ -191,8 +183,6 @@
         "C|60_3|B,D|Fire remains"
       ],
       "graphics": [
-        "▒▓██ Hell Outlands | Waterfall cave [2] █▓▒",
-        "",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████████████████▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█   ███   ░░░░     █▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█   ███   ████     █▒▒▒",
@@ -200,7 +190,6 @@
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░   ███   ████     █▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█   ██████████     █▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█      B        C  █▒▒▒"
-
       ]
     },
     {
@@ -212,8 +201,6 @@
         "C|60_3|B,D|Fire remains"
       ],
       "graphics": [
-        "▒▓██ Hell Outlands | Waterfall cave [2B] █▓▒",
-        "",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒████████████████████▒▒▒",
         "▒▒▒▒▒░░░░▒▒▒▒▒▒▒█   ███   ░░░░     █▒▒▒",
         "▒▒▒▒▒F░░░░░▒▒▒▒▒█   ███   ████     █▒▒▒",
@@ -221,7 +208,6 @@
         "▒▒▒▒▒▒▒▒▒▒▒░░░░░░   ███   ████     █▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█   ██████████     █▒▒▒",
         "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█      B        C  █▒▒▒"
-
       ]
     }
   ],
@@ -231,6 +217,12 @@
       "description": "Gives food - replenish 20 life",
       "formula": "/giveA Life 20;/msgN You feel better!",
       "usable": true
+    },
+    {
+      "name": "Mushroom",
+      "description": "Good for making special dishes",
+      "formula": "",
+      "usable": false
     },
     {
       "name": "DeathFruit",
@@ -1397,7 +1389,7 @@
         "Old spirits tend to be mean when people touches their things."
       ],
       "give": [
-        "Gold 1|/msgRnd A voice tells you: \"The troll is a nice fella, just don't go there empty handed.\"%A voice tells you: \"There is a secret passage to the goblin temple.\"%A voice tells you: \"Last time I was alive, PC games we're only text. Boring!\"%A voice tells you: \"Go away now.\"%A voice tells you: \"The first rule of Hellfire Club is... oh, wait.\"%A voice tells you: \"Where are you Mathilda, my love, my everything!\"%A voice tells you: \"I killed a demon some years ago. Probably a rust thing now!\"%A voice tells you: \"Why aren't you working now?\""
+        "Gold 1|/msgRnd A voice tells you: \"The troll is a nice fella, just don't go there empty handed.\"%A voice tells you: \"There is a secret passage to the goblin temple.\"%A voice tells you: \"Last time I was alive, PC games we're only text. Boring!\"%A voice tells you: \"Go away now.\"%A voice tells you: \"The first rule of Hellfire Club is... oh, wait.\"%A voice tells you: \"Where are you Mathilda, my love, my everything!\"%A voice tells you: \"I killed a demon some years ago. Lost my my sword!\"%A voice tells you: \"People come to find mushrooms around here\""
       ],
       "take": [
         "Gold 5|/msgR As you steal from the skeleton, he jumps and stabs you with a dagger!;/goto 0:1"
@@ -1422,7 +1414,8 @@
           "item": "Rusty_Sword",
           "formula": [
             "/msgR You crushed the skeleton back to the ground.",
-            "/giveI Gold 20"
+            "/giveI Gold 20",
+            "/goto 60_2"
           ]
         }
       ],
@@ -1457,6 +1450,15 @@
       "look": [
         "The rabbit head is partially cooked.",
         "/giveI_CTitle Human_Thief Apple 1|You find a good apple among the trash."
+      ],
+      "use": [
+        {
+          "item": "Twigg",
+          "formula": [
+            "/msgR You poke around and find something beneath the small rocks.",
+            "/giveI Mushroom 1"
+          ]
+        }
       ],
       "program": [],
       "hint": [],

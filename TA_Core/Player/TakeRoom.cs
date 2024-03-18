@@ -13,7 +13,12 @@ public partial class TextAdventureGame
             Console.WriteLine();
             Console.WriteLine();
 
-            Write("¨ ▒▓██ Take from scene ██▓▒\n", ConsoleColor.DarkGray);
+            DisplayCurrentSceneTitle();
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+            Write("¨ ▒▓██ Take from scene\n", ConsoleColor.DarkGray);
 
             Console.WriteLine();
 
