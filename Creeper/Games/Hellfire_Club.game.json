@@ -60,7 +60,7 @@
     },
     {
       "id": "11",
-      "text": "Being crushed by a troll"
+      "text": "Sir, your pants are on fire"
     },
     {
       "id": "12",
@@ -1457,7 +1457,8 @@
           "formula": [
             "/msgR You poke around and find something beneath the small rocks.",
             "/giveI Mushroom 1",
-            "/award 7"
+            "/award 7",
+            "/giveA_CTitle Human_Stupid Life -20|Your clothes got on fire!!%/award 11"
           ]
         }
       ],

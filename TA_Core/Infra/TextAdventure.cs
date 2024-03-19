@@ -23,11 +23,9 @@ public partial class TextAdventureGame
 
     bool 
         bAutomation = false,
-        bFastMode = false,
         bAbortOp = false,
         bUnlimitedHints = false,
         bHintsDisabled = false,
-        bAutomap = false,
         bHardcore = false;
 
     GameMonitoring monitor;

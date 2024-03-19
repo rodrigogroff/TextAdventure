@@ -253,34 +253,33 @@ public partial class TextAdventureGame
                     Console.WriteLine();
                 }
             }
-            else if (cmd.StartsWith("/giveA"))
+            else if (cmd.StartsWith("/giveA_CTitle"))
             {
-                var item = cmd.Split(' ')[1];
-                var qqty = cmd.Split(' ')[2];
-                UpdateAttributes(new GameItem
+                var _cmd = cmd.Split('|')[0];
+                var form = cmd.Split('|')[1];
+
+                if (game.player.title == _cmd.Split(' ')[1].Replace("_", " "))
                 {
-                    name = item,
-                    quantity = Convert.ToInt32(qqty)
-                });
+                    if (!form.Contains("%"))
+                        PrintRoomText(cmd.Split('|')[1].Trim(), ConsoleColor.DarkYellow, 15);
+                    else
+                    {
+                        var _spl = form.Split('%');
+                        PrintRoomText(_spl[0], ConsoleColor.DarkYellow, 15);
+                        for (int i = 1; i < _spl.Count(); i++)
+                            ProcessCommand(_spl[i]);
+                    }
+
+                    var item = _cmd.Split(' ')[2];
+                    var qqty = _cmd.Split(' ')[3];
+
+                    UpdateAttributes(new GameItem
+                    {
+                        name = item,
+                        quantity = Convert.ToInt32(qqty)
+                    });
+                }
             }
-            else if (cmd.StartsWith("/giveT"))
-            {
-                var item = cmd.Split(' ')[1];
-                var originalTrait = game.traits.FirstOrDefault(y => y.name == item);
-
-                Console.Clear();
-                Console.WriteLine();
-                Console.WriteLine();
-                Console.WriteLine();
-
-                UpdateTraits(new GameTrait
-                {
-                    name = originalTrait.name,
-                    description = originalTrait.description,
-                    formula = originalTrait.formula,
-                    trigger = originalTrait.trigger
-                });
-            }            
             else if (cmd.StartsWith("/giveI_CTitle"))
             {
                 var _cmd = cmd.Split('|')[0];
@@ -337,9 +336,36 @@ public partial class TextAdventureGame
                     {
                         name = item,
                         quantity = Convert.ToInt32(qqty)
-                    });
-                    
+                    });                    
                 }
+            }
+            else if (cmd.StartsWith("/giveA"))
+            {
+                var item = cmd.Split(' ')[1];
+                var qqty = cmd.Split(' ')[2];
+                UpdateAttributes(new GameItem
+                {
+                    name = item,
+                    quantity = Convert.ToInt32(qqty)
+                });
+            }
+            else if (cmd.StartsWith("/giveT"))
+            {
+                var item = cmd.Split(' ')[1];
+                var originalTrait = game.traits.FirstOrDefault(y => y.name == item);
+
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine();
+
+                UpdateTraits(new GameTrait
+                {
+                    name = originalTrait.name,
+                    description = originalTrait.description,
+                    formula = originalTrait.formula,
+                    trigger = originalTrait.trigger
+                });
             }
             else if (cmd.StartsWith("/giveI"))
             {

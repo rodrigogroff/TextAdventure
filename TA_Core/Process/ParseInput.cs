@@ -38,14 +38,6 @@ public partial class TextAdventureGame
                 UseRoom();
                 break;
 
-            case "/s":
-            case "/speed":
-                bFastMode = !bFastMode;
-                Console.WriteLine();
-                Print("Text speed: " + (bFastMode ? "[FAST]" : "[SLOW]"), ConsoleColor.White, 15);
-                Console.WriteLine();
-                break;
-
             case "/save":
                 SaveGame();
                 break;
@@ -76,13 +68,6 @@ public partial class TextAdventureGame
 
             case "/bag":
                 BagRoom();
-                break;
-
-            case "/automap":
-                bAutomap = !bAutomap;
-                Console.WriteLine();
-                Write("¨ Automap: " + (bAutomap ? "[ON]" : "[OFF]"), ConsoleColor.White);
-                Console.WriteLine();
                 break;
 
             case "/skip":

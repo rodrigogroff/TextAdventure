@@ -19,8 +19,6 @@ public partial class TextAdventureGame
             ChangeWallpaper(wallpaper);
         }
 
-        var Old_fast = bFastMode;
-
         if (current_game_Room.option?.ToLower() != "death")
         {
             Console.WriteLine();
@@ -31,31 +29,21 @@ public partial class TextAdventureGame
             if (!foundIMg)
                 Write(" Missing img_" + current_game_Room.id + "_" + current_game_Room.version + "  ", ConsoleColor.Red );
 
-            if (bAutomap)
-            {
-                Write(" -- Automap: ", ConsoleColor.DarkGray);
-                Write("ON", ConsoleColor.White);
-            }
-
             if (bAutomation)
             {
                 Write("\n", ConsoleColor.DarkGray);
                 Write("¨ -- Automation: ", ConsoleColor.DarkGray);
                 Write(currentAutomation, ConsoleColor.Green);
             }
-
-            if (!bFastMode)
-            {
-                Write(" -- Press ", ConsoleColor.DarkGray);
-                Write("Esc", ConsoleColor.Green);
-                Write(" to skip text dialogue", ConsoleColor.DarkGray);
-            }
+            
+            Write(" -- Press ", ConsoleColor.DarkGray);
+            Write("Esc", ConsoleColor.Green);
+            Write(" to skip text dialogue", ConsoleColor.DarkGray);
         }
         else
         {
             gamePlay.death = true;
             FlushMonitorFile();
-            bFastMode = true;
         }
 
         if (!bAutomation)
@@ -64,15 +52,9 @@ public partial class TextAdventureGame
         Console.WriteLine();
         Console.WriteLine();
 
-        bool _b_safe = bFastMode;
-
         foreach (var item in current_game_Room.text)
         {
-            if (bAutomation || bFastMode)
-            {
-
-            }
-            else
+            if (!bAutomation)
             {
                 Thread.Sleep(10);
 
@@ -81,7 +63,7 @@ public partial class TextAdventureGame
                     ConsoleKeyInfo key = Console.ReadKey(true);
                     if (key.Key == ConsoleKey.Escape)
                     {
-                        bFastMode = true;
+                    //?    
                     }
                 }
             }
@@ -91,8 +73,6 @@ public partial class TextAdventureGame
             else
                 PrintRoomText(item, ConsoleColor.Yellow, 35);
         }
-
-        bFastMode = _b_safe;
 
         if (current_game_Room.textOptional != null)
         {
@@ -132,7 +112,6 @@ public partial class TextAdventureGame
             }
         }
 
-        bFastMode = Old_fast;
         Console.WriteLine();
     }
 
@@ -143,8 +122,6 @@ public partial class TextAdventureGame
             var pl = game.player;
             LoadGame();
             game.player = pl;
-            if (!bAutomation)
-                bFastMode = false;
             ShowAward();
             EnterToContinue();
             Console.Clear();            
@@ -195,18 +172,8 @@ public partial class TextAdventureGame
                 Console.WriteLine();
                 DisplayCurrentRoomText();
 
-                bool bAlreadyMapped = false;
-
                 while (true)
                 {
-                    if (bAutomap && !bAlreadyMapped)
-                    {
-                        if (!string.IsNullOrEmpty(current_game_Room.map))
-                            MapRoom();
-                        bAlreadyMapped = true;
-                        Console.WriteLine();
-                    }
-
                     DisplayPlayerInputBox();
                     first = false;
                     Console.ForegroundColor = ConsoleColor.Green;

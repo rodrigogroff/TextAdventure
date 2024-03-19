@@ -315,10 +315,8 @@ public partial class TextAdventureGame
                                             if (pTip2 != null)
                                             {
                                                 Write("¨\n", ConsoleColor.DarkGray);
-                                                bFastMode = false;
                                                 foreach (var t in pTip2.game_tip)
                                                     PrintRoomText(t, ConsoleColor.Yellow, 5);
-
                                                 Write("¨\n", ConsoleColor.DarkGray);
                                             }
                                         }
@@ -377,7 +375,6 @@ public partial class TextAdventureGame
                                             }
                                             if (key.Key == ConsoleKey.End)
                                             {
-                                                bFastMode = true;
                                                 bAutomation = true;
                                                 bEnterPressed = true;
                                                 Thread.Sleep(100);
@@ -474,7 +471,7 @@ public partial class TextAdventureGame
 
                                         Console.CursorVisible = false;
                                         Console.WriteLine();
-                                        bFastMode = false;
+                                        
                                         if (++enters == 2)
                                         {
                                             enters = 0;
@@ -515,8 +512,7 @@ public partial class TextAdventureGame
                                         EnterToContinue();
                                         Console.CursorVisible = false;
                                         Console.WriteLine();
-                                        bFastMode = false;
-
+                                        
                                         if (++enters == 2)
                                         {
                                             enters = 0;
@@ -590,8 +586,6 @@ public partial class TextAdventureGame
 
                             Console.CursorVisible = false;
                             bHardcore = false;
-                            bFastMode = false;
-
                             gameDifficulty = diff;
 
                             if (bAutomation)
@@ -617,13 +611,11 @@ public partial class TextAdventureGame
                                 else if (diff == "3")
                                 {
                                     bHintsDisabled = true;
-                                    bFastMode = true;
                                     break;
                                 }
                                 else if (diff == "4")
                                 {
                                     bHardcore = true;
-                                    bFastMode = true;
                                     Console.WriteLine();
                                     Write("¨ --- [HARDCORE MODE UNLOCKED!] ---\n", ConsoleColor.White);
                                     Thread.Sleep(2000);
@@ -706,8 +698,8 @@ public partial class TextAdventureGame
 
                         if (game.currentRoom == null)
                             game.currentRoom = "1";
+
                         Console.Clear();
-                        bFastMode = false;
                         ProcessRoom(game.currentRoom);
                         break;
                 }

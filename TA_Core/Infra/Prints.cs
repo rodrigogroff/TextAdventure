@@ -110,21 +110,19 @@ public partial class TextAdventureGame
         text = PreProcessText(text);
         foreach (char c in text)
         {
-            if (!bFastMode)
-                if (c == ' ')
-                    if (!bAutomation)
-                        Thread.Sleep(20);
+            if (c == ' ')
+                if (!bAutomation)
+                    Thread.Sleep(20);
 
             Console.Write(c);
-
-            if (!bFastMode)
-                if (";,-.!?—'\"".Contains(c))
-                {
-                    if (!bAutomation)
-                        Thread.Sleep(300);
-                }
-                else
-                    Thread.Sleep(ms);
+            
+            if (";,-.!?—'\"".Contains(c))
+            {
+                if (!bAutomation)
+                    Thread.Sleep(300);
+            }
+            else
+                Thread.Sleep(ms);
         }
 
         Console.WriteLine();
@@ -143,7 +141,9 @@ public partial class TextAdventureGame
         Write("¨", color);
 
         char last = '!';
-        
+
+        bool bFastMode = false;
+
         foreach (char c in text)
         {
             var _timer = ms;
