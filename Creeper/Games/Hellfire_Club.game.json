@@ -1033,7 +1033,7 @@
       "program": [
         "/giveA Strength 4;/giveA Inteligence 5;/giveA Vitality 5;/giveA Dexterity 5;/giveA Mana 11;/giveA ManaMAX 11;/giveA Life 110;/giveA LifeMAX 110;/giveT Elf;/title Dark_Elf_Assassin;/giveI Gold 100;/goto 12:1",
         "/giveA Strength 2;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 15;/giveA ManaMAX 15;/giveA Life 80;/giveA LifeMAX 80;/giveT Human;/giveT Sex_Pervert;/title Human_Psion;/giveI Gold 100;/goto 12:1",
-        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Dwarf;/giveT Drunk;/title Dwarf_Bard;/giveI Gold 100;/award 7;/goto 12:1"
+        "/giveA Strength 3;/giveA Inteligence 4;/giveA Vitality 3;/giveA Dexterity 3;/giveA Mana 2;/giveA ManaMAX 2;/giveA Life 60;/giveA LifeMAX 60;/giveT Dwarf;/giveT Drunk;/title Dwarf_Bard;/giveI Gold 100;/goto 12:1"
       ],
       "look": [],
       "give": [
