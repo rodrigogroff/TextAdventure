@@ -78,7 +78,7 @@ public partial class TextAdventureGame
             var guid_item_world = guid_inventory[Convert.ToInt32(option) - 1];
             var gg_item = game.itens.FirstOrDefault(y => y.name == g_item_take.name);
 
-            if (game.player.inventory.Count >= game.maxInventory)
+            if (game.player.inventory.Count > game.maxInventory)
             {
                 Console.WriteLine();
                 Write("¨ >> Maximum inventory reached! <<\n", ConsoleColor.Red);
@@ -95,10 +95,16 @@ public partial class TextAdventureGame
             currentItem = g_item_take.name;
 
             if (!string.IsNullOrEmpty(gg_item.formula))
-                ProcessCommand(gg_item.formula);            
+            {
+                ProcessCommand(gg_item.formula);
+                this.EnterToContinue();
+            }
 
             if (!string.IsNullOrEmpty(g_item_take.formula))
+            {
                 ProcessCommand(g_item_take.formula);
+                this.EnterToContinue();
+            }                
 
             foreach (var item in game.world_itens.Where(y => y.scene_id == currentRoom.id && y.scene_version == currentRoom.version))
                 if (item.guid == guid_item_world)

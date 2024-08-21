@@ -92,7 +92,10 @@
           "TA_Update": "1.0.0"
         },
         "runtime": {
-          "TA_AppUpdater.dll": {}
+          "TA_AppUpdater.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "TA_Core/1.0.0": {
@@ -100,12 +103,18 @@
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
-          "TA_Core.dll": {}
+          "TA_Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "TA_Update/1.0.0": {
         "runtime": {
-          "TA_Update.dll": {}
+          "TA_Update.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

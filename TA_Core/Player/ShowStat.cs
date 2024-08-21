@@ -16,9 +16,9 @@ public partial class TextAdventureGame
 
         Write("¨ ▒▓██ Player Stats\n\n", ConsoleColor.DarkGray);
         Write("¨ Name:  ", ConsoleColor.DarkGray);
-        Write(game.player.name + "\n", ConsoleColor.Yellow);
+        Write(game.player.name + "\n", ConsoleColor.Red);
         Write("¨ Title: ", ConsoleColor.DarkGray);
-        Write(game.player.title + "\n", ConsoleColor.Yellow);
+        Write(game.player.title + "\n", ConsoleColor.DarkBlue);
         Write("¨ --- Attributes ----\n", ConsoleColor.Green);
 
         int text_size = 16;

@@ -126,3 +126,55 @@ C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\wallpaper_1920.jpg
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\wallpaper_2560.jpg
 C:\Users\rodri\source\repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.QA.txt
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.deps.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.runtimeconfig.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.exe
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.exe
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\about.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Feed_Korg.game.jsonx
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Feed_Korg.title.txt
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.game.jsonx
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.QA.txt
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Hellfire_Club.title.txt
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.game.jsonx
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\NightCrawlers.title.txt
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.game.jsonx
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\Paranormal_investigator.title.txt
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\patreon.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Games\summary.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\img_1_1_1920.jpg
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\img_1_1_2560.jpg
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\wallpaper_1920.jpg
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\Hellfire Club\wallpaper_2560.jpg
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\wallpaper_1920.jpg
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Images\wallpaper_2560.jpg
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Readme.md
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.deps.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.runtimeconfig.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TextAdventure.pdb
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Google.Apis.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Google.Apis.Auth.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Google.Apis.Core.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\System.Management.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Management.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Core.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Update.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_AppUpdater.pdb
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Core.pdb
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\bin\Debug\net6.0\TA_Update.pdb
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.csproj.AssemblyReference.cache
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.AssemblyInfoInputs.cache
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.AssemblyInfo.cs
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.sourcelink.json
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdve.A50AB6E6.Up2Date
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\refint\TextAdventure.dll
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.pdb
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\TextAdventure.genruntimeconfig.cache
+C:\Users\Usuario\Source\Repos\TextAdventure\TextAdventure\obj\Debug\net6.0\ref\TextAdventure.dll

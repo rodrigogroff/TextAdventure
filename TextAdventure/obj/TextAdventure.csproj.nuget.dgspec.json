@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {}
+    "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj",
         "projectName": "TA_AppUpdater",
-        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj",
-        "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_AppUpdater\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_AppUpdater\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,14 +22,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj": {
-                "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj"
+              "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj"
               }
             }
           }
@@ -79,26 +75,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj",
         "projectName": "TA_Core",
-        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj",
-        "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -106,6 +97,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -150,26 +142,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj",
         "projectName": "TA_Update",
-        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj",
-        "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Update\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Update\\TA_Update.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Update\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -177,6 +164,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -215,26 +203,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
         "projectName": "TextAdventure",
-        "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
-        "packagesPath": "C:\\Users\\rodri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TextAdventure\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TextAdventure\\TextAdventure.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TextAdventure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\rodri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -242,17 +225,18 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj": {
-                "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj"
+              "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_AppUpdater\\TA_AppUpdater.csproj"
               },
-              "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj": {
-                "projectPath": "C:\\Users\\rodri\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj"
+              "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\source\\repos\\TextAdventure\\TA_Core\\TA_Core.csproj"
               }
             }
           }
@@ -287,7 +271,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1103,7 +1103,7 @@
       "program": [],
       "look": [
         "The gatekeeper is reading a book, and then wide his eyes looking at you:",
-        "\"Jesus! I almost forgot, here is a letter of comendation to join the ~hellfire club~.\"",
+        "\"I almost forgot! Here is a letter of comendation to join the ~hellfire club~.\"",
         "/giveI Letter_Comendation 1",
         "With the letter, you walk away from the gate while the monk disappears in",
         "a flash of green smoke.",
